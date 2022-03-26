@@ -30,8 +30,8 @@ services:
       - nginx-proxy_default
     restart: unless-stopped
     environment:
-      VIRTUAL_HOST: ${VIRTUAL_HOST}, ${VIRTUAL_HOST_WWW}
-      LETSENCRYPT_HOST: ${VIRTUAL_HOST}, ${VIRTUAL_HOST_WWW}
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+      LETSENCRYPT_HOST: ${VIRTUAL_HOST}
       VIRTUAL_PORT: ${WORDPRESS_PORT}
       WORDPRESS_DB_HOST: wordpress_db_service:3306
       WORDPRESS_DB_USER: ${MYSQL_USER}
