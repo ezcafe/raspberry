@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  wordpress_db_service:
+    image: mariadb:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    container_name: wordpress-db-container
+    networks:
+      - nginx-proxy_default
+
+  wordpress_website_service:
+    depends_on:
+      - wordpress_db_service
+    image: arm64v8/wordpress:latest
+    volumes:
+      - wp_data:/var/www/html
+    # The containers being proxied must expose the port to be proxied
+    expose:
+      - ${WORDPRESS_PORT}
+    ports:
+      - "${WORDPRESS_PORT}:80"
+    networks:
+      - nginx-proxy_default
+    restart: unless-stopped
+    environment:
+      VIRTUAL_HOST: ${VIRTUAL_HOST}, ${VIRTUAL_HOST_WWW}
+      LETSENCRYPT_HOST: ${VIRTUAL_HOST}, ${VIRTUAL_HOST_WWW}
+      WORDPRESS_DB_HOST: wordpress_db_service:3306
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+    container_name: wordpress-website-container
+
+volumes:
+  db_data:
+  wp_data:
+
+networks:
+  nginx-proxy_default:
+    external: true
+    name: nginx-proxy_default
