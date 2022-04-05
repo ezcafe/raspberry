@@ -15,7 +15,8 @@ Proxy Status: DNS only
 TTL: Auto
 
 `CNAME` with Content `@` will point `subdomain.example.com` to `example.com`
-`DNS only` is required to create SSL later. We will change it back to `Proxied` after SSL is created.
+`DNS only` is required to create SSL later. 
+We will change it back to `Proxied` after SSL is created.
 
 ## First load
 
@@ -47,8 +48,13 @@ Go to Hosts > Proxy Hosts > Add Proxy Host
 - Scheme: http
 - Forward Hostname / IP: <your-raspberry-ip>
 - Forward Port: <your-app-port>
-- Check: Cache Assets
 - Check: Block Common Exploits
+
+### SKIP THIS: Tab Custom locations
+Click Add location. 
+If forwarding to a WordPress server, type “/wp-admin” as the location. 
+The scheme should match the previous page, which is http in this case. 
+Again, add your server IP and forward port like the previous page as well.
 
 ### Tab SSL
 SSL Certificate: select *.example.com
@@ -57,12 +63,29 @@ Check: HTTP/2 Support
 
 Then Save
 
-### Update Cloudflare
+There is a bug with Nginx Proxy Manager, we need to Go back to Tab SSL again
+Check: Force SSL
+Check: HTTP/2 Support
+
+Then Save
+
+## Enable the port in firewall
+
+sudo ufw allow <your-app-port>
+
+## Update Cloudflare
 
 Update `subdomain` to `Proxied`
 
+## Wordpress only: Setup Wordpress
 
-### Read more
+Go to the newly created subdomain.example.com to setup your Wordpress
+
+## Forgot password?
+
+https://github.com/NginxProxyManager/nginx-proxy-manager/issues/230#issuecomment-815078355
+
+## Read more
 
 - https://husarnet.com/blog/reverse-proxy-gui
 - https://kinsta.com/blog/reverse-proxy/
