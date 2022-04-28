@@ -5,6 +5,7 @@
 ### Installation
 ```
 git clone https://git.tt-rss.org/fox/ttrss-docker-compose.git
+cd ttrss-docker-compose
 git checkout static-dockerhub
 ```
 
@@ -25,3 +26,16 @@ docker-compose pull && docker-compose up -d
 Default login credentials
 - Username: admin
 - Password: password
+
+### Updating
+
+```
+cd ttrss-docker-compose
+docker-compose down && docker-compose rm
+git pull origin master
+
+cp -a .env-dist .env
+nano .env
+
+docker-compose up --build
+```
