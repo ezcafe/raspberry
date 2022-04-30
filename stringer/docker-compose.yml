@@ -12,7 +12,8 @@ services:
     container_name: stringer-db
 
   stringer_app:
-    image: mdswanson/stringer
+    image: mockdeep/stringer
+    build: ./stringer
     depends_on:
       - stringer_db
     restart: unless-stopped
