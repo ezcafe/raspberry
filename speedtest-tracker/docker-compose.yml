@@ -2,7 +2,7 @@ version: '3.3'
 services:
     speedtest:
         container_name: speedtest
-        image: henrywhitaker3/speedtest-tracker
+        image: henrywhitaker3/speedtest-tracker:dev-arm
         ports:
             - ${SPEEDTEST_PORT}:80
         volumes:
