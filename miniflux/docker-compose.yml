@@ -2,6 +2,7 @@ version: '3.4'
 services:
   miniflux_db:
     image: postgres:latest
+    restart: unless-stopped
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -15,12 +16,13 @@ services:
 
   miniflux_app:
     image: miniflux/miniflux:latest
+    restart: unless-stopped
     ports:
       - "${MINIFLUX_PORT}:8080"
     depends_on:
       - miniflux_db
     environment:
-      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/miniflux?sslmode=disable
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@miniflux-db/${POSTGRES_USER}?sslmode=disable
       - RUN_MIGRATIONS=1
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
