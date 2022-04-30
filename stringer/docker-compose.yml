@@ -12,7 +12,7 @@ services:
     container_name: stringer-db
 
   web:
-    image: mockdeep/stringer
+    image: mdswanson/stringer
     build: .
     depends_on:
       - stringer_db
