@@ -17,7 +17,7 @@ services:
       - stringer_db
     restart: unless-stopped
     ports:
-      - ${STRINGER_PORT}:8080
+      - "${STRINGER_PORT}:8080"
     environment:
       - SECRET_TOKEN=${SECRET_TOKEN}
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@stringer-db:5432/${POSTGRES_DB}
