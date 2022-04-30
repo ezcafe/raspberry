@@ -11,9 +11,8 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     container_name: stringer-db
 
-  web:
-    image: mdswanson/stringer
-    build: .
+  stringer_app:
+    image: mockdeep/stringer
     depends_on:
       - stringer_db
     restart: unless-stopped
