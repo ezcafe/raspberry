@@ -16,9 +16,19 @@ services:
       url: https://blog.in4.vn
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
       #NODE_ENV: development
+    container_name: ghost
 
   ghost_db:
-    image: mysql:8.0
+    image: mariadb:latest
+    volumes:
+      - ghost_db_data:/var/lib/mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    container_name: ghost-db
+
+volumes:
+  ghost_db_data:
