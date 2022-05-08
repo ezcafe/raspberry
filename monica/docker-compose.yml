@@ -13,7 +13,7 @@ services:
     container_name: monica
 
   monica_db:
-    image: mariadb:latest
+    image: jsurf/rpi-mariadb:latest
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
