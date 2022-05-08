@@ -11,6 +11,7 @@ services:
       - dashboard_data:/app/data
     ports:
       - ${DASHBOARD_PORT}:8080
+    container_name: dashboard
 
 volumes:
   dashboard_data:
