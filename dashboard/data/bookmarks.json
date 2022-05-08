@@ -6,6 +6,10 @@
         {
           "name": "Wikipedia",
           "url": "https://en.wikipedia.org/"
+        },
+        {
+          "name": "Arch Linux Wiki",
+          "url": "https://archlinux.org/"
         }
       ]
     },
@@ -15,23 +19,78 @@
         {
           "name": "Codepen",
           "url": "https://codepen.io/"
+        },
+        {
+          "name": "JSFiddle",
+          "url": "https://jsfiddle.net/"
+        },
+        {
+          "name": "Pastebin",
+          "url": "https://pastebin.com/"
         }
       ]
     },
     {
-      "name": "Raspberry",
+      "name": "Media",
       "items": [
         {
-          "name": "Noted.lol",
-          "url": "https://noted.lol/"
+          "name": "Soundcloud",
+          "url": "https://soundcloud.com"
         },
         {
-          "name": "Self-hosted",
-          "url": "https://www.reddit.com/r/selfhosted/"
+          "name": "YouTube",
+          "url": "https://youtube.com"
         },
         {
-          "name": "Raspberry Pi",
-          "url": "https://www.reddit.com/r/raspberry_pi/"
+          "name": "Twitch",
+          "url": "https://twitch.tv"
+        }
+      ]
+    },
+    {
+      "name": "Social Networks",
+      "items": [
+        {
+          "name": "Facebook",
+          "url": "https://facebook.com"
+        },
+        {
+          "name": "Twitter",
+          "url": "https://twitter.com"
+        },
+        {
+          "name": "Instagram",
+          "url": "https://instagram.com"
+        }
+      ]
+    },
+    {
+      "name": "Imageboards",
+      "items": [
+        {
+          "name": "Reddit",
+          "url": "https://reddit.com"
+        },
+        {
+          "name": "4chan",
+          "url": "https://4chan.org"
+        }
+      ]
+    },
+    {
+      "name": "Tech",
+      "items": [
+        {
+          "name": "Hackernoon",
+          "url": "https://hackernoon.com"
+        },
+        {
+          "name": "The Verge",
+          "url": "https://theverge.com"
+        },
+        {
+          "name": "Hackernews",
+          "url": "https://news.ycombinator.com"
         }
       ]
     }

@@ -15,6 +15,10 @@ docker-compose up -d
 docker container ls
 ```
 
+### Update json files in data folder
+
+...
+
 ### Copy json files to data folder
 
 ```
