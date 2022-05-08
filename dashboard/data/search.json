@@ -1,0 +1,17 @@
+{
+  "placeholder": "",
+  "defaultProvider": "https://google.com/search?q=",
+  "autoFocus": false,
+  "providers": [
+    {
+      "name": "Duck Duck Go",
+      "url": "https://duckduckgo.com/?q=",
+      "prefix": "/d"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://youtube.com/results?search_query=",
+      "prefix": "/yt"
+    }
+  ]
+}

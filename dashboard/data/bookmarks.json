@@ -1,0 +1,39 @@
+{
+  "groups": [
+    {
+      "name": "Wikis",
+      "items": [
+        {
+          "name": "Wikipedia",
+          "url": "https://en.wikipedia.org/"
+        }
+      ]
+    },
+    {
+      "name": "Dev",
+      "items": [
+        {
+          "name": "Codepen",
+          "url": "https://codepen.io/"
+        }
+      ]
+    },
+    {
+      "name": "Raspberry",
+      "items": [
+        {
+          "name": "Noted.lol",
+          "url": "https://noted.lol/"
+        },
+        {
+          "name": "Self-hosted",
+          "url": "https://www.reddit.com/r/selfhosted/"
+        },
+        {
+          "name": "Raspberry Pi",
+          "url": "https://www.reddit.com/r/raspberry_pi/"
+        }
+      ]
+    }
+  ]
+}

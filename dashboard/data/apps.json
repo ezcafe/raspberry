@@ -1,0 +1,23 @@
+{
+  "categories": [
+    {
+      "name": "Networking",
+      "items": [
+        {
+          "name": "Pihole",
+          "displayURL": "example.com",
+          "url": "https://example.com",
+          "icon": "vpn_lock"
+        }
+      ]
+    }
+  ],
+  "apps": [
+    {
+      "name": "Ghost",
+      "displayURL": "blog.in4.vn",
+      "url": "https://blog.in4.vn",
+      "icon": "rss_feed"
+    }
+  ]
+}
