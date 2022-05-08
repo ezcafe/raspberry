@@ -13,15 +13,15 @@ services:
     container_name: monica
 
   monica_db:
-    image: jsurf/rpi-mariadb:latest
+    image: mariadb:latest
+    volumes:
+      - monica_db_data:/var/lib/mysql
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    volumes:
-      - monica_db_data:/var/lib/mysql
-    restart: unless-stopped
     container_name: monica-db
 
 volumes:

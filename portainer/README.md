@@ -1,0 +1,3 @@
+# Portainer
+
+User name: admin
