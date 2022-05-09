@@ -11,6 +11,12 @@ services:
       - dashboard_data:/app/data
     ports:
       - ${DASHBOARD_PORT}:8080
+    networks:
+      - caddy
+      - internal
+    labels:
+      caddy: rss.example.com
+      caddy.reverse_proxy: "{{upstreams 8080}}"
     container_name: dashboard
 
 volumes:

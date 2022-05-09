@@ -1,4 +1,0 @@
-example.com {
-  reverse_proxy localhost:19997
-  encode zstd gzip
-}
