@@ -11,11 +11,12 @@ services:
       - monica_data:/var/www/html/storage
     restart: unless-stopped
     environment:
+      APP_KEY: ${APP_KEY}
       DB_HOST: monica_db:3306
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      DB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
     container_name: monica
 
   monica_db:
@@ -24,10 +25,10 @@ services:
       - monica_db_data:/var/lib/mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      DB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
     container_name: monica-db
 
 volumes:
