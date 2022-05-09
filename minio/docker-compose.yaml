@@ -4,7 +4,7 @@ version: '3.7'
 # Settings and configurations that are common for all containers
 x-minio-common: &minio-common
   image: quay.io/minio/minio:latest
-  command: server --console-address ":${MINIO_PORT_2}" http://minio{1...1}/data{1...2}
+  command: server --console-address ":${MINIO_PORT_2}" http://minio{1...2}/data{1...2}
   expose:
     - "${MINIO_PORT_1}"
     - "${MINIO_PORT_2}"
@@ -28,9 +28,18 @@ services:
       - minio1-data-1:/data1
       - minio1-data-2:/data2
     container_name: minio1
+  minio2:
+    <<: *minio-common
+    hostname: minio2
+    volumes:
+      - minio2-data-1:/data1
+      - minio2-data-2:/data2
+    container_name: minio2
 
 ## By default this config uses default local driver,
 ## For custom volumes replace with volume driver configuration.
 volumes:
   minio1-data-1:
   minio1-data-2:
+  minio2-data-1:
+  minio2-data-2:
