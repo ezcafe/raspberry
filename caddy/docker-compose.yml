@@ -9,9 +9,10 @@ services:
       - "443:443"
     volumes:
       - $PWD/Caddyfile:/etc/caddy/Caddyfile
-      - $PWD/site:/srv
       - caddy_data:/data
       - caddy_config:/config
+    healthcheck:
+      test: ["CMD", "caddy", "version"]
     container_name: caddy
 
 volumes:
