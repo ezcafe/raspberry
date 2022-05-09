@@ -4,7 +4,7 @@ version: '3.7'
 # Settings and configurations that are common for all containers
 x-minio-common: &minio-common
   image: quay.io/minio/minio:latest
-  command: server --console-address ":${MINIO_PORT_2}" http://minio1/data{1...2}
+  command: server --console-address ":${MINIO_PORT_2}" http://minio{1...1}/data{1...2}
   expose:
     - "${MINIO_PORT_1}"
     - "${MINIO_PORT_2}"
@@ -19,7 +19,7 @@ x-minio-common: &minio-common
 
 # starts 4 docker containers running minio server instances.
 # using nginx reverse proxy, load balancing, you can access
-# it through port MINIO_PORT_1.
+# it through port 9000.
 services:
   minio1:
     <<: *minio-common
