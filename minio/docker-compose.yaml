@@ -1,34 +1,27 @@
 # https://raw.githubusercontent.com/minio/minio/master/docs/orchestration/docker-compose/docker-compose.yaml
 version: '3.7'
 
-# Settings and configurations that are common for all containers
-x-minio-common: &minio-common
-  image: minio/minio
-  command: server /data
-  expose:
-    - "9000"
-    - "9001"
-  environment:
-    MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-    MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
-  restart: unless-stopped
-  healthcheck:
-    test: ["CMD", "curl", "-f", "http://localhost:${MINIO_PORT}/minio/health/live"]
-    interval: 30s
-    timeout: 20s
-    retries: 3
-
 services:
-  minio1:
-    <<: *minio-common
-    hostname: minio1
+  minio:
+    image: minio/minio
     volumes:
-      - minio1-data:/data
+      - minio-data:/data
     ports:
       - "${MINIO_PORT}:9000"
-    container_name: minio1
+      - "${MINIO_PORT_CONSOLE}:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    restart: unless-stopped
+    command: server --address :${MINIO_PORT} --console-address :${MINIO_PORT_CONSOLE} /data
+    container_name: minio
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${MINIO_PORT}/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
 
 ## By default this config uses default local driver,
 ## For custom volumes replace with volume driver configuration.
 volumes:
-  minio1-data:
+  minio-data:
