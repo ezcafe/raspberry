@@ -41,5 +41,5 @@ services:
 volumes:
   minio1-data-1:
   minio1-data-2:
-  minio1-data-2:
-  minio1-data-2:
+  minio2-data-1:
+  minio2-data-2:
