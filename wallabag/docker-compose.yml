@@ -34,7 +34,7 @@ services:
   wallabag_db:
     image: mariadb
     environment:
-      - MYSQL_ROOT_PASSWORD=<secure-root-password>
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
       - wallabag_db_data:/var/lib/mysql
     healthcheck:
