@@ -17,6 +17,8 @@ services:
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
       #NODE_ENV: development
     container_name: ghost
+    env_file:
+      ../config/ghost.env
 
   ghost_db:
     image: mariadb:latest
@@ -29,6 +31,8 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     container_name: ghost-db
+    env_file:
+      ../config/ghost.env
 
 volumes:
   ghost_db_data:

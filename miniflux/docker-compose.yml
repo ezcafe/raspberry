@@ -13,6 +13,8 @@ services:
       interval: 10s
       start_period: 30s
     container_name: miniflux-db
+    env_file:
+      ../config/miniflux.env
 
   miniflux_app:
     image: miniflux/miniflux:latest
@@ -30,6 +32,8 @@ services:
     # healthcheck:
     #  test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
     container_name: miniflux
+    env_file:
+      ../config/miniflux.env
 
 volumes:
   miniflux_db_data:

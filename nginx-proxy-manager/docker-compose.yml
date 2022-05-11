@@ -11,6 +11,8 @@ services:
     volumes:
       - nginx_db_data:/var/lib/mysql
     container_name: nginx-proxy-manager-db
+    env_file:
+      ../config/nginx.env
   
   nginx_app:
     image: 'jc21/nginx-proxy-manager:latest'
@@ -36,6 +38,8 @@ services:
     depends_on:
       - nginx_db
     container_name: nginx-proxy-manager
+    env_file:
+      ../config/nginx.env
   
 volumes:
   nginx_db_data:

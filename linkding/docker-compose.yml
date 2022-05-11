@@ -10,6 +10,8 @@ services:
       - linkding_data:/etc/linkding/data
     restart: unless-stopped
     container_name: linkding
+    env_file:
+      ../config/linkding.env
 
 volumes:
   linkding_data:

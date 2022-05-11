@@ -14,3 +14,5 @@ services:
     ports:
       - ${DUPLICATI_PORT}:8200
     restart: unless-stopped
+    env_file:
+      ../config/duplicati.env
