@@ -4,7 +4,7 @@ services:
     image: containrrr/watchtower:latest
     container_name: watchtower
     environment:
-      TZ: Asia/Ho_Chi_Minh                                                                              # Change this
+      TZ: ${TZ}                                                                                         # Change this
       WATCHTOWER_ROLLING_RESTART: 'true'
       #WATCHTOWER_MONITOR_ONLY: 'true'
       WATCHTOWER_SCHEDULE: '0 0 3 * * *'

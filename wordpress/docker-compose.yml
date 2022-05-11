@@ -28,6 +28,8 @@ services:
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
     container_name: wordpress
+    env_file:
+      ../config/wordpress.env
 
 volumes:
   wp_db_data:
