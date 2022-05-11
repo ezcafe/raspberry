@@ -12,6 +12,8 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     container_name: wordpress-db
+    env_file:
+      ../config/wordpress.env
 
   wordpress_app:
     depends_on:
