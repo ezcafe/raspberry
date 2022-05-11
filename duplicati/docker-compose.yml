@@ -4,13 +4,13 @@ services:
     image: linuxserver/duplicati
     container_name: duplicati
     environment:
-      - PUID=1000 # The PUID can be set to 0 which will give root permissions to the container
-      - PGID=1000  # The PGID can be set to 0 which will give root permissions to the container
+      - PUID=0 # The PUID can be set to 0 which will give root permissions to the container
+      - PGID=0  # The PGID can be set to 0 which will give root permissions to the container
       - TZ=${TZ} # Set the appropriate timezone
     volumes:
-      - ../config:/config # Contains all relevant configuration files. Volume Mount to the config folder of all your docker containers
-      - ../backups:/backups # Path to store local backups. If the backup needs to be stored on your machine, add a volume mount to that path here
-      - ../source:/source # Path to source for files to backup. Volume Mount to the folder that needs to backed up
+      - ${DOCKER_PATH_PERSISTENT}/duplicati_data:/data:rw # Contains all relevant configuration files. Volume Mount to the config folder of all your docker containers
+      - /docker/backups:/backups:rw # Path to store local backups. If the backup needs to be stored on your machine, add a volume mount to that path here
+      - ${DOCKER_PATH_PERSISTENT}:/source:ro # Path to source for files to backup. Volume Mount to the folder that needs to backed up
     ports:
       - ${DUPLICATI_PORT}:8200
     restart: unless-stopped
