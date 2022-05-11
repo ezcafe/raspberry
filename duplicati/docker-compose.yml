@@ -10,7 +10,8 @@ services:
     volumes:
       - ${DOCKER_PATH_PERSISTENT}/duplicati_data:/data:rw # Contains all relevant configuration files. Volume Mount to the config folder of all your docker containers
       - /docker/backups:/backups:rw # Path to store local backups. If the backup needs to be stored on your machine, add a volume mount to that path here
-      - /var/lib/docker/volumes:/source:ro # Path to source for files to backup. Volume Mount to the folder that needs to backed up
+      - /var/lib/docker/volumes:/docker_source:ro # Path to source for files to backup. Volume Mount to the folder that needs to backed up
+      - /home/ezcafe/raspberry/config:/docker_config:ro
     ports:
       - ${DUPLICATI_PORT}:8200
     restart: unless-stopped
