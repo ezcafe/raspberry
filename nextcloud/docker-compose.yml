@@ -23,7 +23,7 @@ services:
     image: nextcloud
     restart: unless-stopped
     ports:
-      - ${NEXTCLOUD_PORT}:80
+      - "${NEXTCLOUD_PORT}:80"
     links:
       - nextcloud_db
     volumes:
