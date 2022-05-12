@@ -5,6 +5,9 @@ Go to http://192.168.1.4:19988/ to backup data
 For more information
 https://www.danielmartingonzalez.com/en/backups-towards-docker/
 
+## Setup
+Update docker-compose.yml volume 
+
 ## Backup
 ### General backup settings
 - Name: raspberry backup
