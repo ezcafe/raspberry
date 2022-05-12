@@ -7,6 +7,7 @@ services:
       - PUID=0 # The PUID can be set to 0 which will give root permissions to the container
       - PGID=0  # The PGID can be set to 0 which will give root permissions to the container
       - TZ=${TZ} # Set the appropriate timezone
+      - CLI_ARGS=--no-local-blocks=false
     volumes:
       - ${DOCKER_PATH_PERSISTENT}/duplicati_data:/data:rw # Contains all relevant configuration files. Volume Mount to the config folder of all your docker containers
       - /docker/backups:/backups:rw # Path to store local backups. If the backup needs to be stored on your machine, add a volume mount to that path here
