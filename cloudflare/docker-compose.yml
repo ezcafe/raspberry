@@ -8,8 +8,6 @@ services:
       - ZONE=${ZONE}
       - PROXIED=true
       - CRON="@daily"
-    env_file:
-      ../config/cloudflare.env
 
   cloudflare-ddns-www:
     image: oznu/cloudflare-ddns:latest
@@ -20,5 +18,3 @@ services:
       - SUBDOMAIN=www
       - PROXIED=true
       - CRON="@daily"
-    env_file:
-      ../config/cloudflare.env

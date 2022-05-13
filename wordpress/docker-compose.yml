@@ -12,8 +12,6 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     container_name: wordpress-db
-    env_file:
-      ../config/wordpress.env
 
   wordpress_app:
     depends_on:
@@ -30,8 +28,6 @@ services:
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
     container_name: wordpress
-    env_file:
-      ../config/wordpress.env
 
 volumes:
   wp_db_data:

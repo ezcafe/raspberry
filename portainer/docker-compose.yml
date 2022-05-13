@@ -13,5 +13,3 @@ services:
       - ./portainer-data:/data
     ports:
       - ${PORT}:9000
-    env_file:
-      ../config/portainer.env
