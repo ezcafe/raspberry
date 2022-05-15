@@ -1,0 +1,42 @@
+networks:
+  journal:
+    internal: true
+
+services:
+  journal:
+    build: https://github.com/inoda/journal.git#main
+    image: gh-inoda-journal
+    volumes:
+      - journal_data:/app:rw
+    environment:
+      - RAILS_ENV=production
+      - SITE_DOMAIN=${SITE_DOMAIN}
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD@journal_db/${POSTGRES_DB}
+      - CIPHER_KEY=${CIPHER_KEY} # openssl rand -base64 32
+      - SHARING_TOKEN_CIPHER_IV=${SHARING_TOKEN_CIPHER_IV} # openssl rand -base64 16
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE} # random alphanumerical
+    ports:
+      - ${JOURNAL_PORT}:3000
+    networks:
+      - journal
+    restart: unless-stopped
+    container_name: journal
+
+  journal_db:
+    image: postgres:latest
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", ${POSTGRES_DB}]
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - journal_db_data:/var/lib/postgresql/data:rw
+    networks:
+      - journal
+    restart: unless-stopped
+    container_name: journal-db
+
+volumes:
+  journal_db_data:
+  journal_data:
