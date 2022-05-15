@@ -1,4 +1,5 @@
 # Rocket.Chat
+https://docs.rocket.chat/quick-start/installing-and-updating/rapid-deployment-methods/docker-and-docker-compose
 
 ## Updating Rocket.Chat Docker Image
 
