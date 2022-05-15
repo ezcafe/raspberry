@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  ghostfolio:
+    image: ghostfolio/ghostfolio:latest
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@ghostfolio-db:5432/${POSTGRES_DB}?sslmode=prefer
+      REDIS_HOST: 'redis'
+    ports:
+      - ${GHOSTFOLIO_PORT}:3333
+    container_name: ghostfolio
+
+  ghostfolio_db:
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ghostfolio_db_data:/var/lib/postgresql/data
+    container_name: ghostfolio-db
+
+  redis:
+    image: 'redis:alpine'
+
+volumes:
+  ghostfolio_db_data:
