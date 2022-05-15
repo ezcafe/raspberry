@@ -15,6 +15,8 @@ services:
       - ./:/var/www
       - ./docker-compose/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:rw,delegated
     container_name: crater
+    networks:
+      - crater
 
   crater_db:
     image: mariadb
@@ -29,6 +31,19 @@ services:
     ports:
       - '33006:3306'
     container_name: crater-db
+    networks:
+      - crater
+
+  crater_nginx:
+    image: nginx:1.17-alpine
+    restart: unless-stopped
+    ports:
+      - 19987:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - crater
 
   cron:
     build:
@@ -37,6 +52,12 @@ services:
     volumes:
       - ./:/var/www
     container_name: crater-cron
+    networks:
+      - crater
 
 volumes:
   crater_db_data:
+
+networks:
+  crater:
+    driver: bridge
