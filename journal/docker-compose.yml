@@ -4,7 +4,6 @@ networks:
 
 services:
   journal:
-    build: https://github.com/inoda/journal.git#main
     image: gh-inoda-journal
     volumes:
       - journal_data:/app:rw
