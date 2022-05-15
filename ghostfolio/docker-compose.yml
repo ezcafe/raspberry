@@ -7,7 +7,7 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@ghostfolio-db:5432/${POSTGRES_DB}?sslmode=prefer
       REDIS_HOST: 'redis'
     ports:
-      - ${GHOSTFOLIO_PORT}:3333
+      - ${PORT}:3333
     container_name: ghostfolio
 
   ghostfolio_db:
