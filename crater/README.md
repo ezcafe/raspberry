@@ -5,7 +5,10 @@ cd crater
 
 
 Change port of nginx in docker-compose file
-Update content of crater/.env
+Update content of .env
+
+
+cp .env crater/.env
 
 
 docker-compose up -d
