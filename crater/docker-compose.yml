@@ -14,6 +14,7 @@ services:
     volumes:
       - ./:/var/www
       - ./docker-compose/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:rw,delegated
+    container_name: crater
 
   crater_db:
     image: mariadb
@@ -27,6 +28,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
       - '33006:3306'
+    container_name: crater-db
 
   cron:
     build:
@@ -34,6 +36,7 @@ services:
       dockerfile: ./docker-compose/cron.dockerfile
     volumes:
       - ./:/var/www
+    container_name: crater-cron
 
 volumes:
   crater_db_data:
