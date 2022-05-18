@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  wordpress_app:
+  libreddit:
     image: spikecodes/libreddit:arm
     ports:
       - "${LIBREDDIT_PORT}:8080"
