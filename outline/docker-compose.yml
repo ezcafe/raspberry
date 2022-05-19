@@ -55,13 +55,12 @@ services:
       restart_policy:
         condition: on-failure
     volumes:
-      - outline_minio_data:/data
+      - storage-data:/data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
       timeout: 20s
       retries: 3
-    container_name: outline-minio
 
 volumes:
   outline_minio_data:
