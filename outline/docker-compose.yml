@@ -1,0 +1,69 @@
+version: "3"
+services:
+
+  outline:
+    image: outlinewiki/outline
+    ports:
+      - "${OUTLINE_PORT}:3000"
+    depends_on:
+      - outline_postgres
+      - outline_redis
+      - outline_minio
+    container_name: outline
+    restart: unless-stopped
+
+  outline_redis:
+    image: redis
+    ports:
+      - "${OUTLINE_REDIS_PORT}:6379"
+    volumes:
+      - ./redis.conf:/redis.conf
+    command: ["redis-server", "/redis.conf"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 30s
+      retries: 3
+    container_name: outline-redis
+    restart: unless-stopped
+
+  outline_postgres:
+    image: postgres
+    ports:
+      - "${OUTLINE_POSTGRES_PORT}:5432"
+    volumes:
+      - outline_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready -U user"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: outline
+    container_name: outline-postgres
+    restart: unless-stopped
+
+  outline_minio:
+    image: minio/minio
+    ports:
+      - "${OUTLINE_MINIO_PORT}:9000"
+    entrypoint: sh
+    command: -c 'minio server'
+    deploy:
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - outline_minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    container_name: outline-minio
+    restart: unless-stopped
+
+volumes:
+  outline_minio_data:
+  outline_postgres_data:
