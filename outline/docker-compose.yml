@@ -55,7 +55,7 @@ services:
       restart_policy:
         condition: on-failure
     volumes:
-      - storage-data:/data
+      - outline_minio_data:/data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
