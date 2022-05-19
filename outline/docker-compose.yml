@@ -4,7 +4,7 @@ services:
   outline:
     image: outlinewiki/outline
     ports:
-      - "${OUTLINE_PORT}:3000"
+      - "${PORT}:3000"
     depends_on:
       - outline_postgres
       - outline_redis
@@ -15,7 +15,7 @@ services:
   outline_redis:
     image: redis
     ports:
-      - "${OUTLINE_REDIS_PORT}:6379"
+      - "${REDIS_PORT}:6379"
     volumes:
       - ./redis.conf:/redis.conf
     command: ["redis-server", "/redis.conf"]
@@ -30,7 +30,7 @@ services:
   outline_postgres:
     image: postgres
     ports:
-      - "${OUTLINE_POSTGRES_PORT}:5432"
+      - "${DATABASE_PORT}:5432"
     volumes:
       - outline_postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -48,7 +48,7 @@ services:
   outline_minio:
     image: minio/minio
     ports:
-      - "${OUTLINE_MINIO_PORT}:9000"
+      - "9000:9000"
     entrypoint: sh
     command: -c 'minio server'
     deploy:
