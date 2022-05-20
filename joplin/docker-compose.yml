@@ -22,7 +22,7 @@ services:
       - "${JOPLIN_PORT}:22300"
     restart: unless-stopped
     environment:
-      - APP_PORT=22300
+      - APP_PORT=${JOPLIN_PORT}
       - APP_BASE_URL=${APP_BASE_URL}
       - DB_CLIENT=pg
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
