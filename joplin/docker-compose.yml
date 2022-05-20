@@ -17,7 +17,7 @@ services:
   joplin:
     image: joplin/server:latest
     depends_on:
-      - db
+      - joplin_db
     ports:
       - "${JOPLIN_PORT}:22300"
     restart: unless-stopped
