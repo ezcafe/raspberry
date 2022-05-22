@@ -43,4 +43,4 @@ services:
     env_file: # Alternatively, load variables from whoogle.env
       - whoogle.env
     ports:
-      - ${WHOOGLE_PORT}:5000
+      - ${EXPOSE_PORT}:5000
