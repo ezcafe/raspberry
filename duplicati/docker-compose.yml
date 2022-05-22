@@ -4,13 +4,12 @@ services:
     image: linuxserver/duplicati
     container_name: duplicati
     environment:
-      - PUID=0 # The PUID can be set to 0 which will give root permissions to the container
-      - PGID=0  # The PGID can be set to 0 which will give root permissions to the container
+      - PUID=1000 # this should match the ouput of `id -u admin` on the CLI
+      - PGID=1000 # this should match the ouput of `id -g admin` on the CLI
       - TZ=${TZ} # Set the appropriate timezone
       - CLI_ARGS=--no-local-blocks=false --run-script-before=./before-backup.sh --run-script-after=./after-backup.sh
     volumes:
-      - duplicati_data:/data:rw # Contains all relevant configuration files. Volume Mount to the config folder of all your docker containers
-      - /docker/backups:/backups:rw # Path to store local backups. If the backup needs to be stored on your machine, add a volume mount to that path here
+      - duplicati_data:/config #Duplicati Config Files, for consisency across re-deployments
       - /var/lib/docker/volumes:/docker_volumes:rw # docker volume ls => docker inspect volume name => volume location
       - <raspberry-location>:/docker_source:rw # cd raspberry => pwd => raspberry source location
     ports:
