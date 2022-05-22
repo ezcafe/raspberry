@@ -1,6 +1,6 @@
-# https://github.com/duplicati/duplicati/blob/master/Duplicati/Library/Modules/Builtin/run-script-example.sh
-
 #!/bin/bash
+
+# https://github.com/duplicati/duplicati/blob/master/Duplicati/Library/Modules/Builtin/run-script-example.sh
 
 ###############################################################################
 # How to run scripts before or after backups
