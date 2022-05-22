@@ -7,7 +7,7 @@ services:
       - PUID=1000 # this should match the ouput of `id -u admin` on the CLI
       - PGID=1000 # this should match the ouput of `id -g admin` on the CLI
       - TZ=${TZ} # Set the appropriate timezone
-      - CLI_ARGS=--run-script-before=./before-backup.sh --run-script-after=./after-backup.sh
+      - CLI_ARGS=--run-script-before=./before.sh --run-script-after=./after.sh
     volumes:
       - duplicati_data:/config #Duplicati Config Files, for consisency across re-deployments
       - /docker/backups:/backups:rw # Path to store local backups. If the backup needs to be stored on your machine, add a volume mount to that path here
