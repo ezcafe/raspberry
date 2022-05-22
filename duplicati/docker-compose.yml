@@ -12,7 +12,7 @@ services:
       - /docker/duplicati_data:/data:rw # Contains all relevant configuration files. Volume Mount to the config folder of all your docker containers
       - /docker/backups:/backups:rw # Path to store local backups. If the backup needs to be stored on your machine, add a volume mount to that path here
       - /var/lib/docker/volumes:/docker_volumes:rw # docker volume ls => docker inspect volume name => volume location
-      - /home/ezcafe/raspberry:/docker_source:rw # cd raspberry => pwd => raspberry source location
+      - <raspberry-location>:/docker_source:rw # cd raspberry => pwd => raspberry source location
     ports:
       - ${DUPLICATI_PORT}:8200
     restart: unless-stopped
