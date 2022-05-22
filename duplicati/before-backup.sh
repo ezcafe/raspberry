@@ -134,6 +134,8 @@ LOCALPATH=$DUPLICATI__LOCALPATH
 # so we need to figure out which event has happened
 if [ "$EVENTNAME" == "BEFORE" ]
 then
+	echo "Before Backup"
+
 	# If the operation is a backup starting, 
 	# then we check if the --dblock-size option is unset
 	# or 50mb, and change it to 25mb, otherwise we 
@@ -141,14 +143,8 @@ then
 	
 	if [ "$OPERATIONNAME" == "Backup" ]
 	then
-		if [ "$DUPLICATI__dblock_size" == "" ] || ["$DUPLICATI__dblock_size" == "50mb"]
-		then
-			# Write the option to stdout to change it
-			echo "--dblock-size=25mb"
-		else
-			# We write this to stderr, and it will show up as a warning in the logfile
-			echo "Not setting volumesize, it was already set to $DUPLICATI__dblock_size" >&2
-		fi
+		echo "stop all Docker containers except duplicati"
+		docker stop $(docker ps -aq | grep -v $(docker ps -a -q --filter="name=duplicati"))
 	else
 		# This will be ignored
 		echo "Got operation \"OPERATIONNAME\", ignoring"	
@@ -156,44 +152,7 @@ then
 
 elif [ "$EVENTNAME" == "AFTER" ]
 then
-
-	# If this is a finished backup, we send an email
-	if [ "$OPERATIONNAME" == "Backup" ]
-	then
-
-		# Basic email setup		
-		EMAIL="admin@example.com"		
-		SUBJECT="Duplicati backup"
-		
-		# We use a temp file to store the email body
-		MESSAGE="/tmp/duplicati-mail.txt"
-		echo "Duplicati finished a backup."> $MESSAGE
-		echo "This is the result :" >> $MESSAGE
-		echo "" >> $MESSAGE
-
-		# We append the result of the operation to the email
-		cat "$DUPLICATI__RESULTFILE" >> $MESSAGE
-
-		# If the log-file is enabled, we append it
-		if [ -f "$DUPLICATI__log_file" ]
-		then
-			echo "The log file looks like this: " >> $MESSAGE
-			cat "$DUPLICATI__log_file" >> $MESSAGE
-		fi
-		
-		# If the backend-log-database file is enabled, we append that as well
-		if [ -f "$DUPLICATI__backend_log_database" ]
-		then
-			echo "The backend-log file looks like this: " >> $MESSAGE
-			cat "$DUPLICATI__backend_log_database" >> $MESSAGE
-		fi
-
-		# Finally send the email using /bin/mail
-		/bin/mail -s "$SUBJECT" "$EMAIL" < $MESSAGE
-	else
-		# This will be ignored
-		echo "Got operation \"OPERATIONNAME\", ignoring"	
-	fi
+	echo "After Backup"
 else
 	# This should never happen, but there may be new operations
 	# in new version of Duplicati
