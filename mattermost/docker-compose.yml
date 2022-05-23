@@ -33,6 +33,8 @@ services:
       - no-new-privileges:true
     pids_limit: 200
     read_only: ${MATTERMOST_CONTAINER_READONLY}
+    ports:
+      - ${APP_PORT}:8065
     tmpfs:
       - /tmp
     volumes:
