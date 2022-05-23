@@ -20,9 +20,11 @@ services:
           port: 5432
         check_tables: true
         # external_port: 19984
-        domain: yt.in4.vn
+        # domain: yt.example.com
         # https_only: false
         # statistics_enabled: false
+        region: VN
+        continue_autoplay: false
     depends_on:
       - invidious-db
     container_name: invidious
