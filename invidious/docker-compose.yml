@@ -20,7 +20,7 @@ services:
           port: 5432
         check_tables: true
         # external_port: 19984
-        domain: tube.in4.vn
+        domain: yt.in4.vn
         # https_only: false
         # statistics_enabled: false
     depends_on:
