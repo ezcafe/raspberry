@@ -19,7 +19,7 @@ services:
           host: invidious-db
           port: 5432
         check_tables: true
-        external_port: 19984
+        # external_port: 19984
         domain: tube.in4.vn
         # https_only: false
         # statistics_enabled: false
