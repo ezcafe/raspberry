@@ -1,7 +1,7 @@
 version: '3'
 services:
   shiori:
-    image: radhifadlillah/shiori
+    image: malitov/rpi-shiori
     container_name: shiori
     restart: unless-stopped
     environment:
