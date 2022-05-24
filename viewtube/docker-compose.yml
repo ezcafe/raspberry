@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  viewtube:
+    container_name: viewtube
+    restart: unless-stopped
+    image: mauriceo/viewtube:latest
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data:/data
+    environment:
+      - VIEWTUBE_URL=${VIEWTUBE_URL}
+    ports:
+      - ${PORT}:8066
