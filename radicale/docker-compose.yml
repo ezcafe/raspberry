@@ -23,6 +23,8 @@ services:
     restart: unless-stopped
     volumes:
       - radicale_data:/data
+    environment:
+      - TAKE_FILE_OWNERSHIP=false
 
 volumes:
   radicale_data:
