@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  db:
+    image: mariadb
+    volumes: ["facto_db_data:/var/lib/mysql"]
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: facto
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    container_name: facto-db
+
+  web:
+    depends_on: [db]
+    command: bin/server
+    image: nymanjens/facto:latest
+    ports: ["${PORT}:9000"]
+    restart: unless-stopped
+    environment:
+      APPLICATION_SECRET: ${APPLICATION_SECRET}
+      DATABASE_URL: ${DATABASE_URL}
+    container_name: facto-db
+
+volumes:
+  facto_db_data:
