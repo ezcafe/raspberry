@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  todo:
+    image: prologic/todo
+    container_name: todo
+    restart: unless-stopped
+    ports:
+      - ${PORT}:8000
+    volumes:
+      - todo_db:/usr/local/go/src/todo/todo.db
+
+volumes:
+  todo_db:
