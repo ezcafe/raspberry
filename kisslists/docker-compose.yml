@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  kisslists:
+    image: allyouneedisgnu/kisslists
+    volumes:
+      - kisslists_data:/kisslists
+    restart: unless-stopped
+    ports:
+      - ${PORT}:80
+    container_name: kisslists
+
+volumes:
+  kisslists_data:
