@@ -7,7 +7,7 @@ services:
       TZ: ${TZ}                                                                                         # Change this
       WATCHTOWER_ROLLING_RESTART: 'true'
       #WATCHTOWER_MONITOR_ONLY: 'true'
-      WATCHTOWER_SCHEDULE: '0 0 3 * * *'
+      WATCHTOWER_SCHEDULE: '0 22 0 * * *'       # at 10 PM
       WATCHTOWER_CLEANUP: 'true'
       # Settings for email notifications
       #WATCHTOWER_NOTIFICATIONS: email
@@ -23,6 +23,8 @@ services:
       # WATCHTOWER_NOTIFICATIONS: gotify
       # WATCHTOWER_NOTIFICATION_GOTIFY_URL: https://gotify.example.com                                    # Change this to gotify address
       # WATCHTOWER_NOTIFICATION_GOTIFY_TOKEN: <gotify-client-token>                                       # Get gotify client tokens from the gotify server
+      # REPO_USER=username # For private Docker registries
+      # REPO_PASS=password # For private Docker registries
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
