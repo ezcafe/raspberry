@@ -7,3 +7,5 @@ services:
       - "${LIBREDDIT_PORT}:8080"
     restart: unless-stopped
     container_name: libreddit
+    environment:
+      - POST_SORT="new"
