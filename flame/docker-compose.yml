@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   flame:
-    image: pawelmalak/flame
+    image: pawelmalak/flame:multiarch
     container_name: flame
     volumes:
       - flame_data:/app/data
