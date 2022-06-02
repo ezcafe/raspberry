@@ -10,7 +10,7 @@ services:
     ports:
       - ${PORT}:5005
     environment:
-      - PASSWORD=flame_password
+      - PASSWORD=${PASSWORD}
     restart: unless-stopped
 
 volumes:
