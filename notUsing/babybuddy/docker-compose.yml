@@ -1,0 +1,19 @@
+version: "2.1"
+
+services:
+  babybuddy:
+    image: lscr.io/linuxserver/babybuddy:latest
+    container_name: babybuddy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS}
+    volumes:
+      - babybuddy_data:/config
+    ports:
+      - ${PORT}:8000
+    restart: unless-stopped
+
+volumes:
+  babybuddy_data:
