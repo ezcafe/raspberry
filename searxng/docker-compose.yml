@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  searxng:
+    container_name: searxng
+    image: searxng/searxng:latest
+    ports:
+     - "${PORT}:8080"
+    volumes:
+      - searxng_data:/etc/searxng:rw
+    environment:
+      - SEARXNG_BASE_URL=${SEARXNG_BASE_URL}
+
+volumes:
+  searxng_data:
