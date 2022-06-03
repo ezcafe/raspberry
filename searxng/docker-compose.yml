@@ -1,6 +1,13 @@
 version: '3.7'
 
 services:
+  redis:
+    container_name: searxng-redis
+    image: "redis:alpine"
+    command: redis-server --save "" --appendonly "no"
+    tmpfs:
+      - /var/lib/redis
+
   searxng:
     container_name: searxng
     image: searxng/searxng:latest
