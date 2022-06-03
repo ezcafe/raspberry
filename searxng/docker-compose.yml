@@ -7,6 +7,7 @@ services:
     command: redis-server --save "" --appendonly "no"
     tmpfs:
       - /var/lib/redis
+    restart: unless-stopped
 
   searxng:
     container_name: searxng
@@ -17,6 +18,7 @@ services:
       - searxng_data:/etc/searxng:rw
     environment:
       - SEARXNG_BASE_URL=${SEARXNG_BASE_URL}
+    restart: unless-stopped
 
 volumes:
   searxng_data:
