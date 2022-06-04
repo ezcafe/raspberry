@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  freshrss:
+    image: freshrss/freshrss
+    container_name: freshrss
+    hostname: freshrss
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+    volumes:
+      - freshrss_data:/var/www/FreshRSS/data
+      - freshrss_extensions:/var/www/FreshRSS/extensions
+    environment:
+      TZ: ${TZ}
+      CRON_MIN: '3,33'
+    ports:
+      - "${PUBLISHED_PORT:-8080}:${LISTEN:-80}"
+
+volumes:
+  freshrss_data:
+  freshrss_extensions:
