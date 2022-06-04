@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   freshrss:
-    image: freshrss/freshrss
+    image: lscr.io/linuxserver/freshrss:latest
     container_name: freshrss
     hostname: freshrss
     restart: unless-stopped
@@ -14,6 +14,8 @@ services:
       - freshrss_extensions:/var/www/FreshRSS/extensions
     environment:
       TZ: ${TZ}
+      PUID: 1000
+      PGID: 1000
       CRON_MIN: '3,33'
     ports:
       - "${PUBLISHED_PORT:-8080}:${LISTEN:-80}"
