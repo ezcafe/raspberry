@@ -50,7 +50,7 @@ services:
     volumes:
       - minio:/data
     ports:
-      - "${PORT_EVENT}:9000"
+      - "${PORT_MINIO}:9000"
     restart: unless-stopped
 
   # Create buckets for minio.
