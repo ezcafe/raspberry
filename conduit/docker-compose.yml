@@ -24,17 +24,17 @@ services:
       CONDUIT_ADDRESS: 0.0.0.0
       CONDUIT_CONFIG: "" # Ignore this
 
-  # Config-Docs: https://github.com/vector-im/element-web/blob/develop/docs/config.md
-  element-web:
-    image: vectorim/element-web:latest
-    restart: unless-stopped
-    container_name: element-web
-    ports:
-      - ${PORT_CLIENT}:80
-    volumes:
-      - ./element_config.json:/app/config.json
-    depends_on:
-      - matrix-conduit
+  # # Config-Docs: https://github.com/vector-im/element-web/blob/develop/docs/config.md
+  # element-web:
+  #   image: vectorim/element-web:latest
+  #   restart: unless-stopped
+  #   container_name: element-web
+  #   ports:
+  #     - ${PORT_CLIENT}:80
+  #   volumes:
+  #     - ./element_config.json:/app/config.json
+  #   depends_on:
+  #     - matrix-conduit
 
 volumes:
   matrix_conduit_data:
