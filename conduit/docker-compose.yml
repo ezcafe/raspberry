@@ -1,0 +1,40 @@
+# Conduit
+version: "3"
+
+services:
+  matrix-conduit:
+    image: matrixconduit/matrix-conduit:latest
+    restart: unless-stopped
+    container_name: matrix-conduit
+    ports:
+      - ${PORT}:6167
+    volumes:
+      - conduit_data:/var/lib/matrix-conduit/
+    environment:
+      CONDUIT_SERVER_NAME: ${SERVER_NAME}
+      CONDUIT_DATABASE_PATH: /var/lib/matrix-conduit/
+      CONDUIT_DATABASE_BACKEND: rocksdb
+      CONDUIT_PORT: 6167
+      CONDUIT_MAX_REQUEST_SIZE: 20_000_000 # in bytes, ~20 MB
+      CONDUIT_ALLOW_REGISTRATION: "true"
+      CONDUIT_ALLOW_FEDERATION: "true"
+      CONDUIT_TRUSTED_SERVERS: '["matrix.org"]'
+      #CONDUIT_MAX_CONCURRENT_REQUESTS: 100
+      #CONDUIT_LOG: info,rocket=off,_=off,sled=off
+      CONDUIT_ADDRESS: 0.0.0.0
+      CONDUIT_CONFIG: "" # Ignore this
+
+  # Config-Docs: https://github.com/vector-im/element-web/blob/develop/docs/config.md
+  element-web:
+    image: vectorim/element-web:latest
+    restart: unless-stopped
+    container_name: element-web
+    ports:
+      - ${PORT_CLIENT}:80
+    volumes:
+      - ./element_config.json:/app/config.json
+    depends_on:
+      - matrix-conduit
+
+volumes:
+  matrix-conduit_data:
