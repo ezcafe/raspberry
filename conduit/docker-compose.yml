@@ -9,7 +9,7 @@ services:
     ports:
       - ${PORT}:6167
     volumes:
-      - conduit_data:/var/lib/matrix-conduit/
+      - matrix_conduit_data:/var/lib/matrix-conduit/
     environment:
       CONDUIT_SERVER_NAME: ${SERVER_NAME}
       CONDUIT_DATABASE_PATH: /var/lib/matrix-conduit/
@@ -37,4 +37,4 @@ services:
       - matrix-conduit
 
 volumes:
-  matrix-conduit_data:
+  matrix_conduit_data:
