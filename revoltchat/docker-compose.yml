@@ -1,0 +1,94 @@
+version: "3.8"
+
+services:
+  # MongoDB database
+  database:
+    image: mongo:4.4
+    restart: unless-stopped
+    volumes:
+      - mongo:/data/db
+    container_name: revoltchat-db
+
+  # Redis server
+  redis:
+    image: eqalpha/keydb
+    restart: unless-stopped
+    container_name: revoltchat-redis
+
+  # API server (delta)
+  api:
+    image: ghcr.io/revoltchat/server:0.5.3-alpha.8
+    depends_on:
+      - database
+      - redis
+    ports:
+      - "${PORT_API}:8000"
+    restart: unless-stopped
+    container_name: revoltchat
+
+  # Events service (quark)
+  events:
+    image: ghcr.io/revoltchat/bonfire:0.1.3
+    depends_on:
+      - database
+      - redis
+    ports:
+      - "${PORT_EVENT}:9000"
+    restart: unless-stopped
+
+  # Web App (revite)
+  web:
+    image: ghcr.io/revoltchat/client:master
+    ports:
+      - "${PORT}:5000"
+    restart: unless-stopped
+
+  # S3-compatible storage server
+  minio:
+    image: minio/minio
+    command: server /data
+    volumes:
+      - minio:/data
+    ports:
+      - "${PORT_EVENT}:9000"
+    restart: unless-stopped
+
+  # Create buckets for minio.
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      while ! curl -s --output /dev/null --connect-timeout 1 http://minio:9000; do echo 'Waiting minio...' && sleep 0.1; done;
+      /usr/bin/mc alias set minio http://minio:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
+      /usr/bin/mc mb minio/attachments;
+      /usr/bin/mc mb minio/avatars;
+      /usr/bin/mc mb minio/backgrounds;
+      /usr/bin/mc mb minio/icons;
+      /usr/bin/mc mb minio/banners;
+      exit 0;
+      "
+
+  # File server (autumn)
+  autumn:
+    image: ghcr.io/revoltchat/autumn:1.1.4
+    depends_on:
+      - database
+      - createbuckets
+    environment:
+      - AUTUMN_MONGO_URI=mongodb://database
+    ports:
+      - "${PORT_AUTUMN}:3000"
+    restart: unless-stopped
+
+  # Metadata and image proxy (january)
+  january:
+    image: ghcr.io/revoltchat/january:master
+    ports:
+      - "${PORT_JANUARY}:7000"
+    restart: unless-stopped
+
+volumes:
+  minio:
+  mongo:
