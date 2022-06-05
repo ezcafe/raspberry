@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  synapse:
+    image: matrixdotorg/synapse:latest
+    restart: unless-stopped
+    container_name: synapse
+    ports:
+      - ${PORT}:8448/tcp
+    environment:
+      - SYNAPSE_LOG_LEVEL=INFO
+    volumes:
+      - synapse_data:/data
+
+  element:
+    image: vectorim/element-web:latest
+    restart: unless-stopped
+    container_name: element
+    depends_on:
+      - synapse
+    volumes:
+      - ./config.json:/app/config.json:ro
+
+volumes:
+  synapse_data:
