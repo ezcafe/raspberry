@@ -3,7 +3,7 @@ version: "3.7"
 services:
 
   server:
-    image: matrixdotorg/synapse:v1.60.0@sha256:954bcced5b79c1b9188260519f50b1eeebbc97d903ec1cc402e3c721deea335d
+    image: avhost/docker-matrix:v1.60.0@sha256:954bcced5b79c1b9188260519f50b1eeebbc97d903ec1cc402e3c721deea335d
     user: "1000:1000"
     restart: unless-stopped
     container_name: synapse
@@ -15,8 +15,8 @@ services:
     environment:
       UID: "1000"
       GID: "1000"
-      SYNAPSE_HTTP_PORT: "${APP_SYNAPSE_PORT}"
-      SYNAPSE_SERVER_NAME: "${APP_HIDDEN_SERVICE}"
+      SYNAPSE_HTTP_PORT: "${SYNAPSE_HTTP_PORT}"
+      SYNAPSE_SERVER_NAME: "${SYNAPSE_SERVER_NAME}"
       SYNAPSE_REPORT_STATS: "yes"
       SYNAPSE_ENABLE_REGISTRATION: "yes"
       SYNAPSE_NO_TLS: "yes"
