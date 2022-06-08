@@ -38,8 +38,8 @@ services:
       timeout: 20s
       retries: 3
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: outline
     container_name: outline-postgres
     restart: unless-stopped
