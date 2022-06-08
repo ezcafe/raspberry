@@ -20,7 +20,7 @@ services:
   monolith:
     hostname: monolith
     image: matrixdotorg/dendrite-monolith:latest
-    command: ["--tls-cert=server.crt", "--tls-key=server.key"]
+    command: ["--tls-cert=server.crt", "--tls-key=server.key", "--config=dendrite.yaml"]
     ports:
       - ${PORT}:8008
       - ${PORT_S}:8448
