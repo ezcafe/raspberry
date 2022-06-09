@@ -4,6 +4,8 @@ Webiste: https://nginxproxymanager.com/guide/#quick-setup
 Support forum: https://www.reddit.com/r/nginxproxymanager/
 Tutorial: https://apexlemons.com/2021/09/01/ultimate-home-lab-dynamic-ips-cloudflare-nginx-proxy-manager/
 
+## Setup Port Forwarding
+
 ## Setup Cloudflare
 
 Login to Cloudflare, then add DNS Record for your domain, for example
