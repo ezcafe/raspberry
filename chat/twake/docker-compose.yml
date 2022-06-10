@@ -7,10 +7,6 @@ services:
     volumes:
       - mongo_data:/data/db
 
-  plugins:
-    image: twaketech/twake-plugins:latest
-    container_name: twake-plugins
-
   node:
     image: twaketech/twake-node:latest
     container_name: twake
