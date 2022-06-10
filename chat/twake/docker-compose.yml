@@ -1,0 +1,35 @@
+version: "3.4"
+
+services:
+  mongo:
+    container_name: twake-mongo
+    image: mongo
+    volumes:
+      - mongo_data:/data/db
+
+  plugins:
+    image: twaketech/twake-plugins:latest
+    container_name: twake-plugins
+
+  node:
+    image: twaketech/twake-node:latest
+    container_name: twake
+    ports:
+      - ${PORT}:3000
+    environment:
+      - DEV=production
+      - SEARCH_DRIVER=mongodb
+      - DB_DRIVER=mongodb
+      - PUBSUB_TYPE=local
+      - PLUGINS_SERVER=plugins:3100
+    volumes:
+      - ./backend-production.json:/usr/src/app/config/production.json
+      - twake_data:/storage/
+    depends_on:
+      - mongo
+    links:
+      - mongo
+
+volumes:
+  mongo_data:
+  twake_data:
