@@ -43,7 +43,7 @@ services:
     container_name: invidious
 
   invidious-db:
-    image: docker.io/library/postgres:14
+    image: docker.io/library/postgres
     restart: unless-stopped
     volumes:
       - postgresdata:/var/lib/postgresql/data

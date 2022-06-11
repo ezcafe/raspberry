@@ -2,7 +2,7 @@ version: "3"
 services:
 
   wiki_db:
-    image: postgres:11-alpine
+    image: postgres
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
