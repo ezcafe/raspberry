@@ -8,14 +8,14 @@ services:
       - ${PORT}:8080
       - ${PORT_S}:8443
     environment:
-      PUBLIC_DNS: domain
+      PUBLIC_DNS: ${PUBLIC_DNS}
       ORGANISATION_UNIT: unit
       ORGANISATION: org
       CITY: city
       STATE: state
       COUNTRY_CODE: country
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://domain:$$PORT || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://$$PUBLIC_DNS || exit 1"]
       interval: 1m30s
       timeout: 10s
       retries: 5
