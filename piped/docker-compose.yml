@@ -18,8 +18,8 @@ services:
       - postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=piped
-      - POSTGRES_USER=piped
-      - POSTGRES_PASSWORD=changeme
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
 volumes:
   postgres:
