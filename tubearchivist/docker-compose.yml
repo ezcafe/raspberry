@@ -35,7 +35,7 @@ services:
       - archivist-es
 
   archivist-es:
-    image: bbilly1/tubearchivist-es         # only for amd64, or use official es 7.17.3
+    image: docker.elastic.co/elasticsearch/elasticsearch
     container_name: tubearchivist-es
     restart: unless-stopped
     environment:
