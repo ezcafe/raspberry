@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  piped:
+    image: 1337kavin/piped:latest
+    container_name: piped-postgres
+    restart: unless-stopped
+    ports:
+      - "${PORT}:8080"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13-alpine
+    container_name: piped-postgres
+    restart: unless-stopped
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=piped
+      - POSTGRES_USER=piped
+      - POSTGRES_PASSWORD=changeme
+
+volumes:
+  postgres:
