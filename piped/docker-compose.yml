@@ -3,7 +3,7 @@ version: "3"
 services:
   piped:
     image: 1337kavin/piped:latest
-    container_name: piped-postgres
+    container_name: piped
     restart: unless-stopped
     ports:
       - "${PORT}:8080"
