@@ -1,0 +1,30 @@
+version: "3"
+services:
+  web:
+    image: taskcafe/taskcafe:latest
+    container_name: taskcafe
+    restart: unless-stopped
+    ports:
+      - "${PORT}:3333"
+    depends_on:
+      - postgres
+    environment:
+      TASKCAFE_DATABASE_HOST: postgres
+      TASKCAFE_MIGRATE: "true"
+    volumes:
+      - taskcafe-uploads:/root/uploads
+      
+  postgres:
+    image: postgres
+    container_name: taskcafe-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: taskcafe
+    volumes:
+      - taskcafe-postgres:/var/lib/postgresql/data
+
+volumes:
+  taskcafe-postgres:
+  taskcafe-uploads:
