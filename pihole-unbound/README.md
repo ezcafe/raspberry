@@ -12,6 +12,5 @@ docker-compose up -d
 ## Change password
 
 ```
-docker exec -it pihole /bin/bash
-pihole -a -p somepasswordhere
+docker exec <pihole_container_name> pihole -a -p supersecurepassword
 ```
