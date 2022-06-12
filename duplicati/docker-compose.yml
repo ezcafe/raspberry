@@ -8,10 +8,11 @@ services:
       - PGID=1000 # this should match the ouput of `id -g admin` on the CLI
       - TZ=${TZ} # Set the appropriate timezone
       # cd raspberry => pwd => raspberry-location
-      - CLI_ARGS=--run-script-before=<raspberry-location>/duplicati/before.sh --run-script-after=<raspberry-location>/duplicati/after.sh
+      - CLI_ARGS=--run-script-before=./before.sh --run-script-after=./after.sh
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
       - duplicati_data:/config #Duplicati Config Files, for consisency across re-deployments
-      - /docker/backups:/backups:rw # Path to store local backups. If the backup needs to be stored on your machine, add a volume mount to that path here
       - /var/lib/docker/volumes:/docker_volumes:rw # docker volume ls => docker inspect volume name => volume location
       - <raspberry-location>:/docker_source:rw # cd raspberry => pwd => raspberry-location
     ports:
