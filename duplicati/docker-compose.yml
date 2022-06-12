@@ -8,7 +8,7 @@ services:
       - PGID=1000 # this should match the ouput of `id -g admin` on the CLI
       - TZ=${TZ} # Set the appropriate timezone
       # cd raspberry => pwd => raspberry-location
-      - CLI_ARGS=--run-script-before=./before.sh --run-script-after=./after.sh
+      - CLI_ARGS=--run-script-before=./scripts/before.sh --run-script-after=./scripts/after.sh
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
