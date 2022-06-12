@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  app:
+    image: martadinata666/beatbump # docker.io/snuffydev/beatbump
+    ports:
+      - "${PORT}:3000"
