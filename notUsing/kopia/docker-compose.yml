@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+    kopia:
+        image: kopia/kopia:latest
+        hostname: metal-mind
+        restart: unless-stopped
+        ports:
+            - ${PORT}:51515
+        environment:
+            KOPIA_PASSWORD: ${KOPIA_PASSWORD}
+            TZ: ${TZ}
+        volumes:
+            - ./app/config:/app/config
+            - ./app/cache:/app/cache
+            - ./app/logs:/app/logs
+            - ~/.config/rclone:/app/rclone
+            - /path/to/backup:/app/backup:ro
+        entrypoint: ["/app/kopia", "server", "--insecure", "--address=0.0.0.0:${PORT}", "--override-username=kopia@metal-mind", "--server-username=kopia@metal-mind", "--server-password=${PASSWORD}"]
