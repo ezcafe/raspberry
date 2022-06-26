@@ -4,7 +4,7 @@
 
 OPERATIONNAME=$DUPLICATI__OPERATIONNAME
  	
-if [ "$OPERATIONNAME" == "Restore" ]
+if [ "$OPERATIONNAME" == "Backup" ]
 then
     echo "restart all exited Docker containers"
     docker start $(docker ps -aq --filter status=exited)
