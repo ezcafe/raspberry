@@ -37,7 +37,7 @@ services:
     user: postgres:postgres
     container_name: miniflux-backup
     volumes:
-      - ~/backups/miniflux:/backups
+      - "$PWD/../../backups/miniflux:/backups"
     links:
       - miniflux_db
     depends_on:
@@ -52,7 +52,7 @@ services:
       - BACKUP_KEEP_DAYS=7
       - BACKUP_KEEP_WEEKS=4
       - BACKUP_KEEP_MONTHS=6
-      - HEALTHCHECK_PORT=${MINIFLUX_PORT}
+      - HEALTHCHECK_PORT=8080
       - TZ=${TZ}
 
 volumes:
