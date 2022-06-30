@@ -34,7 +34,7 @@ services:
           region: VN
           save_player_pos: true
     healthcheck:
-      test: wget -nv --tries=1 --spider http://127.0.0.1:$${PORT}/api/v1/comments/jNQXAC9IVRw || exit 1
+      test: wget -nv --tries=1 --spider http://127.0.0.1:$$PORT/api/v1/comments/jNQXAC9IVRw || exit 1
       interval: 30s
       timeout: 5s
       retries: 2
@@ -43,7 +43,7 @@ services:
     container_name: invidious
 
   invidious-db:
-    image: docker.io/library/postgres
+    image: postgres:latest
     restart: unless-stopped
     volumes:
       - postgresdata:/var/lib/postgresql/data
