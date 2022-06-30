@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 services:
   miniflux_db:
     image: postgres:latest
@@ -27,9 +27,33 @@ services:
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-    # healthcheck:
-    #  test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
+    healthcheck:
+     test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
     container_name: miniflux
+
+  pgbackups:
+    image: prodrigestivill/postgres-backup-local
+    restart: unless-stopped
+    user: postgres:postgres
+    container_name: miniflux-backup
+    volumes:
+      - ~/backups/miniflux:/backups
+    links:
+      - miniflux_db
+    depends_on:
+      - miniflux_db
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=miniflux
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_EXTRA_OPTS=-Z6 --schema=public --blobs
+      - SCHEDULE=@daily
+      - BACKUP_KEEP_DAYS=7
+      - BACKUP_KEEP_WEEKS=4
+      - BACKUP_KEEP_MONTHS=6
+      - HEALTHCHECK_PORT=${MINIFLUX_PORT}
+      - TZ=${TZ}
 
 volumes:
   miniflux_db_data:
