@@ -6,6 +6,8 @@ services:
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PORT=${PORT_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
     volumes:
       - miniflux_db_data:/var/lib/postgresql/data
     healthcheck:
@@ -18,11 +20,11 @@ services:
     image: miniflux/miniflux:latest
     restart: unless-stopped
     ports:
-      - "${MINIFLUX_PORT}:8080"
+      - "${PORT}:8080"
     depends_on:
       - miniflux_db
     environment:
-      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@miniflux-db/${POSTGRES_USER}?sslmode=disable
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${PORT_DB}/${POSTGRES_USER}?sslmode=disable
       - RUN_MIGRATIONS=1
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
@@ -30,6 +32,27 @@ services:
     healthcheck:
      test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
     container_name: miniflux
+
+  postgres-backup:
+    image: registry.gitlab.com/jdfranel-docker/db-backup/postgres:latest
+    links:
+      - postgres:${POSTGRES_HOST}
+    depends_on:
+      - miniflux_db
+    environment:
+      - POSTGRES_DB=miniflux2
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PORT=${PORT_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - COMPRESS=0
+      - CRON_SCHEDULE=* 5 * * *
+      - RETAIN_COUNT=15
+      - FILE_UID=1000
+      - FILE_GID=1000
+      - TZ=${TZ}
+    volumes:
+      - ./backups:/dbdump
 
 volumes:
   miniflux_db_data:

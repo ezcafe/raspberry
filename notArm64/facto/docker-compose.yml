@@ -21,7 +21,7 @@ services:
     environment:
       APPLICATION_SECRET: ${APPLICATION_SECRET}
       DATABASE_URL: ${DATABASE_URL}
-    container_name: facto-db
+    container_name: facto
 
 volumes:
   facto_db_data:
