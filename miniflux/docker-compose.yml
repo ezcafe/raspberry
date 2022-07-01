@@ -1,29 +1,29 @@
 version: "3.4"
 services:
-  miniflux_db:
+  database:
     image: postgres:latest
     restart: unless-stopped
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_HOST=${DB_HOST}
     volumes:
       - miniflux_db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
+      test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
       interval: 10s
       start_period: 30s
     container_name: miniflux-db
 
-  miniflux_app:
+  app:
     image: miniflux/miniflux:latest
     restart: unless-stopped
     ports:
       - "${PORT}:8080"
     depends_on:
-      - miniflux_db
+      - database
     environment:
-      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}/${POSTGRES_USER}?sslmode=disable
+      - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?sslmode=disable
       - RUN_MIGRATIONS=1
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
@@ -31,6 +31,27 @@ services:
     healthcheck:
      test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
     container_name: miniflux
+
+  backup:
+    container_name: miniflux-backup
+    image: tiredofit/db-backup
+    links:
+     - miniflux-db
+    volumes:
+      - ./backups:/backup
+    environment:
+      - DB_TYPE=pgsql
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_DUMP_FREQ=1440
+      - DB_DUMP_BEGIN=0000
+      - DB_CLEANUP_TIME=8640
+      - CHECKSUM=SHA1
+      - COMPRESSION=ZSTD
+      - SPLIT_DB=FALSE
+    restart: unless-stopped
 
 volumes:
   miniflux_db_data:
