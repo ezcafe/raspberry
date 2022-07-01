@@ -13,3 +13,15 @@ Check health of database by running `docker ps`. Wait until its status becomes h
 ```
 docker-compose up -d miniflux_app
 ```
+
+## Manual Backup
+```
+docker exec -it miniflux-backup bash
+backup-now
+```
+
+## Manual Restore
+```
+docker exec -it miniflux-backup bash
+restore
+```
