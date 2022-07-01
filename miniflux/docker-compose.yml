@@ -4,10 +4,13 @@ services:
     image: postgres:latest
     restart: unless-stopped
     environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_HOST=${DB_HOST}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_USER=${DB_USER}
       - TIMEZONE=${TZ}
+    ports:
+      - ${DB_PORT}:5432
     volumes:
       - miniflux_db_data:/var/lib/postgresql/data
     healthcheck:
@@ -20,11 +23,11 @@ services:
     image: miniflux/miniflux:latest
     restart: unless-stopped
     ports:
-      - "${PORT}:8080"
+      - ${PORT}:8080
     depends_on:
       - database
     environment:
-      - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?sslmode=disable
+      - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=disable
       - RUN_MIGRATIONS=1
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
