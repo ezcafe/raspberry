@@ -51,6 +51,7 @@ services:
       - CHECKSUM=SHA1
       - COMPRESSION=ZSTD
       - SPLIT_DB=FALSE
+      - TIMEZONE=${TZ}
     restart: unless-stopped
 
 volumes:
