@@ -36,7 +36,7 @@ services:
     container_name: miniflux-backup
     image: tiredofit/db-backup
     links:
-     - miniflux-db
+     - database
     volumes:
       - ./backups:/backup
     environment:
