@@ -3,18 +3,20 @@
 ## Start the database
 
 ```
-docker-compose up -d miniflux_db
+docker-compose up -d db
 ```
 
 Check health of database by running `docker ps`. Wait until its status becomes healthy
 
 ### check by cli
-`docker exec -it miniflux-db psql -U ezcafe -a miniflux`
+```
+docker exec -it miniflux-db psql -U yourDbUser
+```
 
 ## Start Miniflux
 
 ```
-docker-compose up -d miniflux_app
+docker-compose up -d app
 ```
 
 ## Backup and Restore

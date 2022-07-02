@@ -29,7 +29,7 @@ services:
       db:
         condition: service_healthy
     environment:
-      - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?sslmode=disable
+      - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@db/${DB_NAME}?sslmode=disable
       - RUN_MIGRATIONS=1
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
