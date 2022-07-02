@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     environment:
       - POSTGRES_HOST=${DB_HOST}
-      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_DATABSE=${DB_NAME}
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_USER=${DB_USER}
       - TIMEZONE=${TZ}
