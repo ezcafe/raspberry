@@ -4,10 +4,10 @@ services:
     image: postgres:latest
     restart: unless-stopped
     environment:
-      - POSTGRES_DB=${DB_NAME}
       - POSTGRES_HOST=${DB_HOST}
-      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
       - TIMEZONE=${TZ}
     volumes:
       - db_data:/var/lib/postgresql/data
