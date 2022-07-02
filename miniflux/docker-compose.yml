@@ -12,7 +12,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "sh", "-c", "pg_isready -U $$DB_USER -d $$DB_NAME -h $$DB_HOST"]
+      test: ["CMD", "./scripts/db-healthcheck.sh"]
       interval: 10s
       start_period: 30s
     container_name: miniflux-db
@@ -46,7 +46,7 @@ services:
       - db
     volumes:
       - ${BACKUP_DIR}:/backup
-      - ./post-script.sh:/assets/custom-scripts/post-script.sh
+      - ./scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
     environment:
       - DB_TYPE=pgsql
       - DB_HOST=${DB_HOST}
