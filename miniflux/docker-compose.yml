@@ -9,8 +9,6 @@ services:
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_USER=${DB_USER}
       - TIMEZONE=${TZ}
-    ports:
-      - ${DB_PORT}:5432
     volumes:
       - db_data:/var/lib/postgresql/data
     healthcheck:
@@ -29,7 +27,7 @@ services:
     depends_on:
       - database
     environment:
-      - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=disable
+      - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?sslmode=disable
       - RUN_MIGRATIONS=1
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
