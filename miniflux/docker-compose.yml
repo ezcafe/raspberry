@@ -10,7 +10,7 @@ services:
       - POSTGRES_PASSWORD=${DB_PASS}
       - TZ=${TZ}
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db_volume:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
       interval: 10s
@@ -29,7 +29,7 @@ services:
       db:
         condition: service_healthy
     environment:
-      - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@db/${DB_NAME}?sslmode=disable
+      - DATABASE_URL=user=${DB_USER} password=${DB_PASS} dbname=${DB_NAME} host=${DB_HOST} sslmode=disable
       - RUN_MIGRATIONS=1
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
@@ -66,4 +66,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  db_data:
+  db_volume:
