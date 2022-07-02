@@ -36,7 +36,7 @@ services:
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - TZ=${TZ}
     healthcheck:
-     test: ["CMD", "/usr/bin/app", "-healthcheck", "auto"]
+     test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
     container_name: miniflux
 
   backup:
