@@ -12,7 +12,7 @@ services:
     ports:
       - ${DB_PORT}:5432
     volumes:
-      - miniflux_db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
       interval: 10s
@@ -24,6 +24,8 @@ services:
     restart: unless-stopped
     ports:
       - ${PORT}:8080
+    links:
+     - database
     depends_on:
       - database
     environment:
@@ -42,6 +44,8 @@ services:
     image: tiredofit/db-backup
     links:
      - database
+    depends_on:
+      - database
     volumes:
       - ./backups:/backup
     environment:
@@ -60,4 +64,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  miniflux_db_data:
+  db_data:
