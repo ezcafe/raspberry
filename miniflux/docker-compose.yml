@@ -1,6 +1,6 @@
 version: "3.4"
 services:
-  database:
+  db:
     image: postgres:latest
     restart: unless-stopped
     environment:
@@ -23,9 +23,9 @@ services:
     ports:
       - ${PORT}:8080
     links:
-     - database
+      - db
     depends_on:
-      - database
+      - db
     environment:
       - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?sslmode=disable
       - RUN_MIGRATIONS=1
@@ -41,9 +41,9 @@ services:
     container_name: miniflux-backup
     image: tiredofit/db-backup
     links:
-     - database
+      - db
     depends_on:
-      - database
+      - db
     volumes:
       - ./backups:/backup
     environment:
