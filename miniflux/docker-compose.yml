@@ -46,6 +46,7 @@ services:
       - db
     volumes:
       - ${BACKUP_DIR}:/backup
+      - ./post-script.sh:/assets/custom-scripts/post-script.sh
     environment:
       - DB_TYPE=pgsql
       - DB_HOST=${DB_HOST}
