@@ -10,7 +10,7 @@ services:
       - POSTGRES_USER=${DB_USER}
       - TIMEZONE=${TZ}
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
       interval: 10s
@@ -45,7 +45,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./backups:/backup
+      - <your-backups-folder>:/backup
     environment:
       - DB_TYPE=pgsql
       - DB_HOST=${DB_HOST}
@@ -61,5 +61,3 @@ services:
       - TIMEZONE=${TZ}
     restart: unless-stopped
 
-volumes:
-  db_data:
