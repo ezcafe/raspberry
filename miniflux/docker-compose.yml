@@ -45,7 +45,7 @@ services:
     depends_on:
       - db
     volumes:
-      - <your-backups-folder>:/backup
+      - ${BACKUP_DIR}:/backup
     environment:
       - DB_TYPE=pgsql
       - DB_HOST=${DB_HOST}
