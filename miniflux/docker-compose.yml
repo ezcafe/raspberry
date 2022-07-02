@@ -12,9 +12,10 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "./scripts/db-healthcheck.sh"]
+      test: ["CMD", "pg_isready"]
       interval: 10s
-      start_period: 30s
+      timeout: 5s
+      retries: 5
     container_name: miniflux-db
 
   app:
@@ -25,7 +26,8 @@ services:
     links:
       - db
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?sslmode=disable
       - RUN_MIGRATIONS=1
@@ -43,7 +45,8 @@ services:
     links:
       - db
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - ${BACKUP_DIR}:/backup
       - ./scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
