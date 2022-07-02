@@ -4,7 +4,7 @@ services:
     image: postgres:latest
     restart: unless-stopped
     environment:
-      - POSTGRES_DATABSE=${DB_NAME}
+      - POSTGRES_DB=${DB_NAME}
       - POSTGRES_HOST=${DB_HOST}
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_USER=${DB_USER}
