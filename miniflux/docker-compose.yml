@@ -32,6 +32,7 @@ services:
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - TIMEZONE=${TZ}
     healthcheck:
      test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
     container_name: miniflux
