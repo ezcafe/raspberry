@@ -5,11 +5,34 @@ services:
   linkding:
     image: sissbruecker/linkding:latest
     ports:
-      - "${LINKDING_PORT}:9090"
+      - "${PORT}:9090"
     volumes:
       - linkding_data:/etc/linkding/data
     restart: unless-stopped
     container_name: linkding
+
+  backup:
+    container_name: linkding-backup
+    image: tiredofit/db-backup
+    links:
+      - linkding
+    volumes:
+      - ${BACKUP_DIR}/linkding:/backup
+      - ../scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+    environment:
+      - DB_TYPE=sqlite3
+      - DB_HOST=/etc/linkding/data/db.sqlite3
+      - DB_NAME=ALL
+      # - DB_USER=${DB_USER}
+      # - DB_PASS=${DB_PASS}
+      - DB_DUMP_FREQ=1440
+      - DB_DUMP_BEGIN=0500
+      - DB_CLEANUP_TIME=8640
+      - CHECKSUM=SHA1
+      - COMPRESSION=ZSTD
+      - SPLIT_DB=FALSE
+      - TIMEZONE=${TZ}
+    restart: unless-stopped
 
 volumes:
   linkding_data:
