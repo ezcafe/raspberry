@@ -48,8 +48,8 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - ${BACKUP_DIR}:/backup
-      - ./scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+      - ${BACKUP_DIR}/miniflux:/backup
+      - ../scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
     environment:
       - DB_TYPE=pgsql
       - DB_HOST=${DB_HOST}
