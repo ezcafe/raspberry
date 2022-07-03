@@ -21,7 +21,7 @@ services:
       - ../scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
     environment:
       - DB_TYPE=sqlite3
-      - DB_HOST=data/db.sqlite3
+      - DB_HOST=/etc/linkding/data/db.sqlite3
       - DB_NAME=ALL
       # - DB_USER=${DB_USER}
       # - DB_PASS=${DB_PASS}
