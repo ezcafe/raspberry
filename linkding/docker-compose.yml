@@ -14,6 +14,7 @@ services:
 
   backup:
     image: offen/docker-volume-backup:latest
+    container_name: linkding-backup
     restart: unless-stopped
     volumes:
       - backup_volume:/backup/my-app-backup:ro
