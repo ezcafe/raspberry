@@ -8,14 +8,18 @@ docker-compose exec linkding python manage.py createsuperuser --username=yourUse
 ## Backup and Restore
 
 ### Manual Backup
-<!-- https://github.com/tiredofit/docker-db-backup -->
+<!-- https://github.com/offen/docker-volume-backup -->
 ```
-docker exec -it linkding-backup bash
-backup-now
+docker exec linkding-backup backup
 ```
 
 ### Restore
+1. Stop the container(s) that are using the volume
+
+2. Restore
 ```
-docker exec -it linkding-backup bash
-restore
+cd ~/raspberry/linkding
+docker run --rm -it -v linkding_backup_volume:/backup/my-app-backup -v /home/ezcafe/backups/linkding:/archive:ro alpine tar -xvzf /archive/<full-backup-filename>.tar.gz
 ```
+
+4. Restart the container(s) that are using the volume
