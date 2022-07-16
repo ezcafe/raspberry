@@ -9,3 +9,4 @@ services:
     container_name: libreddit
     environment:
       - LIBREDDIT_DEFAULT_POST_SORT="new"
+      - LIBREDDIT_DEFAULT_THEME="dracula"
