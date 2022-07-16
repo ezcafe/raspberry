@@ -39,31 +39,5 @@ services:
      test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
     container_name: miniflux
 
-  backup:
-    container_name: miniflux-backup
-    image: tiredofit/db-backup
-    links:
-      - db
-    depends_on:
-      db:
-        condition: service_healthy
-    volumes:
-      - ${BACKUP_DIR}/miniflux:/backup
-      - ../scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
-    environment:
-      - DB_TYPE=pgsql
-      - DB_HOST=${DB_HOST}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASS=${DB_PASS}
-      - DB_DUMP_FREQ=1440
-      - DB_DUMP_BEGIN=0500
-      - DB_CLEANUP_TIME=8640
-      - CHECKSUM=SHA1
-      - COMPRESSION=ZSTD
-      - SPLIT_DB=FALSE
-      - TIMEZONE=${TZ}
-    restart: unless-stopped
-
 volumes:
   db_volume:
