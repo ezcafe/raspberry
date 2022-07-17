@@ -8,5 +8,6 @@ services:
     restart: unless-stopped
     container_name: libreddit
     environment:
+      - LIBREDDIT_DEFAULT_COMMENT_SORT=new
       - LIBREDDIT_DEFAULT_POST_SORT=new
       - LIBREDDIT_DEFAULT_THEME=dracula
