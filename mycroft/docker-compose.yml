@@ -1,0 +1,13 @@
+version: "3.4"
+services:
+  app:
+    image: mycroftai/docker-mycroft
+    container_name: mycroft
+    restart: unless-stopped
+    ports:
+      - ${PORT}:8181
+    volumes:
+      - mycroft_volume:/root/.mycroft
+
+volumes:
+  mycroft_volume:
