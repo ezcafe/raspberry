@@ -44,13 +44,10 @@ services:
       timeout: 3s
       retries: 30
 
-    redis:
+  redis:
     image: redis:alpine
     container_name: redis
     restart: unless-stopped
-    volumes:
-      - redis-data:/var/lib/redis
-      - send_redis-data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 1s
