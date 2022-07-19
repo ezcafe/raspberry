@@ -5,7 +5,7 @@ services:
     container_name: wallabag
     restart: unless-stopped
     environment:
-      - MARIADB_ROOT_PASSWORD=${DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
       - SYMFONY__ENV__DATABASE_DRIVER=pdo_mysql
       - SYMFONY__ENV__DATABASE_HOST=${DB_HOST}
       - SYMFONY__ENV__DATABASE_PORT=${DB_PORT}
@@ -16,43 +16,46 @@ services:
       - SYMFONY__ENV__SECRET=${SECRET}
       - SYMFONY__ENV__LOCALE=${LOCALE}
       - SYMFONY__ENV__DOMAIN_NAME=${DOMAIN_NAME}
-      - SYMFONY__ENV__REDIS_HOST=wallabag-redis
-      - SYMFONY__ENV__REDIS_PASSWORD=${REDIS_PASSWORD}
     ports:
       - ${PORT}:80
     volumes:
       - wallabag_data:/var/www/wallabag/web/assets/images
+    healthcheck:
+      test: ["CMD", "wget" ,"--no-verbose", "--tries=1", "--spider", "http://localhost"]
+      interval: 1m
+      timeout: 3s
     depends_on:
-      - db
+      - wallabag_db
       - redis
 
-  db:
-    image: mariadb
+  wallabag_db:
+    image: mariadb:latest
     container_name: wallabag-db
     restart: unless-stopped
     environment:
-      - MARIADB_USER=${DB_PASS}
-      - MARIADB_PASSWORD=${DB_PASS}
-      - MARIADB_ROOT_PASSWORD=${DB_PASS}
-    volumes:
-      - wallabag_db_data:/var/lib/mysql
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
     ports:
       - ${DB_PORT}:3306
+    volumes:
+      - wallabag_db_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      interval: 20s
+      interval: 1s
       timeout: 3s
+      retries: 30
 
-  redis:
+    redis:
     image: redis:alpine
-    container_name: wallabag-redis
+    container_name: redis
     restart: unless-stopped
-    environment:
-      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    volumes:
+      - redis-data:/var/lib/redis
+      - send_redis-data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
-      interval: 20s
+      interval: 1s
       timeout: 3s
+      retries: 30
 
 volumes:
   wallabag_db_data:
