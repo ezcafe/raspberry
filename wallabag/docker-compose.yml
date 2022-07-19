@@ -1,7 +1,7 @@
 version: '3'
 services:
   wallabag:
-    image: wallabag/wallabag
+    image: abhilesh7/wallabag-arm # wallabag/wallabag
     container_name: wallabag
     restart: unless-stopped
     environment:
@@ -17,19 +17,15 @@ services:
       - SYMFONY__ENV__LOCALE=${LOCALE}
       - SYMFONY__ENV__DOMAIN_NAME=${DOMAIN_NAME}
     ports:
-      - ${PORT}:80
+      - ${PORT}:80                                                              # Serving on port '8543', can change to a different port
     volumes:
       - wallabag_data:/var/www/wallabag/web/assets/images
-    healthcheck:
-      test: ["CMD", "wget" ,"--no-verbose", "--tries=1", "--spider", "http://localhost"]
-      interval: 1m
-      timeout: 3s
     depends_on:
-      - wallabag_db
+      - db
       - redis
 
-  wallabag_db:
-    image: mariadb:latest
+  db:
+    image: mariadb
     container_name: wallabag-db
     restart: unless-stopped
     environment:
@@ -46,7 +42,7 @@ services:
 
   redis:
     image: redis:alpine
-    container_name: redis
+    container_name: wallabag-redis
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
