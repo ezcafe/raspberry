@@ -1,5 +1,4 @@
 # WallaBag
 
-## Install script
-docker exec -t wallabag /var/www/wallabag/bin/console wallabag:install --env=prod -n
+Wait a few mins for WallaBag to set it up
 
