@@ -5,7 +5,7 @@ services:
     container_name: wallabag
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - MARIADB_ROOT_PASSWORD=${DB_PASS}
       - SYMFONY__ENV__DATABASE_DRIVER=pdo_mysql
       - SYMFONY__ENV__DATABASE_HOST=${DB_HOST}
       - SYMFONY__ENV__DATABASE_PORT=${DB_PORT}
@@ -31,7 +31,9 @@ services:
     container_name: wallabag-db
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - MARIADB_USER=${DB_PASS}
+      - MARIADB_PASSWORD=${DB_PASS}
+      - MARIADB_ROOT_PASSWORD=${DB_PASS}
     volumes:
       - wallabag_db_data:/var/lib/mysql
     ports:
