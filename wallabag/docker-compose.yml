@@ -13,15 +13,23 @@ services:
       - SYMFONY__ENV__DATABASE_USER=${DB_USER}
       - SYMFONY__ENV__DATABASE_PASSWORD=${DB_PASS}
       - SYMFONY__ENV__DATABASE_CHARSET=utf8mb4
+      - SYMFONY__ENV__MAILER_HOST=127.0.0.1
+      - SYMFONY__ENV__MAILER_USER=~
+      - SYMFONY__ENV__MAILER_PASSWORD=~
+      - SYMFONY__ENV__FROM_EMAIL=wallabag@example.com
       - SYMFONY__ENV__SECRET=${SECRET}
       - SYMFONY__ENV__LOCALE=${LOCALE}
       - SYMFONY__ENV__DOMAIN_NAME=${DOMAIN_NAME}
+      - SYMFONY__ENV__FOSUSER_REGISTRATION=false
+      - SYMFONY__ENV__FOSUSER_CONFIRMATION=false
     ports:
-      - ${PORT}:80                                                              # Serving on port '8543', can change to a different port
+      - ${PORT}:80
     volumes:
       - wallabag_data:/var/www/wallabag/web/assets/images
     depends_on:
       - db
+      - redis
+    links:
       - redis
 
   db:
