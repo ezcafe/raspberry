@@ -1,7 +1,7 @@
 version: '3'
 services:
   wallabag:
-    image: abhilesh7/wallabag-arm # wallabag/wallabag
+    image: wallabag/wallabag
     container_name: wallabag
     restart: unless-stopped
     environment:
