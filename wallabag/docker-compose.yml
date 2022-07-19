@@ -5,9 +5,8 @@ services:
     container_name: wallabag
     restart: unless-stopped
     environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASS}
-      - SYMFONY__ENV__DATABASE_DRIVER=pdo_pgsql
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - SYMFONY__ENV__DATABASE_DRIVER=pdo_mysql
       - SYMFONY__ENV__DATABASE_HOST=${DB_HOST}
       - SYMFONY__ENV__DATABASE_PORT=${DB_PORT}
       - SYMFONY__ENV__DATABASE_NAME=${DB_NAME}
@@ -28,24 +27,19 @@ services:
       - redis
 
   db:
-    image: postgres
+    image: mariadb
     container_name: wallabag-db
     restart: unless-stopped
     environment:
-      - POSTGRES_HOST=${DB_HOST}
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASS}
-      - TZ=${TZ}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
     volumes:
-      - wallabag_db_data:/var/lib/postgresql/data
+      - wallabag_db_data:/var/lib/mysql
     ports:
-      - ${DB_PORT}:5432
+      - ${DB_PORT}:3306
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 20s
+      timeout: 3s
 
   redis:
     image: redis:alpine
