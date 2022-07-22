@@ -1,0 +1,13 @@
+version: "3.4"
+services:
+  app:
+    image: thelounge/thelounge:latest
+    container_name: thelounge
+    restart: unless-stopped
+    ports:
+      - ${PORT}:9000
+    volumes:
+      - thelounge_volume:/var/opt/thelounge
+
+volumes:
+  thelounge_volume:
