@@ -1,0 +1,16 @@
+version: "3.4"
+services:
+  app:
+    image: ghcr.io/ergochat/ergo:stable
+    container_name: ergo
+    restart: unless-stopped
+    ports:
+      - ${PORT}:6667
+      - ${PORT_2}:6697
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ergo_volume:/ircd
+
+volumes:
+  ergo_volume:
