@@ -5,10 +5,7 @@ services:
     container_name: ergo
     restart: unless-stopped
     ports:
-      - ${PORT}:6667
-      - ${PORT_2}:6697
-    environment:
-      - TZ=${TZ}
+      - ${PORT}:6697
     volumes:
       - ergo_volume:/ircd
 
