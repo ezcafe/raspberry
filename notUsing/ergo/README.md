@@ -1,5 +1,7 @@
 # Ergo
 
+NOTE: irc server doesn't work with Cloudflare
+
 ### Get oper password
 Run `docker-compose logs` to get the oper password
 
@@ -18,3 +20,4 @@ sudo nano /var/lib/docker/volumes/ergo_ergo_volume/_data/ircd.yaml
 Update following fields:
 - network.name
 - server.name
+- proxy-allowed-from
