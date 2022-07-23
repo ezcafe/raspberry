@@ -23,16 +23,5 @@ services:
       CONDUIT_ADDRESS: 0.0.0.0
       CONDUIT_CONFIG: "" # Ignore this
 
-  element-web:
-    image: vectorim/element-web:latest
-    container_name: element
-    restart: unless-stopped
-    ports:
-      - ${PORT_CLIENT}:80
-    volumes:
-      - ./element_config.json:/app/config.json
-    depends_on:
-      - homeserver
-
 volumes:
   db:
