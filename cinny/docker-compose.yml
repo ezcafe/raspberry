@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  homeserver:
+    image: ajbura/cinny
+    container_name: cinny
+    restart: unless-stopped
+    ports:
+      - ${PORT}:80
