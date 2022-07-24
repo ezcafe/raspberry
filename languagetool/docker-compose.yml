@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  homeserver:
+    image: silviof/docker-languagetool:latest
+    container_name: languagetool
+    restart: unless-stopped
+    ports:
+      - ${PORT}:8010
