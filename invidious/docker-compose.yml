@@ -28,10 +28,12 @@ services:
         popular_enabled: true
         default_user_preferences:
           captions: ["English", "English (auto-generated)", "Vietnamese"]
+          comments: ["youtube", ""],
           continue_autoplay: false
           dark: true
           default_home: Trending
           region: VN
+          related_videos: true
           save_player_pos: true
     healthcheck:
       test: wget -nv --tries=1 --spider http://127.0.0.1:$$PORT/api/v1/comments/jNQXAC9IVRw || exit 1
