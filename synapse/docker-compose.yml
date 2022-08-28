@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  app:
+    image: matrixdotorg/synapse
+    container_name: synapse
+    restart: unless-stopped
+    ports:
+      - ${PORT}:8008
+    volumes:
+      - db:/data
+    environment:
+      SYNAPSE_SERVER_NAME: matrix.${SERVER_NAME}
+      SYNAPSE_REPORT_STATS: yes
+volumes:
+  db:
