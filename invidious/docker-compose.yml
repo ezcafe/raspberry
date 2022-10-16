@@ -2,7 +2,7 @@ version: "3"
 services:
 
   invidious:
-    image: quay.io/invidious/invidious@sha256:eb19cca139d2f2edf8325edf06eaa7e0cbfd15b77de3ecb6429a3b3770a79193 # ARM64/AArch64 devices
+    image: quay.io/invidious/invidious:latest-arm64
     restart: unless-stopped
     ports:
       - "${PORT}:3000"
@@ -45,7 +45,7 @@ services:
     container_name: invidious
 
   invidious-db:
-    image: postgres:14.5
+    image: postgres:latest
     restart: unless-stopped
     volumes:
       - postgresdata:/var/lib/postgresql/data
