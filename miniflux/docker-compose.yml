@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   db:
-    image: postgres:latest
+    image: postgres:14.3
     restart: unless-stopped
     environment:
       - POSTGRES_HOST=${DB_HOST}
