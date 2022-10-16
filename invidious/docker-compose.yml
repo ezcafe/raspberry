@@ -2,7 +2,7 @@ version: "3"
 services:
 
   invidious:
-    image: quay.io/invidious/invidious:@sha256:678c4c323663bf014135ea85a435db14e833f0c4101c43ce4d8c5ca2355136a8
+    image: quay.io/invidious/invidious@sha256:eb19cca139d2f2edf8325edf06eaa7e0cbfd15b77de3ecb6429a3b3770a79193 # ARM64/AArch64 devices
     restart: unless-stopped
     ports:
       - "${PORT}:3000"
