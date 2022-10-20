@@ -2,6 +2,7 @@ version: '3.7'
 services:
   ghostfolio:
     image: ghostfolio/ghostfolio:latest
+    container_name: ghostfolio
     env_file:
       - ./.env
     environment:
@@ -11,18 +12,25 @@ services:
       REDIS_PASSWORD: ${REDIS_PASSWORD}
     ports:
       - "${PORT}:3333"
+    restart: unless-stopped
 
   postgres:
     image: postgres:12
+    container_name: ghostfolio-db
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
     volumes:
       - postgres:/var/lib/postgresql/data
+    restart: unless-stopped
 
   redis:
     image: 'redis:alpine'
+    container_name: ghostfolio-redis
+    ports:
+      - "${REDIS_PORT}:6379"
+    restart: unless-stopped
 
 volumes:
   postgres:
