@@ -27,11 +27,11 @@ services:
         registration_enabled: false
         popular_enabled: true
         default_user_preferences:
-          captions: ["English", "English (auto-generated)", "Vietnamese"]
-          comments: ["youtube", ""],
+          #captions: ["English", "English (auto-generated)", "Vietnamese"]
           continue_autoplay: false
-          dark: true
+          dark_mode: true
           default_home: Trending
+          quality: dash
           region: VN
           related_videos: true
           save_player_pos: true
