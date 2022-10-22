@@ -29,8 +29,9 @@ services:
         default_user_preferences:
           #captions: ["English", "English (auto-generated)", "Vietnamese"]
           continue_autoplay: false
-          dark_mode: true
+          dark: true
           default_home: Trending
+          popular_enabled: false
           quality: dash
           region: VN
           related_videos: true
