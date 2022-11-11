@@ -55,8 +55,8 @@ services:
     links:
      - db
     volumes:
-      - ./backups:/home/ezcafe/backups
-      - ./post-script.sh:/home/ezcafe/backups/post-script.sh
+      - /home/ezcafe/backups:/backup
+      - /home/ezcafe/backups/post-script.sh:/assets/custom-scripts/post-script.sh
     environment:
       - DEBUG_MODE=TRUE
       - DB_TYPE=mariadb
