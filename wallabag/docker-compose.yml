@@ -49,6 +49,30 @@ services:
       timeout: 3s
       retries: 30
 
+  db-backup:
+    container_name: wallabag-db-backup
+    image: tiredofit/db-backup
+    links:
+     - wallabag-db
+    volumes:
+      - ./backups:/home/ezcafe/backups
+      - ./post-script.sh:/home/ezcafe/backups/post-script.sh
+    environment:
+      - DEBUG_MODE=TRUE
+      - DB_TYPE=mariadb
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_DUMP_FREQ=1440       # backup every x minute - 1440 = 1 day
+      - DB_DUMP_BEGIN=0000      # backup starts immediately
+      - DB_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
+      - CHECKSUM=SHA1
+      - COMPRESSION=GZ
+      - SPLIT_DB=FALSE
+      - CONTAINER_ENABLE_MONITORING=FALSE
+    restart: unless-stopped
+
   redis:
     image: redis:alpine
     container_name: wallabag-redis
