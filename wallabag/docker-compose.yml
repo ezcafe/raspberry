@@ -53,7 +53,7 @@ services:
     container_name: wallabag-db-backup
     image: tiredofit/db-backup
     links:
-     - wallabag-db
+     - db
     volumes:
       - ./backups:/home/ezcafe/backups
       - ./post-script.sh:/home/ezcafe/backups/post-script.sh
