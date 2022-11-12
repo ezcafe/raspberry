@@ -56,16 +56,16 @@ services:
      - db
     volumes:
       - /home/ezcafe/backups:/backup
-      - /home/ezcafe/backups/post-script.sh:/assets/custom-scripts/post-script.sh
+      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
     environment:
-      - DEBUG_MODE=TRUE
+      # - DEBUG_MODE=TRUE
       - DB_TYPE=mariadb
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
+      # - DB_DUMP_BEGIN=0000      # backup starts immediately
       - DB_DUMP_FREQ=1440       # backup every x minute - 1440 = 1 day
-      - DB_DUMP_BEGIN=0000      # backup starts immediately
       - DB_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
       - CHECKSUM=SHA1
       - COMPRESSION=GZ
