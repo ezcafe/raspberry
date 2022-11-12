@@ -5,7 +5,7 @@ Wait a few mins for WallaBag to set it up
 ## Backup and Restore
 
 ### Make .sh script as executable
-chmod +x backup-post-script.sh
+chmod +x ../scripts/backup-post-script.sh
 
 ### Manual Backup
 <!-- https://github.com/tiredofit/docker-db-backup -->

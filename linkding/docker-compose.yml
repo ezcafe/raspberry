@@ -2,13 +2,38 @@ version: '3'
 
 services:
   linkding:
+    container_name: linkding
     image: sissbruecker/linkding:latest
     ports:
       - "${PORT}:9090"
     volumes:
       - linkding_data:/etc/linkding/data
     restart: unless-stopped
-    container_name: linkding
+
+  db-backup:
+    container_name: linkding-db-backup
+    image: tiredofit/db-backup
+    links:
+    - linkding
+    volumes:
+      - /home/ezcafe/backups:/backup
+      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+    environment:
+      # - DEBUG_MODE=TRUE
+      - DB_TYPE=sqlite3
+      - DB_HOST=/etc/linkding/data/db.sqlite3
+      # - DB_NAME=${DB_NAME}
+      # - DB_USER=${DB_USER}
+      # - DB_PASS=${DB_PASS}
+      # - DB_DUMP_BEGIN=0000      # backup starts immediately
+      - DB_DUMP_FREQ=1440       # backup every x minute - 1440 = 1 day
+      - DB_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
+      - CHECKSUM=SHA1
+      - COMPRESSION=GZ
+      - SPLIT_DB=FALSE
+      - CONTAINER_ENABLE_MONITORING=FALSE
+      - TZ=${TZ}
+    restart: unless-stopped
 
 volumes:
   linkding_data:
