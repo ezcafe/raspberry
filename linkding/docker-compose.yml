@@ -16,7 +16,7 @@ services:
     links:
     - linkding
     volumes:
-      - /home/ezcafe/backups:/backup
+      - /home/ezcafe/backups/linkding:/backup
       - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
       - linkding_data:/etc/linkding/data
     environment:

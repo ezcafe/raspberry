@@ -22,7 +22,12 @@ docker-compose up -d app
 
 ## Backup and Restore
 
+### Create backup folder
+
+mkdir miniflux
+
 ### Make .sh script as executable
+
 chmod +x ../scripts/backup-post-script.sh
 
 ### Manual Backup

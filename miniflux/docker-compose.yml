@@ -26,7 +26,7 @@ services:
   #   links:
   #    - db
   #   volumes:
-  #     - /home/ezcafe/backups:/backup
+  #     - /home/ezcafe/backups/miniflux:/backup
   #     - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
   #   environment:
   #     # - DEBUG_MODE=TRUE
