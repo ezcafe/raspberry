@@ -1,13 +1,15 @@
 # duplicati
 
+## Allow port 19988
+
+sudo ufw allow 19988
+
+## Setup
+
 Go to http://192.168.1.4:19988/ to backup data
 
 For more information
 https://www.danielmartingonzalez.com/en/backups-towards-docker/
-
-## Setup
-
-Update docker-compose.yml volume
 
 ## Backup
 
@@ -20,13 +22,13 @@ Update docker-compose.yml volume
 ### Backup destination
 
 - Storage Type: mega.nz
-- Folder path: raspberry
+- Folder path: /raspberry/
 - Username: <mega.nz username>
 - Password: <mega.nz password>
 
 ### Source data
 
-Select docker_config and docker_source folders
+Select backup_backups and backup_raspberry folders
 
 ### Schedule
 
