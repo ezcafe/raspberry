@@ -1,23 +1,22 @@
 version: "2.1"
 services:
   duplicati:
-    image: linuxserver/duplicati
     container_name: duplicati
+    image: linuxserver/duplicati
     environment:
       - PUID=1000 # this should match the ouput of `id -u admin` on the CLI
       - PGID=1000 # this should match the ouput of `id -g admin` on the CLI
       - TZ=${TZ} # Set the appropriate timezone
-      - CLI_ARGS=--run-script-before=./before.sh --run-script-after=./after.sh
       - DOCKER_MODS=linuxserver/mods:universal-docker
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./scripts/before.sh:/duplicati_scripts/before.sh
-      - ./scripts/after.sh:/duplicati_scripts/after.sh
+      # - /var/run/docker.sock:/var/run/docker.sock
+      # - /var/lib/docker/volumes:/docker_volumes:rw # docker volume ls => docker inspect volume name => volume location
       - duplicati_data:/config #Duplicati Config Files, for consisency across re-deployments
-      - /var/lib/docker/volumes:/docker_volumes:rw # docker volume ls => docker inspect volume name => volume location
+      - /home/ezcafe/backups:/backup_backups
+      - /home/ezcafe/raspberry:/backup_raspberry
     ports:
       - ${DUPLICATI_PORT}:8200
     restart: unless-stopped
 
 volumes:
-  duplicati_data: 
+  duplicati_data:
