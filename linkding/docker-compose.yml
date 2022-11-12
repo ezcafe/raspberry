@@ -18,6 +18,7 @@ services:
     volumes:
       - /home/ezcafe/backups:/backup
       - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+      - linkding_data:/etc/linkding/data
     environment:
       # - DEBUG_MODE=TRUE
       - DB_TYPE=sqlite3
