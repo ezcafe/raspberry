@@ -71,6 +71,7 @@ services:
       - COMPRESSION=GZ
       - SPLIT_DB=FALSE
       - CONTAINER_ENABLE_MONITORING=FALSE
+      - TZ=${TZ}
     restart: unless-stopped
 
   redis:
