@@ -27,7 +27,7 @@ services:
         registration_enabled: false
         popular_enabled: true
         default_user_preferences:
-          #captions: ["English", "English (auto-generated)", "Vietnamese"]
+          # captions: ["English", "English (auto-generated)", "Vietnamese"]
           continue_autoplay: false
           dark: true
           default_home: Trending
@@ -37,7 +37,8 @@ services:
           related_videos: true
           save_player_pos: true
     healthcheck:
-      test: wget -nv --tries=1 --spider http://127.0.0.1:$$PORT/api/v1/comments/jNQXAC9IVRw || exit 1
+      # test: wget -nv --tries=1 --spider http://127.0.0.1:$$PORT/api/v1/comments/jNQXAC9IVRw || exit 1
+      test: wget -nv --tries=1 --spider http://localhost:$$PORT/preferences || exit 1
       interval: 30s
       timeout: 5s
       retries: 2
