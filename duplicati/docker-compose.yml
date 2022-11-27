@@ -16,6 +16,7 @@ services:
       - /home/ezcafe/raspberry:/backup_raspberry
     ports:
       - ${DUPLICATI_PORT}:8200
+    # healthcheck is not supported
     restart: unless-stopped
 
 volumes:
