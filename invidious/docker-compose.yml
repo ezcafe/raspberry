@@ -37,11 +37,11 @@ services:
           related_videos: true
           save_player_pos: true
     # Not working
-    # healthcheck:
-    #   test: wget -nv --tries=1 --spider http://127.0.0.1:$$PORT/api/v1/comments/jNQXAC9IVRw || exit 1
-    #   interval: 30s
-    #   timeout: 5s
-    #   retries: 2
+    healthcheck:
+      test: wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/comments/jNQXAC9IVRw || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 2
     depends_on:
       - invidious-db
     container_name: invidious
