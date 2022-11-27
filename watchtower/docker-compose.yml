@@ -25,6 +25,10 @@ services:
       # WATCHTOWER_NOTIFICATION_GOTIFY_TOKEN: <gotify-client-token>                                       # Get gotify client tokens from the gotify server
       # REPO_USER=username # For private Docker registries
       # REPO_PASS=password # For private Docker registries
+      WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
+      WATCHTOWER_HTTP_API_METRICS=${WATCHTOWER_HTTP_API_METRICS}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - ${PORT}:8080
     restart: unless-stopped
