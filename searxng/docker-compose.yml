@@ -25,7 +25,7 @@ services:
       - SEARXNG_BASE_URL=${SEARXNG_BASE_URL}
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget" ,"--no-verbose", "--tries=1", "--spider", "http://localhost/healthz"]
+      test: ["CMD", "wget" ,"--no-verbose", "--tries=1", "--spider", "http://localhost:8080/healthz"]
       interval: 1m
       timeout: 3s
 
