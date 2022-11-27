@@ -1,0 +1,46 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/en/configs/bookmarks
+
+- Study:
+    - Web5Ngay:
+        - abbr: YT
+          href: https://yt.in4.vn/channel/UCkgjUHB8sdWbmdp39swMrTg
+    - Amigoscode:
+        - abbr: YT
+          href: https://yt.in4.vn/channel/UC2KfmYEM4KCuA1ZurravgYw
+
+- Raspberry:
+    - Selfhosted:
+        - icon: reddit.png
+          href: https://rd.in4.vn/r/selfhosted/new
+    - WebApps:
+        - icon: reddit.png
+          href: https://rd.in4.vn/r/WebApps/new
+
+- Apps:
+    - AppHookup:
+        - icon: reddit.png
+          href: https://rd.in4.vn/r/AppHookup/new
+    - MacApps:
+        - icon: reddit.png
+          href: https://rd.in4.vn/r/MacApps/new
+    - iOSApps:
+        - icon: reddit.png
+          href: https://rd.in4.vn/r/iOSApps/new
+    - AppleWatchApps:
+        - icon: reddit.png
+          href: https://rd.in4.vn/r/AppleWatchApps/new
+    - Airpods:
+        - icon: reddit.png
+          href: https://rd.in4.vn/r/Airpods/new
+
+- Relax:
+    - Muse VN:
+        - abbr: YT
+          href: https://yt.in4.vn/channel/UCott96qGP5ADmsB_yNQMvDA
+
+- Utilities:
+    - Pomofocus:
+        - abbr: UT
+          href: https://pomofocus.io/

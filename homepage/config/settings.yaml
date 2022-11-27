@@ -1,0 +1,22 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/en/configs/settings
+
+# background: https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80
+# color: red
+# favicon: https://www.google.com/favicon.ico
+# theme: dark # or light
+# title: AAA
+# headerStyle: clean
+target: _self # Possible options include _blank, _self, and _top
+layout:
+  Applications:
+    style: row
+    columns: 4
+    icon: https://cdn-icons-png.flaticon.com/32/3405/3405818.png
+  Services:
+    style: row
+    columns: 4
+    icon: https://cdn-icons-png.flaticon.com/32/1085/1085784.png
+providers:
+  weatherapi: 50a816e10ff54f5dbff234827220106

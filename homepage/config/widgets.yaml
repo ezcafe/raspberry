@@ -1,0 +1,32 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/en/configs/widgets
+
+# - datetime:
+#     text_size: xs
+#     format:
+#       dateStyle: short
+#       timeStyle: short
+#       hour12: true
+
+# - greeting:
+#     text_size: md
+#     text: Hello
+
+- weatherapi:
+    label: HCM #optional
+    latitude: 10.856699
+    longitude: 106.77314
+    units: metric # or imperial
+    provider: weatherapi
+    cache: 5 # Time in minutes to cache API responses, to stay within limits
+
+- search:
+    provider: custom
+    url: https://search.in4.vn/search?q=
+    target: _blank
+
+- resources:
+    cpu: true
+    memory: true
+    disk: /
