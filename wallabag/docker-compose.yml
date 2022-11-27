@@ -26,6 +26,10 @@ services:
       - ${PORT}:80
     volumes:
       - wallabag_data:/var/www/wallabag/web/assets/images
+    healthcheck:
+      test: ["CMD", "wget" ,"--no-verbose", "--tries=1", "--spider", "http://localhost:$$PORT"]
+      interval: 1m
+      timeout: 3s
     depends_on:
       - db
       - redis
@@ -72,6 +76,7 @@ services:
       - SPLIT_DB=FALSE
       - CONTAINER_ENABLE_MONITORING=FALSE
       - TZ=${TZ}
+    # healthcheck is not supported
     restart: unless-stopped
 
   redis:
