@@ -8,6 +8,11 @@ services:
     tmpfs:
       - /var/lib/redis
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
 
   searxng:
     container_name: searxng
@@ -19,6 +24,10 @@ services:
     environment:
       - SEARXNG_BASE_URL=${SEARXNG_BASE_URL}
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget" ,"--no-verbose", "--tries=1", "--spider", "http://localhost/healthz"]
+      interval: 1m
+      timeout: 3s
 
 volumes:
   searxng_data:
