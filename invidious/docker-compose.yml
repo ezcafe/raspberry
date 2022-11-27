@@ -38,7 +38,7 @@ services:
           save_player_pos: true
     healthcheck:
       # test: wget -nv --tries=1 --spider http://127.0.0.1:$$PORT/api/v1/comments/jNQXAC9IVRw || exit 1
-      test: wget -nv --tries=1 --spider http://localhost:$$PORT/preferences || exit 1
+      test: wget -nv --tries=1 --spider http://localhost:$$PORT/feed/trending || exit 1
       interval: 30s
       timeout: 5s
       retries: 2
