@@ -25,10 +25,11 @@ services:
       - MYSQL_DATABASE=${DB_DATABASE}
     volumes:
       - firefly_iii_db:/var/lib/mysql
-    healthcheck:
-      test: ["CMD-SHELL", "mysql dbname -udbuser -pdbpass -e 'SELECT 1;'  || exit 1"]
-      interval: 2s
-      retries: 120
+    # Not working
+    # healthcheck:
+    #   test: ["CMD-SHELL", "mysql dbname -udbuser -pdbpass -e 'SELECT 1;'  || exit 1"]
+    #   interval: 2s
+    #   retries: 120
 
   db-backup:
     container_name: firefly-db-backup
