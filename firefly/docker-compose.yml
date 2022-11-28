@@ -26,7 +26,9 @@ services:
     volumes:
       - firefly_iii_db:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "/usr/local/bin/healthcheck.sh", "--defaults-file=/etc/mysql/healthcheck.cnf-notdefault", "--connect", "--innodb_initialized"]
+      test: ["CMD-SHELL", "mysql dbname -udbuser -pdbpass -e 'SELECT 1;'  || exit 1"]
+      interval: 2s
+      retries: 120
 
   db-backup:
     container_name: firefly-db-backup
