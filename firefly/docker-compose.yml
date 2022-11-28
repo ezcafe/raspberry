@@ -25,12 +25,8 @@ services:
       - MYSQL_DATABASE=${DB_DATABASE}
     volumes:
       - firefly_iii_db:/var/lib/mysql
-    # This causes error
-    # healthcheck:
-    #   test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-    #   interval: 1s
-    #   timeout: 3s
-    #   retries: 30
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/healthcheck.sh", "--defaults-file=/etc/mysql/healthcheck.cnf-notdefault", "--connect", "--innodb_initialized"]
 
   db-backup:
     container_name: firefly-db-backup
