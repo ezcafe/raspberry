@@ -1,0 +1,63 @@
+version: '3.3'
+
+services:
+  app:
+    image: fireflyiii/core:latest
+    container_name: firefly
+    restart: unless-stopped
+    volumes:
+      - firefly_iii_upload:/var/www/html/storage/upload
+    env_file: .env
+    ports:
+      - ${PORT}:8080
+    depends_on:
+      - db
+
+  db:
+    image: mariadb
+    container_name: firefly-db
+    hostname: fireflyiiidb
+    restart: unless-stopped
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    volumes:
+      - firefly_iii_db:/var/lib/mysql
+    # This causes error
+    # healthcheck:
+    #   test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+    #   interval: 1s
+    #   timeout: 3s
+    #   retries: 30
+
+  # db-backup:
+  #   container_name: firefly-db-backup
+  #   image: tiredofit/db-backup
+  #   links:
+  #    - db
+  #   volumes:
+  #     - /home/ezcafe/backups/firefly:/backup
+  #     - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+  #   environment:
+  #     # - DEBUG_MODE=TRUE
+  #     - DB_TYPE=mariadb
+  #     - DB_HOST=${DB_HOST}
+  #     - DB_NAME=${DB_DATABASE}
+  #     - DB_USER=${DB_USERNAME}
+  #     - DB_PASS=${DB_PASSWORD}
+  #     # - DB_DUMP_BEGIN=0000    # backup starts immediately
+  #     - DB_DUMP_FREQ=1440       # backup every x minute - 1440 = 1 day
+  #     - DB_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
+  #     - CHECKSUM=SHA1
+  #     - COMPRESSION=GZ
+  #     - SPLIT_DB=FALSE
+  #     - CONTAINER_ENABLE_MONITORING=FALSE
+  #     - TZ=${TZ}
+  #   # healthcheck is not supported
+  #   restart: unless-stopped
+
+volumes:
+   firefly_iii_upload:
+   firefly_iii_db:
