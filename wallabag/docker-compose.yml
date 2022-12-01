@@ -32,7 +32,6 @@ services:
       timeout: 3s
     depends_on:
       - db
-      - redis
     links:
       - redis
 
@@ -78,16 +77,6 @@ services:
       - TZ=${TZ}
     # healthcheck is not supported
     restart: unless-stopped
-
-  redis:
-    image: redis:alpine
-    container_name: wallabag-redis
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 1s
-      timeout: 3s
-      retries: 30
 
 volumes:
   wallabag_db_data:

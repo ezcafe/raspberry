@@ -2,6 +2,10 @@
 
 Wait a few mins for WallaBag to set it up
 
+## Run redis
+
+Run redis container first
+
 ## Backup and Restore
 
 ### Create backup folder
