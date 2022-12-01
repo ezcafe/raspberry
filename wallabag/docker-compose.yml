@@ -32,8 +32,6 @@ services:
       timeout: 3s
     depends_on:
       - db
-    external_links:
-      - redis
 
   db:
     image: mariadb
