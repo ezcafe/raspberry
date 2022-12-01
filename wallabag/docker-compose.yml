@@ -32,7 +32,7 @@ services:
       timeout: 3s
     depends_on:
       - db
-    links:
+    external_links:
       - redis
 
   db:
