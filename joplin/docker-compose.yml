@@ -1,0 +1,78 @@
+version: "3.4"
+services:
+  db:
+    image: postgres:latest
+    container_name: joplin-server-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_HOST=${DB_HOST}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
+    ports:
+      - ${DB_PORT}:5432
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  # Not working due to v15
+  # https://github.com/tiredofit/docker-db-backup/issues/181
+  # db-backup:
+  #   container_name: joplin-server-db-backup
+  #   image: tiredofit/db-backup
+  #   links:
+  #    - db
+  #   volumes:
+  #     - /home/ezcafe/backups/joplin-server:/backup
+  #     - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+  #   environment:
+  #     # - DEBUG_MODE=TRUE
+  #     - DB_TYPE=pgsql
+  #     - DB_HOST=${DB_HOST}
+  #     - DB_NAME=${DB_NAME}
+  #     - DB_USER=${DB_USER}
+  #     - DB_PASS=${DB_PASS}
+  #     # - DB_PORT=${DB_PORT}    # TODO test this
+  #     # - DB_DUMP_BEGIN=0000    # backup starts immediately
+  #     - DB_DUMP_FREQ=1440       # backup every x minute - 1440 = 1 day
+  #     - DB_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
+  #     - CHECKSUM=SHA1
+  #     - COMPRESSION=GZ
+  #     - SPLIT_DB=FALSE
+  #     - CONTAINER_ENABLE_MONITORING=FALSE
+  #     - TZ=${TZ}
+  #   restart: unless-stopped
+
+  app:
+    image: joplin/server:latest
+    container_name: joplin-server
+    restart: unless-stopped
+    ports:
+      - ${PORT}:22300
+    links:
+      - db
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - APP_PORT=${PORT}
+      - APP_BASE_URL=${APP_BASE_URL}
+      - DB_CLIENT=pg
+      - POSTGRES_HOST=db
+      - POSTGRES_DATABASE=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_PORT=${DB_PORT}
+      - TZ=${TZ}
+    #  TODO
+    # healthcheck:
+    #  test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
+
+volumes:
+  db_volume:
