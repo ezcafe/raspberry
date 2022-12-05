@@ -2,7 +2,9 @@
 
 ## Update Adlist
 
-https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts
+https://v.firebog.net/hosts/Easylist.txt
+https://v.firebog.net/hosts/Easyprivacy.txt
+https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
 
 ## Change password
 
