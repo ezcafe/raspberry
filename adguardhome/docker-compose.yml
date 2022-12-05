@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    restart: unless-stopped
+    ports:
+      # DNS
+      - 53:53
+      # # DHCP server
+      # - 67:67/udp
+      # - 68:68/tcp
+      # - 68:68/udp
+      # # HTTPS/DNS-over-HTTPS
+      # - 443:443/tcp
+      # # DNS-over-TLS
+      # - 853:853/tcp
+      # # DNS-over-QUIC
+      # - 784:784/udp
+      # # DNSCrypt
+      # - 5443:5443/tcp
+      # - 5443:5443/udp
+      # WebUI
+      - ${PORT}:3000/tcp
+    environment:
+      - TZ=${TZ}
+      # - PUID=1000
+      # - PGID=1000
+    volumes:
+      - confdir:/opt/adguardhome/conf
+      - workdir:/opt/adguardhome/work
+
+volumes:
+  confdir:
+  workdir:
