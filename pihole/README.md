@@ -1,13 +1,8 @@
 # Pihole
 
-## Update Pihole
+## Update Adlist
 
-```
-docker-compose down
-docker pull pihole/pihole
-docker pull cbcrowe/pihole-unbound
-docker-compose up -d
-```
+https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts
 
 ## Change password
 
