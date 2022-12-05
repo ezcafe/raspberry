@@ -2,8 +2,7 @@
 
 ## Update Adlist
 
-https://v.firebog.net/hosts/Easylist.txt
-https://v.firebog.net/hosts/Easyprivacy.txt
+https://v.firebog.net/hosts/AdguardDNS.txt
 https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
 
 ## Change password
