@@ -22,7 +22,7 @@ services:
       # - 5443:5443/tcp
       # - 5443:5443/udp
       # WebUI
-      - 3000:3000/tcp
+      - ${PORT_SETUP}:3000/tcp
       - ${PORT}:80/tcp
     environment:
       - TZ=${TZ}
