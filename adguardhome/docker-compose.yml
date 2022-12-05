@@ -22,7 +22,8 @@ services:
       # - 5443:5443/tcp
       # - 5443:5443/udp
       # WebUI
-      - ${PORT}:3000/tcp
+      - 3000:3000/tcp
+      - ${PORT}:80/tcp
     environment:
       - TZ=${TZ}
       # - PUID=1000
