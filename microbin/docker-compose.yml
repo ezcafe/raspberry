@@ -1,0 +1,11 @@
+version: '3.6'
+
+services:
+  flame:
+    image: danielszabo99/microbin
+    container_name: microbin
+    restart: unless-stopped
+    volumes:
+      - ./microbin-data:/app/pasta_data
+    ports:
+      - ${PORT}:8080
