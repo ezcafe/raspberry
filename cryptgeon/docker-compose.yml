@@ -1,0 +1,11 @@
+version: '3'
+services:
+  app:
+    image: cupcakearmy/cryptgeon:latest
+    container_name: cryptgeon
+    restart: unless-stopped
+    environment:
+      # Size limit for a single note.
+      SIZE_LIMIT: 4 MiB
+    ports:
+      - ${PORT}:5000
