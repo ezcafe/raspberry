@@ -7,8 +7,8 @@ services:
     ports:
       - ${PORT}:3030
     environment:
-      TRAGGO_DEFAULT_USER_NAME: ${USER}
-      TRAGGO_DEFAULT_USER_PASS: ${PASS}
+      TRAGGO_DEFAULT_USER_NAME: "${USER}"
+      TRAGGO_DEFAULT_USER_PASS: "${PASS}"
       TZ: ${TZ}
     volumes:
       - traggo_data:/opt/traggo/data
