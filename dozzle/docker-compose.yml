@@ -5,11 +5,11 @@ services:
     container_name: dozzle
     restart: unless-stopped
     environment:
-      TZ: ${TZ}
-      DOZZLE_USERNAME: ${USER}
-      DOZZLE_PASSWORD: ${PASS}
-      DOZZLE_NO_ANALYTICS: "true"
-      DOZZLE_FILTER: ${FILTER}
+      - TZ=${TZ}
+      - DOZZLE_USERNAME=${USER}
+      - DOZZLE_PASSWORD=${PASS}
+      - DOZZLE_NO_ANALYTICS="true"
+      - DOZZLE_FILTER=${FILTER}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
