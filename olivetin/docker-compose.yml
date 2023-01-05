@@ -5,6 +5,7 @@ services:
     container_name: olivetin
     restart: unless-stopped
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - ./config:/config
     ports:
       - ${PORT}:1337
