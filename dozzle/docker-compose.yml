@@ -8,7 +8,7 @@ services:
       - TZ=${TZ}
       - DOZZLE_USERNAME=${USER}
       - DOZZLE_PASSWORD=${PASS}
-      - DOZZLE_NO_ANALYTICS=true
+      - DOZZLE_NO_ANALYTICS=${NO_ANALYTICS:-true}
       - DOZZLE_FILTER=${FILTER}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
