@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: dozzle
+    restart: unless-stopped
+    environment:
+      TZ: ${TZ}
+      DOZZLE_USERNAME: ${USER}
+      DOZZLE_PASSWORD: ${PASS}
+      DOZZLE_NO_ANALYTICS: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - ${PORT}:8080
+    healthcheck:
+      test: [ "CMD", "/dozzle", "healthcheck" ]
+      interval: 3s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
