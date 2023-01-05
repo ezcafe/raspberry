@@ -1,0 +1,3 @@
+actions:
+  - title: "Restart vn.in4.trade"
+    shell: docker restart vn.in4.trade

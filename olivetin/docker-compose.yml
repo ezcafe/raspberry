@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  dozzle:
+    image: jamesread/olivetin
+    container_name: olivetin
+    restart: unless-stopped
+    volumes:
+      - ./config:/config
+    ports:
+      - ${PORT}:1337
