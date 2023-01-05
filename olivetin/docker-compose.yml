@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  dozzle:
+  olivetin:
     image: jamesread/olivetin
     container_name: olivetin
     restart: unless-stopped
