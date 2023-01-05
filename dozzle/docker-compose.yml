@@ -6,8 +6,8 @@ services:
     restart: unless-stopped
     environment:
       - TZ=${TZ}
-      # - DOZZLE_USERNAME=${USER}
-      # - DOZZLE_PASSWORD=${PASS}
+      - DOZZLE_USERNAME="${USER}"
+      - DOZZLE_PASSWORD="${PASS}"
       - DOZZLE_NO_ANALYTICS=${NO_ANALYTICS:-true}
       - DOZZLE_FILTER=${FILTER}
     volumes:
