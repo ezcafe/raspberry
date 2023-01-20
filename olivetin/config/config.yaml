@@ -1,3 +1,0 @@
-actions:
-  - title: "Restart vn.in4.trade"
-    shell: docker-compose restart vnin4trade
