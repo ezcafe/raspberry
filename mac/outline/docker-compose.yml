@@ -10,7 +10,7 @@ services:
     depends_on:
       - postgres
       - redis
-      - storage
+      # - storage
 
   redis:
     image: redis
@@ -45,22 +45,22 @@ services:
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: outline
 
-  storage:
-    image: minio/minio
-    container_name: outline-minio
-    restart: unless-stopped
-    ports:
-      - "${PORT_MINIO}:9000"
-    entrypoint: sh
-    command: -c 'minio server'
-    volumes:
-      - storage-data:/data
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
-      interval: 30s
-      timeout: 20s
-      retries: 3
+  # storage:
+  #   image: minio/minio
+  #   container_name: outline-minio
+  #   restart: unless-stopped
+  #   ports:
+  #     - "${PORT_MINIO}:9000"
+  #   entrypoint: sh
+  #   command: -c 'minio server'
+  #   volumes:
+  #     - storage-data:/data
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+  #     interval: 30s
+  #     timeout: 20s
+  #     retries: 3
 
 volumes:
-  storage-data:
+  # storage-data:
   database-data:
