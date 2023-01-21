@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  actual:
+    image: jlongster/actual-server
+    container_name: actual-server
+    restart: unless-stopped
+    ports:
+      - ${PORT}:5006
+    volumes:
+      - ./server-files:/app/server-files
+      - ./user-files:/app/user-files
