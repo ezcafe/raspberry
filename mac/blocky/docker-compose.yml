@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  srv:
+  blocky:
     image: spx01/blocky
     container_name: blocky
     restart: unless-stopped
@@ -13,14 +13,3 @@ services:
       - TZ=${TZ}
     volumes:
       - ./config.yml:/app/config.yml
-    healthcheck:
-      test: dig @127.0.0.1 pi.hole || exit 1
-      interval: 2m00s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
-
-volumes:
-  config:
-  dnsmasq:
-  log:
