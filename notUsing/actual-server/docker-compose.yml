@@ -8,5 +8,7 @@ services:
     ports:
       - ${PORT}:5006
     volumes:
-      - ./server-files:/app/server-files
-      - ./user-files:/app/user-files
+      - actual_data:/data
+
+volumes:
+  actual_data:
