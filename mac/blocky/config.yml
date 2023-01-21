@@ -1,0 +1,25 @@
+upstream:
+  default:
+    - 8.8.8.8
+    - 1.1.1.1
+    - tcp-tls:fdns1.dismail.de:853
+    - https://dns.digitale-gesellschaft.ch/dns-query
+blocking:
+  blackLists:
+    ads:
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      - https://raw.githubusercontent.com/nickspaargaren/no-google/master/pihole-google.txt
+      - https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
+  clientGroupsBlock:
+    default:
+      - ads
+port: 53
+httpPort: 4000
+customDNS:
+  customTTL: 1h
+  filterUnmappedTypes: true
+  rewrite:
+    rd.in4.vn: 192.168.1.4:19986
+  mapping:
+    in4.lan: 192.168.1.4
+    357.lan: 192.168.1.5
