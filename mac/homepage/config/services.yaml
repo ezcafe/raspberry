@@ -1,51 +1,46 @@
 - Applications:
     - Miniflux:
-        href: http://localhost:19994/
+        href: http://192.168.1.4:19994/
         description: RSS reader
         server: my-docker
         container: miniflux
     - Wallabag:
-        href: http://localhost:19976/
+        href: http://192.168.1.4:19976/
         description: Read it later
         server: my-docker
         container: wallabag
     - Linkding:
-        href: http://localhost:19989/
+        href: http://192.168.1.4:19989/
         description: Bookmark service
         server: my-docker
         container: linkding
     - Libreddit:
-        href: http://localhost:19986/
+        href: http://192.168.1.4:19986/
         description: Reddit front-end
         server: my-docker
         container: libreddit
-    - Invidious:
-        href: http://localhost:19984/
-        description: Youtube front-end
-        server: my-docker
-        container: invidious
 
 
 - Services:
     - Pihole:
-        href: http://localhost:19996/
+        href: http://192.168.1.4:19996/
         description: Ad blocker
         server: my-docker
         container: pihole
         widget:
             type: pihole
-            url: http://localhost:19996/
+            url: http://192.168.1.4:19996/
     - Watchtower:
-        href: http://localhost:8080/
+        href: http://192.168.1.4:8080/
         description: Container updater
         server: my-docker
         container: watchtower
         widget:
             type: watchtower
-            url: http://localhost:8080/
+            url: http://192.168.1.4:8080/
             key: AGzr7d0JEVzUSQHizQJcLfLLfOG8DRhk
     - Duplicati:
-        href: http://localhost:19988/
+        href: http://192.168.1.4:19988/
         description: Backup client
         server: my-docker
         container: duplicati

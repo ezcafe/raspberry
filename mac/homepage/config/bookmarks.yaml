@@ -5,40 +5,40 @@
 - Study:
     - Web5Ngay:
         - abbr: YT
-          href: https://yt.in4.vn/channel/UCkgjUHB8sdWbmdp39swMrTg
+          href: https://www.youtube.com/c/Web5Ngay/videos
     - Amigoscode:
         - abbr: YT
-          href: https://yt.in4.vn/channel/UC2KfmYEM4KCuA1ZurravgYw
+          href: https://www.youtube.com/c/amigoscode/videos
 
 - Raspberry:
     - Selfhosted:
         - icon: reddit.png
-          href: https://rd.in4.vn/r/selfhosted/new
+          href: http://192.168.1.4:19986/r/selfhosted/new
     - WebApps:
         - icon: reddit.png
-          href: https://rd.in4.vn/r/WebApps/new
+          href: http://192.168.1.4:19986/r/WebApps/new
 
 - Apps:
     - AppHookup:
         - icon: reddit.png
-          href: https://rd.in4.vn/r/AppHookup/new
+          href: http://192.168.1.4:19986/r/AppHookup/new
     - MacApps:
         - icon: reddit.png
-          href: https://rd.in4.vn/r/MacApps/new
+          href: http://192.168.1.4:19986/r/MacApps/new
     - iOSApps:
         - icon: reddit.png
-          href: https://rd.in4.vn/r/iOSApps/new
+          href: http://192.168.1.4:19986/r/iOSApps/new
     - AppleWatchApps:
         - icon: reddit.png
-          href: https://rd.in4.vn/r/AppleWatchApps/new
+          href: http://192.168.1.4:19986/r/AppleWatchApps/new
     - Airpods:
         - icon: reddit.png
-          href: https://rd.in4.vn/r/Airpods/new
+          href: http://192.168.1.4:19986/r/Airpods/new
 
 - Relax:
     - Muse VN:
         - abbr: YT
-          href: https://yt.in4.vn/channel/UCott96qGP5ADmsB_yNQMvDA
+          href: https://www.youtube.com/c/MuseVi%E1%BB%87tNam/videos
 
 - Utilities:
     - Pomofocus:
