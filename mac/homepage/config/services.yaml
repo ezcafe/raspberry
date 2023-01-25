@@ -2,45 +2,48 @@
     - Miniflux:
         href: http://192.168.1.4:19994/
         description: RSS reader
-        server: my-docker
-        container: miniflux
+        # server: my-docker
+        # container: miniflux
     - Wallabag:
         href: http://192.168.1.4:19976/
         description: Read it later
-        server: my-docker
-        container: wallabag
+        # server: my-docker
+        # container: wallabag
     - Linkding:
         href: http://192.168.1.4:19989/
         description: Bookmark service
-        server: my-docker
-        container: linkding
+        # server: my-docker
+        # container: linkding
     - Libreddit:
         href: http://192.168.1.4:19986/
         description: Reddit front-end
-        server: my-docker
-        container: libreddit
+        # server: my-docker
+        # container: libreddit
 
 
 - Services:
     - Pihole:
         href: http://192.168.1.4:19996/
         description: Ad blocker
-        server: my-docker
-        container: pihole
-        widget:
-            type: pihole
-            url: http://192.168.1.4:19996/
+        # server: my-docker
+        # container: pihole
+        # widget:
+        #     type: pihole
+        #     url: http://192.168.1.4:19996/
     - Watchtower:
         href: http://192.168.1.4:8080/
         description: Container updater
-        server: my-docker
-        container: watchtower
-        widget:
-            type: watchtower
-            url: http://192.168.1.4:8080/
-            key: AGzr7d0JEVzUSQHizQJcLfLLfOG8DRhk
+        # server: my-docker
+        # container: watchtower
+        # widget:
+        #     type: watchtower
+        #     url: http://192.168.1.4:8080/
+        #     key: AGzr7d0JEVzUSQHizQJcLfLLfOG8DRhk
     - Duplicati:
         href: http://192.168.1.4:19988/
         description: Backup client
-        server: my-docker
-        container: duplicati
+        # server: my-docker
+        # container: duplicati
+    - Dozzle:
+        href: http://192.168.1.4:19966/
+        description: Log viewer
