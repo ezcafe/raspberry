@@ -6,6 +6,8 @@ upstream:
     - 8.8.4.4
     - 208.67.222.222
     - 208.67.220.220
+    - tcp-tls:fdns1.dismail.de:853
+    - https://dns.digitale-gesellschaft.ch/dns-query
 blocking:
   blackLists:
     ads:
