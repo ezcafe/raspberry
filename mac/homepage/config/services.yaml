@@ -14,25 +14,30 @@
         description: Bookmark service
         # server: my-docker
         # container: linkding
+    - Memos:
+        href: http://192.168.1.4:19969/
+        description: Note app
     - Libreddit:
         href: http://192.168.1.4:19986/
         description: Reddit front-end
         # server: my-docker
         # container: libreddit
-
+    - Firefly:
+        href: http://192.168.1.4:19970/
+        description: Money manager
 
 - Services:
-    - Pihole:
-        href: http://192.168.1.4:19996/
-        description: Ad blocker
+    # - Pihole:
+    #     href: http://192.168.1.4:19996/
+    #     description: Ad blocker
         # server: my-docker
         # container: pihole
         # widget:
         #     type: pihole
         #     url: http://192.168.1.4:19996/
-    - Watchtower:
-        href: http://192.168.1.4:8080/
-        description: Container updater
+    # - Watchtower:
+    #     href: http://192.168.1.4:8080/
+    #     description: Container updater
         # server: my-docker
         # container: watchtower
         # widget:
