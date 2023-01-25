@@ -19,7 +19,7 @@ httpPort: 4000
 customDNS:
   customTTL: 1h
   filterUnmappedTypes: true
-  rewrite:
+  mapping:
     home.in4.vn: 192.168.1.4:19992
     link.in4.vn: 192.168.1.4:19989
     memos.in4.vn: 192.168.1.4:19969
@@ -27,6 +27,3 @@ customDNS:
     rd.in4.vn: 192.168.1.4:19986
     read.in4.vn: 192.168.1.4:19975
     rss.in4.vn: 192.168.1.4:19994
-  mapping:
-    in4.lan: 192.168.1.4
-    357.lan: 192.168.1.5
