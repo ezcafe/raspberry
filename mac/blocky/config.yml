@@ -1,14 +1,13 @@
 upstream:
   default:
-    - 8.8.8.8
     - 1.1.1.1
+    - 8.8.8.8
     - tcp-tls:fdns1.dismail.de:853
     - https://dns.digitale-gesellschaft.ch/dns-query
 blocking:
   blackLists:
     ads:
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-      - https://raw.githubusercontent.com/nickspaargaren/no-google/master/pihole-google.txt
       - https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
   clientGroupsBlock:
     default:
