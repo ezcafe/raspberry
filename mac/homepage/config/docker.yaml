@@ -6,8 +6,8 @@
 #   host: 127.0.0.1
 #   port: 2375
 
-my-docker:
-  socket: /var/run/docker.sock
+# my-docker:
+#   socket: /var/run/docker.sock
 
 # https://gethomepage.dev/en/configs/docker/
 # https://gist.github.com/styblope/dc55e0ad2a9848f2cc3307d4819d819f
