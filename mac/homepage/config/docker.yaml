@@ -8,3 +8,9 @@
 
 my-docker:
   socket: /var/run/docker.sock
+
+# https://gethomepage.dev/en/configs/docker/
+# https://gist.github.com/styblope/dc55e0ad2a9848f2cc3307d4819d819f
+# my-remote-docker:
+#   host: 192.168.1.4
+#   port: 2375
