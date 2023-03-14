@@ -2,7 +2,7 @@ version: "3"
 
 services:
   libreddit:
-    image: spikecodes/libreddit:arm
+    image: libreddit/libreddit:arm
     ports:
       - "${LIBREDDIT_PORT}:8080"
     restart: unless-stopped
