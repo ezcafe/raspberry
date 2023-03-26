@@ -1,0 +1,29 @@
+version: "3.3"
+
+services:
+  example:
+    image: user/image:tag
+    container_name: example
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+    ports:
+      - 8080:8080/tcp
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    # volumes:
+      # - db_volume:/opt/example/data
+
+# networks:
+#   proxy:
+#     external: true
+
+# volumes:
+#   db_volume:
