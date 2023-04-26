@@ -10,7 +10,7 @@ services:
       - PGID=1000
       - TZ=${TZ}
     ports:
-      - 8080:8080
+      - ${PORT}:8080
     # healthcheck:
     #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
     #   interval: 10s
