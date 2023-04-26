@@ -1,0 +1,35 @@
+version: "3.3"
+
+services:
+  homebridge:
+    image: oznu/homebridge:latest
+    container_name: homebridge
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+    # ports:
+    #   - ${PORT}:8080
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    network_mode: host
+    volumes:
+      - homebridge_volume:/homebridge
+    logging:
+      driver: json-file
+      options:
+        max-size: "10mb"
+        max-file: "1"
+
+# networks:
+#   proxy:
+#     external: true
+
+volumes:
+  homebridge_volume:
