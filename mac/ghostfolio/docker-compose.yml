@@ -19,10 +19,10 @@ services:
     container_name: ghostfolio-db
     env_file:
       - ./.env
-    environment:
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASS}
+    # environment:
+    #   - POSTGRES_DB=${DB_NAME}
+    #   - POSTGRES_USER=${DB_USER}
+    #   - POSTGRES_PASSWORD=${DB_PASS}
     volumes:
       - postgres:/var/lib/postgresql/data
     restart: unless-stopped
