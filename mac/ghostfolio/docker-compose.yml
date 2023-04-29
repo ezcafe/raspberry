@@ -17,6 +17,8 @@ services:
   postgres:
     image: postgres:12
     container_name: ghostfolio-db
+    env_file:
+      - ./.env
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
@@ -28,8 +30,8 @@ services:
   redis:
     image: 'redis:alpine'
     container_name: ghostfolio-redis
-    ports:
-      - "${REDIS_PORT}:6379"
+    # ports:
+    #   - "${REDIS_PORT}:6379"
     restart: unless-stopped
 
 volumes:
