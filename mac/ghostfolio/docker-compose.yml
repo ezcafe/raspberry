@@ -2,37 +2,23 @@ version: '3.7'
 services:
   ghostfolio:
     image: ghostfolio/ghostfolio:latest
-    container_name: ghostfolio
-    env_file:
-      - ./.env
     environment:
-      DATABASE_URL: postgresql://${DB_USER}:${DB_PASS}@postgres:5432/${DB_NAME}?sslmode=prefer
-      NODE_ENV: production
+      DATABASE_URL: ${DATABASE_URL}
       REDIS_HOST: 'redis'
       REDIS_PASSWORD: ${REDIS_PASSWORD}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      ACCESS_TOKEN_SALT: ${ACCESS_TOKEN_SALT}
+      ALPHA_VANTAGE_API_KEY: ${ALPHA_VANTAGE_API_KEY}
     ports:
-      - "${PORT}:3333"
-    restart: unless-stopped
+      - 3333:3333
 
   postgres:
     image: postgres:12
-    container_name: ghostfolio-db
-    env_file:
-      - ./.env
-    # environment:
-    #   - POSTGRES_DB=${DB_NAME}
-    #   - POSTGRES_USER=${DB_USER}
-    #   - POSTGRES_PASSWORD=${DB_PASS}
     volumes:
       - postgres:/var/lib/postgresql/data
-    restart: unless-stopped
 
   redis:
     image: 'redis:alpine'
-    container_name: ghostfolio-redis
-    # ports:
-    #   - "${REDIS_PORT}:6379"
-    restart: unless-stopped
 
 volumes:
   postgres:
