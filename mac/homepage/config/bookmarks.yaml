@@ -9,6 +9,36 @@
     - Amigoscode:
         - abbr: YT
           href: https://www.youtube.com/c/amigoscode/videos
+    - Java for Beginners:
+        - abbr: YT
+          href: https://www.youtube.com/playlist?list=PLlrxD0HtieHgX3ExVDMlKjdN8LJsks2CM
+    - Rachel's English:
+        - abbr: YT
+          href: https://www.youtube.com/@rachelsenglish/videos
+    - BBC Learning English:
+        - abbr: YT
+          href: https://www.youtube.com/@bbclearningenglish/videos
+    - VOA Learning English:
+        - abbr: YT
+          href: https://www.youtube.com/@voalearningenglish/videos
+    - TED-Ed:
+        - abbr: YT
+          href: https://www.youtube.com/@TEDEd/videos
+    - TED:
+        - abbr: YT
+          href: https://www.youtube.com/@TED/videos
+    - TheEllenShow:
+        - abbr: YT
+          href: https://www.youtube.com/@TheEllenShow/videos
+    - Hana's Lexis:
+        - abbr: YT
+          href: https://www.youtube.com/@hanaslexis/videos
+    - British Council LearnEnglish:
+        - abbr: YT
+          href: https://www.youtube.com/@BritishCouncilEnglish/videos
+    - EnglishClass101:
+        - abbr: YT
+          href: https://www.youtube.com/@EnglishClass101/videos
 
 - Raspberry:
     - Selfhosted:
