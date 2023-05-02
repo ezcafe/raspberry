@@ -2,6 +2,41 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/en/configs/bookmarks
 
+- Raspberry:
+    - Selfhosted:
+        - icon: reddit.png
+          href: http://192.168.1.4:19986/r/selfhosted/new
+    - WebApps:
+        - icon: reddit.png
+          href: http://192.168.1.4:19986/r/WebApps/new
+
+- Apps:
+    - AppHookup:
+        - icon: reddit.png
+          href: http://192.168.1.4:19986/r/AppHookup/new
+    - MacApps:
+        - icon: reddit.png
+          href: http://192.168.1.4:19986/r/MacApps/new
+    - iOSApps:
+        - icon: reddit.png
+          href: http://192.168.1.4:19986/r/iOSApps/new
+    - AppleWatchApps:
+        - icon: reddit.png
+          href: http://192.168.1.4:19986/r/AppleWatchApps/new
+    - Airpods:
+        - icon: reddit.png
+          href: http://192.168.1.4:19986/r/Airpods/new
+
+- Relax:
+    - Muse VN:
+        - icon: youtube-kids.png
+          href: https://www.youtube.com/c/MuseVi%E1%BB%87tNam/videos
+
+- Utilities:
+    - Pomofocus:
+        - abbr: UT
+          href: https://pomofocus.io/
+
 - Study:
     - Web5Ngay:
         - icon: youtube-kids.png
@@ -39,38 +74,3 @@
     - EnglishClass101:
         - icon: youtube-kids.png
           href: https://www.youtube.com/@EnglishClass101/videos
-
-- Raspberry:
-    - Selfhosted:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/selfhosted/new
-    - WebApps:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/WebApps/new
-
-- Apps:
-    - AppHookup:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/AppHookup/new
-    - MacApps:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/MacApps/new
-    - iOSApps:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/iOSApps/new
-    - AppleWatchApps:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/AppleWatchApps/new
-    - Airpods:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/Airpods/new
-
-- Relax:
-    - Muse VN:
-        - icon: youtube-kids.png
-          href: https://www.youtube.com/c/MuseVi%E1%BB%87tNam/videos
-
-- Utilities:
-    - Pomofocus:
-        - abbr: UT
-          href: https://pomofocus.io/
