@@ -4,14 +4,9 @@ version: "3.4"
 volumes:
   database-data:
 
-networks:
-  stack:
-    name: stack
-    external: false
-
 services:
   database:
-    container_name: database
+    container_name: calcom-db
     image: postgres
     restart: unless-stopped
     volumes:
@@ -22,9 +17,8 @@ services:
 
   calcom:
     image: calcom.docker.scarf.sh/calcom/cal.com
+    container_name: calcom
     restart: unless-stopped
-    networks:
-      - stack
     ports:
       - ${PORT}:3000
     env_file: .env
@@ -36,9 +30,8 @@ services:
 # Optional use of Prisma Studio. In production, comment out or remove the section below to prevent unwanted access to your database.
   studio:
     image: calcom.docker.scarf.sh/calcom/cal.com
+    container_name: calcom-studio
     restart: unless-stopped
-    networks:
-      - stack
     ports:
       - 5555:5555
     env_file: .env
