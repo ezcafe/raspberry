@@ -24,8 +24,6 @@ services:
       - /tmp
     volumes:
       - app-db:/var/www/data
-    env_file:
-      - grocy.env
     restart: unless-stopped
 
 volumes:
