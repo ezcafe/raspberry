@@ -12,8 +12,6 @@ services:
     volumes:
       - database-data:/var/lib/postgresql/data/
     env_file: .env
-    networks:
-      - stack
 
   calcom:
     image: calcom.docker.scarf.sh/calcom/cal.com
