@@ -1,7 +1,7 @@
 version: "2.4"
 services:
   grocy:
-    image: "grocy/frontend"
+    image: "grocy/frontend:v3.3.2"
     container_name: grocy
     restart: unless-stopped
     environment:
@@ -17,7 +17,7 @@ services:
       - /tmp
 
   grocybackend:
-    image: "grocy/backend"
+    image: "grocy/backend:v3.3.2"
     container_name: grocy
     restart: unless-stopped
     environment:
