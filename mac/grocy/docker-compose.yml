@@ -12,7 +12,7 @@ services:
       - ${PORT}:8080
     read_only: true
     depends_on:
-      - backend
+      - grocybackend
     tmpfs:
       - /tmp
 
