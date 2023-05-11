@@ -26,8 +26,8 @@ services:
     image: postgres
     container_name: calcom-db
     restart: unless-stopped
-    ports:
-      - ${PORT}:3000
+    # ports:
+    #   - ${PORT}:3000
     # healthcheck:
     #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
     #   interval: 10s
