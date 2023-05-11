@@ -1,0 +1,36 @@
+version: "2.4"
+services:
+  grocy:
+    image: "grocy/frontend"
+    container_name: grocy
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - grocy_data:/config
+    ports:
+      - ${PORT}:8080
+    read_only: true
+    depends_on:
+      - backend
+    tmpfs:
+      - /tmp
+
+  grocybackend:
+    image: "grocy/backend"
+    container_name: grocy
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    ports:
+      - ${PORT}:8080
+    expose:
+      - '9000'
+    read_only: true
+    tmpfs:
+      - /tmp
+    volumes:
+      - grocy_data:/var/www/data
+
+volumes:
+  grocy_data:
