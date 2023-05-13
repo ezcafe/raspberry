@@ -47,6 +47,9 @@
     - Grocy:
         - icon: grocy.png
           href: http://192.168.1.4:19961
+    - Monica:
+        - icon: monica.png
+          href: http://192.168.1.4:19991
     - Reddit:
         - icon: libreddit.png
           href: http://192.168.1.4:19986
