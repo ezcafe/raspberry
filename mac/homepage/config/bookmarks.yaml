@@ -30,25 +30,25 @@
 
 - Utilities:
     - RSS:
-        - icon: feed.png
+        - icon: miniflux.png
           href: http://192.168.1.4:19994
     - Reddit:
-        - icon: reddit.png
+        - icon: libreddit.png
           href: http://192.168.1.4:19986
     - Read:
-        - icon: feed.png
+        - icon: wallabag.png
           href: http://192.168.1.4:19975
     - Money:
-        - icon: reddit.png
+        - icon: actual.png
           href: http://192.168.1.4:19970
     - Link:
-        - icon: feed.png
+        - icon: linkding.png
           href: http://192.168.1.4:19989
     - Memos:
-        - icon: reddit.png
+        - icon: memos.png
           href: http://192.168.1.4:19969
     - Food:
-        - icon: food.png
+        - icon: grocy.png
           href: http://192.168.1.4:19961
     - Pomofocus:
         - abbr: UT
