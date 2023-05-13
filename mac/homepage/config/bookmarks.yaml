@@ -2,15 +2,10 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/en/configs/bookmarks
 
-- Raspberry:
+- Reddit:
     - Selfhosted:
         - icon: reddit.png
           href: http://192.168.1.4:19986/r/selfhosted/new
-    - WebApps:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/WebApps/new
-
-- Apps:
     - AppHookup:
         - icon: reddit.png
           href: http://192.168.1.4:19986/r/AppHookup/new
@@ -26,21 +21,43 @@
     - Airpods:
         - icon: reddit.png
           href: http://192.168.1.4:19986/r/Airpods/new
-
-- Relax:
-    - Muse VN:
-        - icon: youtube-kids.png
-          href: https://www.youtube.com/c/MuseVi%E1%BB%87tNam/videos
+    - Homekit:
+        - icon: reddit.png
+          href: http://192.168.1.4:19986/r/Homekit/new
+    - WebApps:
+        - icon: reddit.png
+          href: http://192.168.1.4:19986/r/WebApps/new
 
 - Utilities:
+    - RSS:
+        - icon: feed.png
+          href: http://192.168.1.4:19994
+    - Reddit:
+        - icon: reddit.png
+          href: http://192.168.1.4:19986
+    - Read:
+        - icon: feed.png
+          href: http://192.168.1.4:19975
+    - Money:
+        - icon: reddit.png
+          href: http://192.168.1.4:19970
+    - Link:
+        - icon: feed.png
+          href: http://192.168.1.4:19989
+    - Memos:
+        - icon: reddit.png
+          href: http://192.168.1.4:19969
+    - Food:
+        - icon: food.png
+          href: http://192.168.1.4:19961
     - Pomofocus:
         - abbr: UT
           href: https://pomofocus.io/
 
-- Study:
-    - Web5Ngay:
+- Youtube:
+    - Muse VN:
         - icon: youtube-kids.png
-          href: https://www.youtube.com/c/Web5Ngay/videos
+          href: https://www.youtube.com/c/MuseVi%E1%BB%87tNam/videos
     - Amigoscode:
         - icon: youtube-kids.png
           href: https://www.youtube.com/c/amigoscode/videos
