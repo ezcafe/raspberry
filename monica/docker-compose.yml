@@ -36,7 +36,7 @@ services:
     container_name: monica-cron
     restart: unless-stopped
     volumes:
-      - data:/var/www/html/storage
+      - monica_data:/var/www/html/storage
     command: cron.sh
     depends_on:
       - monica_db
