@@ -32,24 +32,24 @@
     - RSS:
         - icon: miniflux.png
           href: http://192.168.1.4:19994
-    - Reddit:
-        - icon: libreddit.png
-          href: http://192.168.1.4:19986
     - Read:
         - icon: wallabag.png
           href: http://192.168.1.4:19975
-    - Money:
-        - icon: actual.png
-          href: http://192.168.1.4:19970
     - Link:
         - icon: linkding.png
           href: http://192.168.1.4:19989
     - Memos:
         - icon: memos.png
           href: http://192.168.1.4:19969
+    - Money:
+        - icon: actual.png
+          href: http://192.168.1.4:19970
     - Grocy:
         - icon: grocy.png
           href: http://192.168.1.4:19961
+    - Reddit:
+        - icon: libreddit.png
+          href: http://192.168.1.4:19986
     - Pomofocus:
         - abbr: UT
           href: https://pomofocus.io/
