@@ -3,6 +3,7 @@ version: "3.4"
 services:
   monica_app:
     image: monica
+    container_name: monica
     depends_on:
       - monica_db
     ports:
@@ -17,10 +18,10 @@ services:
       DB_DATABASE: ${MYSQL_DATABASE}
       DB_USERNAME: ${MYSQL_USER}
       DB_PASSWORD: ${MYSQL_PASSWORD}
-    container_name: monica
 
   monica_db:
     image: mariadb:latest
+    container_name: monica-db
     volumes:
       - monica_db_data:/var/lib/mysql
     restart: unless-stopped
@@ -29,7 +30,42 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    container_name: monica-db
+
+  cron:
+    image: monica
+    container_name: monica-cron
+    restart: unless-stopped
+    volumes:
+      - data:/var/www/html/storage
+    command: cron.sh
+    depends_on:
+      - monica_db
+
+  db-backup:
+    container_name: monica-db-backup
+    image: tiredofit/db-backup
+    links:
+     - monica_db
+    volumes:
+      - /home/ezcafe/backups/monica:/backup
+      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+    environment:
+      # - DEBUG_MODE=TRUE
+      - DB_TYPE=mariadb
+      - DB_HOST=monica_db:3306
+      - DB_NAME=${MYSQL_DATABASE}
+      - DB_USER=${MYSQL_USER}
+      - DB_PASS=${MYSQL_PASSWORD}
+      # - DB_DUMP_BEGIN=0000      # backup starts immediately
+      - DB_DUMP_FREQ=1440       # backup every x minute - 1440 = 1 day
+      - DB_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
+      - CHECKSUM=SHA1
+      - COMPRESSION=GZ
+      - SPLIT_DB=FALSE
+      - CONTAINER_ENABLE_MONITORING=FALSE
+      - TZ=${TZ}
+    # healthcheck is not supported
+    restart: unless-stopped
 
 volumes:
   monica_data:
