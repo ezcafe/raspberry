@@ -30,7 +30,7 @@
 
 - Utilities:
     - ChangeDetection:
-        - icon: changedetection.png
+        - icon: changedetection-io.png
           href: http://192.168.1.5:19960
     - RSS:
         - icon: miniflux.png
