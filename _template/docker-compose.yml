@@ -17,10 +17,10 @@ services:
     # networks:
     #   - proxy
     # volumes:
-      # - example-data:/opt/example/data
+      # - data:/opt/example/data
 
 # volumes:
-#   example-data:
+#   data:
 
 # networks:
 #   proxy:
