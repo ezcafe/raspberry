@@ -24,6 +24,7 @@ services:
     restart: unless-stopped
     environment:
       - TZ=${TZ}
+      - PLAYWRIGHT_DRIVER_URL=ws://playwright-chrome:3000/?stealth=1&--disable-web-security=true
     ports:
       - ${PORT}:5000
     # healthcheck:
