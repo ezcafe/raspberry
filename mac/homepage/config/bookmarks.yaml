@@ -29,6 +29,9 @@
           href: http://192.168.1.4:19986/r/WebApps/new
 
 - Utilities:
+    - ChangeDetection:
+        - icon: changedetection.png
+          href: http://192.168.1.5:19960
     - RSS:
         - icon: miniflux.png
           href: http://192.168.1.4:19994
