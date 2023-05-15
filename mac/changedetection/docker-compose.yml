@@ -1,0 +1,28 @@
+version: "3.3"
+
+services:
+  changedetection:
+    image: ghcr.io/dgtlmoon/changedetection.io
+    container_name: changedetection
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    ports:
+      - ${PORT}:5000
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - changedetection-data:/datastore
+
+volumes:
+  changedetection-data:
+
+# networks:
+#   proxy:
+#     external: true
+
