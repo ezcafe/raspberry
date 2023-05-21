@@ -41,18 +41,18 @@
     - Link:
         - icon: linkding.png
           href: http://192.168.1.4:19989
-    - Memos:
-        - icon: memos.png
-          href: http://192.168.1.4:19969
+    # - Memos:
+    #     - icon: memos.png
+    #       href: http://192.168.1.4:19969
     - Money:
         - icon: actual.png
           href: http://192.168.1.4:19970
-    - Grocy:
-        - icon: grocy.png
-          href: http://192.168.1.4:19961
-    - Monica:
-        - icon: monica.png
-          href: http://192.168.1.4:19991
+    # - Grocy:
+    #     - icon: grocy.png
+    #       href: http://192.168.1.4:19961
+    # - Monica:
+    #     - icon: monica.png
+    #       href: http://192.168.1.4:19991
     - Reddit:
         - icon: libreddit.png
           href: http://192.168.1.4:19986
@@ -64,6 +64,9 @@
     - Muse VN:
         - icon: youtube-kids.png
           href: https://www.youtube.com/c/MuseVi%E1%BB%87tNam/videos
+    - Bilibili:
+        - icon: youtube-kids.png
+          href: https://www.youtube.com/@MadeByBilibili-Vietnam/videos
     - Amigoscode:
         - icon: youtube-kids.png
           href: https://www.youtube.com/c/amigoscode/videos
