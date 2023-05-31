@@ -18,9 +18,9 @@
     - AppleWatchApps:
         - icon: reddit.png
           href: http://192.168.1.4:19986/r/AppleWatchApps/new
-    - Airpods:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/Airpods/new
+    # - Airpods:
+    #     - icon: reddit.png
+    #       href: http://192.168.1.4:19986/r/Airpods/new
     - Homekit:
         - icon: reddit.png
           href: http://192.168.1.4:19986/r/Homekit/new
@@ -29,9 +29,9 @@
           href: http://192.168.1.4:19986/r/WebApps/new
 
 - Utilities:
-    - ChangeDetection:
-        - icon: changedetection-io.png
-          href: http://192.168.1.5:19960
+    # - ChangeDetection:
+    #     - icon: changedetection-io.png
+    #       href: http://192.168.1.5:19960
     - RSS:
         - icon: miniflux.png
           href: http://192.168.1.4:19994
