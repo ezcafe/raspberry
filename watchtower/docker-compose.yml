@@ -9,6 +9,9 @@ services:
       #WATCHTOWER_MONITOR_ONLY: 'true'
       WATCHTOWER_SCHEDULE: '0 22 0 * * *'       # at 10 PM
       WATCHTOWER_CLEANUP: 'true'
+      # WATCHTOWER_LIFECYCLE_HOOKS: 'true'
+      WATCHTOWER_NOTIFICATIONS: 'shoutrrr'
+      WATCHTOWER_NOTIFICATION_URL: 'telegram://BOT_TOKEN@telegram/?channels=CHAT_ID'
       # Settings for email notifications
       #WATCHTOWER_NOTIFICATIONS: email
       #WATCHTOWER_NOTIFICATION_EMAIL_FROM: <user-email-address>                                         # Change this
