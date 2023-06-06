@@ -27,6 +27,9 @@
     - WebApps:
         - icon: reddit.png
           href: http://192.168.1.4:19986/r/WebApps/new
+    - WebDev:
+        - icon: reddit.png
+          href: http://192.168.1.4:19986/r/webdev/new
 
 - Utilities:
     # - ChangeDetection:
