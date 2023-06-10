@@ -30,15 +30,12 @@
     - WebDev:
         - icon: reddit.png
           href: http://192.168.1.4:19986/r/webdev/new
-    - PersonalFinance:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/PersonalFinance
-    - FinancialIndependence:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/FinancialIndependence
-    - InvestmentEducation:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/InvestmentEducation
+    # - PersonalFinance:
+    #     - icon: reddit.png
+    #       href: http://192.168.1.4:19986/r/PersonalFinance
+    # - FinancialIndependence:
+    #     - icon: reddit.png
+    #       href: http://192.168.1.4:19986/r/FinancialIndependence
 
 - Utilities:
     # - ChangeDetection:
