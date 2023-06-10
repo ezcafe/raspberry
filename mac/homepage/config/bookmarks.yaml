@@ -65,6 +65,9 @@
     - Reddit:
         - icon: libreddit.png
           href: http://192.168.1.4:19986
+    - SpeedTest:
+        - icon: speedtest-tracker.png
+          href: http://192.168.2.5:19993/
     - Pomofocus:
         - abbr: UT
           href: https://pomofocus.io/
