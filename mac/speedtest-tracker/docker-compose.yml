@@ -12,6 +12,8 @@ services:
             - PGID=
             - PUID=
             - OOKLA_EULA_GDPR=true
+            - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+            - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
         logging:
             driver: "json-file"
             options:
