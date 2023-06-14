@@ -28,6 +28,10 @@
 
 - Services:
     - SpeedTest:
+      icon: speedtest.png
+      href: http://192.168.2.5:19993/
+      description: Speed Test
+      widget:
         type: speedtest
         url: http://192.168.2.5:19993/
 #     # - Pihole:
