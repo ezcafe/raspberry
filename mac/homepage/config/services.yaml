@@ -26,14 +26,14 @@
 #         href: http://192.168.1.4:19970/
 #         description: Money manager
 
-- Services:
-    - SpeedTest:
-      icon: speedtest.png
-      href: http://192.168.2.5:19993/
-      description: Speed Test
-      widget:
-        type: speedtest
-        url: http://192.168.2.5:19993/
+# - Services:
+#     - SpeedTest:
+#       icon: speedtest.png
+#       href: http://192.168.2.5:19993/
+#       description: Speed Test
+#       widget:
+#         type: speedtest
+#         url: http://192.168.2.5:19993/
 #     # - Pihole:
 #     #     href: http://192.168.1.4:19996/
 #     #     description: Ad blocker
