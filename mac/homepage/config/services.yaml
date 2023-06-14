@@ -26,7 +26,10 @@
 #         href: http://192.168.1.4:19970/
 #         description: Money manager
 
-# - Services:
+- Services:
+    - SpeedTest:
+        type: speedtest
+        url: http://192.168.2.5:19993/
 #     # - Pihole:
 #     #     href: http://192.168.1.4:19996/
 #     #     description: Ad blocker
@@ -35,9 +38,9 @@
 #         # widget:
 #         #     type: pihole
 #         #     url: http://192.168.1.4:19996/
-#     # - Watchtower:
-#     #     href: http://192.168.1.4:8080/
-#     #     description: Container updater
+    # - Watchtower:
+    #     href: http://192.168.1.4:8080/
+    #     description: Container updater
 #         # server: my-docker
 #         # container: watchtower
 #         # widget:
