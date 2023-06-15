@@ -2,24 +2,19 @@ version: '3.3'
 services:
     speedtest:
         container_name: speedtest
-        image: henrywhitaker3/speedtest-tracker
+        image: ghcr.io/alexjustesen/speedtest-tracker:latest
         ports:
             - ${SPEEDTEST_PORT}:80
+            - ${SPEEDTEST_PORT_443}:443
         volumes:
             - speedtest_data:/config
+            - speedtest_data_web:/etc/ssl/web'
         environment:
             - TZ=${TZ}
-            - PGID=
-            - PUID=
-            - OOKLA_EULA_GDPR=true
-            - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
-            - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
-        logging:
-            driver: "json-file"
-            options:
-                max-file: "10"
-                max-size: "200k"
+            - PGID=1000
+            - PUID=1000
         restart: unless-stopped
 
 volumes:
   speedtest_data:
+  speedtest_data_web:
