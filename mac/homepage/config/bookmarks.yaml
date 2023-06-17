@@ -2,41 +2,6 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/en/configs/bookmarks
 
-- Reddit:
-    - Selfhosted:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/selfhosted/new
-    - AppHookup:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/AppHookup/new
-    - MacApps:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/MacApps/new
-    - iOSApps:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/iOSApps/new
-    - AppleWatchApps:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/AppleWatchApps/new
-    # - Airpods:
-    #     - icon: reddit.png
-    #       href: http://192.168.1.4:19986/r/Airpods/new
-    # - Homekit:
-    #     - icon: reddit.png
-    #       href: http://192.168.1.4:19986/r/Homekit/new
-    # - WebApps:
-    #     - icon: reddit.png
-    #       href: http://192.168.1.4:19986/r/WebApps/new
-    - WebDev:
-        - icon: reddit.png
-          href: http://192.168.1.4:19986/r/webdev/new
-    # - PersonalFinance:
-    #     - icon: reddit.png
-    #       href: http://192.168.1.4:19986/r/PersonalFinance
-    # - FinancialIndependence:
-    #     - icon: reddit.png
-    #       href: http://192.168.1.4:19986/r/FinancialIndependence
-
 - Utilities:
     # - ChangeDetection:
     #     - icon: changedetection-io.png
