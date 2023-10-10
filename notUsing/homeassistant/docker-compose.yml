@@ -5,10 +5,10 @@ services:
     image: ghcr.io/home-assistant/home-assistant:stable
     container_name: homeassistant
     restart: unless-stopped
-    # environment:
-    #   - PUID=1000
-    #   - PGID=1000
-    #   - TZ=${TZ}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
     # ports:
     #   - ${PORT}:8123
     # healthcheck:
@@ -22,10 +22,10 @@ services:
     volumes:
       # - db_volume:/opt/example/data
       - ./config:/config
-      - /etc/localtime:/etc/localtime:ro
-    privileged: true
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+      # - /etc/localtime:/etc/localtime:ro
+    # privileged: true
+    # devices:
+    #   - /dev/ttyUSB0:/dev/ttyUSB0
 
 # networks:
 #   proxy:
