@@ -1,0 +1,30 @@
+version: "3.3"
+
+services:
+  watchyourlan:
+    image: aceberg/watchyourlan
+    container_name: watchyourlan
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+      - IFACE="ens18"
+      # - GUIPORT="8840"
+      - THEME="darkly"
+    ports:
+      - ${PORT}:8840
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - data:/data
+
+volumes:
+  data:
+
+# networks:
+#   proxy:
+#     external: true
