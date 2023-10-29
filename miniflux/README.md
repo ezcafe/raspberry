@@ -69,3 +69,13 @@ backup-now
 docker exec -it miniflux-db-backup bash
 restore
 ```
+
+## Add Miniflux to NetNewsWire
+
+- Go to your miniflux instance (let's say http://192.168.1.1:1234/
+- Open Settings, observe new Google Reader section
+- Check Activate Google Reader API, create Username and Password and click Update
+- Open NetNewsWire > Preferences... > Accounts > + > select FreshRSS under Self-hosted > Continue
+- Set Login: to Username, Password: to Password you've used when activating Google Reader API in Miniflux
+- Use your instance URL (e.g. http://192.168.1.1:1234/) as API URL:, click Create
+- You'll find yourself back in the Accounts dialog, feel free to add Name so that it shows nicely in the sidebar
