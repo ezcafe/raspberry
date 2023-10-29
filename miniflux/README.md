@@ -24,6 +24,8 @@
 
 ### Update .env file
 
+Change values
+
 ## Start the database
 
 ```
