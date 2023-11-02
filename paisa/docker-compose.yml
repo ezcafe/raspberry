@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+  example:
+    image: ananthakumaran/paisa:latest
+    container_name: paisa
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    ports:
+      - ${PORT}:7500
+    volumes:
+      - data:/root/Documents/paisa/
+
+volumes:
+  data:
