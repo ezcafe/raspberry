@@ -20,19 +20,19 @@ services:
       interval: 30s
       retries: 5
       timeout: 5s
-  # redis:
-  #   image: redis:alpine
-  #   container_name: authentik-cache
-  #   command: --save 60 1 --loglevel warning
-  #   restart: unless-stopped
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
-  #     start_period: 20s
-  #     interval: 30s
-  #     retries: 5
-  #     timeout: 3s
-  #   volumes:
-  #     - redis:/data
+  redis:
+    image: redis:alpine
+    container_name: authentik-cache
+    command: --save 60 1 --loglevel warning
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 3s
+    volumes:
+      - redis:/data
   server:
     image: ghcr.io/goauthentik/server
     container_name: authentik
@@ -111,4 +111,4 @@ services:
 
 volumes:
   database:
-  # redis:
+  redis:
