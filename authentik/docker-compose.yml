@@ -39,7 +39,7 @@ services:
     restart: unless-stopped
     command: server
     environment:
-      # AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__USER: ${DB_USER:-authentik}
       AUTHENTIK_POSTGRESQL__NAME: ${DB_NAME:-authentik}
@@ -55,14 +55,14 @@ services:
       - "${PORTS}:9443"
     depends_on:
       - postgresql
-      # - redis
+      - redis
   worker:
     image: ghcr.io/goauthentik/server
     container_name: authentik-worker
     restart: unless-stopped
     command: worker
     environment:
-      # AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_REDIS__HOST: redis
       AUTHENTIK_POSTGRESQL__HOST: postgresql
       AUTHENTIK_POSTGRESQL__USER: ${DB_USER:-authentik}
       AUTHENTIK_POSTGRESQL__NAME: ${DB_NAME:-authentik}
@@ -83,7 +83,7 @@ services:
       - .env
     depends_on:
       - postgresql
-      # - redis
+      - redis
   db-backup:
     container_name: authentik-db-backup
     image: tiredofit/db-backup
