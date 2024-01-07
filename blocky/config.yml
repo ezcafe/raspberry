@@ -3,7 +3,7 @@ blocking:
     ads:
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
       - https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
-      - https://abpvn.com/filter/abpvn-1CPlFO.txt?content_blocker
+      - https://raw.githubusercontent.com/bigdargon/hostsVN/master/filters/adservers-all.txt
   clientGroupsBlock:
     default:
       - ads
