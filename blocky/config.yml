@@ -2,8 +2,8 @@ blocking:
   blackLists:
     ads:
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/hostsVN/hosts
       - https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
-      - https://raw.githubusercontent.com/bigdargon/hostsVN/master/filters/adservers-all.txt
   clientGroupsBlock:
     default:
       - ads
