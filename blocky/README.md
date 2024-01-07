@@ -1,5 +1,7 @@
 # blocky
 
+Open port 19964 in firewall
+
 ## Setup DSN for router Viettel ZTE F670Y
 
 - Go to router ip address
