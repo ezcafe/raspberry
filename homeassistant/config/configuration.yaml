@@ -1,0 +1,57 @@
+homekit:
+  filter:
+    include_entities:
+      - alarm_control_panel.aarlo_arlohome
+      - alarm_control_panel.abode_alarm
+      - cover.garagedoor
+      - light.living_room_lights
+      - light.kids_room_lights
+      - light.lifx5
+      - light.kitchen_lights
+      - light.master_lights
+      - switch.driveway
+      - binary_sensor.water_leak_sensor_158d0001d77800
+      - binary_sensor.water_leak_sensor_158d00027b0db6
+      - binary_sensor.water_leak_sensor_158d0001bb788c
+      # - camera.porch
+      # - camera.patio
+      # - camera.backyard
+      # - camera.driveway
+      # - camera.kitchen
+      - camera.garage
+      # - binary_sensor.water_leak_sensor_158d00024bfa97
+
+# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
+logger:
+  default: error
+  logs:
+    homeassistant.components.image_processing: critical
+    homeassistant.components.camera.synology: critical
+    homeassistant.components.camera.generic: critical
+    homeassistant.components.sensor.wunderground: critical
+    homeassistant.components.sensor.pi_hole: critical
+    homeassistant.components.media_player: critical
+    homeassistant.components.telegram_bot: critical
+    homeassistant.components.scene.lifx_cloud: critical
+    homeassistant.components.sensor.darksky: critical
+    homeassistant.components.onvif: info
+    pychromecast.socket_client: critical
+    aiohttp.access: critical
+    aiounifi.api: critical
+    aiohttp.server: critical
+    haffmpeg.core: critical
+    homeassistant.core: critical
+    pywemo.ouimeaux_device: critical
+    pywemo.ssdp: critical
+    homeassistant.helpers.entity: critical
+    homeassistant.components.http.ban: warning
+    homeassistant.components.python_script: warning
+    homeassistant.components.switch.unifi: debug
+    custom_components.aesop: debug
+    custom_components.aesop.sensor: debug
+    homeassistant.components.smartthings: debug
+    # custom_components.alexa_media: debug
+    # homeassistant.components.http.view: info
+    # adb.adb_commands: debug
+    # adb.adb_protocol: debug
+    # homeassistant.components.device_tracker: info
