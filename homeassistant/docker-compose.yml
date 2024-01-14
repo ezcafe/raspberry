@@ -6,11 +6,11 @@ services:
     container_name: homeassistant
     restart: unless-stopped
     environment:
-      - PUID=1000
-      - PGID=1000
+      # - PUID=1000
+      # - PGID=1000
       - TZ=${TZ}
-    # ports:
-    #   - ${PORT}:8123
+    ports:
+      - ${PORT}:8123
     # healthcheck:
     #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
     #   interval: 10s
@@ -22,8 +22,9 @@ services:
     volumes:
       # - db_volume:/opt/example/data
       - ./config:/config
-      # - /etc/localtime:/etc/localtime:ro
-    # privileged: true
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    privileged: true
     # devices:
     #   - /dev/ttyUSB0:/dev/ttyUSB0
 
