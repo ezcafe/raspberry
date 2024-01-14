@@ -9,8 +9,8 @@ services:
       # - PUID=1000
       # - PGID=1000
       - TZ=${TZ}
-    ports:
-      - ${PORT}:8123
+    # ports:
+    #   - ${PORT}:8123
     # healthcheck:
     #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
     #   interval: 10s
