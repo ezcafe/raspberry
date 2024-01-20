@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  example:
+    image: redimp/otterwiki:2
+    container_name: otterwiki
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    ports:
+      - ${PORT}:80
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - data:/app-data
+
+volumes:
+  data:
+
+# networks:
+#   proxy:
+#     external: true
