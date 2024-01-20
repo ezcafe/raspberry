@@ -25,7 +25,7 @@ https://www.danielmartingonzalez.com/en/backups-towards-docker/
 - Folder path: /raspberry/
 - Username: <mega.nz username>
 - Password: <mega.nz password>
-- Advance config: 2fa - input the 2fa key when you setup 2fa for mega.nz
+- Advanced options: auth-two-factor-key - input the 2fa key when you setup 2fa for mega.nz
 
 ### Source data
 
