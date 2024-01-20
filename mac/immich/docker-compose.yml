@@ -20,9 +20,9 @@ services:
   immich-microservices:
     container_name: immich-microservices
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    # extends:
-    #   file: hwaccel.yml
-    #   service: hwaccel
+    extends:
+      file: hwaccel.yml
+      service: hwaccel
     command: [ "start.sh", "microservices" ]
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
