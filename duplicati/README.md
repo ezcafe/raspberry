@@ -2,11 +2,11 @@
 
 ## Allow port 19988
 
-sudo ufw allow 19988
+sudo ufw allow 19988 comment duplicati
 
 ## Setup
 
-Go to http://192.168.1.4:19988/ to backup data
+Go to http://192.168.2.4:19988/ to backup data
 
 For more information
 https://www.danielmartingonzalez.com/en/backups-towards-docker/

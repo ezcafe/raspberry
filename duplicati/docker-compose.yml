@@ -2,12 +2,9 @@ version: "2.1"
 services:
   duplicati:
     container_name: duplicati
-    image: linuxserver/duplicati
+    image: duplicati/duplicati
     environment:
-      - PUID=1000 # this should match the ouput of `id -u admin` on the CLI
-      - PGID=1000 # this should match the ouput of `id -g admin` on the CLI
       - TZ=${TZ} # Set the appropriate timezone
-      - DOCKER_MODS=linuxserver/mods:universal-docker
     volumes:
       # - /var/run/docker.sock:/var/run/docker.sock
       # - /var/lib/docker/volumes:/docker_volumes:rw # docker volume ls => docker inspect volume name => volume location
