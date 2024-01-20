@@ -2,7 +2,7 @@ version: "3"
 
 services:
   actual:
-    image: jlongster/actual-server
+    image: actualbudget/actual-server
     container_name: actual-server
     restart: unless-stopped
     ports:
