@@ -43,3 +43,8 @@ Tutorial here: https://goauthentik.io/integrations/services/wiki-js/
 - Logout URL: https://<your-auth-domain>/application/o/wikijs/end-session/
 - Allow self-registration: Enabled
 - Assign to group: The group to which new users logging in from authentik should be assigned.
+
+## Github store
+
+- Follow this tutorial https://docs.requarks.io/storage/git
+- When running `ssh-keygen -t rsa -b 4096` command, use this path `wikijs_id_rsa`
