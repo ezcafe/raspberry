@@ -18,8 +18,6 @@ services:
       retries: 5
     container_name: miniflux-db
 
-  # Not working due to v15
-  # https://github.com/tiredofit/docker-db-backup/issues/181
   db-backup:
     container_name: miniflux-db-backup
     image: tiredofit/db-backup
