@@ -18,6 +18,7 @@ services:
     #   retries: 5
     # networks:
     #   - proxy
+    # required to connect homekit, HA and homekit devices must be on the same network (wifi router)
     network_mode: host
     volumes:
       # - db_volume:/opt/example/data
@@ -26,6 +27,7 @@ services:
       - /run/dbus:/run/dbus:ro
     privileged: true
     devices:
+      # https://www.home-assistant.io/integrations/zha/#cant-connect-to-usb-device-and-using-docker
       - /dev/ttyUSB0:/dev/ttyUSB0
 
 # networks:
