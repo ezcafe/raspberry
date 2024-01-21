@@ -11,8 +11,8 @@ services:
       driver: "none"
     restart: unless-stopped
     volumes:
-      - wiki_db_data:/var/lib/postgresql/data
-    container_name: wiki-db
+      - data:/var/lib/postgresql/data
+    container_name: wikijs-db
 
   wiki:
     image: ghcr.io/requarks/wiki:2
@@ -28,7 +28,7 @@ services:
     restart: unless-stopped
     ports:
       - "${WIKI_PORT}:3000"
-    container_name: wiki
+    container_name: wikijs
 
 volumes:
-  wiki_db_data:
+  data:
