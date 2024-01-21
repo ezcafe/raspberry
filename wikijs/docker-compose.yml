@@ -29,6 +29,8 @@ services:
     restart: unless-stopped
     ports:
       - "${PORT}:3000"
+    volumes:
+      - ~/.ssh/wikijs_id_rsa:/etc/wiki/keys/id_rsa
 
   db-backup:
     container_name: wikijs-db-backup
