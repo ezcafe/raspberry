@@ -28,6 +28,7 @@ zha:
       ikea_provider: true                        # Auto update Trådfri devices
       ledvance_provider: true                    # Auto update LEDVANCE/OSRAM devices
       salus_provider: true                       # Auto update SALUS/Computime devices
+      sonoff_provider: true                      # Auto update sonoff devices
       inovelli_provider: true                    # Auto update INOVELLI devices
       thirdreality_provider: true                # Auto update 3REALITY devices
       #otau_directory: /path/to/your/ota/folder  # Utilize .ota files to update everything else
