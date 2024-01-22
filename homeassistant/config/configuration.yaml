@@ -3,7 +3,7 @@ homeassistant:
   time_zone: Asia/Ho_Chi_Minh
 
 automation: !include automations.yaml
-scene: !include scene.yaml
+scene: !include scenes.yaml
 script: !include scripts.yaml
 # sensor: !include sensors.yaml
 
