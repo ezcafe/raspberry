@@ -1,0 +1,34 @@
+homeassistant:
+  name: Home
+  time_zone: Asia/Ho_Chi_Minh
+
+automation: !include automations.yaml
+scene: !include scene.yaml
+script: !include scripts.yaml
+sensor: !include sensors.yaml
+
+homekit: !include homekit.yaml
+
+# sonoff:
+#   username: !secret ewelink_user
+#   password: !secret ewelink_pass
+#   mode: local
+#   reload: always
+
+zha:
+  #enable_quirks: true
+  #custom_quirks_path: /config/custom_zha_quirks/
+  zigpy_config:
+    # network:
+    #   channel: 11
+    #   channels: [11]
+    #   pan_id: 0x1A62
+    #   extended_pan_id: "DD:DD:DD:DD:DD:DD:DD:DD"
+    ota:
+      ikea_provider: true                        # Auto update Trådfri devices
+      ledvance_provider: true                    # Auto update LEDVANCE/OSRAM devices
+      salus_provider: true                       # Auto update SALUS/Computime devices
+      inovelli_provider: true                    # Auto update INOVELLI devices
+      thirdreality_provider: true                # Auto update 3REALITY devices
+      #otau_directory: /path/to/your/ota/folder  # Utilize .ota files to update everything else
+
