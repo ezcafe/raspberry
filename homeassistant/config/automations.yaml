@@ -1,0 +1,118 @@
+- id: '1705880903000'
+  alias: 'Bedroom no motion detected '
+  description: 'Turn off lights when no motion detected in bedroom '
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.bedroom_motion_occupancy
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  condition: []
+  action:
+  - service: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: bedroom
+      device_id: b4089d9a8e45b1c25e2a8f879c359697
+  mode: single
+- id: '1705883368133'
+  alias: Bedroom motion detected after 6 pm
+  description: Turn on work light when motion detected in bedroom
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.bedroom_motion_occupancy
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    after: '20:30:00'
+    before: '18:00:00'
+    weekday:
+    - sun
+    - sat
+    - fri
+    - thu
+    - wed
+    - tue
+    - mon
+  action:
+  - service: scene.turn_on
+    metadata: {}
+    target:
+      entity_id: scene.bedroom_hue_work
+  mode: single
+- id: '1705886186671'
+  alias: Bedroom motion detected after 9:30 pm
+  description: Turn on play light when motion detected in bedroom
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.bedroom_motion_occupancy
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    after: '21:30:00'
+    before: '21:58:00'
+    weekday:
+    - sun
+    - sat
+    - fri
+    - thu
+    - wed
+    - tue
+    - mon
+  action:
+  - service: scene.turn_on
+    metadata: {}
+    target:
+      entity_id: scene.bedroom_hue_play
+  mode: single
+- id: '1705886408814'
+  alias: Bedroom motion detected after 8:30 pm
+  description: Turn on bed light when motion detected in bedroom
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.bedroom_motion_occupancy
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    after: '20:30:00'
+    before: '21:30:00'
+    weekday:
+    - sun
+    - sat
+    - fri
+    - thu
+    - wed
+    - tue
+    - mon
+  action:
+  - service: light.turn_on
+    metadata: {}
+    data:
+      rgb_color:
+      - 247
+      - 206
+      - 70
+    target:
+      area_id: bedroom
+      entity_id:
+      - light.bed_light
+  - service: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: bedroom
+      entity_id:
+      - light.window_light
+      - light.work_light
+  mode: single

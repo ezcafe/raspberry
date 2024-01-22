@@ -5,7 +5,7 @@ homeassistant:
 automation: !include automations.yaml
 scene: !include scene.yaml
 script: !include scripts.yaml
-sensor: !include sensors.yaml
+# sensor: !include sensors.yaml
 
 homekit: !include homekit.yaml
 
