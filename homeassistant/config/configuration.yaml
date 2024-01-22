@@ -33,3 +33,7 @@ zha:
       thirdreality_provider: true                # Auto update 3REALITY devices
       #otau_directory: /path/to/your/ota/folder  # Utilize .ota files to update everything else
 
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
