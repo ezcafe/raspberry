@@ -4,6 +4,7 @@ blocking:
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/hostsVN/hosts
       - https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
+      - *.dable.io
   clientGroupsBlock:
     default:
       - ads
