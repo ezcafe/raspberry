@@ -4,7 +4,10 @@ blocking:
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/hostsVN/hosts
       - https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
-      - https://adaway.org/hosts.txt
+      - |
+        # inline definition with YAML literal block scalar style
+        someadsdomain.com
+        *.dable.io
   clientGroupsBlock:
     default:
       - ads
