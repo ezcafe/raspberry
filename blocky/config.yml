@@ -4,13 +4,7 @@ blocking:
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
       - https://raw.githubusercontent.com/StevenBlack/hosts/master/data/hostsVN/hosts
       - https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt
-      - |
-        # inline definition using YAML literal block scalar style
-        # content is in plain domain list format
-        dable.io
-      - |
-        # inline definition with a regex
-        # /^banners?[_.-]/
+      - https://gist.githubusercontent.com/steebchen/1fa6d12325ff755e6f3e0c48a8491295/raw/700076533a07b8c753fd17b5cff57e9b25eb9981/hosts
   clientGroupsBlock:
     default:
       - ads
