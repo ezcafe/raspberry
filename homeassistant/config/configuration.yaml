@@ -38,4 +38,7 @@ zha:
 http:
   use_x_forwarded_for: true
   trusted_proxies:
-    - 127.0.0.1
+    # retrieve this IP by going to cloudflare tunnel container,
+    # search for "... INF ICMP proxy will use 172.19.0.2 as source for IPv4",
+    # replace .0.2 with .0.0
+    - 172.19.0.0/24
