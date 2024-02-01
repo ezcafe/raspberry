@@ -2,6 +2,7 @@ version: "3.3"
 
 services:
   example:
+    # https://github.com/jelmer/xandikos/issues/227
     image: ghcr.io/jelmer/xandikos
     container_name: xandikos
     restart: unless-stopped
