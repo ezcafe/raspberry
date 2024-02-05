@@ -108,6 +108,8 @@ services:
       # - "/example/family:/photoprism/originals/family" # *Additional* media folders can be mounted like this
       # - "~/Import:/photoprism/import"                  # *Optional* base folder from which files can be imported to originals
       - "app:/photoprism/storage"                        # *Writable* storage folder for cache, database, and sidecar files (DO NOT REMOVE)
+    networks:
+      - proxy
 
   ## Database Server (recommended)
   ## see https://docs.photoprism.app/getting-started/faq/#should-i-use-sqlite-mariadb-or-mysql
@@ -132,7 +134,12 @@ services:
       - MARIADB_USER=${DB_USER}
       - MARIADB_PASSWORD=${DB_PASS}
       - MARIADB_ROOT_PASSWORD=${DB_PASS}
+    networks:
+      - proxy
 
 volumes:
   app:
   db:
+
+networks:
+  proxy:
