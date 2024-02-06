@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  example:
+  sun-panel:
     image: hslr/sun-panel
     container_name: sun-panel
     restart: unless-stopped
