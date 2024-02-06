@@ -1,0 +1,29 @@
+version: "3.3"
+
+services:
+  example:
+    image: hslr/sun-panel
+    container_name: sun-panel
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    ports:
+      - ${PORT}:3002
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - ./conf:/app/conf
+      - data/database:/app/database
+      - data/uploads:/app/uploads
+
+volumes:
+  data:
+
+# networks:
+#   proxy:
+#     external: true
