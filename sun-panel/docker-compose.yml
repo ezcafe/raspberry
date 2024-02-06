@@ -18,11 +18,12 @@ services:
     #   - proxy
     volumes:
       - ./conf:/app/conf
-      - data/database:/app/database
-      - data/uploads:/app/uploads
+      - db:/app/database
+      - uploads:/app/uploads
 
 volumes:
-  data:
+  db:
+  uploads:
 
 # networks:
 #   proxy:
