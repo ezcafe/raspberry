@@ -23,6 +23,7 @@ services:
     volumes:
       # - db_volume:/opt/example/data
       - ./config:/config
+      - ~/music:/media
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     privileged: true
