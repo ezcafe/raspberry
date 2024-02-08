@@ -12,25 +12,29 @@
     conditions:
     - condition: device
       type: is_on
-      device_id: 84bb9612e7943123511181346286d369
-      entity_id: 5a22f32ddf813584bf8116a23e686b02
+      device_id: 8fa2e7185538b4a1a7c8c192a1d9c58d
+      entity_id: 8d8d4d5ed9c5bbe230dfd6c89159208e
       domain: light
     - condition: device
       type: is_on
-      device_id: c3024e452e7dc1ef53408a3e22d22ac4
-      entity_id: b6c683846c299b1235f3992974740673
+      device_id: 972b8438023282008a2edb47bd25ad82
+      entity_id: 8dbcc3b7e6547e59e046ed6d2001a732
       domain: light
     - condition: device
       type: is_on
-      device_id: d829a9f141cf19469f5437f7a519e1ec
-      entity_id: e3e0498ae514a1d15a53c8c47270fbf9
+      device_id: 324b6deedbb36ac170a67ae24797ede6
+      entity_id: 1ab6e724179754f2085d01195fabb833
       domain: light
   action:
   - service: light.turn_off
     metadata: {}
-    data: {}
+    data:
+      transition: 5
     target:
-      area_id: bedroom
+      entity_id:
+      - light.bed_light
+      - light.window_light
+      - light.work_light
   mode: single
 - id: '1705883368133'
   alias: Bedroom Motion Detected After 5:30 PM
@@ -55,14 +59,34 @@
     - mon
   - condition: device
     type: is_off
-    device_id: d829a9f141cf19469f5437f7a519e1ec
-    entity_id: e3e0498ae514a1d15a53c8c47270fbf9
+    device_id: 8fa2e7185538b4a1a7c8c192a1d9c58d
+    entity_id: 8d8d4d5ed9c5bbe230dfd6c89159208e
     domain: light
   action:
-  - service: scene.turn_on
+  - service: light.turn_on
     metadata: {}
+    data:
+      rgb_color:
+      - 247
+      - 206
+      - 70
+      brightness_pct: 100
+      transition: 5
     target:
-      entity_id: scene.bedroom_hue_work
+      entity_id: light.work_light
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - service: light.turn_off
+    metadata: {}
+    data:
+      transition: 5
+    target:
+      entity_id:
+      - light.bed_light
+      - light.window_light
   mode: single
 - id: '1705886186671'
   alias: Bedroom Motion Detected After 9:30 PM
@@ -87,8 +111,8 @@
     - mon
   - condition: device
     type: is_off
-    device_id: c3024e452e7dc1ef53408a3e22d22ac4
-    entity_id: b6c683846c299b1235f3992974740673
+    device_id: 324b6deedbb36ac170a67ae24797ede6
+    entity_id: 1ab6e724179754f2085d01195fabb833
     domain: light
   action:
   - service: light.turn_on
@@ -99,16 +123,18 @@
       - 147
       - 0
       brightness_pct: 70
+      transition: 5
     target:
       entity_id: light.window_light
   - delay:
       hours: 0
-      minutes: 1
-      seconds: 0
+      minutes: 0
+      seconds: 10
       milliseconds: 0
   - service: light.turn_off
     metadata: {}
-    data: {}
+    data:
+      transition: 5
     target:
       entity_id:
       - light.bed_light
@@ -137,8 +163,8 @@
     - mon
   - condition: device
     type: is_off
-    device_id: 84bb9612e7943123511181346286d369
-    entity_id: 5a22f32ddf813584bf8116a23e686b02
+    device_id: 972b8438023282008a2edb47bd25ad82
+    entity_id: 8dbcc3b7e6547e59e046ed6d2001a732
     domain: light
   action:
   - service: light.turn_on
@@ -149,16 +175,18 @@
       - 206
       - 70
       brightness_pct: 100
+      transition: 5
     target:
       entity_id: light.bed_light
   - delay:
       hours: 0
-      minutes: 1
-      seconds: 0
+      minutes: 0
+      seconds: 10
       milliseconds: 0
   - service: light.turn_off
     metadata: {}
-    data: {}
+    data:
+      transition: 5
     target:
       entity_id:
       - light.window_light
@@ -205,9 +233,12 @@
   - service: light.turn_off
     metadata: {}
     data:
-      transition: 5
+      transition: 10
     target:
-      area_id: bedroom
+      entity_id:
+      - light.bed_light
+      - light.window_light
+      - light.work_light
   mode: single
 - id: '1705962943616'
   alias: 'Bedroom Fan Off On Weekend '
@@ -297,14 +328,14 @@
     before: 06:30:00
   - condition: device
     type: is_off
-    device_id: b06c134fa6942a16fa8deaafdac97c17
-    entity_id: a6a2dc8aeae74234c975235fd0376a46
-    domain: switch
+    device_id: 8a735c3b1864cc8faa0131d5e2a93f3e
+    entity_id: 853fddb05edc46f9ce51c300c846ab8b
+    domain: light
   action:
   - type: turn_on
-    device_id: b06c134fa6942a16fa8deaafdac97c17
-    entity_id: a6a2dc8aeae74234c975235fd0376a46
-    domain: switch
+    device_id: 8a735c3b1864cc8faa0131d5e2a93f3e
+    entity_id: 853fddb05edc46f9ce51c300c846ab8b
+    domain: light
   mode: single
 - id: '1706109072417'
   alias: 'Bridge No Motion Detected '
@@ -323,14 +354,14 @@
   condition:
   - condition: device
     type: is_on
-    device_id: b06c134fa6942a16fa8deaafdac97c17
-    entity_id: a6a2dc8aeae74234c975235fd0376a46
-    domain: switch
+    device_id: 8a735c3b1864cc8faa0131d5e2a93f3e
+    entity_id: 853fddb05edc46f9ce51c300c846ab8b
+    domain: light
   action:
   - type: turn_off
-    device_id: b06c134fa6942a16fa8deaafdac97c17
-    entity_id: a6a2dc8aeae74234c975235fd0376a46
-    domain: switch
+    device_id: 8a735c3b1864cc8faa0131d5e2a93f3e
+    entity_id: 853fddb05edc46f9ce51c300c846ab8b
+    domain: light
   mode: single
 - id: '1706111216140'
   alias: Bedroom Fan Off On Weekdays
@@ -427,8 +458,8 @@
   condition:
   - condition: device
     type: is_off
-    device_id: 365e992081bdc2a2e207829a2a4166be
-    entity_id: f12a7fe74b833630b0a3519884be5261
+    device_id: 59782f5d36185267a35503227bdde15e
+    entity_id: f8a7c657be46eb37a1679f122a562193
     domain: light
   - condition: time
     after: '17:30:00'
@@ -444,7 +475,7 @@
       - 0
       brightness_pct: 100
     target:
-      device_id: 365e992081bdc2a2e207829a2a4166be
+      entity_id: light.ylbulbcolor1s_25b8
   mode: single
 - id: '1706187513421'
   alias: Bathroom 1 No Motion Detected
@@ -458,13 +489,13 @@
   condition:
   - condition: device
     type: is_on
-    device_id: 365e992081bdc2a2e207829a2a4166be
-    entity_id: f12a7fe74b833630b0a3519884be5261
+    device_id: 59782f5d36185267a35503227bdde15e
+    entity_id: f8a7c657be46eb37a1679f122a562193
     domain: light
   action:
   - type: turn_off
-    device_id: 365e992081bdc2a2e207829a2a4166be
-    entity_id: f12a7fe74b833630b0a3519884be5261
+    device_id: 59782f5d36185267a35503227bdde15e
+    entity_id: f8a7c657be46eb37a1679f122a562193
     domain: light
   mode: single
 - id: '1706187983283'
@@ -479,12 +510,12 @@
   condition:
   - condition: device
     type: is_off
-    device_id: 365e992081bdc2a2e207829a2a4166be
-    entity_id: f12a7fe74b833630b0a3519884be5261
+    device_id: 59782f5d36185267a35503227bdde15e
+    entity_id: f8a7c657be46eb37a1679f122a562193
     domain: light
   - condition: time
     after: '21:00:00'
-    before: 06:30:00
+    before: 05:30:00
   action:
   - service: light.turn_on
     metadata: {}
@@ -494,9 +525,9 @@
       - 255
       - 147
       - 0
-      brightness_pct: 50
+      brightness_pct: 40
     target:
-      device_id: 365e992081bdc2a2e207829a2a4166be
+      entity_id: light.ylbulbcolor1s_25b8
   mode: single
 - id: '1706190166910'
   alias: Notify when windows are opened at night
@@ -536,53 +567,7 @@
   - service: notify.notify
     metadata: {}
     data:
-      message:    ^p      ng c         a anh Q       i
-  mode: single
-- id: '1706397308514'
-  alias: Bedroom Motion Detected 8:30PM
-  description: Turn on bed light when motion detected in bedroom
-  trigger:
-  - platform: time
-    at: '20:30:00'
-  condition:
-  - condition: device
-    type: is_off
-    device_id: 84bb9612e7943123511181346286d369
-    entity_id: 5a22f32ddf813584bf8116a23e686b02
-    domain: light
-  - condition: device
-    type: is_on
-    device_id: d829a9f141cf19469f5437f7a519e1ec
-    entity_id: e3e0498ae514a1d15a53c8c47270fbf9
-    domain: light
-  - type: is_occupied
-    condition: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 5800c25901beeb825895e47402f7131b
-    domain: binary_sensor
-  action:
-  - service: light.turn_on
-    metadata: {}
-    data:
-      rgb_color:
-      - 247
-      - 206
-      - 70
-      brightness_pct: 100
-    target:
-      entity_id: light.bed_light
-  - delay:
-      hours: 0
-      minutes: 1
-      seconds: 0
-      milliseconds: 0
-  - service: light.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id:
-      - light.window_light
-      - light.work_light
+      message: ^p      ng c         a anh Q       i
   mode: single
 - id: '1706409852291'
   alias: Bedroom Purifier On At 11AM
@@ -619,4 +604,82 @@
     device_id: 8d896de00eb78f121b706f07d78c846b
     entity_id: 1d46579426d506bf62d27ef0e596cd64
     domain: fan
+  mode: single
+- id: '1706972677454'
+  alias: Bedroom Mac On
+  description: ''
+  trigger:
+  - platform: time
+    at: 05:55:00
+  - platform: time
+    at: '18:00:00'
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 700f2dade8cf28324ac77f9aabd63aea
+    entity_id: fb7ad3c9dc9ee4c5c654b446809df86d
+    domain: light
+  mode: single
+- id: '1706972735012'
+  alias: Bedroom Mac Off
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:30:00
+  - platform: time
+    at: '22:15:00'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 700f2dade8cf28324ac77f9aabd63aea
+    entity_id: fb7ad3c9dc9ee4c5c654b446809df86d
+    domain: light
+  mode: single
+- id: '1706973510019'
+  alias: 'Bedroom Mac On Weekend '
+  description: ''
+  trigger:
+  - platform: time
+    at: 09:00:00
+  condition:
+  - condition: time
+    weekday:
+    - sat
+    - sun
+  action:
+  - type: turn_on
+    device_id: 700f2dade8cf28324ac77f9aabd63aea
+    entity_id: fb7ad3c9dc9ee4c5c654b446809df86d
+    domain: light
+  mode: single
+- id: '1707349129426'
+  alias: Bathroom 1 Motion Detected 5 AM
+  description: Turn on light when motion is detected in bathroom
+  trigger:
+  - type: occupied
+    platform: device
+    device_id: c2e301741319635965dc1ed5a8a06b7a
+    entity_id: bd4ced3baf851822b0d330af9a2c398d
+    domain: binary_sensor
+  condition:
+  - condition: device
+    type: is_off
+    device_id: 59782f5d36185267a35503227bdde15e
+    entity_id: f8a7c657be46eb37a1679f122a562193
+    domain: light
+  - condition: time
+    after: 05:30:00
+    before: 06:30:00
+  action:
+  - service: light.turn_on
+    metadata: {}
+    data:
+      transition: 5
+      rgb_color:
+      - 255
+      - 147
+      - 0
+      brightness_pct: 100
+    target:
+      entity_id: light.ylbulbcolor1s_25b8
   mode: single
