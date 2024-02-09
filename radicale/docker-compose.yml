@@ -31,7 +31,7 @@ services:
       retries: 3
     volumes:
       - data:/data
-      - /config:/config:ro
+      - /config/config:/config:ro
 
 volumes:
   data:
