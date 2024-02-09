@@ -28,7 +28,7 @@ services:
     volumes:
       - /home/ezcafe/backups/baikal:/backup
       - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
-      - baikal_data:/var/www/baikal/Specific
+      - data:/var/www/baikal/Specific
     environment:
       # - DEBUG_MODE=TRUE
       - DB01_TYPE=sqlite3
