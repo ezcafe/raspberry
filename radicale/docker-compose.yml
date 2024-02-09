@@ -8,8 +8,8 @@ services:
     environment:
       - TZ=${TZ}
       - TAKE_FILE_OWNERSHIP=false
-    ports:
-      - ${PORT}:5232
+    # ports:
+    #   - ${PORT}:5232
     init: true
     read_only: true
     security_opt:
