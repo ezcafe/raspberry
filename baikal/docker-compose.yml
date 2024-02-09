@@ -20,22 +20,35 @@ services:
       - config:/var/www/baikal/config
       - data:/var/www/baikal/Specific
 
-  db:
-    image: mariadb
-    container_name: baikal-db
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASS}
-      MYSQL_DATABASE: baikal
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASS}
+  db-backup:
+    container_name: baikal-db-backup
+    image: ghcr.io/tiredofit/docker-db-backup
+    links:
+      - baikal
     volumes:
-      - db:/var/lib/mysql
+      - /home/ezcafe/backups/baikal:/backup
+      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+      - baikal_data:/var/www/baikal/Specific
+    environment:
+      # - DEBUG_MODE=TRUE
+      - DB01_TYPE=sqlite3
+      - DB01_HOST=/var/www/baikal/Specific/db/db.sqlite
+      # - DB_NAME=${DB_NAME}
+      # - DB_USER=${DB_USER}
+      # - DB_PASS=${DB_PASS}
+      # - DEFAULT_BACKUP_BEGIN=0000  # Start backing up at midnight
+      - DEFAULT_BACKUP_INTERVAL=1440 # backup every x minute - 1440 = 1 day
+      - DEFAULT_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
+      - DEFAULT_CHECKSUM=SHA1
+      - DEFAULT_COMPRESSION=GZ
+      - SPLIT_DB=FALSE
+      - CONTAINER_ENABLE_MONITORING=FALSE
+      - TIMEZONE=${TZ}
+    restart: unless-stopped
 
 volumes:
   config:
   data:
-  db:
 
 # networks:
 #   proxy:
