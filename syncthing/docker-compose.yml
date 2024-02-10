@@ -6,6 +6,7 @@ services:
     hostname: syncthing
     restart: unless-stopped
     environment:
+      - PCAP=cap_chown,cap_fowner+ep
       - PUID=1000
       - PGID=1000
       - TZ=${TZ}
