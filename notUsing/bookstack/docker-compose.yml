@@ -7,9 +7,9 @@ services:
       - PUID=1000
       - PGID=1000
       - APP_URL=${APP_URL}
-      - DB_HOST=bookstack_db
-      - DB_USER=${MYSQL_USER}
-      - DB_PASS=${MYSQL_PASSWORD}
+      - DB01_HOST=bookstack_db
+      - DB01_USER=${MYSQL_USER}
+      - DB01_PASS=${MYSQL_PASSWORD}
       - DB_DATABASE=${MYSQL_DATABASE}
     volumes:
       - bookstack_data:/config
@@ -26,7 +26,7 @@ services:
       - PUID=1000
       - PGID=1000
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - TZ=${TZ}
+      - TIMEZONE=${TZ}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
