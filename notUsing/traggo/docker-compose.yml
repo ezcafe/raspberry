@@ -13,7 +13,7 @@ services:
 
   db-backup:
     container_name: traggo-db-backup
-    image: tiredofit/db-backup
+    image: ghcr.io/tiredofit/docker-db-backup
     links:
       - traggo
     volumes:

@@ -25,7 +25,7 @@ services:
   # https://github.com/tiredofit/docker-db-backup/issues/181
   # db-backup:
   #   container_name: joplin-server-db-backup
-  #   image: tiredofit/db-backup
+  #   image: ghcr.io/tiredofit/docker-db-backup
   #   links:
   #    - db
   #   volumes:

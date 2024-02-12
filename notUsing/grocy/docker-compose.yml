@@ -30,7 +30,7 @@ services:
 
   db-backup:
     container_name: grocy-db-backup
-    image: tiredofit/db-backup
+    image: ghcr.io/tiredofit/docker-db-backup
     links:
       - backend
     volumes:

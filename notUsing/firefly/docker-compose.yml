@@ -33,7 +33,7 @@ services:
 
   db-backup:
     container_name: firefly-db-backup
-    image: tiredofit/db-backup
+    image: ghcr.io/tiredofit/docker-db-backup
     links:
      - db
     volumes:

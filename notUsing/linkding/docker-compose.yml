@@ -12,7 +12,7 @@ services:
 
   db-backup:
     container_name: linkding-db-backup
-    image: tiredofit/db-backup
+    image: ghcr.io/tiredofit/docker-db-backup
     links:
     - linkding
     volumes:

@@ -86,7 +86,7 @@ services:
       - redis
   db-backup:
     container_name: authentik-db-backup
-    image: tiredofit/db-backup
+    image: ghcr.io/tiredofit/docker-db-backup
     links:
      - postgresql
     volumes:

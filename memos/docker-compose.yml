@@ -11,7 +11,7 @@ services:
 
   db-backup:
     container_name: memos-db-backup
-    image: tiredofit/db-backup
+    image: ghcr.io/tiredofit/docker-db-backup
     links:
       - memos
     volumes:

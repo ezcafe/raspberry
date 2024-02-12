@@ -43,7 +43,7 @@ services:
 
   db-backup:
     container_name: monica-db-backup
-    image: tiredofit/db-backup
+    image: ghcr.io/tiredofit/docker-db-backup
     links:
      - monica_db
     volumes:

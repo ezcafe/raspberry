@@ -34,7 +34,7 @@ services:
 
   # db-backup:
   #   container_name: wikijs-db-backup
-  #   image: tiredofit/db-backup
+  #   image: ghcr.io/tiredofit/docker-db-backup
   #   links:
   #    - wiki_db
   #   volumes:
