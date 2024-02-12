@@ -6,12 +6,12 @@ services:
     container_name: jellyfin
     restart: unless-stopped
     user: 1000:1000
-    # network_mode: 'host'
+    network_mode: 'host'
     environment:
       - TZ=${TZ}
       - JELLYFIN_PublishedServerUrl=${URL}
-    ports:
-      - ${PORT}:8080
+    # ports:
+    #   - ${PORT}:8080
     # healthcheck:
     #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
     #   interval: 10s
