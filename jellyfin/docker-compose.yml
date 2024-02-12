@@ -25,7 +25,7 @@ services:
     volumes:
       # - ./config:/config
       - cache:/cache
-      - media:/media
+      - /home/ezcafe/backups/jellyfin:/media
       # - media2:/media2:ro
 
 volumes:
