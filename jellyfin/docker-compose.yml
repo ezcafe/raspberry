@@ -25,7 +25,7 @@ services:
     volumes:
       # - ./config:/config
       - cache:/cache
-      - ~/photos:/media
+      - ~/photos/Photos Library.photoslibrary/originals:/media
       # - media2:/media2:ro
 
 volumes:
