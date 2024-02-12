@@ -6,7 +6,7 @@ services:
     container_name: jellyfin
     restart: unless-stopped
     user: 1000:1000
-    network_mode: 'host'
+    # network_mode: 'host'
     environment:
       - TZ=${TZ}
       - JELLYFIN_PublishedServerUrl=${URL}
@@ -20,8 +20,8 @@ services:
     # networks:
     #   - proxy
     # Optional - may be necessary for docker healthcheck to pass if running in host network mode
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
     volumes:
       # - ./config:/config
       - cache:/cache
