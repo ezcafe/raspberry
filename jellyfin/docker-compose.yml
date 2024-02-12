@@ -25,12 +25,12 @@ services:
     volumes:
       # - ./config:/config
       - cache:/cache
-      - /home/ezcafe/backups/jellyfin:/media
+      - ~/photos:/media
       # - media2:/media2:ro
 
 volumes:
   cache:
-  media:
+  # media:
 
 # networks:
 #   proxy:
