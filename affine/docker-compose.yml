@@ -16,7 +16,7 @@ services:
       - AFFINE_ADMIN_PASSWORD=${ADMIN_PASSWORD}
     ports:
       - ${PORT}:3010
-      - ${PORT2}:5555
+      - 5555:5555
     depends_on:
       redis:
         condition: service_healthy
