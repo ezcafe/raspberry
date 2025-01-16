@@ -25,7 +25,8 @@ services:
      - db
     volumes:
       - /home/ezcafe/backups/miniflux:/backup
-      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+      - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
+      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
     environment:
       # - DEBUG_MODE=TRUE
       - DB01_TYPE=pgsql
