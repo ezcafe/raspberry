@@ -1,0 +1,132 @@
+branding:
+  hide-footer: true
+theme:
+  background-color: 240 21 15
+  contrast-multiplier: 1.2
+  primary-color: 217 92 83
+  positive-color: 115 54 76
+  negative-color: 347 70 65
+
+pages:
+  - name: Home
+    columns:
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 12h
+
+          - type: calendar
+
+      - size: full
+        widgets:
+          - type: videos
+            limit: 10
+            include-shorts: false
+            channels:
+              - UCott96qGP5ADmsB_yNQMvDA # MuseViệtNam
+
+          - type: reddit
+            subreddit: AppHookup
+            sort-by: new
+            show-thumbnails: false
+            show-flairs: false
+            limit: 15
+            collapse-after: 5
+
+      - size: small
+        widgets:
+          - type: weather
+            show-area-name: true
+            location: Thủ Đức
+
+          - type: markets
+            markets:
+              - symbol: SPY
+                name: S&P 500
+              - symbol: BTC-USD
+                name: Bitcoin
+                chart-link: https://www.tradingview.com/chart/?symbol=BINANCE:BTCUSDT
+              - symbol: ETH-USD
+                name: Ethereum
+                chart-link: https://www.tradingview.com/chart/?symbol=BINANCE:ETHUSDT
+              - symbol: BNB-USD
+                name: BNB
+                chart-link: https://www.tradingview.com/chart/?symbol=BINANCE:BNBUSDT
+              - symbol: GC=F
+                name: Gold
+                chart-link: https://www.tradingview.com/chart/?symbol=ICMARKETS:XAUUSD
+              - symbol: GBP=X
+                name: GBP/USD
+                chart-link: https://www.tradingview.com/chart/?symbol=ICMARKETS:GBPUSD
+              - symbol: JPY=X
+                name: USD/JPY
+                chart-link: https://www.tradingview.com/chart/?symbol=ICMARKETS:USDJPY
+
+  - name: Voz
+    columns:
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 12h
+
+      - size: full
+        widgets:
+          - type: rss
+            style: vertical-list
+            limit: 50
+            collapse-after: 17
+            cache: 3h
+            feeds:
+              - url: https://voz.frieren.workers.dev/f/diem-bao.33/index.rss
+                title: Điểm báo
+              - url: https://voz.frieren.workers.dev/f/chuyen-tro-linh-tinh.17/index.rss
+                title: Chuyện trò linh tinh
+
+  - name: News
+    columns:
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 12h
+
+      - size: full
+        widgets:
+          - type: group
+            widgets:
+              - type: reddit
+                subreddit: iosapps
+                sort-by: new
+                show-thumbnails: false
+                show-flairs: false
+                limit: 15
+                collapse-after: 5
+              - type: reddit
+                subreddit: macapps
+                sort-by: new
+                show-thumbnails: false
+                show-flairs: false
+                limit: 15
+                collapse-after: 5
+              - type: reddit
+                subreddit: selfhosted
+                sort-by: new
+                show-thumbnails: false
+                show-flairs: false
+                limit: 15
+                collapse-after: 5
+
+          - type: hacker-news
+            sort-by: top
+            limit: 15
+            collapse-after: 5
+
+          - type: lobsters
+            sort-by: hot
+            limit: 15
+            collapse-after: 4
+            tags:
+              - security
+              - linux
+
+
+
