@@ -17,7 +17,7 @@ services:
     # networks:
     #   - proxy
     volumes:
-      - data:/app/backend/data
+      - pocket-id:/app/backend/data
 
   db-backup:
     container_name: pocket-id-db-backup
@@ -32,7 +32,7 @@ services:
     environment:
       # - DEBUG_MODE=TRUE
       - DB01_TYPE=sqlite3
-      - DB01_HOST=data/pocket-id.db
+      - DB01_HOST=/app/backend/data/pocket-id.db
       # - DB01_NAME=${DB_NAME}
       # - DB01_USER=${DB_USER}
       # - DB01_PASS=${DB_PASS}
@@ -46,8 +46,8 @@ services:
       - TIMEZONE=${TZ}
     restart: unless-stopped
 
-# volumes:
-#   data:
+volumes:
+  pocket-id:
 
 # networks:
 #   proxy:
