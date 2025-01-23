@@ -12,8 +12,8 @@ pages:
     columns:
       - size: small
         widgets:
-          - type: clock
-            hour-format: 12h
+          # - type: clock
+          #   hour-format: 12h
 
           - type: calendar
 
