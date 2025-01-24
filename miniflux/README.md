@@ -1,5 +1,27 @@
 # Miniflux RSS
 
+## Pocket ID
+
+### Create Provider
+
+Go to your auth provider
+Create OIDC Client with these information
+
+- name: miniflux
+- Callback URLs: https://news.example.com/oauth2/oidc/callback
+
+### Update memos config
+
+Go to Settings -> SSO -> Create
+- Name: Passkey
+- Client ID: copy from OIDC provider
+- Client secret: copy from OIDC provider
+- Authorization endpoint: copy from OIDC provider
+- Token endpoint: copy from OIDC provider
+- User endpoint: copy from OIDC provider
+- Scopes: openid profile email
+- Identifier: preferred_username
+
 ## Authentik
 
 ### Create Provider
