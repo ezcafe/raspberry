@@ -18,7 +18,6 @@ services:
     #   - proxy
     volumes:
       - pocket-id:/app/backend/data
-      - ./scripts:/app/scripts
 
   db-backup:
     container_name: pocket-id-db-backup
