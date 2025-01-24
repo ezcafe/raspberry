@@ -17,6 +17,32 @@ pages:
 
           - type: calendar
 
+          - type: bookmarks
+            groups:
+              - links:
+                  - title: Điểm báo
+                    url: https://voz.vn/f/%C4%90iem-bao.33/
+                  - title: Chuyện trò linh tinh™
+                    url: https://voz.vn/f/chuyen-tro-linh-tinh%E2%84%A2.17/
+              - title: Reddit
+                links:
+                  - title: AppHookup
+                    url: https://www.reddit.com/r/AppHookup/new/
+                  - title: iosapps
+                    url: https://www.reddit.com/r/iosapps/new/
+                  - title: macapps
+                    url: https://www.reddit.com/r/macapps/new/
+                  - title: selfhosted
+                    url: https://www.reddit.com/r/selfhosted/new/
+              - title: Youtube
+                links:
+                  - title: MuseViệtNam
+                    url: https://www.youtube.com/c/MuseVi%E1%BB%87tNam/videos
+                  - title: MadeByBilibili-Vietnam
+                    url: https://www.youtube.com/@MadeByBilibili-Vietnam/videos
+                  - title: AniOneVietnam
+                    url: https://www.youtube.com/@AniOneVietnam/videos
+
       - size: full
         widgets:
           - type: videos
@@ -62,31 +88,7 @@ pages:
           #       name: USD/JPY
           #       chart-link: https://www.tradingview.com/chart/?symbol=ICMARKETS:USDJPY
 
-          - type: bookmarks
-            groups:
-              - links:
-                  - title: Điểm báo
-                    url: https://voz.vn/f/%C4%90iem-bao.33/
-                  - title: Chuyện trò linh tinh™
-                    url: https://voz.vn/f/chuyen-tro-linh-tinh%E2%84%A2.17/
-              - title: Reddit
-                links:
-                  - title: AppHookup
-                    url: https://www.reddit.com/r/AppHookup/new/
-                  - title: iosapps
-                    url: https://www.reddit.com/r/iosapps/new/
-                  - title: macapps
-                    url: https://www.reddit.com/r/macapps/new/
-                  - title: selfhosted
-                    url: https://www.reddit.com/r/selfhosted/new/
-              - title: Youtube
-                links:
-                  - title: MuseViệtNam
-                    url: https://www.youtube.com/c/MuseVi%E1%BB%87tNam/videos
-                  - title: MadeByBilibili-Vietnam
-                    url: https://www.youtube.com/@MadeByBilibili-Vietnam/videos
-                  - title: AniOneVietnam
-                    url: https://www.youtube.com/@AniOneVietnam/videos
+
 
   - name: News
     columns:
