@@ -22,6 +22,17 @@ Go to Settings -> SSO -> Create
 - Scopes: openid profile email
 - Identifier: preferred_username
 
+### Update .env file
+
+Update these values with the values you created before
+
+OAUTH2_PROVIDER=oidc
+OAUTH2_CLIENT_ID=copy from OIDC provider
+OAUTH2_CLIENT_SECRET=copy from OIDC provider
+OAUTH2_REDIRECT_URL=https://<your-rss-domain>/oauth2/oidc/callback
+OAUTH2_OIDC_DISCOVERY_ENDPOINT=https://<your-auth-domain> without trailing /
+OAUTH2_USER_CREATION=1
+
 ## Authentik
 
 ### Create Provider
