@@ -81,7 +81,7 @@ pages:
                   - title: AniOneVietnam
                     url: https://www.youtube.com/@AniOneVietnam/videos
 
-  - name: Voz
+  - name: News
     columns:
       - size: small
         widgets:
@@ -109,19 +109,7 @@ pages:
                 cache: 3h
                 feeds:
                   - url: https://voz.frieren.workers.dev/f/chuyen-tro-linh-tinh.17/index.rss
-                    title: Chuyện trò linh tinh
-
-  - name: News
-    columns:
-      - size: small
-        widgets:
-          - type: clock
-            hour-format: 12h
-
-      - size: full
-        widgets:
-          - type: group
-            widgets:
+                    title: Chuyện trò linh
               - type: reddit
                 subreddit: iosapps
                 sort-by: new
@@ -143,21 +131,16 @@ pages:
                 show-flairs: false
                 limit: 15
                 collapse-after: 5
-
-          - type: hacker-news
-            sort-by: top
-            limit: 15
-            collapse-after: 5
-
-          - type: lobsters
-            sort-by: hot
-            limit: 15
-            collapse-after: 4
-            tags:
-              - show
-              - ask
-              - privacy
-              - ai
-
-
-
+              - type: hacker-news
+                sort-by: top
+                limit: 15
+                collapse-after: 5
+              - type: lobsters
+                sort-by: hot
+                limit: 15
+                collapse-after: 4
+                tags:
+                  - show
+                  - ask
+                  - privacy
+                  - ai
