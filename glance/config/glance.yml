@@ -69,10 +69,17 @@ pages:
                     url: https://voz.vn/f/%C4%90iem-bao.33/
                   - title: Chuyện trò linh tinh™
                     url: https://voz.vn/f/chuyen-tro-linh-tinh%E2%84%A2.17/
+              - title: Reddit
+                links:
                   - title: AppHookup
                     url: https://www.reddit.com/r/AppHookup/new/
-              - title: Entertainment
-                color: 10 70 50
+                  - title: iosapps
+                    url: https://www.reddit.com/r/iosapps/new/
+                  - title: macapps
+                    url: https://www.reddit.com/r/macapps/new/
+                  - title: selfhosted
+                    url: https://www.reddit.com/r/selfhosted/new/
+              - title: Youtube
                 links:
                   - title: MuseViệtNam
                     url: https://www.youtube.com/c/MuseVi%E1%BB%87tNam/videos
@@ -115,30 +122,30 @@ pages:
                 sort-by: new
                 show-thumbnails: false
                 show-flairs: false
-                limit: 15
-                collapse-after: 5
+                limit: 50
+                collapse-after: 17
               - type: reddit
                 subreddit: macapps
                 sort-by: new
                 show-thumbnails: false
                 show-flairs: false
-                limit: 15
-                collapse-after: 5
+                limit: 50
+                collapse-after: 17
               - type: reddit
                 subreddit: selfhosted
                 sort-by: new
                 show-thumbnails: false
                 show-flairs: false
-                limit: 15
-                collapse-after: 5
+                limit: 50
+                collapse-after: 17
               - type: hacker-news
                 sort-by: top
-                limit: 15
-                collapse-after: 5
+                limit: 50
+                collapse-after: 17
               - type: lobsters
                 sort-by: hot
-                limit: 15
-                collapse-after: 4
+                limit: 50
+                collapse-after: 17
                 tags:
                   - show
                   - ask
