@@ -1,0 +1,70 @@
+services:
+  monetr:
+    image: ghcr.io/monetr/monetr:latest
+    container_name: monetr
+    restart: unless-stopped
+    # env_file: .env
+    environment:
+      TZ: ${TZ}
+      MONETR_ALLOW_SIGN_UP: ${MONETR_ALLOW_SIGN_UP:-true}
+      MONETR_PG_USERNAME: ${DB_USER:-postgres}
+      MONETR_PG_PASSWORD: ${DB_PASS:-superSecretPasswordPleaseChangeMe}
+      MONETR_PG_DATABASE: monetr
+      MONETR_PG_ADDRESS: postgres
+      MONETR_REDIS_ENABLED: "true"
+      MONETR_REDIS_ADDRESS: valkey
+      MONETR_STORAGE_ENABLED: ${MONETR_STORAGE_ENABLED:-true}
+      MONETR_STORAGE_PROVIDER: ${MONETR_STORAGE_PROVIDER:-filesystem}
+    ports:
+      - ${PORT}:4000
+    healthcheck:
+      test: "timeout 5s bash -c ':> /dev/tcp/127.0.0.1/4000' || exit 1"
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 5s
+    command:
+      - serve
+      # Setup the database and perform migrations.
+      - --migrate
+      # Since certificates will not have been created, make some.
+      - --generate-certificates
+    depends_on:
+      valkey:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    volumes:
+      - data:/etc/monetr
+
+  postgres:
+    image: postgres:17
+    container_name: monetr-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS:-superSecretPasswordPleaseChangeMe}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_DB: monetr
+    volumes:
+      - postgresData:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  valkey:
+    image: valkey/valkey:8
+    container_name: monetr-valkey
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "valkey-cli", "ping" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  data:
+  postgresData:
