@@ -88,9 +88,7 @@ pages:
           #       name: USD/JPY
           #       chart-link: https://www.tradingview.com/chart/?symbol=ICMARKETS:USDJPY
 
-
-
-  - name: News
+  - name: Voz
     columns:
       - size: small
         widgets:
@@ -119,6 +117,16 @@ pages:
                 feeds:
                   - url: https://voz.frieren.workers.dev/f/chuyen-tro-linh-tinh.17/index.rss
                     title: Chuyện trò linh
+
+  - name: News
+    columns:
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 12h
+
+      - size: full
+        widgets:
           - type: group
             widgets:
               - type: reddit
