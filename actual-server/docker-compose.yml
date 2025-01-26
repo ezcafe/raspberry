@@ -5,10 +5,17 @@ services:
     image: actualbudget/actual-server
     container_name: actual-server
     restart: unless-stopped
+    env_file: .env
     ports:
       - ${PORT}:5006
     volumes:
       - actual_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "node src/scripts/health-check.js"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
 
 volumes:
   actual_data:
