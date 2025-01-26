@@ -5,7 +5,13 @@ services:
     image: actualbudget/actual-server
     container_name: actual-server
     restart: unless-stopped
-    env_file: .env
+    # env_file: .env
+    environment:
+      - TZ=${TZ}
+      - ACTUAL_OPENID_DISCOVERY_URL=${ACTUAL_OPENID_DISCOVERY_URL}
+      - ACTUAL_OPENID_CLIENT_ID=${ACTUAL_OPENID_CLIENT_ID}
+      - ACTUAL_OPENID_CLIENT_SECRET=${ACTUAL_OPENID_CLIENT_SECRET}
+      - ACTUAL_OPENID_SERVER_HOSTNAME=${ACTUAL_OPENID_SERVER_HOSTNAME}
     ports:
       - ${PORT}:5006
     volumes:
