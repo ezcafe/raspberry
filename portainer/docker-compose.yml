@@ -10,8 +10,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - data:/data
     ports:
-      # - ${PORT}:8000
-      - ${PORT}:9443
+      - ${PORT}:8000
 
 volumes:
   data:
