@@ -58,6 +58,27 @@ pages:
             limit: 15
             collapse-after: 5
 
+          - type: group
+            widgets:
+              - type: rss
+                title: Điểm báo
+                style: vertical-list
+                limit: 50
+                collapse-after: -1
+                cache: 1h
+                feeds:
+                  - url: https://voz.frieren.workers.dev/f/diem-bao.33/index.rss
+                    title: Điểm báo
+              - type: rss
+                title: Chuyện trò linh tinh™
+                style: vertical-list
+                limit: 50
+                collapse-after: -1
+                cache: 3h
+                feeds:
+                  - url: https://voz.frieren.workers.dev/f/chuyen-tro-linh-tinh.17/index.rss
+                    title: Chuyện trò linh
+
       - size: small
         widgets:
           - type: weather
@@ -87,35 +108,35 @@ pages:
           #       name: USD/JPY
           #       chart-link: https://www.tradingview.com/chart/?symbol=ICMARKETS:USDJPY
 
-  - name: Voz
-    columns:
-      - size: small
-        widgets:
-          - type: clock
-            hour-format: 12h
+  # - name: Voz
+  #   columns:
+  #     - size: small
+  #       widgets:
+  #         - type: clock
+  #           hour-format: 12h
 
-      - size: full
-        widgets:
-          - type: group
-            widgets:
-              - type: rss
-                title: Điểm báo
-                style: vertical-list
-                limit: 50
-                collapse-after: -1
-                cache: 1h
-                feeds:
-                  - url: https://voz.frieren.workers.dev/f/diem-bao.33/index.rss
-                    title: Điểm báo
-              - type: rss
-                title: Chuyện trò linh tinh™
-                style: vertical-list
-                limit: 50
-                collapse-after: -1
-                cache: 3h
-                feeds:
-                  - url: https://voz.frieren.workers.dev/f/chuyen-tro-linh-tinh.17/index.rss
-                    title: Chuyện trò linh
+  #     - size: full
+  #       widgets:
+  #         - type: group
+  #           widgets:
+  #             - type: rss
+  #               title: Điểm báo
+  #               style: vertical-list
+  #               limit: 50
+  #               collapse-after: -1
+  #               cache: 1h
+  #               feeds:
+  #                 - url: https://voz.frieren.workers.dev/f/diem-bao.33/index.rss
+  #                   title: Điểm báo
+  #             - type: rss
+  #               title: Chuyện trò linh tinh™
+  #               style: vertical-list
+  #               limit: 50
+  #               collapse-after: -1
+  #               cache: 3h
+  #               feeds:
+  #                 - url: https://voz.frieren.workers.dev/f/chuyen-tro-linh-tinh.17/index.rss
+  #                   title: Chuyện trò linh
 
   - name: News
     columns:
