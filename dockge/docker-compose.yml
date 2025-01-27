@@ -1,0 +1,33 @@
+services:
+  dockge:
+    image: louislam/dockge
+    container_name: dockge
+    restart: unless-stopped
+    # env_file: .env
+    environment:
+      - TZ=${TZ}
+      # Tell Dockge where is your stacks directory
+      - DOCKGE_STACKS_DIR=/opt/stacks
+    ports:
+      - ${PORT}:5001
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Stacks Directory
+      # ⚠️ READ IT CAREFULLY. If you did it wrong, your data could end up writing into a WRONG PATH.
+      # ⚠️ 1. FULL path only. No relative path (MUST)
+      # ⚠️ 2. Left Stacks Path === Right Stacks Path (MUST)
+      - /opt/stacks:/opt/stacks
+volumes:
+  data:
+
+# networks:
+#   proxy:
+#     external: true
