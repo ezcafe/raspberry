@@ -13,7 +13,7 @@ services:
     #   retries: 5
     # networks:
     #   - proxy
-    network_mode: host
+    dns: 8.8.8.8
     volumes:
       - ./config/glance.yml:/app/glance.yml
       - /etc/timezone:/etc/timezone:ro
