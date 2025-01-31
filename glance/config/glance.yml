@@ -60,6 +60,20 @@ pages:
 
           - type: group
             widgets:
+              - type: hacker-news
+                sort-by: top
+                limit: 50
+                collapse-after: -1
+              - type: lobsters
+                sort-by: hot
+                limit: 50
+                collapse-after: -1
+                tags:
+                  - show
+                  - ask
+                  - privacy
+                  - ai
+
               # - type: rss
               #   title: Điểm báo
               #   style: vertical-list
@@ -78,24 +92,25 @@ pages:
               #   feeds:
               #     - url: https://voz.vn/f/chuyen-tro-linh-tinh.17/index.rss
               #       title: Chuyện trò linh
-              - type: rss
-                title: Điểm báo
-                style: vertical-list
-                limit: 50
-                collapse-after: -1
-                cache: 1h
-                feeds:
-                  - url: https://voz.frieren.workers.dev/f/diem-bao.33/index.rss
-                    title: Điểm báo
-              - type: rss
-                title: Chuyện trò linh tinh™
-                style: vertical-list
-                limit: 50
-                collapse-after: -1
-                cache: 3h
-                feeds:
-                  - url: https://voz.frieren.workers.dev/f/chuyen-tro-linh-tinh.17/index.rss
-                    title: Chuyện trò linh
+
+              # - type: rss
+              #   title: Điểm báo
+              #   style: vertical-list
+              #   limit: 50
+              #   collapse-after: -1
+              #   cache: 1h
+              #   feeds:
+              #     - url: https://voz.frieren.workers.dev/f/diem-bao.33/index.rss
+              #       title: Điểm báo
+              # - type: rss
+              #   title: Chuyện trò linh tinh™
+              #   style: vertical-list
+              #   limit: 50
+              #   collapse-after: -1
+              #   cache: 3h
+              #   feeds:
+              #     - url: https://voz.frieren.workers.dev/f/chuyen-tro-linh-tinh.17/index.rss
+              #       title: Chuyện trò linh
 
       - size: small
         widgets:
