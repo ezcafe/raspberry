@@ -1,0 +1,26 @@
+services:
+  nexterm:
+    image: germannewsmaker/nexterm:1.0.2-OPEN-PREVIEW
+    container_name: nexterm
+    restart: unless-stopped
+    env_file: .env
+    # environment:
+    #   - TZ=${TZ}
+    ports:
+      - ${PORT}:6989
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - data:/app/data
+
+volumes:
+  data:
+
+# networks:
+#   proxy:
+#     external: true
