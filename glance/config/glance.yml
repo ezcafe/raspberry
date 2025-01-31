@@ -149,27 +149,27 @@ pages:
         widgets:
           - type: group
             widgets:
-              - type: reddit
-                subreddit: iosapps
-                sort-by: new
-                show-thumbnails: false
-                show-flairs: false
-                limit: 50
-                collapse-after: -1
-              - type: reddit
-                subreddit: macapps
-                sort-by: new
-                show-thumbnails: false
-                show-flairs: false
-                limit: 50
-                collapse-after: -1
-              - type: reddit
-                subreddit: selfhosted
-                sort-by: new
-                show-thumbnails: false
-                show-flairs: true
-                limit: 50
-                collapse-after: -1
+              # - type: reddit
+              #   subreddit: iosapps
+              #   sort-by: new
+              #   show-thumbnails: false
+              #   show-flairs: false
+              #   limit: 50
+              #   collapse-after: -1
+              # - type: reddit
+              #   subreddit: macapps
+              #   sort-by: new
+              #   show-thumbnails: false
+              #   show-flairs: false
+              #   limit: 50
+              #   collapse-after: -1
+              # - type: reddit
+              #   subreddit: selfhosted
+              #   sort-by: new
+              #   show-thumbnails: false
+              #   show-flairs: true
+              #   limit: 50
+              #   collapse-after: -1
               - type: hacker-news
                 sort-by: top
                 limit: 50
