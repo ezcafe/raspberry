@@ -50,13 +50,13 @@ pages:
             channels:
               - UCott96qGP5ADmsB_yNQMvDA # MuseViệtNam
 
-          - type: reddit
-            subreddit: AppHookup
-            sort-by: new
-            show-thumbnails: false
-            show-flairs: false
-            limit: 15
-            collapse-after: 5
+          # - type: reddit
+          #   subreddit: AppHookup
+          #   sort-by: new
+          #   show-thumbnails: false
+          #   show-flairs: false
+          #   limit: 15
+          #   collapse-after: 5
 
           - type: group
             widgets:
@@ -84,6 +84,14 @@ pages:
           - type: weather
             show-area-name: true
             location: Thủ Đức
+
+          - type: reddit
+            subreddit: AppHookup
+            sort-by: new
+            show-thumbnails: false
+            show-flairs: true
+            limit: 10
+            collapse-after: 5
 
           # - type: markets
           #   markets:
