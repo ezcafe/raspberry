@@ -12,13 +12,7 @@ services:
       - no-new-privileges:true
     ports:
       - 3333:3333
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-      REDIS_HOST: 'redis'
-      REDIS_PASSWORD: ${REDIS_PASSWORD}
-      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
-      ACCESS_TOKEN_SALT: ${ACCESS_TOKEN_SALT}
-      ALPHA_VANTAGE_API_KEY: ${ALPHA_VANTAGE_API_KEY}
+    env_file: .env
     depends_on:
       postgres:
         condition: service_healthy
@@ -44,10 +38,7 @@ services:
       - SETUID
     security_opt:
       - no-new-privileges:true
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    env_file: .env
     volumes:
       - postgres:/var/lib/postgresql/data
     healthcheck:
@@ -70,6 +61,7 @@ services:
       - /bin/sh
       - -c
       - redis-server --requirepass "$${REDIS_PASSWORD:?REDIS_PASSWORD variable is not set}"
+    env_file: .env
     healthcheck:
       test:
         ['CMD-SHELL', 'redis-cli --pass "$${REDIS_PASSWORD}" ping | grep PONG']
