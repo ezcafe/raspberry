@@ -52,7 +52,7 @@ services:
     container_name: ghostfolio-db-backup
     image: ghcr.io/tiredofit/docker-db-backup
     links:
-     - db
+     - postgres
     volumes:
       - /home/ezcafe/backups/ghostfolio:/backup
       - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
