@@ -19,7 +19,7 @@ services:
       redis:
         condition: service_healthy
     healthcheck:
-      test: ['CMD-SHELL', 'curl -f http://localhost:3333/api/v1/health']
+      test: ['CMD-SHELL', 'curl -f "http://localhost:$${PORT}/api/v1/health"']
       interval: 10s
       timeout: 5s
       retries: 5
@@ -47,6 +47,32 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  db-backup:
+    container_name: ghostfolio-db-backup
+    image: ghcr.io/tiredofit/docker-db-backup
+    links:
+     - db
+    volumes:
+      - /home/ezcafe/backups/ghostfolio:/backup
+      - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
+      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
+    environment:
+      # - DEBUG_MODE=TRUE
+      - DB01_TYPE=pgsql
+      - DB01_HOST=postgres
+      - DB01_NAME=${POSTGRES_DB}
+      - DB01_USER=${POSTGRES_USER}
+      - DB01_PASS=${POSTGRES_PASSWORD}
+      # - DEFAULT_BACKUP_BEGIN=0000      # backup starts immediately
+      - DEFAULT_BACKUP_INTERVAL=1440       # backup every x minute - 1440 = 1 day
+      - DEFAULT_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
+      - DEFAULT_CHECKSUM=SHA1
+      - DEFAULT_COMPRESSION=GZ
+      - DB01_SPLIT_DB=FALSE
+      - CONTAINER_ENABLE_MONITORING=FALSE
+      - TIMEZONE=Asia/Ho_Chi_Minh
+    restart: unless-stopped
 
   redis:
     image: docker.io/library/redis:alpine
