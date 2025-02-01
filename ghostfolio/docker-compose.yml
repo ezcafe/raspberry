@@ -11,7 +11,7 @@ services:
     security_opt:
       - no-new-privileges:true
     ports:
-      - 3333:3333
+      - ${PORT}:3333
     env_file: .env
     depends_on:
       postgres:
