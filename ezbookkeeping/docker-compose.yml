@@ -17,10 +17,39 @@ services:
     #   - proxy
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - storage:/ezbookkeeping/storage # make sure the UID:GID is 1000:1000
+      - data:/ezbookkeeping/data
       - log:/ezbookkeeping/log         # make sure the UID:GID is 1000:1000
+      - storage:/ezbookkeeping/storage # make sure the UID:GID is 1000:1000
+
+  db-backup:
+    container_name: ezbookkeeping-db-backup
+    image: ghcr.io/tiredofit/docker-db-backup
+    links:
+      - ezbookkeeping
+    volumes:
+      - /home/ezcafe/backups/ezbookkeeping:/backup
+      - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
+      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
+      - data:/ezbookkeeping/data
+    environment:
+      # - DEBUG_MODE=TRUE
+      - DB01_TYPE=sqlite3
+      - DB01_HOST=/ezbookkeeping/data/ezbookkeeping.db
+      # - DB01_NAME=${DB_NAME}
+      # - DB01_USER=${DB_USER}
+      # - DB01_PASS=${DB_PASS}
+      # - DEFAULT_BACKUP_BEGIN=0000    # backup starts immediately
+      - DEFAULT_BACKUP_INTERVAL=1440       # backup every x minute - 1440 = 1 day
+      - DEFAULT_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
+      - DEFAULT_CHECKSUM=SHA1
+      - DEFAULT_COMPRESSION=GZ
+      - DB01_SPLIT_DB=FALSE
+      - CONTAINER_ENABLE_MONITORING=FALSE
+      - TIMEZONE=${TZ}
+    restart: unless-stopped
 
 volumes:
+  data:
   log:
   storage:
 
