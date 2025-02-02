@@ -1,0 +1,29 @@
+services:
+  ezbookkeeping:
+    image: mayswind/ezbookkeeping
+    container_name: ezbookkeeping
+    restart: unless-stopped
+    env_file: .env
+    # environment:
+    #   - TZ=${TZ}
+    ports:
+      - ${PORT}:8080
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - storage:/ezbookkeeping/storage # make sure the UID:GID is 1000:1000
+      - log:/ezbookkeeping/log         # make sure the UID:GID is 1000:1000
+
+volumes:
+  log:
+  storage:
+
+# networks:
+#   proxy:
+#     external: true
