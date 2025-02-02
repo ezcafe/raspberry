@@ -88,9 +88,10 @@ docker-compose up -d app
 
 ## Backup and Restore
 
-### Create backup folder
+### Make backup folder accessible
 
-mkdir miniflux
+mkdir -p /home/ezcafe/backups/miniflux
+chown 1000:1000 /home/ezcafe/backups/miniflux
 
 ### Make .sh script as executable
 

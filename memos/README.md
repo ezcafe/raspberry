@@ -76,6 +76,11 @@ Go to Settings -> SSO -> Create
 
 ## Backup and Restore
 
+### Make backup folder accessible
+
+mkdir -p /home/ezcafe/backups/memos
+chown 1000:1000 /home/ezcafe/backups/memos
+
 ### Make .sh script as executable
 
 chmod +x ../scripts/backup-post-script.sh
