@@ -15,10 +15,9 @@ services:
     #   - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
     environment:
       - TZ=${TZ}
-      - FTLCONF_REPLY_ADDR4=${FTLCONF_REPLY_ADDR4}
-      - WEBPASSWORD=${WEBPASSWORD}
-      - WEBTHEME=${WEBTHEME}
-      - DNSMASQ_LISTENING=${DNSMASQ_LISTENING}
+      - FTLCONF_webserver_api_password=${WEBPASSWORD}
+      - FTLCONF_webserver_interface_theme=${WEBTHEME}
+      - FTLCONF_dns_listeningMode=${DNSMASQ_LISTENING}
     volumes:
       - config:/etc/pihole
       - dnsmasq:/etc/dnsmasq.d
