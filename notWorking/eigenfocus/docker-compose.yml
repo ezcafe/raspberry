@@ -1,0 +1,27 @@
+services:
+  eigenfocus:
+    image: eigenfocus/eigenfocus:0.9.0
+    container_name: eigenfocus
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - TZ=${TZ}
+      - DEFAULT_HOST_URL=http://localhost:$${PORT}
+    ports:
+      - ${PORT}:3000
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - data:/eigenfocus-app/app-data
+
+volumes:
+  data:
+
+# networks:
+#   proxy:
+#     external: true
