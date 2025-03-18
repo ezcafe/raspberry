@@ -1,0 +1,27 @@
+services:
+  expenseowl:
+    image: tanq16/expenseowl:main
+    container_name: expenseowl
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - TZ=${TZ}
+      - CURRENCY=vnd
+    ports:
+      - ${PORT}:8080
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - data:/app/data
+
+volumes:
+  data:
+
+# networks:
+#   proxy:
+#     external: true
