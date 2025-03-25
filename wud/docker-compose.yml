@@ -4,10 +4,6 @@ services:
     container_name: wud
     restart: unless-stopped
     env_file: .env
-    environment:
-      - TZ=${TZ}
-      - WUD_TRIGGER_TELEGRAM_1_BOTTOKEN=${BOTTOKEN}
-      - WUD_TRIGGER_TELEGRAM_1_CHATID=${CHATID}
     ports:
       - ${PORT:-3000}:3000
     healthcheck:
