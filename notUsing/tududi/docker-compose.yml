@@ -1,0 +1,26 @@
+services:
+  tududi:
+    image: chrisvel/tududi:latest
+    container_name: tududi
+    restart: unless-stopped
+    env_file: .env
+    # environment:
+    #   - TZ=${TZ}
+    ports:
+      - ${PORT}:9292
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - data:/usr/src/app/tududi_db
+
+volumes:
+  data:
+
+# networks:
+#   proxy:
+#     external: true
