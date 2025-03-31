@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   db:
     image: mariadb
@@ -13,32 +11,31 @@ services:
       - vikunja_db_data:/var/lib/mysql
     restart: unless-stopped
     container_name: vikunja-db
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u $$MYSQL_USER --password=$$MYSQL_PASSWORD"]
+      interval: 2s
+      start_period: 30s
 
-  api:
-    image: vikunja/api
+  vikunja:
+    image: vikunja/vikunja
+    ports:
+      - ${PORT}:3456
     environment:
+      # VIKUNJA_API_URL: ${VIKUNJA_API_URL}
+      VIKUNJA_SERVICE_PUBLICURL: ${SERVICE_PUBLICURL}
       VIKUNJA_DATABASE_HOST: db
       VIKUNJA_DATABASE_PASSWORD: ${MYSQL_PASSWORD}
       VIKUNJA_DATABASE_TYPE: mysql
       VIKUNJA_DATABASE_USER: ${MYSQL_USER}
       VIKUNJA_DATABASE_DATABASE: vikunja
-    ports:
-      - ${API_PORT}:3456
+      VIKUNJA_SERVICE_JWTSECRET: ${SERVICE_JWTSECRET}
+    restart: unless-stopped
+    container_name: vikunja
     volumes:
       - vikunja_data:/app/vikunja/files
     depends_on:
-      - db
-    restart: unless-stopped
-    container_name: vikunja-api
-
-  frontend:
-    image: vikunja/frontend
-    ports:
-      - ${PORT}:80
-    environment:
-      VIKUNJA_API_URL: ${VIKUNJA_API_URL}
-    restart: unless-stopped
-    container_name: vikunja
+      db:
+        condition: service_healthy
 
 volumes:
   vikunja_db_data:
