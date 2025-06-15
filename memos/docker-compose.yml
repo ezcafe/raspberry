@@ -4,10 +4,27 @@ services:
     image: neosmemo/memos:latest
     container_name: memos
     restart: unless-stopped
+    env_file: .env
     volumes:
       - memos:/var/opt/memos
     ports:
       - ${PORT}:5230
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16.1
+    container_name: memos-db
+    restart: unless-stopped
+    env_file: .env
+    healthcheck:
+      test:
+        ['CMD-SHELL', 'pg_isready -d "$${POSTGRES_DB}" -U $${POSTGRES_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - data:/var/lib/postgresql/data/
 
   db-backup:
     container_name: memos-db-backup
@@ -21,8 +38,12 @@ services:
       - memos:/var/opt/memos
     environment:
       # - DEBUG_MODE=TRUE
-      - DB01_TYPE=sqlite3
-      - DB01_HOST=/var/opt/memos/memos_prod.db
+      - DB01_TYPE=pgsql
+      - DB01_HOST=${DB_HOST}
+      - DB01_NAME=${DB_NAME}
+      - DB01_USER=${DB_USER}
+      - DB01_PASS=${DB_PASS}
+      - DB01_SPLIT_DB=FALSE
       # - DB01_NAME=${DB_NAME}
       # - DB01_USER=${DB_USER}
       # - DB01_PASS=${DB_PASS}
@@ -31,10 +52,10 @@ services:
       - DEFAULT_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
       - DEFAULT_CHECKSUM=SHA1
       - DEFAULT_COMPRESSION=GZ
-      - DB01_SPLIT_DB=FALSE
       - CONTAINER_ENABLE_MONITORING=FALSE
       - TIMEZONE=${TZ}
     restart: unless-stopped
 
 volumes:
    memos:
+   data:
