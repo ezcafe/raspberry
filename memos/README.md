@@ -13,6 +13,7 @@ Create OIDC Client with these information
 ### Update memos config
 
 Go to Settings -> SSO -> Create
+- Template: Custom
 - Name: Passkey
 - Client ID: copy from OIDC provider
 - Client secret: copy from OIDC provider
