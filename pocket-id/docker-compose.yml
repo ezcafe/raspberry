@@ -67,6 +67,7 @@ services:
 
 volumes:
   pocket-id:
+  data:
 
 # networks:
 #   proxy:
