@@ -33,8 +33,8 @@ services:
       - memos
     volumes:
       - /home/ezcafe/backups/memos:/backup
-      - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
-      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
+      - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh:rwx
+      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh:rwx
       - memos:/var/opt/memos
     environment:
       # - DEBUG_MODE=TRUE
