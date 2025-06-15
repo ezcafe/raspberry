@@ -1,15 +1,15 @@
 services:
   pocket-id:
-    image: stonith404/pocket-id
+    image: ghcr.io/pocket-id/pocket-id
     container_name: pocket-id
     restart: unless-stopped
     env_file: .env
     # environment:
     #   - TZ=${TZ}
     ports:
-      - ${PORT}:80
+      - ${PORT}:1411
     healthcheck:
-      test: "curl -f http://localhost/health"
+      test: "curl -f http://localhost:1411/healthz"
       interval: 1m30s
       timeout: 5s
       retries: 5
@@ -17,7 +17,23 @@ services:
     # networks:
     #   - proxy
     volumes:
-      - pocket-id:/app/backend/data
+      - pocket-id:/app/data
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    container_name: pocket-id-db
+    restart: unless-stopped
+    env_file: .env
+    healthcheck:
+      test:
+        ['CMD-SHELL', 'pg_isready -d "$${POSTGRES_DB}" -U $${POSTGRES_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - data:/var/lib/postgresql/data/
 
   db-backup:
     container_name: pocket-id-db-backup
@@ -28,7 +44,7 @@ services:
       - /home/ezcafe/backups/pocket-id:/backup
       - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
       - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
-      - pocket-id:/app/backend/data
+      - pocket-id:/app/data
     environment:
       # - DEBUG_MODE=TRUE
       - DB01_TYPE=pgsql
