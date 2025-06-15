@@ -95,7 +95,8 @@ chown 1000:1000 /home/ezcafe/backups/miniflux
 
 ### Make .sh script as executable
 
-chmod +x ../scripts/backup-post-script.sh
+chmod u=rwx ../scripts/backup-pre-script.sh
+chmod u=rwx ../scripts/backup-post-script.sh
 
 ### Manual Backup
 

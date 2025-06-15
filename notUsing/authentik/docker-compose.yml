@@ -97,6 +97,8 @@ services:
       - DB01_TYPE=pgsql
       - DB01_HOST=postgresql
       - DB01_NAME=${DB_NAME}
+      - DEFAULT_AUTH=${DB_NAME}
+      - DEFAULT_AUTH=${DB_NAME}
       - DB01_USER=${DB_USER}
       - DB01_PASS=${DB_PASS}
       # - DEFAULT_BACKUP_BEGIN=0000      # backup starts immediately
