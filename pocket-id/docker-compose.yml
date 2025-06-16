@@ -9,7 +9,7 @@ services:
     ports:
       - ${PORT}:1411
     healthcheck:
-      test: "curl -f http://localhost:1411/healthz"
+      test: "curl -f http://localhost:${PORT}/healthz"
       interval: 1m30s
       timeout: 5s
       retries: 5
