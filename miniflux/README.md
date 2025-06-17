@@ -10,17 +10,16 @@ Create OIDC Client with these information
 - name: miniflux
 - Callback URLs: https://news.example.com/oauth2/oidc/callback
 
-### Update memos config
+### Update config
 
-Go to Settings -> SSO -> Create
-- Name: Passkey
-- Client ID: copy from OIDC provider
-- Client secret: copy from OIDC provider
-- Authorization endpoint: copy from OIDC provider
-- Token endpoint: copy from OIDC provider
-- User endpoint: copy from OIDC provider
-- Scopes: openid profile email
-- Identifier: preferred_username
+Update .env file
+
+OAUTH2_PROVIDER=oidc
+OAUTH2_CLIENT_ID=copy from OIDC provider
+OAUTH2_CLIENT_SECRET=copy from OIDC provider
+OAUTH2_REDIRECT_URL=https://news.example.com/oauth2/oidc/callback
+OAUTH2_OIDC_DISCOVERY_ENDPOINT=https://auth.example.com
+OAUTH2_USER_CREATION=1
 
 ### Update .env file
 
