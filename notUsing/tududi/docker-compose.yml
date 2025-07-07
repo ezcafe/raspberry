@@ -7,7 +7,7 @@ services:
     # environment:
     #   - TZ=${TZ}
     ports:
-      - ${PORT}:9292
+      - ${PORT}:3002
     # healthcheck:
     #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
     #   interval: 10s
@@ -16,7 +16,7 @@ services:
     # networks:
     #   - proxy
     volumes:
-      - data:/usr/src/app/tududi_db
+      - data:/app/backend/db
 
 volumes:
   data:
