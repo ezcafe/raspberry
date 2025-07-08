@@ -1,0 +1,48 @@
+services:
+  ticky:
+    image: ghcr.io/dkorecko/ticky:latest
+    container_name: ticky
+    restart: unless-stopped
+    env_file: .env
+    # environment:
+    #   - TZ=${TZ}
+    ports:
+      - ${PORT}:8080
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - data:/app/wwwroot/uploaded
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mysql:8
+    container_name: ticky-db
+    restart: unless-stopped
+    env_file: .env
+    # environment:
+    #   - TZ=${TZ}
+    # ports:
+    #   - ${PORT}:8080
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  data:
+  db:
+
+# networks:
+#   proxy:
+#     external: true
