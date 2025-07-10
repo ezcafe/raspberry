@@ -1,0 +1,30 @@
+services:
+  ntfy:
+    image: binwiederhier/ntfy
+    container_name: ntfy
+    restart: unless-stopped
+    env_file: .env
+    # environment:
+    #   - TZ=${TZ}
+    ports:
+      - ${PORT}:80
+    command:
+      - serve
+    user: 1000:1000
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    # networks:
+    #   - proxy
+    volumes:
+      - ./:/var/lib/ntfy
+      # - /etc/ntfy:/etc/ntfy
+
+# volumes:
+#   data:
+
+# networks:
+#   proxy:
+#     external: true
