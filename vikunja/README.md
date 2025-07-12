@@ -26,3 +26,31 @@ auth.openid.providers.clientsecret=copy from OIDC provider
 Go to https://unsplash.com/oauth/applications to create an application
 backgrounds.providers.unsplash.accesstoken=copy from application
 backgrounds.providers.unsplash.applicationid=copy from application
+
+## Backup and Restore
+
+### Make backup folder accessible
+
+mkdir -p /home/ezcafe/backups/vikunja
+chown 1000:1000 /home/ezcafe/backups/vikunja
+
+### Make .sh script as executable
+
+chmod u=rwx ../scripts/backup-pre-script.sh
+chmod u=rwx ../scripts/backup-post-script.sh
+
+### Manual Backup
+
+<!-- https://github.com/tiredofit/docker-db-backup -->
+
+```
+docker exec -it vikunja-db-backup bash
+backup-now
+```
+
+### Restore
+
+```
+docker exec -it vikunja-db-backup bash
+restore
+```
