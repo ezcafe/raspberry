@@ -1,9 +1,7 @@
 services:
   db:
     image: postgres:17
-    environment:
-      POSTGRES_PASSWORD: changeme
-      POSTGRES_USER: vikunja
+    env_file: .env
     volumes:
       - db_data:/var/lib/postgresql/data
     restart: unless-stopped
@@ -17,12 +15,12 @@ services:
     image: vikunja/vikunja
     ports:
       - ${PORT}:3456
-    environment:
-
+    env_file: .env
     restart: unless-stopped
     container_name: vikunja
     volumes:
       - data:/app/vikunja/files
+      - ./config.yml:/etc/vikunja/config.yml
     depends_on:
       db:
         condition: service_healthy
