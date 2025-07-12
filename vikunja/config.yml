@@ -404,7 +404,7 @@ auth:
   # password: ""
 #
 # Provide default settings for new users. When a new user is created, these settings will automatically be set for the user. If you change them in the config file afterwards they will not be changed back for existing users.
-# defaultsettings:
+defaultsettings:
   # The avatar source for the user. Can be `gravatar`, `initials`, `upload` or `marble`. If you set this to `upload` you'll also need to specify `defaultsettings.avatar_file_id`.
   # avatar_provider: "initials"
   # The id of the file used as avatar.
@@ -422,7 +422,7 @@ auth:
   # The id of the default project. Make sure users actually have access to this project when setting this value.
   # default_project_id: 0
   # Start of the week for the user. `0` is sunday, `1` is monday and so on.
-  # week_start: 0
+  week_start: 1
   # The language of the user interface. Must be an ISO 639-1 language code followed by an ISO 3166-1 alpha-2 country code. Check https://kolaente.dev/vikunja/vikunja/frontend/src/branch/main/src/i18n/lang for a list of possible languages. Will default to the browser language the user uses when signing up.
   # language: "<unset>"
   # The time zone of each individual user. This will affect when users get reminders and overdue task emails.
