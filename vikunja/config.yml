@@ -1,4 +1,4 @@
-# service:
+service:
   # This token is used to verify issued JWT tokens.
   # Default is a random token which will be generated at each startup of Vikunja.
   # (This means all already issued tokens will be invalid once you restart Vikunja)
@@ -37,7 +37,7 @@
   # The time zone all timestamps are in. Please note that time zones have to use [the official tz database names](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). UTC or GMT offsets won't work.
   # timezone: "GMT"
   # Whether task comments should be enabled or not
-  # enabletaskcomments: true
+  enabletaskcomments: false
   # Whether totp is enabled. In most cases you want to leave that enabled.
   # enabletotp: true
   # If not empty, this will enable `/test/{table}` endpoints which allow to put any content in the database.
@@ -274,25 +274,25 @@
   # When using gravatar, this is the duration in seconds until a cached gravatar user avatar expires
   # gravatarexpiration: 3600
 #
-# backgrounds:
+backgrounds:
   # Whether to enable backgrounds for projects at all.
   # enabled: true
-  # providers:
-    # upload:
+  providers:
+    upload:
       # Whether to enable uploaded project backgrounds
-      # enabled: true
+      enabled: false
     #
-    # unsplash:
+    unsplash:
       # Whether to enable setting backgrounds from unsplash as project backgrounds
-      # enabled: false
+      enabled: true
       # You need to create an application for your installation at https://unsplash.com/oauth/applications/new
       # and set the access token below.
-      # accesstoken: ""
+      accesstoken: ""
       # The unsplash application id is only used for pingback and required as per their api guidelines.
       # You can find the Application ID in the dashboard for your API application. It should be a numeric ID.
       # It will only show in the UI if your application has been approved for Enterprise usage, therefore if
       # you’re in Demo mode, you can also find the ID in the URL at the end: https://unsplash.com/oauth/applications/:application_id
-      # applicationid: ""
+      applicationid: ""
     #
   #
 #

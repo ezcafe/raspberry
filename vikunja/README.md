@@ -22,3 +22,7 @@ auth.openid.providers.authurl=https://auth.example.com
 auth.openid.providers.logouturl=copy from OIDC provider
 auth.openid.providers.clientid=copy from OIDC provider
 auth.openid.providers.clientsecret=copy from OIDC provider
+
+Go to https://unsplash.com/oauth/applications to create an application
+backgrounds.providers.unsplash.accesstoken=copy from application
+backgrounds.providers.unsplash.applicationid=copy from application
