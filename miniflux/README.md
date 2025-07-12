@@ -10,7 +10,7 @@ Create OIDC Client with these information
 - name: miniflux
 - Callback URLs: https://news.example.com/oauth2/oidc/callback
 
-### Update config
+### Update .env file
 
 Update .env file
 
@@ -18,18 +18,7 @@ OAUTH2_PROVIDER=oidc
 OAUTH2_CLIENT_ID=copy from OIDC provider
 OAUTH2_CLIENT_SECRET=copy from OIDC provider
 OAUTH2_REDIRECT_URL=https://news.example.com/oauth2/oidc/callback
-OAUTH2_OIDC_DISCOVERY_ENDPOINT=https://auth.example.com
-OAUTH2_USER_CREATION=1
-
-### Update .env file
-
-Update these values with the values you created before
-
-OAUTH2_PROVIDER=oidc
-OAUTH2_CLIENT_ID=copy from OIDC provider
-OAUTH2_CLIENT_SECRET=copy from OIDC provider
-OAUTH2_REDIRECT_URL=https://<your-rss-domain>/oauth2/oidc/callback
-OAUTH2_OIDC_DISCOVERY_ENDPOINT=https://<your-auth-domain> without trailing /
+OAUTH2_OIDC_DISCOVERY_ENDPOINT=https://auth.example.com # without trailing /
 OAUTH2_USER_CREATION=1
 
 ## Authentik
