@@ -325,13 +325,13 @@ auth:
   openid:
     # Enable or disable OpenID Connect authentication
     enabled: true
-    redirecturl: "https://task.example.com/auth/openid/pocketid"  # <---- slash at the end is important
+    redirecturl: "https://task.example.com/auth/openid/"  # <---- slash at the end is important
     # A list of enabled providers. You can freely choose the `<provider key>`. Note that you must add at least one key to a config file if you want to read values from an environment variable as the provider won't be known to Vikunja otherwise.
     providers:
       -
       # <provider key>:
         # The name of the provider as it will appear in the frontend.
-        name: "Passkey"
+      - name: "passkey"
         # The auth url to send users to if they want to authenticate using OpenID Connect.
         authurl: "https://auth.example.com"
         # The oidc logouturl that users will be redirected to on logout.
