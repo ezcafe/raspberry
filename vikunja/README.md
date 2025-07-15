@@ -1,5 +1,7 @@
 # vikunja
 
+## Update .env file
+
 ## Pocket ID
 
 ### Create Provider
