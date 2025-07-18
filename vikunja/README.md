@@ -2,6 +2,12 @@
 
 ## Update .env file
 
+Update 3 items
+
+VIKUNJA_SERVICE_PUBLICURL
+VIKUNJA_SERVICE_JWTSECRET
+DB_PASS
+
 ## Pocket ID
 
 ### Create Provider
