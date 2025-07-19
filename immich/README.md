@@ -1,7 +1,11 @@
 # Immich
 
-## Open ports
-sudo ufw allow 19953/tcp comment immich
+## Create backup folder
+
+mkdir /home/ezcafe/backups/
+mkdir /home/ezcafe/backups/immich/
+mkdir /home/ezcafe/backups/immich/data
+mkdir /home/ezcafe/backups/immich/upload
 
 ## Authentik
 
