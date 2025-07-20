@@ -17,13 +17,13 @@ Proxy Status: DNS only
 TTL: Auto
 
 `CNAME` with Content `@` will point `subdomain.example.com` to `example.com`
-`DNS only` is required to create SSL later. 
+`DNS only` is required to create SSL later.
 We will change it back to `Proxied` after SSL is created.
 
 ## First load
 
 Log in to the Admin UI
-http://<your-ip>:81
+http://<your-ip>:19998
 
 Default Admin User:
 Email:    admin@example.com
@@ -53,9 +53,9 @@ Go to Hosts > Proxy Hosts > Add Proxy Host
 - Check: Block Common Exploits
 
 ### SKIP THIS: Tab Custom locations
-Click Add location. 
-If forwarding to a WordPress server, type “/wp-admin” as the location. 
-The scheme should match the previous page, which is http in this case. 
+Click Add location.
+If forwarding to a WordPress server, type “/wp-admin” as the location.
+The scheme should match the previous page, which is http in this case.
 Again, add your server IP and forward port like the previous page as well.
 
 ### Tab SSL
