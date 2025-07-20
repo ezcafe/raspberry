@@ -81,6 +81,7 @@ Go to Settings -> SSO -> Create
 
 mkdir -p /home/ezcafe/backups/memos
 chown 1000:1000 /home/ezcafe/backups/memos
+sudo chmod -R 777 /home/ezcafe/backups/memos
 
 ### Make .sh script as executable
 

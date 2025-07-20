@@ -8,6 +8,7 @@ Go to https://auth.example.com/login/setup to add passkey
 
 mkdir -p /home/ezcafe/backups/pocket-id
 chown 1000:1000 /home/ezcafe/backups/pocket-id
+sudo chmod -R 777 /home/ezcafe/backups/pocket-id
 
 ## Backup and Restore
 
