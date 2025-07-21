@@ -2,7 +2,7 @@
 
 ## Fix permission
 
-sudo chmod -R 777 /path/to/backups/folder/*/*
+chmod -R 777 /path/to/backups/folder/
 
 ## Share folder
 

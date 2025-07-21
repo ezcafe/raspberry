@@ -65,12 +65,6 @@ Check: HTTP/2 Support
 
 Then Save
 
-There is a bug with Nginx Proxy Manager, we need to Go back to Tab SSL again
-Check: Force SSL
-Check: HTTP/2 Support
-
-Then Save
-
 ## Enable the port in firewall
 
 sudo ufw allow <your-app-port>

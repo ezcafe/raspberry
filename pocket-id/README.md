@@ -7,8 +7,8 @@ Go to https://auth.example.com/login/setup to add passkey
 ### Make backup folder accessible
 
 mkdir -p /home/ezcafe/backups/pocket-id
-chown 1000:1000 /home/ezcafe/backups/pocket-id
-sudo chmod -R 777 /home/ezcafe/backups/pocket-id
+chown -R 1000:1000 /home/ezcafe/backups/pocket-id
+chmod -R 777 /home/ezcafe/backups/pocket-id
 
 ## Backup and Restore
 

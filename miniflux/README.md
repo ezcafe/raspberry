@@ -79,8 +79,8 @@ docker-compose up -d app
 ### Make backup folder accessible
 
 mkdir -p /home/ezcafe/backups/miniflux
-chown 1000:1000 /home/ezcafe/backups/miniflux
-sudo chmod -R 777 /home/ezcafe/backups/miniflux
+chown -R 1000:1000 /home/ezcafe/backups/miniflux
+chmod -R 777 /home/ezcafe/backups/miniflux
 
 ### Make .sh script as executable
 
