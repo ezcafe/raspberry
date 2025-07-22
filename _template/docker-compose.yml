@@ -13,10 +13,10 @@ services:
     #   interval: 10s
     #   timeout: 5s
     #   retries: 5
-    # networks:
-    #   - proxy
     # volumes:
       # - data:/opt/example/data
+    # networks:
+    #   - proxy
 
 # volumes:
 #   data:
