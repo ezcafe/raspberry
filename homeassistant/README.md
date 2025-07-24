@@ -8,6 +8,35 @@ sudo ufw allow 21064/tcp comment homekit
 
 https://goauthentik.io/integrations/services/home-assistant/
 
+## Broadlink Remote
+
+### Setup device names in Broadlink app
+
+### Learn new command
+
+1. Go to "Developer tools" -> "Actions"
+2. Select "Learn command"
+3. Target -> Choose device -> Select Broadlink Remote
+4. Device -> Input device name (set up in previous step "Setup device names in Broadlink app")
+5. Command: Input command name
+6. Command type: Select command type
+7. Click "Perform action"
+8. Point real remote to Broadlink Remote, then press button
+9. Repeat step 5 to step 8 for other buttons
+
+### Setup automation
+
+1. Create new automation
+2. Choose Send command and input information
+
+### Review commands
+
+1. Go to Add-ons -> File editor
+2. Go to Configuration tab -> Remove .storage in "Ignore Pattern"
+3. Save and restart
+4. Open web UI
+5. Go to .storage folder -> Open broadlink_remote_xxxxxx_codes
+
 ## IR Remote
 
 ### Learn new command
