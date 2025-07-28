@@ -1,685 +1,376 @@
-- id: '1705880903000'
-  alias: 'Bedroom No Motion Detected '
-  description: 'Turn off lights when no motion detected in bedroom '
-  trigger:
-  - type: not_occupied
-    platform: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 5800c25901beeb825895e47402f7131b
-    domain: binary_sensor
-  condition:
-  - condition: or
-    conditions:
-    - condition: device
-      type: is_on
-      device_id: 8fa2e7185538b4a1a7c8c192a1d9c58d
-      entity_id: 8d8d4d5ed9c5bbe230dfd6c89159208e
-      domain: light
-    - condition: device
-      type: is_on
-      device_id: 972b8438023282008a2edb47bd25ad82
-      entity_id: 8dbcc3b7e6547e59e046ed6d2001a732
-      domain: light
-    - condition: device
-      type: is_on
-      device_id: 324b6deedbb36ac170a67ae24797ede6
-      entity_id: 1ab6e724179754f2085d01195fabb833
-      domain: light
-  action:
-  - service: light.turn_off
-    metadata: {}
-    data:
-      transition: 5
-    target:
-      entity_id:
-      - light.bed_light
-      - light.window_light
-      - light.work_light
-  mode: single
-- id: '1705883368133'
-  alias: Bedroom Motion Detected After 5:30 PM
-  description: Turn on work light when motion detected in bedroom
-  trigger:
-  - type: occupied
-    platform: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 5800c25901beeb825895e47402f7131b
-    domain: binary_sensor
-  condition:
-  - condition: time
-    after: '17:30:00'
-    before: '20:30:00'
-    weekday:
-    - sun
-    - sat
-    - fri
-    - thu
-    - wed
-    - tue
-    - mon
-  - condition: device
-    type: is_off
-    device_id: 8fa2e7185538b4a1a7c8c192a1d9c58d
-    entity_id: 8d8d4d5ed9c5bbe230dfd6c89159208e
-    domain: light
-  action:
-  - service: light.turn_on
-    metadata: {}
-    data:
-      rgb_color:
-      - 247
-      - 206
-      - 70
-      brightness_pct: 100
-      transition: 5
-    target:
-      entity_id: light.work_light
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 10
-      milliseconds: 0
-  - service: light.turn_off
-    metadata: {}
-    data:
-      transition: 5
-    target:
-      entity_id:
-      - light.bed_light
-      - light.window_light
-  mode: single
-- id: '1705886186671'
-  alias: Bedroom Motion Detected After 9:30 PM
-  description: Turn on play light when motion detected in bedroom
-  trigger:
-  - type: occupied
-    platform: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 5800c25901beeb825895e47402f7131b
-    domain: binary_sensor
-  condition:
-  - condition: time
-    after: '21:30:00'
-    before: '21:58:00'
-    weekday:
-    - sun
-    - sat
-    - fri
-    - thu
-    - wed
-    - tue
-    - mon
-  - condition: device
-    type: is_off
-    device_id: 324b6deedbb36ac170a67ae24797ede6
-    entity_id: 1ab6e724179754f2085d01195fabb833
-    domain: light
-  action:
-  - service: light.turn_on
-    metadata: {}
-    data:
-      rgb_color:
-      - 255
-      - 147
-      - 0
-      brightness_pct: 70
-      transition: 5
-    target:
-      entity_id: light.window_light
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 10
-      milliseconds: 0
-  - service: light.turn_off
-    metadata: {}
-    data:
-      transition: 5
-    target:
-      entity_id:
-      - light.bed_light
-      - light.work_light
-  mode: single
-- id: '1705886408814'
-  alias: Bedroom Motion Detected After 8:30 PM
-  description: Turn on bed light when motion detected in bedroom
-  trigger:
-  - type: occupied
-    platform: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 5800c25901beeb825895e47402f7131b
-    domain: binary_sensor
-  condition:
-  - condition: time
-    after: '20:30:00'
-    before: '21:30:00'
-    weekday:
-    - sun
-    - sat
-    - fri
-    - thu
-    - wed
-    - tue
-    - mon
-  - condition: device
-    type: is_off
-    device_id: 972b8438023282008a2edb47bd25ad82
-    entity_id: 8dbcc3b7e6547e59e046ed6d2001a732
-    domain: light
-  action:
-  - service: light.turn_on
-    metadata: {}
-    data:
-      rgb_color:
-      - 247
-      - 206
-      - 70
-      brightness_pct: 100
-      transition: 5
-    target:
-      entity_id: light.bed_light
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 10
-      milliseconds: 0
-  - service: light.turn_off
-    metadata: {}
-    data:
-      transition: 5
-    target:
-      entity_id:
-      - light.window_light
-      - light.work_light
-  mode: single
-- id: '1705936894417'
-  alias: Bedroom Wake Up
-  description: Wake up at 6
-  trigger:
-  - platform: time
-    at: 06:00:00
-  condition:
-  - type: is_occupied
-    condition: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 5800c25901beeb825895e47402f7131b
-    domain: binary_sensor
-  action:
-  - service: light.turn_on
-    metadata: {}
-    data:
-      transition: 5
-      rgb_color:
-      - 247
-      - 206
-      - 70
-      brightness_pct: 100
-    target:
-      entity_id: light.bed_light
-  mode: single
-- id: '1705937169769'
-  alias: Bedroom Go To Sleep
-  description: Go to sleep at 10
-  trigger:
-  - platform: time
-    at: '22:00:00'
-  condition:
-  - type: is_occupied
-    condition: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 5800c25901beeb825895e47402f7131b
-    domain: binary_sensor
-  action:
-  - service: light.turn_off
-    metadata: {}
-    data:
-      transition: 10
-    target:
-      entity_id:
-      - light.bed_light
-      - light.window_light
-      - light.work_light
-  mode: single
-- id: '1705962943616'
-  alias: 'Bedroom Fan Off On Weekend '
-  description: Turn off fan
-  trigger:
-  - platform: time
-    at: 06:00:00
-  condition:
-  - type: is_occupied
-    condition: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 5800c25901beeb825895e47402f7131b
-    domain: binary_sensor
-  - condition: time
-    weekday:
-    - sat
-    - sun
-  - condition: device
-    type: is_on
-    device_id: ae0e1ba093830f63d0539dc482714a3f
-    entity_id: b49b237ccab62259ca1463dc59171ce6
-    domain: switch
-  action:
-  - service: switch.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: switch.bedroom_fan_outlet_switch
-  mode: single
-- id: '1705967414316'
-  alias: Bedroom Purifier Off
-  description: Turn off air purifier when quality is good
-  trigger:
-  - platform: numeric_state
-    entity_id:
-    - sensor.jya_fjord_airpurifier_pro_pm2_5
-    below: 12
-  condition:
-  - condition: device
-    device_id: 8d896de00eb78f121b706f07d78c846b
-    domain: fan
-    entity_id: 1d46579426d506bf62d27ef0e596cd64
-    type: is_on
-  action:
-  - type: turn_off
-    device_id: 8d896de00eb78f121b706f07d78c846b
-    entity_id: 1d46579426d506bf62d27ef0e596cd64
-    domain: fan
-  mode: single
-- id: '1705967499479'
-  alias: Bedroom Purifier On
-  description: Turn on air purifier when quality is bad
-  trigger:
-  - platform: numeric_state
-    entity_id:
-    - sensor.jya_fjord_airpurifier_pro_pm2_5
-    above: 20
-  condition:
-  - condition: device
-    device_id: 8d896de00eb78f121b706f07d78c846b
-    domain: fan
-    entity_id: 1d46579426d506bf62d27ef0e596cd64
-    type: is_off
-  action:
-  - type: turn_on
-    device_id: 8d896de00eb78f121b706f07d78c846b
-    entity_id: 1d46579426d506bf62d27ef0e596cd64
-    domain: fan
-  mode: single
-- id: '1706022564476'
-  alias: 'Bridge Motion Detected '
-  description: 'Turn on bridge light when motion detected '
-  trigger:
-  - type: motion
-    platform: device
-    device_id: b4a58bd4bdb311c9fd5f2b30d84aa7c3
-    entity_id: fc9ae81990f11ed191ba88d16c3c23b5
-    domain: binary_sensor
-  - type: motion
-    platform: device
-    device_id: 5e324cfbb68205d646bd01c136d0b111
-    entity_id: 17b7363111529b01fec5eff1c2e3c31f
-    domain: binary_sensor
-  condition:
-  - condition: time
-    after: '17:45:00'
-    before: 06:30:00
-  - condition: device
-    type: is_off
-    device_id: 8a735c3b1864cc8faa0131d5e2a93f3e
-    entity_id: 853fddb05edc46f9ce51c300c846ab8b
-    domain: light
-  action:
-  - type: turn_on
-    device_id: 8a735c3b1864cc8faa0131d5e2a93f3e
-    entity_id: 853fddb05edc46f9ce51c300c846ab8b
-    domain: light
-  mode: single
-- id: '1706109072417'
-  alias: 'Bridge No Motion Detected '
-  description: 'Turn off bridge light when motion not detected '
-  trigger:
-  - type: no_motion
-    platform: device
-    device_id: b4a58bd4bdb311c9fd5f2b30d84aa7c3
-    entity_id: fc9ae81990f11ed191ba88d16c3c23b5
-    domain: binary_sensor
-  - type: no_motion
-    platform: device
-    device_id: 5e324cfbb68205d646bd01c136d0b111
-    entity_id: 17b7363111529b01fec5eff1c2e3c31f
-    domain: binary_sensor
-  condition:
-  - condition: device
-    type: is_on
-    device_id: 8a735c3b1864cc8faa0131d5e2a93f3e
-    entity_id: 853fddb05edc46f9ce51c300c846ab8b
-    domain: light
-  action:
-  - type: turn_off
-    device_id: 8a735c3b1864cc8faa0131d5e2a93f3e
-    entity_id: 853fddb05edc46f9ce51c300c846ab8b
-    domain: light
-  mode: single
-- id: '1706111216140'
-  alias: Bedroom Fan Off On Weekdays
-  description: Turn off fan
-  trigger:
-  - platform: time
-    at: 07:00:00
-  condition:
-  - type: is_occupied
-    condition: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 5800c25901beeb825895e47402f7131b
-    domain: binary_sensor
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
-  - condition: device
-    type: is_on
-    device_id: ae0e1ba093830f63d0539dc482714a3f
-    entity_id: b49b237ccab62259ca1463dc59171ce6
-    domain: switch
-  action:
-  - service: switch.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: switch.bedroom_fan_outlet_switch
-  mode: single
-- id: '1706111283093'
-  alias: Bedroom Fan Off At Night
-  description: Turn off fan
-  trigger:
-  - platform: time
+- id: '1752761300410'
+  alias: Living room led light turn on at 9PM
+  description: ''
+  triggers:
+  - trigger: time
     at: '21:00:00'
-  condition:
-  - type: is_occupied
-    condition: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 5800c25901beeb825895e47402f7131b
-    domain: binary_sensor
-  - condition: device
-    type: is_on
-    device_id: ae0e1ba093830f63d0539dc482714a3f
-    entity_id: b49b237ccab62259ca1463dc59171ce6
-    domain: switch
-  action:
-  - service: switch.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: switch.bedroom_fan_outlet_switch
-  mode: single
-- id: '1706137374612'
-  alias: Bedroom Fan On
-  description: Turn on fan in the morning
-  trigger:
-  - platform: time
-    at: 04:30:00
-  condition:
-  - condition: device
-    type: is_off
-    device_id: ae0e1ba093830f63d0539dc482714a3f
-    entity_id: b49b237ccab62259ca1463dc59171ce6
-    domain: switch
-  - type: is_motion
-    condition: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 88a889df056de98610dcf5df46a2c240
-    domain: binary_sensor
-  - type: is_occupied
-    condition: device
-    device_id: 1b0bd18f6332b721725804484fa65d85
-    entity_id: 5800c25901beeb825895e47402f7131b
-    domain: binary_sensor
-  action:
-  - type: turn_on
-    device_id: ae0e1ba093830f63d0539dc482714a3f
-    entity_id: b49b237ccab62259ca1463dc59171ce6
-    domain: switch
-  mode: single
-- id: '1706187413295'
-  alias: Bathroom 1 Motion Detected 5:30 PM
-  description: Turn on light when motion is detected in bathroom
-  trigger:
-  - type: occupied
-    platform: device
-    device_id: c2e301741319635965dc1ed5a8a06b7a
-    entity_id: bd4ced3baf851822b0d330af9a2c398d
-    domain: binary_sensor
-  condition:
-  - condition: device
-    type: is_off
-    device_id: 59782f5d36185267a35503227bdde15e
-    entity_id: f8a7c657be46eb37a1679f122a562193
-    domain: light
-  - condition: time
-    after: '17:30:00'
-    before: '21:00:00'
-  action:
-  - service: light.turn_on
+  conditions: []
+  actions:
+  - action: script.fake_remote
     metadata: {}
     data:
-      transition: 5
-      rgb_color:
-      - 255
-      - 147
-      - 0
-      brightness_pct: 100
-    target:
-      entity_id: light.ylbulbcolor1s_25b8
+      command: living_led_on
+    enabled: true
   mode: single
-- id: '1706187513421'
-  alias: Bathroom 1 No Motion Detected
-  description: Turn on light when motion is detected in bathroom
-  trigger:
+- id: '1752761696247'
+  alias: Living room led light turn off at 9:20PM
+  description: ''
+  triggers:
+  - trigger: time
+    at: '21:20:00'
+  conditions: []
+  actions:
+  - action: script.fake_remote
+    metadata: {}
+    data:
+      command: living_led_off
+    enabled: true
+  mode: single
+- id: '1752838085509'
+  alias: Working room enter night time
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: 6c1f5c11509c931d0ab76dede94bded5
+    entity_id: fe487149a42a9c1ae2a3516acb350250
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: time
+    after: '18:00:00'
+    before: '22:00:00'
+  actions:
+  - type: turn_on
+    device_id: 5561896f763afd135a56a644b88edfda
+    entity_id: 765da3cb2f65bd02c6b215278917dcd6
+    domain: light
+    brightness_pct: 100
+    flash: short
+  - type: turn_on
+    device_id: fc4e9f889a19087de5ff225ea885fdae
+    entity_id: 7aaa3933c9b1b13d4a0bbe1fc6e6e064
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: 0ab3b3df35834a879e74abe9bcd7402a
+    entity_id: 130e0364594951ab97ad77223988e46b
+    domain: switch
+  mode: single
+- id: '1752838269769'
+  alias: 'Working room exit '
+  description: ''
+  triggers:
   - type: not_occupied
-    platform: device
-    device_id: c2e301741319635965dc1ed5a8a06b7a
-    entity_id: bd4ced3baf851822b0d330af9a2c398d
+    device_id: 6c1f5c11509c931d0ab76dede94bded5
+    entity_id: fe487149a42a9c1ae2a3516acb350250
     domain: binary_sensor
-  condition:
-  - condition: device
-    type: is_on
-    device_id: 59782f5d36185267a35503227bdde15e
-    entity_id: f8a7c657be46eb37a1679f122a562193
-    domain: light
-  action:
+    trigger: device
+  conditions: []
+  actions:
   - type: turn_off
-    device_id: 59782f5d36185267a35503227bdde15e
-    entity_id: f8a7c657be46eb37a1679f122a562193
+    device_id: 5561896f763afd135a56a644b88edfda
+    entity_id: 765da3cb2f65bd02c6b215278917dcd6
+    domain: light
+  - type: turn_off
+    device_id: fc4e9f889a19087de5ff225ea885fdae
+    entity_id: 7aaa3933c9b1b13d4a0bbe1fc6e6e064
+    domain: light
+  - type: turn_off
+    device_id: 0ab3b3df35834a879e74abe9bcd7402a
+    entity_id: 130e0364594951ab97ad77223988e46b
+    domain: switch
+  - type: turn_off
+    device_id: 0f31cd7a08b5f505c7c19f413bc99a79
+    entity_id: e9de90109ba88a47bd0b3e6ad810fcd3
     domain: light
   mode: single
-- id: '1706187983283'
-  alias: Bathroom 1 Motion Detected 9PM
-  description: Turn on light when motion is detected in bathroom
-  trigger:
+- id: '1752977188711'
+  alias: Living room led light on turned off
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_boolean.led_toggle
+    from: 'on'
+    to: 'off'
+  conditions: []
+  actions:
+  - action: script.fake_remote
+    metadata: {}
+    data:
+      command: living_led_off
+    enabled: true
+  mode: single
+- id: '1752977243583'
+  alias: Living room led light on turned on
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_boolean.led_toggle
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - action: script.fake_remote
+    metadata: {}
+    data:
+      command: living_led_on
+    enabled: true
+  mode: single
+- id: '1753014753821'
+  alias: Bed room AC turn off at 5AM
+  description: ''
+  triggers:
+  - trigger: time
+    at: 05:00:00
+  conditions: []
+  actions:
+  - action: script.fake_remote
+    metadata: {}
+    data:
+      command: bed_ac_toggle
+    enabled: true
+  mode: single
+- id: '1753226294374'
+  alias: Working room enter day time
+  description: ''
+  triggers:
   - type: occupied
-    platform: device
-    device_id: c2e301741319635965dc1ed5a8a06b7a
-    entity_id: bd4ced3baf851822b0d330af9a2c398d
+    device_id: 6c1f5c11509c931d0ab76dede94bded5
+    entity_id: fe487149a42a9c1ae2a3516acb350250
     domain: binary_sensor
-  condition:
-  - condition: device
-    type: is_off
-    device_id: 59782f5d36185267a35503227bdde15e
-    entity_id: f8a7c657be46eb37a1679f122a562193
-    domain: light
+    trigger: device
+  conditions:
   - condition: time
-    after: '21:00:00'
-    before: 05:30:00
-  action:
-  - service: light.turn_on
+    after: '22:01:00'
+    before: '17:59:00'
+  actions:
+  - type: turn_on
+    device_id: 0f31cd7a08b5f505c7c19f413bc99a79
+    entity_id: e9de90109ba88a47bd0b3e6ad810fcd3
+    domain: light
+    flash: short
+    brightness_pct: 100
+  mode: single
+- id: '1753234755135'
+  alias: Working room computer outlet turn on at 5AM
+  description: ''
+  triggers:
+  - trigger: time
+    at: 05:00:00
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: e4632d5dea800e69d7f529f0e6ab4723
+    entity_id: c940b52931dfe89194ae7b83b68631f1
+    domain: switch
+  mode: single
+- id: '1753367231970'
+  alias: Bedroom RF Remote turn off AC at 5AM
+  description: ''
+  triggers:
+  - trigger: time
+    at: 05:00:00
+  conditions: []
+  actions:
+  - action: remote.send_command
     metadata: {}
     data:
-      transition: 5
-      rgb_color:
-      - 255
-      - 147
-      - 0
-      brightness_pct: 40
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: AC in bedroom
+      command: AC_Off
     target:
-      entity_id: light.ylbulbcolor1s_25b8
-  mode: single
-- id: '1706190166910'
-  alias: Notify when windows are opened at night
-  description: ''
-  trigger:
-  - platform: time
-    at: '21:30:00'
-  condition:
-  - condition: or
-    conditions:
-    - type: is_open
-      condition: device
-      device_id: 1e14c085f63f9a593cf59bed32976e04
-      entity_id: 5edd50df24f2a25c8ae1813f9c9d7032
-      domain: binary_sensor
-    - type: is_open
-      condition: device
-      device_id: 3ae7a5e53b23beeb0ea7d6b636dd3cdf
-      entity_id: bbea47c58e691b96706541d431f0392f
-      domain: binary_sensor
-    - type: is_open
-      condition: device
-      device_id: 66a02e82868cf86f26706e73037c4815
-      entity_id: 9d426040679461c76608e60f051e3e38
-      domain: binary_sensor
-    - type: is_open
-      condition: device
-      device_id: 26aaf5b98ad95b08c439b5e35e25559d
-      entity_id: 3b54f7f885dd0e5470e052b6aaf9c658
-      domain: binary_sensor
-    - type: is_open
-      condition: device
-      device_id: b2eb097a2a147546c098cc0c3e2949eb
-      entity_id: 748532f847c0135db86554619c7f749a
-      domain: binary_sensor
-  action:
-  - service: notify.notify
+      device_id: 4c62df2d59000623daaa9568995d3023
+  - action: remote.send_command
     metadata: {}
     data:
-      message: ^p      ng c         a anh Q       i
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: Fan in bedroom
+      command: Fan_On
+    target:
+      device_id: 4c62df2d59000623daaa9568995d3023
   mode: single
-- id: '1706409852291'
-  alias: Bedroom Purifier On At 11AM
-  description: Turn on air purifier at 11AM
-  trigger:
-  - platform: time
-    at: '11:00:00'
-  condition:
-  - condition: device
-    device_id: 8d896de00eb78f121b706f07d78c846b
-    domain: fan
-    entity_id: 1d46579426d506bf62d27ef0e596cd64
-    type: is_off
-  action:
-  - type: turn_on
-    device_id: 8d896de00eb78f121b706f07d78c846b
-    entity_id: 1d46579426d506bf62d27ef0e596cd64
-    domain: fan
-  mode: single
-- id: '1706409925495'
-  alias: Bedroom Purifier On At 4PM
-  description: Turn on air purifier at 4PM
-  trigger:
-  - platform: time
-    at: '16:00:00'
-  condition:
-  - condition: device
-    device_id: 8d896de00eb78f121b706f07d78c846b
-    domain: fan
-    entity_id: 1d46579426d506bf62d27ef0e596cd64
-    type: is_off
-  action:
-  - type: turn_on
-    device_id: 8d896de00eb78f121b706f07d78c846b
-    entity_id: 1d46579426d506bf62d27ef0e596cd64
-    domain: fan
-  mode: single
-- id: '1706972677454'
-  alias: Bedroom Mac On
+- id: '1753367878515'
+  alias: Bedroom RF Remote turn off fan at 6:20AM
   description: ''
-  trigger:
-  - platform: time
-    at: 05:55:00
-  - platform: time
-    at: '18:00:00'
-  condition: []
-  action:
-  - type: turn_on
-    device_id: 700f2dade8cf28324ac77f9aabd63aea
-    entity_id: fb7ad3c9dc9ee4c5c654b446809df86d
-    domain: light
+  triggers:
+  - trigger: time
+    at: 06:20:00
+  conditions: []
+  actions:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: Fan in bedroom
+      command: Fan_Off
+    target:
+      device_id: 4c62df2d59000623daaa9568995d3023
   mode: single
-- id: '1706972735012'
-  alias: Bedroom Mac Off
+- id: '1753368714711'
+  alias: Bedroom AC on turned off
   description: ''
-  trigger:
-  - platform: time
-    at: 07:30:00
-  - platform: time
-    at: '22:15:00'
-  condition: []
-  action:
-  - type: turn_off
-    device_id: 700f2dade8cf28324ac77f9aabd63aea
-    entity_id: fb7ad3c9dc9ee4c5c654b446809df86d
-    domain: light
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_boolean.bedroom_ac_toggle
+    from: 'on'
+    to: 'off'
+  conditions: []
+  actions:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: AC in bedroom
+      command: AC_Off
+    target:
+      device_id: 4c62df2d59000623daaa9568995d3023
   mode: single
-- id: '1706973510019'
-  alias: 'Bedroom Mac On Weekend '
+- id: '1753368771928'
+  alias: Bedroom AC on turned on
   description: ''
-  trigger:
-  - platform: time
-    at: 09:00:00
-  condition:
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_boolean.bedroom_ac_toggle
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: AC in bedroom
+      command: AC_On
+    target:
+      device_id: 4c62df2d59000623daaa9568995d3023
+  mode: single
+- id: '1753368822540'
+  alias: Bedroom fan on turned off
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_boolean.bedroom_fan_toggle
+    from: 'on'
+    to: 'off'
+  conditions: []
+  actions:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: Fan in bedroom
+      command: Fan_Off
+    target:
+      device_id: 4c62df2d59000623daaa9568995d3023
+  mode: single
+- id: '1753368857888'
+  alias: Bedroom fan on turned on
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_boolean.bedroom_fan_toggle
+    from: 'off'
+    to: 'on'
+  conditions: []
+  actions:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: Fan in bedroom
+      command: Fan_On
+    target:
+      device_id: 4c62df2d59000623daaa9568995d3023
+  mode: single
+- id: '1753518466210'
+  alias: 'Rest room light turn on at 10PM '
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: 318d9991c1ff6a8f4d610faff8634e0d
+    entity_id: 3f0a4ee263ed9a8afe5ce30cabdadfe1
+    domain: binary_sensor
+    trigger: device
+  conditions:
   - condition: time
+    after: '22:00:00'
+    before: 05:00:00
     weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
     - sat
     - sun
-  action:
+  actions:
   - type: turn_on
-    device_id: 700f2dade8cf28324ac77f9aabd63aea
-    entity_id: fb7ad3c9dc9ee4c5c654b446809df86d
+    device_id: eede4a63d294ebf8283da5ac1433f4c3
+    entity_id: 7c0fcca8be0fc0bb6c87ff0bdd92f774
+    domain: light
+    brightness_pct: 20
+  mode: single
+- id: '1753518525060'
+  alias: Rest room light turn off at night
+  description: ''
+  triggers:
+  - type: not_occupied
+    device_id: 318d9991c1ff6a8f4d610faff8634e0d
+    entity_id: 3f0a4ee263ed9a8afe5ce30cabdadfe1
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: eede4a63d294ebf8283da5ac1433f4c3
+    entity_id: 7c0fcca8be0fc0bb6c87ff0bdd92f774
     domain: light
   mode: single
-- id: '1707349129426'
-  alias: Bathroom 1 Motion Detected 5 AM
-  description: Turn on light when motion is detected in bathroom
-  trigger:
+- id: '1753624204670'
+  alias: 'Rest room light turn on at 6PM '
+  description: ''
+  triggers:
   - type: occupied
-    platform: device
-    device_id: c2e301741319635965dc1ed5a8a06b7a
-    entity_id: bd4ced3baf851822b0d330af9a2c398d
+    device_id: 318d9991c1ff6a8f4d610faff8634e0d
+    entity_id: 3f0a4ee263ed9a8afe5ce30cabdadfe1
     domain: binary_sensor
-  condition:
-  - condition: device
-    type: is_off
-    device_id: 59782f5d36185267a35503227bdde15e
-    entity_id: f8a7c657be46eb37a1679f122a562193
-    domain: light
+    trigger: device
+  conditions:
   - condition: time
-    after: 05:30:00
-    before: 06:30:00
-  action:
-  - service: light.turn_on
-    metadata: {}
-    data:
-      transition: 5
-      rgb_color:
-      - 255
-      - 147
-      - 0
-      brightness_pct: 100
-    target:
-      entity_id: light.ylbulbcolor1s_25b8
+    after: '18:00:00'
+    before: '21:59:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  actions:
+  - type: turn_on
+    device_id: eede4a63d294ebf8283da5ac1433f4c3
+    entity_id: 7c0fcca8be0fc0bb6c87ff0bdd92f774
+    domain: light
+    brightness_pct: 80
   mode: single

@@ -2,7 +2,12 @@ homeassistant:
   name: Home
   time_zone: Asia/Ho_Chi_Minh
 
+# Loads default set of integrations. Do not remove.
 default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
 
 automation: !include automations.yaml
 scene: !include scenes.yaml
@@ -16,6 +21,9 @@ script: !include scripts.yaml
 #   password: !secret ewelink_pass
 #   mode: local
 #   reload: always
+
+#template:
+#  - button: !include zigbee_ir_switches.yaml
 
 zha:
   #enable_quirks: true
@@ -33,7 +41,7 @@ zha:
       sonoff_provider: true                      # Auto update sonoff devices
       inovelli_provider: true                    # Auto update INOVELLI devices
       thirdreality_provider: true                # Auto update 3REALITY devices
-      #otau_directory: /path/to/your/ota/folder  # Utilize .ota files to update everything else
+      # otau_directory: /path/to/your/ota/folder  # Utilize .ota files to update everything else
 
 http:
   use_x_forwarded_for: true
@@ -41,4 +49,4 @@ http:
     # retrieve this IP by going to cloudflare tunnel container,
     # search for "... INF ICMP proxy will use 172.19.0.2 as source for IPv4",
     # replace .0.2 with .0.0
-    - 172.19.0.0/24
+    - 172.30.33.0/24

@@ -1,227 +1,29 @@
-- id: '1707186758838'
-  name: Let's Work
-  entities:
-    light.work_light:
-      min_color_temp_kelvin: 2000
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - None
-      - candle
-      - fire
-      - prism
-      supported_color_modes:
-      - color_temp
-      - xy
-      color_mode: color_temp
-      brightness: 255
-      color_temp_kelvin: 3521
-      color_temp: 284
-      hs_color:
-      - 27.152
-      - 44.32
-      rgb_color:
-      - 255
-      - 193
-      - 141
-      xy_color:
-      - 0.453
-      - 0.374
-      effect: None
-      mode: normal
-      dynamics: none
-      friendly_name: Work light
-      supported_features: 44
-      state: 'on'
-    light.bed_light:
-      min_color_temp_kelvin: 2000
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - None
-      - candle
-      - fire
-      - prism
-      supported_color_modes:
-      - color_temp
-      - xy
-      color_mode:
-      brightness:
-      color_temp_kelvin:
-      color_temp:
-      hs_color:
-      rgb_color:
-      xy_color:
-      effect:
-      mode: normal
-      dynamics: none
-      friendly_name: Bed light
-      supported_features: 44
-      state: 'off'
-    light.window_light:
-      min_color_temp_kelvin: 2000
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - None
-      - candle
-      - fire
-      - prism
-      supported_color_modes:
-      - color_temp
-      - xy
-      color_mode:
-      brightness:
-      color_temp_kelvin:
-      color_temp:
-      hs_color:
-      rgb_color:
-      xy_color:
-      effect:
-      mode: normal
-      dynamics: none
-      friendly_name: Window Light
-      supported_features: 44
-      state: 'off'
-    light.bedroom_mac_outlet_light:
-      supported_color_modes:
-      - onoff
-      color_mode: onoff
-      off_with_transition: false
-      off_brightness:
-      icon: mdi:laptop
-      friendly_name: Bedroom Mac Switch
-      supported_features: 8
-      state: 'on'
-  icon: mdi:laptop
-  metadata: {}
-- id: '1707186833773'
-  name: Let's Relax
-  entities:
-    light.work_light:
-      min_color_temp_kelvin: 2000
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - None
-      - candle
-      - fire
-      - prism
-      supported_color_modes:
-      - color_temp
-      - xy
-      color_mode:
-      brightness:
-      color_temp_kelvin:
-      color_temp:
-      hs_color:
-      rgb_color:
-      xy_color:
-      effect:
-      mode: normal
-      dynamics: none
-      friendly_name: Work light
-      supported_features: 44
-      state: 'off'
-    light.bed_light:
-      min_color_temp_kelvin: 2000
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - None
-      - candle
-      - fire
-      - prism
-      supported_color_modes:
-      - color_temp
-      - xy
-      color_mode:
-      brightness:
-      color_temp_kelvin:
-      color_temp:
-      hs_color:
-      rgb_color:
-      xy_color:
-      effect:
-      mode: normal
-      dynamics: none
-      friendly_name: Bed light
-      supported_features: 44
-      state: 'off'
-    light.window_light:
-      min_color_temp_kelvin: 2000
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - None
-      - candle
-      - fire
-      - prism
-      supported_color_modes:
-      - color_temp
-      - xy
-      color_mode: color_temp
-      brightness: 178
-      color_temp_kelvin: 3521
-      color_temp: 284
-      hs_color:
-      - 27.152
-      - 44.32
-      rgb_color:
-      - 255
-      - 193
-      - 141
-      xy_color:
-      - 0.453
-      - 0.374
-      effect: None
-      mode: normal
-      dynamics: none
-      friendly_name: Window Light
-      supported_features: 44
-      state: 'on'
-  icon: mdi:movie
-  metadata: {}
-- id: '1707187024707'
-  name: Fan On
-  entities:
-    switch.bedroom_fan_outlet_switch:
-      icon: mdi:fan
-      friendly_name: Bedroom Fan Switch
-      state: 'on'
-  icon: mdi:fan
-  metadata: {}
-- id: '1707187063426'
-  name: Fan Off
-  entities:
-    switch.bedroom_fan_outlet_switch:
-      icon: mdi:fan
-      friendly_name: Bedroom Fan Switch
-      state: 'off'
-  icon: mdi:fan-off
-  metadata: {}
 - id: '1707197841423'
   name: Lights Off
   entities:
-    light.window_light:
+    light.yellow_light:
       min_color_temp_kelvin: 2000
       max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       effect_list:
-      - None
+      - 'off'
       - candle
       - fire
       - prism
+      - sparkle
+      - opal
+      - glisten
+      - underwater
+      - cosmos
+      - sunbeam
+      - enchant
+      - sunrise
+      - sunset
       supported_color_modes:
       - color_temp
       - xy
+      effect:
       color_mode:
       brightness:
       color_temp_kelvin:
@@ -229,25 +31,34 @@
       hs_color:
       rgb_color:
       xy_color:
-      effect:
       mode: normal
       dynamics: none
-      friendly_name: Window Light
+      friendly_name: Yellow light
       supported_features: 44
       state: 'off'
-    light.work_light:
+    light.red_light:
       min_color_temp_kelvin: 2000
       max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       effect_list:
-      - None
+      - 'off'
       - candle
       - fire
       - prism
+      - sparkle
+      - opal
+      - glisten
+      - underwater
+      - cosmos
+      - sunbeam
+      - enchant
+      - sunrise
+      - sunset
       supported_color_modes:
       - color_temp
       - xy
+      effect:
       color_mode:
       brightness:
       color_temp_kelvin:
@@ -255,25 +66,34 @@
       hs_color:
       rgb_color:
       xy_color:
-      effect:
       mode: normal
       dynamics: none
-      friendly_name: Work light
+      friendly_name: Red light
       supported_features: 44
       state: 'off'
-    light.bed_light:
+    light.green_light:
       min_color_temp_kelvin: 2000
       max_color_temp_kelvin: 6535
       min_mireds: 153
       max_mireds: 500
       effect_list:
-      - None
+      - 'off'
       - candle
       - fire
       - prism
+      - sparkle
+      - opal
+      - glisten
+      - underwater
+      - cosmos
+      - sunbeam
+      - enchant
+      - sunrise
+      - sunset
       supported_color_modes:
       - color_temp
       - xy
+      effect:
       color_mode:
       brightness:
       color_temp_kelvin:
@@ -281,10 +101,9 @@
       hs_color:
       rgb_color:
       xy_color:
-      effect:
       mode: normal
       dynamics: none
-      friendly_name: Bed light
+      friendly_name: Green light
       supported_features: 44
       state: 'off'
   icon: mdi:lightbulb-off

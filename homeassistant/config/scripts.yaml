@@ -1,0 +1,99 @@
+fake_remote:
+  variables:
+    config:
+      living_led_on: B/gkrRF0Ai8C4AMDQAHgAw8DdAJ4BuAFA+AFEwQvAngGdGADAC9gAUAHQANAAeADBwR0AngGLyADQAfgBQMHb6H4JNEILwI=
+      living_led_off: BdQk0BFLAuABAQKAAkvgCgEBeAbAAwCAYAtAAcALBXgGSwJLAuABF+ABAQKAAkugAYAjAUsCQAcCeAaAIANAB0ADgAsPYqHUJMMIgAL//9QkwwhLAg==
+      living_led_decrease: BdokrxFMAuANAQKCAkygAQJ/BoIgA0AHgANAAcALwAcETAKCAkzgCAHgARPAJ+AJBwmCAi2h2iTCCEwC
+      living_led_increase: CQAlnBFGAkYCfgKAA0ABQAtAAcAHBEYCfQZ+4AIDAUYCQAFAB4ADAn4CRuAIAeAFEwF9BsADAH7gDAsHR6EAJdYIRgI=
+      living_led_white: Bg0luRF0AjRgAUAHQANAAUAH4AEDAXwGQAMANKAHAnQCNCABQAfgAQNAD0ADA3QCNALgAwNAAcAPQAEBdAJAI+AHAwe7og0l1wg0Ag==
+      living_led_blue: CcQk0RFAAkACewKAA0ABwAtAB0ABBHsCfwZA4AIDCHsCQAJ7An8GQCADQAcIewJAAnsCfwZAYAMEQAJ7AkBgAUAHQAMDQAJ
+      living_led_green: BQQlrBFIAuANAQJ7AkigAQKJBnvgAgMBSAJAAQGJBkATQAeAA0ABQAuAAQJ7AkjgBgHAG0AH4AcDBzOhBCW+CEgC
+      living_led_red: CsAkpRE1AjUCbwI1YAFAB+ADA0ABA28CewZAAwA1oAcCbwI1IAFAB4ADBTUCNQJvAkAD4AELQAEBbwLAAwF7BoADQA/ACwJ7BjUgA0AHCW8CRaHAJNkINQI=
+      living_led_flash: BgElsxF8AkTgCAFAE0ADgAEBfAbAAwB8YAtAAQB8oAsBfAbAAwF8AiAJCAJ8BkQCRAJ8AoAD4AMBBnwCfAZ8AkQgAQB8IAcAfGADQAsJRAJjoQElqgh8Ag==
+      living_led_strobe: BgklsxFzAjpgAUAHQANAAeADBwRzAnwGOiADQAeAAwA6IAHACwF8BuADC4APBDoCcwI6YAFAB0ADQAHgAQeAJ0AHADpgCwdYoQkl3Qg6Ag==
+      living_led_fade: Bt8krxF+AkngDAFAF4ADAnwGSSADwAcDSQJJAuABC0APwAMESQJ+AkkgAUAP4AEBgBNAAUAXQANAAUAHwAMHNaHfJLsISQI=
+      living_led_smooth: BtoksxFuAjVgAUAH4AMDQAFADwQ1AnsGbqADgAsANSABwAsBewZAA0APQAcCbgI1IAGAB0AL4AcDATUCwBsBewaACwt7Bm4Cg6HaJKcIbgI=
+      bed_ac_toggle: BygjpRE7AoQGgAPgAwEDEAI7AsAX4AsHQB9AAwGEBkAFQAPgBQEBhAbgAQNAAUAh4CMDwD/gIzPgAysBhAZADcABBBAChAY7YAMCEAI7IAEBEAJADwI7AhAgAUAF4AEDBYQG/QJWAUADQAtAGeAFAUARQAMDhAY7AkAH4BcDQAHAK8AHwDNAD0ABQAdAE+ADBws7AjsCEAI7AoQGOwI=
+      bed_ac_increase: B2sjfxE8AowGgAMDPAIVAuADA8AXAYwG4AELBRUCPAKMBoADwAtAB+ADAwM8AhUCwCMFjAYVAjwC4AcDATwC4AcR4AcPAYwGQANAFQE8AoAFATwCQAfgHwMDjAY8AkArATwCQAUBFQJAD0ADARUCgAMBjAZACQKZAhVgAQE8AsADA4wGPAJACwM8AhUCgAsBFQJAC4ADATwCwAmAGwE8AuAfAwE8AuAJKeALQxOMBhUCPAIVAowGFQI8AjwCjAYVAg==
+      bed_ac_decrease: B0UjpREqApIGgAPgBwHAF+ALB8ABQBvgCwFAF8AD4CsB4DM7QAFAP+ADAUAPQAPAAeADC+ADAeADF+ADC+AHAeATG+AHAeAPK8AXwAfAAeADDwOSBioC
+      bed_ac_leftright: B0MjrBErApAGgAPgBwHAF+ALB8ABQBvgQQEDdgKwAUAFESsCkAawAZAGKwIrAnYCsAErAuAlAQF2AoA74AEBQA9AA8AB4AELAnYCK+ACAeABFwErAuADC+AHAeATG+AHAUArQAPgBwHAE0AHQAPAAUALC5AGKwIrAisCkAYrAg==
+      bed_ac_updown: CD4jpRFhAo8GJiADBc8CiQEmAuADAQGPBoAD4AMBAY8GgC/AAQOPBiYC4BEBAWEC4AEDQAFAD+AdAUBXAY8G4CEv4AcBBY8GJgImAkA/gANAD0ADwAHgAwvgAwHgAxcFjwZhAiYCQAPgBwEKYQKPBiYCJgJhAiagAQFhAuEHPeAFAYAvgAEBYQKAA8ATQAdAA0AB4AgHAgYmAg==
+      bed_ac_speed: B1QjphEqApAGQAMCXAIq4AYBAZAG4BEDwAEBkAbgCTdAAQGQBuABA+ArAQGQBuADV+ADC+ABAQOQBioC4A8B4AcbQA9AA8AB4AML4AMB4AMX4AML4AcB4BMb4BMB4AM34AMLwAFAE0ADCyoCKgIqAioCkAYqAg==
+      bed_ac_cool: B00johEsAocGgAPgBwHAF+ALB8ABQBvgCwFAF8AD4CsBQDvgFwHgEyPgBxtAD0ADwAHgAwvgAwHgAxfgAwvgBwHgExvgCwFAL0AD4AMB4AMPQAtAA0ABwAcHLAIsAocGLAI=
+  sequence:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - condition: template
+    value_template: '{{ command is defined and command in config }}'
+  - alias: Issue a command via the remote
+    data:
+      cluster_type: in
+      command: 2
+      endpoint_id: 1
+      params:
+        code: '{{ config.get(command) }}'
+      cluster_id: 57348
+      ieee: fc:4d:6a:ff:fe:36:b5:87
+      command_type: server
+    action: zha.issue_zigbee_cluster_command
+  alias: Script IR Remote
+  description: ''
+bedroom_rf_remote_turn_on_ac:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: AC in bedroom
+      command: AC_On
+    target:
+      device_id: 4c62df2d59000623daaa9568995d3023
+  alias: Script bedroom RF Remote turn on AC
+  description: ''
+bedroom_rf_remote_turn_off_ac:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: AC in bedroom
+      command: AC_Off
+    target:
+      device_id: 4c62df2d59000623daaa9568995d3023
+  alias: Script bedroom RF Remote turn off AC
+  description: ''
+bedroom_rf_remote_turn_off_fan:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: Fan in bedroom
+      command: Fan_Off
+    target:
+      device_id: 4c62df2d59000623daaa9568995d3023
+  alias: Script bedroom RF Remote turn off fan
+  description: ''
+bedroom_rf_remote_turn_on_fan:
+  sequence:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: Fan in bedroom
+      command: Fan_On
+    target:
+      device_id: 4c62df2d59000623daaa9568995d3023
+  alias: Script bedroom RF Remote turn on fan
+  description: ''
