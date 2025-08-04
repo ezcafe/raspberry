@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:17
+    image: postgres:17.4
     # env_file: .env
     environment:
       - POSTGRES_HOST=${DB_HOST}
@@ -44,7 +44,7 @@ services:
     links:
      - db
     volumes:
-      - /home/ezcafe/backups/vikunja:/backup
+      - /home/ezcafe/backups/vikunja:/backup:rwx
       - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
       - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
     environment:
@@ -64,6 +64,15 @@ services:
       - CONTAINER_ENABLE_MONITORING=FALSE
       - TIMEZONE=${TZ}
     restart: unless-stopped
+    networks:
+      - proxy
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   db_data:
+
+networks:
+  proxy:
+    external: true
