@@ -16,7 +16,7 @@ services:
       - 22000:22000/udp
       - 21027:21027/udp
     volumes:
-      - /home/ezcafe:/var/syncthing
+      - /home/ezcafe:/var/syncthing:rwx
     # healthcheck:
     #   test: ["CMD", "wget" ,"--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:8384/rest/noauth/health"]
     #   interval: 1m
