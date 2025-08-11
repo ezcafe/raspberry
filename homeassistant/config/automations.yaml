@@ -1,5 +1,5 @@
 - id: '1752761300410'
-  alias: Living room led light turn on at 9PM
+  alias: Living room turn on led light at 9PM
   description: ''
   triggers:
   - trigger: time
@@ -13,7 +13,7 @@
     enabled: true
   mode: single
 - id: '1752761696247'
-  alias: Living room led light turn off at 9:20PM
+  alias: Living room turn off led light at 9:20PM
   description: ''
   triggers:
   - trigger: time
@@ -38,7 +38,7 @@
   conditions:
   - condition: time
     after: '18:00:00'
-    before: '22:00:00'
+    before: '21:30:00'
   actions:
   - type: turn_on
     device_id: 5561896f763afd135a56a644b88edfda
@@ -55,6 +55,7 @@
     device_id: 0ab3b3df35834a879e74abe9bcd7402a
     entity_id: 130e0364594951ab97ad77223988e46b
     domain: switch
+    enabled: false
   mode: single
 - id: '1752838269769'
   alias: 'Working room exit '
@@ -143,7 +144,7 @@
     trigger: device
   conditions:
   - condition: time
-    after: '22:01:00'
+    after: 08:00:00
     before: '17:59:00'
   actions:
   - type: turn_on
@@ -167,11 +168,19 @@
     domain: switch
   mode: single
 - id: '1753367231970'
-  alias: Bedroom RF Remote turn off AC at 5AM
+  alias: Bedroom turn off AC
   description: ''
   triggers:
   - trigger: time
     at: 05:00:00
+    weekday:
+    - sun
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
   conditions: []
   actions:
   - action: remote.send_command
@@ -196,11 +205,17 @@
       device_id: 4c62df2d59000623daaa9568995d3023
   mode: single
 - id: '1753367878515'
-  alias: Bedroom RF Remote turn off fan at 6:20AM
+  alias: Bedroom turn off fan
   description: ''
   triggers:
   - trigger: time
     at: 06:20:00
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
   conditions: []
   actions:
   - action: remote.send_command
@@ -303,7 +318,7 @@
       device_id: 4c62df2d59000623daaa9568995d3023
   mode: single
 - id: '1753518466210'
-  alias: 'Rest room light turn on at 10PM '
+  alias: 'Rest room turn on light at 10PM '
   description: ''
   triggers:
   - type: occupied
@@ -328,10 +343,10 @@
     device_id: eede4a63d294ebf8283da5ac1433f4c3
     entity_id: 7c0fcca8be0fc0bb6c87ff0bdd92f774
     domain: light
-    brightness_pct: 20
+    brightness_pct: 15
   mode: single
 - id: '1753518525060'
-  alias: Rest room light turn off at night
+  alias: Rest room turn off light
   description: ''
   triggers:
   - type: not_occupied
@@ -339,6 +354,10 @@
     entity_id: 3f0a4ee263ed9a8afe5ce30cabdadfe1
     domain: binary_sensor
     trigger: device
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
   conditions: []
   actions:
   - type: turn_off
@@ -347,7 +366,7 @@
     domain: light
   mode: single
 - id: '1753624204670'
-  alias: 'Rest room light turn on at 6PM '
+  alias: 'Rest room turn on light at 6PM '
   description: ''
   triggers:
   - type: occupied
@@ -373,4 +392,227 @@
     entity_id: 7c0fcca8be0fc0bb6c87ff0bdd92f774
     domain: light
     brightness_pct: 80
+  mode: single
+- id: '1753791379013'
+  alias: Home enter
+  description: ''
+  triggers:
+  - trigger: zone
+    entity_id: device_tracker.qs_iphone
+    zone: zone.home
+    event: enter
+  conditions:
+  - condition: time
+    after: '17:30:00'
+    before: '22:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  actions:
+  - type: turn_on
+    device_id: c8581016174b5ec0e0d487ebad60802c
+    entity_id: a1bb69082df5553b7b210436b2870310
+    domain: light
+    brightness_pct: 100
+  mode: single
+- id: '1753791525721'
+  alias: Home exit
+  description: ''
+  triggers:
+  - trigger: zone
+    entity_id: device_tracker.qs_iphone
+    zone: zone.home
+    event: leave
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: c8581016174b5ec0e0d487ebad60802c
+    entity_id: a1bb69082df5553b7b210436b2870310
+    domain: light
+  - type: turn_off
+    device_id: c8581016174b5ec0e0d487ebad60802c
+    entity_id: 319ebd5a59a5582098d0cc3866fcb5f2
+    domain: fan
+  - type: turn_off
+    device_id: e4632d5dea800e69d7f529f0e6ab4723
+    entity_id: c940b52931dfe89194ae7b83b68631f1
+    domain: switch
+  mode: single
+- id: '1753792193072'
+  alias: Doors sends alert at 9PM
+  description: ''
+  triggers:
+  - trigger: time
+    at: '21:00:00'
+  conditions:
+  - condition: or
+    conditions:
+    - type: is_open
+      condition: device
+      device_id: 432e2e3dd88b3aeafc4fa7b0cd4a0715
+      entity_id: 5d7f1da4f82808a5d5df529f8f531478
+      domain: binary_sensor
+    - type: is_open
+      condition: device
+      device_id: a0483d3ff30c7cf0ec8adfd5186a34a0
+      entity_id: 854181d053491b3e2aa40c5156f604be
+      domain: binary_sensor
+  actions:
+  - action: notify.mobile_app_qs_iphone
+    metadata: {}
+    data:
+      message: Đóng cửa Q ơi
+      title: Kiểm tra an ninh
+  mode: single
+- id: '1753967319732'
+  alias: Bedroom turn on light at 6PM
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: 9e583260f08125820ca30ed2ab26b099
+    entity_id: e73b0e11a4aa31e8db5d116a06f12488
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: time
+    after: '18:00:00'
+    before: '21:59:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  actions:
+  - type: turn_on
+    device_id: 0282b7983ef4c529ff55f0fa6d0e704b
+    entity_id: 353ec0a3b2eb93a74db970914b815a14
+    domain: light
+    brightness_pct: 80
+  mode: single
+- id: '1753967371188'
+  alias: Bedroom turn off light
+  description: ''
+  triggers:
+  - type: not_occupied
+    device_id: 9e583260f08125820ca30ed2ab26b099
+    entity_id: e73b0e11a4aa31e8db5d116a06f12488
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: 0282b7983ef4c529ff55f0fa6d0e704b
+    entity_id: 353ec0a3b2eb93a74db970914b815a14
+    domain: light
+  mode: single
+- id: '1753969346480'
+  alias: Living room turn on fan
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: 8292db52a65454be6e76e84fca883f45
+    entity_id: 34b58f74d701703b4f904ec839168863
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: c8581016174b5ec0e0d487ebad60802c
+    entity_id: 319ebd5a59a5582098d0cc3866fcb5f2
+    domain: fan
+  mode: single
+- id: '1753969399440'
+  alias: Living room turn off fan
+  description: ''
+  triggers:
+  - type: not_occupied
+    device_id: 8292db52a65454be6e76e84fca883f45
+    entity_id: 34b58f74d701703b4f904ec839168863
+    domain: binary_sensor
+    trigger: device
+  conditions: []
+  actions:
+  - type: turn_off
+    device_id: c8581016174b5ec0e0d487ebad60802c
+    entity_id: 319ebd5a59a5582098d0cc3866fcb5f2
+    domain: fan
+  - type: turn_off
+    device_id: c8581016174b5ec0e0d487ebad60802c
+    entity_id: a1bb69082df5553b7b210436b2870310
+    domain: light
+  mode: single
+- id: '1754002910837'
+  alias: Bedroom turn on fan
+  description: ''
+  triggers:
+  - trigger: time
+    at: 05:00:00
+    weekday:
+    - sun
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+  conditions:
+  - type: is_occupied
+    condition: device
+    device_id: 9e583260f08125820ca30ed2ab26b099
+    entity_id: e73b0e11a4aa31e8db5d116a06f12488
+    domain: binary_sensor
+  actions:
+  - action: remote.send_command
+    metadata: {}
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: Fan in bedroom
+      command: Fan_On
+    target:
+      device_id: 4c62df2d59000623daaa9568995d3023
+  mode: single
+- id: '1754003977509'
+  alias: Bedroom turn off all lights
+  description: ''
+  triggers:
+  - type: not_opened
+    device_id: b051ba56bbea5bd7c3f2f2e263a13ddf
+    entity_id: 307e34dd6c4819d8a9cc2baaf9a33343
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: time
+    after: '22:30:00'
+    before: 05:00:00
+  actions:
+  - type: turn_off
+    device_id: fc4e9f889a19087de5ff225ea885fdae
+    entity_id: 7aaa3933c9b1b13d4a0bbe1fc6e6e064
+    domain: light
+  - type: turn_off
+    device_id: 5561896f763afd135a56a644b88edfda
+    entity_id: 765da3cb2f65bd02c6b215278917dcd6
+    domain: light
+  - type: turn_off
+    device_id: 0f31cd7a08b5f505c7c19f413bc99a79
+    entity_id: e9de90109ba88a47bd0b3e6ad810fcd3
+    domain: light
+  - type: turn_off
+    device_id: eede4a63d294ebf8283da5ac1433f4c3
+    entity_id: 7c0fcca8be0fc0bb6c87ff0bdd92f774
+    domain: light
   mode: single

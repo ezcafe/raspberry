@@ -50,3 +50,10 @@ http:
     # search for "... INF ICMP proxy will use 172.19.0.2 as source for IPv4",
     # replace .0.2 with .0.0
     - 172.30.33.0/24
+
+zone:
+  - name: Home
+    latitude: 10,83134
+    longitude: 106,77146
+    radius: 100
+    icon: mdi:account-multiple
