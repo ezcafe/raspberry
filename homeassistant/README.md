@@ -8,6 +8,39 @@ sudo ufw allow 21064/tcp comment homekit
 
 https://goauthentik.io/integrations/services/home-assistant/
 
+## Need automation inspiration? Ask AI!
+
+In Developer Tools > Template, paste this template and copy the result to your clipboard:
+
+```
+{%- for area in areas() -%}
+**Area: {{area_name(area)}}** (id: {{area}})
+{%- for device in area_devices(area) %}
+  - Device: {{device_name(device)}} (id: {{device}})
+{%- for entity in device_entities(device) %}
+    - {{entity}} (current state: {{states(entity, rounded=False, with_unit=True)}})
+{%- endfor %}
+{%- endfor %}
+{% endfor %}
+```
+
+Write the following as your AI prompt for Claude/ChatGPT/Gemini/Deepseek:
+
+In my Home Assistant setup, I have the following areas, devices, and entities (along with an example of their current state). Please recommend automations that I might find useful or clever. Consider if, based on the device or entity name, a specific integration is being used, and be sure to research documentation on that integration.
+
+If there are any gaps in the information I've given you that may affect the quality of your recommendations, request additional information from me to clarify, and then proceed with your recommendations.
+
+After your narrative list of recommendations, provide a concise numbered list of their names. If I respond with a single number, provide a comprehensive and well-researched YAML automation for the corresponding recommendation. Do not provide source code unless I have responded with a number or otherwise requested a specific automation.
+
+Hints for automations:
+- add an `alias` and concise `description` to the automation itself
+- add an `alias` to its triggers, conditions, and actions
+- consider using notifications, logbook entries, or trigger IDs for complex automations; or variables to manage complex state.
+
+"""
+(paste the output of step 1 here)
+"""
+
 ## Broadlink Remote
 
 ### Setup device names in Broadlink app
@@ -131,3 +164,4 @@ https://goauthentik.io/integrations/services/home-assistant/
     action: zha.issue_zigbee_cluster_command
   ```
   - Save and reload configurations
+
