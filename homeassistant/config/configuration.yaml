@@ -51,9 +51,9 @@ http:
     # replace .0.2 with .0.0
     - 172.30.33.0/24
 
-zone:
-  - name: Home
-    latitude: 10,83134
-    longitude: 106,77146
-    radius: 100
-    icon: mdi:account-multiple
+# zone:
+#   - name: Home
+#     latitude: 10.831335589891193
+#     longitude: 106.7714564128493
+#     radius: 100
+#     icon: mdi:account-multiple

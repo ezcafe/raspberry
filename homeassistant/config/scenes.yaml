@@ -108,3 +108,27 @@
       state: 'off'
   icon: mdi:lightbulb-off
   metadata: {}
+- id: '1756536595201'
+  name: Travel mode on
+  entities:
+    input_boolean.travel_mode:
+      editable: true
+      icon: mdi:toggle-switch
+      friendly_name: Travel mode
+      state: 'on'
+  icon: mdi:toggle-switch
+  metadata:
+    input_boolean.travel_mode:
+      entity_only: true
+- id: '1756536618767'
+  name: Travel mode off
+  entities:
+    input_boolean.travel_mode:
+      editable: true
+      icon: mdi:toggle-switch
+      friendly_name: Travel mode
+      state: 'off'
+  icon: mdi:toggle-switch
+  metadata:
+    input_boolean.travel_mode:
+      entity_only: true
