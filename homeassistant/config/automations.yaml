@@ -21,7 +21,10 @@
   triggers:
   - trigger: time
     at: '21:20:00'
-  conditions: []
+  conditions:
+  - condition: state
+    entity_id: input_boolean.travel_mode
+    state: 'off'
   actions:
   - action: script.fake_remote
     metadata: {}
@@ -149,6 +152,8 @@
   triggers:
   - trigger: time
     at: 05:00:00
+  - trigger: time
+    at: '18:30:00'
   conditions:
   - condition: state
     entity_id: input_boolean.travel_mode
@@ -164,7 +169,7 @@
   description: ''
   triggers:
   - trigger: time
-    at: 05:45:00
+    at: 05:30:00
     weekday:
     - sun
     - mon
@@ -322,7 +327,7 @@
       device_id: 4c62df2d59000623daaa9568995d3023
   mode: single
 - id: '1753518466210'
-  alias: 'Rest room turn on light at 10PM '
+  alias: 'Rest room decrease brightness at 10PM '
   description: ''
   triggers:
   - type: occupied
@@ -370,7 +375,7 @@
     domain: light
   mode: single
 - id: '1753624204670'
-  alias: 'Rest room turn on light at 6PM '
+  alias: Rest room turn on light
   description: ''
   triggers:
   - type: occupied
@@ -529,6 +534,12 @@
     domain: light
     brightness_pct: 90
     flash: short
+  - type: turn_on
+    device_id: 4b1e3bd7eb464217dee698873290371b
+    entity_id: 4dec75628ed6ae67631a5a4f76e228cc
+    domain: light
+    brightness_pct: 90
+    flash: short
   mode: single
 - id: '1753967371188'
   alias: Bedroom exit
@@ -588,7 +599,10 @@
       hours: 0
       minutes: 0
       seconds: 10
-  conditions: []
+  conditions:
+  - condition: state
+    entity_id: input_boolean.travel_mode
+    state: 'off'
   actions:
   - type: turn_off
     device_id: c8581016174b5ec0e0d487ebad60802c
@@ -605,7 +619,7 @@
   description: ''
   triggers:
   - trigger: time
-    at: 05:45:00
+    at: 05:30:00
     weekday:
     - sun
     - mon
@@ -661,19 +675,6 @@
     entity_id: 7c0fcca8be0fc0bb6c87ff0bdd92f774
     domain: light
   mode: single
-- id: '1755302641030'
-  alias: Working room turn off computer outlet at 10:30PM
-  description: ''
-  triggers:
-  - trigger: time
-    at: '22:30:00'
-  conditions: []
-  actions:
-  - type: turn_off
-    device_id: e4632d5dea800e69d7f529f0e6ab4723
-    entity_id: c940b52931dfe89194ae7b83b68631f1
-    domain: switch
-  mode: single
 - id: '1755424921467'
   alias: Button 1 click toggle fan
   description: ''
@@ -691,7 +692,7 @@
     domain: switch
   mode: single
 - id: '1756119292973'
-  alias: Working room turn off computer outlet at 9AM
+  alias: Working room turn off computer outlet
   description: ''
   triggers:
   - trigger: time
@@ -702,7 +703,12 @@
     - wed
     - tue
     - mon
-  conditions: []
+  - trigger: time
+    at: '22:30:00'
+  conditions:
+  - condition: state
+    entity_id: input_boolean.travel_mode
+    state: 'off'
   actions:
   - type: turn_off
     device_id: e4632d5dea800e69d7f529f0e6ab4723
@@ -715,9 +721,18 @@
   triggers:
   - trigger: time
     at: 08:00:00
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
   - trigger: time
     at: '20:00:00'
-  conditions: []
+  conditions:
+  - condition: state
+    entity_id: input_boolean.travel_mode
+    state: 'off'
   actions:
   - type: turn_off
     device_id: 6b2d6d572c24e868e3d2f1e2f3635a50
@@ -846,42 +861,55 @@
   - trigger: time
     at: '22:00:00'
   conditions:
-  - condition: or
+  - condition: and
     conditions:
-    - condition: device
-      type: is_on
-      device_id: 4b1e3bd7eb464217dee698873290371b
-      entity_id: 4dec75628ed6ae67631a5a4f76e228cc
-      domain: light
-    - condition: device
-      type: is_on
-      device_id: eb695e7330ed4609edad8735efde5a49
-      entity_id: 3f5a04430b3cc8f17af1bfa95ebe2c63
-      domain: light
+    - condition: state
+      entity_id: input_boolean.travel_mode
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: device
+        type: is_on
+        device_id: 4b1e3bd7eb464217dee698873290371b
+        entity_id: 4dec75628ed6ae67631a5a4f76e228cc
+        domain: light
+      - condition: device
+        type: is_on
+        device_id: eb695e7330ed4609edad8735efde5a49
+        entity_id: 3f5a04430b3cc8f17af1bfa95ebe2c63
+        domain: light
   actions:
   - type: turn_on
     device_id: eb695e7330ed4609edad8735efde5a49
     entity_id: 3f5a04430b3cc8f17af1bfa95ebe2c63
     domain: light
     flash: short
-    brightness_pct: 50
+    brightness_pct: 10
   - type: turn_on
     device_id: 4b1e3bd7eb464217dee698873290371b
     entity_id: 4dec75628ed6ae67631a5a4f76e228cc
     domain: light
     flash: short
-    brightness_pct: 50
+    brightness_pct: 10
   mode: single
 - id: '1757078786159'
   alias: Living room turns on led in shoe cabinet
   description: ''
   triggers:
-  - type: turned_on
+  - type: motion
     device_id: c155f2246f0f0b479522d82bc86a825d
     entity_id: 645c8842be357ce3c1ddcd0a1cddbf77
     domain: binary_sensor
     trigger: device
-  conditions: []
+  - type: motion
+    device_id: ade16b179330d93aa4ec89c3b9412406
+    entity_id: 7dd5273a7c803e355a06ff0607d02f3c
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: state
+    entity_id: input_boolean.travel_mode
+    state: 'off'
   actions:
   - type: turn_on
     device_id: eb4989d01c44d6fb4279e069850938a7
@@ -894,9 +922,14 @@
   alias: Living room turns off led in shoe cabinet
   description: ''
   triggers:
-  - type: turned_off
+  - type: no_motion
     device_id: c155f2246f0f0b479522d82bc86a825d
     entity_id: 645c8842be357ce3c1ddcd0a1cddbf77
+    domain: binary_sensor
+    trigger: device
+  - type: no_motion
+    device_id: ade16b179330d93aa4ec89c3b9412406
+    entity_id: 7dd5273a7c803e355a06ff0607d02f3c
     domain: binary_sensor
     trigger: device
   conditions: []
@@ -907,7 +940,7 @@
     domain: light
   mode: single
 - id: '1757080757764'
-  alias: Living room turns on led in screen cabinet
+  alias: Living room turns on led in bookcase
   description: ''
   triggers:
   - type: turned_on
@@ -915,7 +948,10 @@
     entity_id: 7dd5273a7c803e355a06ff0607d02f3c
     domain: binary_sensor
     trigger: device
-  conditions: []
+  conditions:
+  - condition: state
+    entity_id: input_boolean.travel_mode
+    state: 'off'
   actions:
   - type: turn_on
     device_id: 3d63ff489da00855639f8ac069919046
@@ -925,7 +961,7 @@
     brightness_pct: 80
   mode: single
 - id: '1757080826251'
-  alias: Living room turns off led in screen cabinet
+  alias: Living room turns off led in bookcase
   description: ''
   triggers:
   - type: turned_off
