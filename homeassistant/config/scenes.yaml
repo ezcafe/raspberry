@@ -1,5 +1,5 @@
 - id: '1707197841423'
-  name: Lights Off
+  name: Working room lights off
   entities:
     light.yellow_light:
       min_color_temp_kelvin: 2000
@@ -132,3 +132,326 @@
   metadata:
     input_boolean.travel_mode:
       entity_only: true
+- id: '1757633538101'
+  name: Living room lights off
+  entities:
+    light.led_tu_phong_khach:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      off_with_transition: false
+      off_brightness: 135
+      friendly_name: Led in bookcase in living room
+      supported_features: 40
+      state: 'off'
+    light.led_tu_giay:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      off_with_transition: false
+      off_brightness: 204
+      friendly_name: Led in shoe cabinet in living room
+      supported_features: 40
+      state: 'off'
+  icon: mdi:lightbulb-multiple-off
+  metadata: {}
+- id: '1757633610315'
+  name: Bedroom lights off
+  entities:
+    light.led_giuong_phong_ngu:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      off_with_transition: false
+      off_brightness: 204
+      friendly_name: Led in bed in bed room
+      supported_features: 40
+      state: 'off'
+    light.led_tu_quan_ao:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      off_with_transition: false
+      off_brightness: 204
+      friendly_name: Led in wardrobe in bed room
+      supported_features: 40
+      state: 'off'
+  icon: mdi:lightbulb-multiple-off
+  metadata: {}
+- id: '1757633650688'
+  name: Bedroom yellow light
+  entities:
+    light.led_giuong_phong_ngu:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 2000
+      color_temp: 500
+      hs_color:
+      - 30.601
+      - 94.547
+      rgb_color:
+      - 255
+      - 137
+      - 14
+      xy_color:
+      - 0.598
+      - 0.383
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Led in bed in bed room
+      supported_features: 40
+      state: 'on'
+    light.led_tu_quan_ao:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 2000
+      color_temp: 500
+      hs_color:
+      - 30.601
+      - 94.547
+      rgb_color:
+      - 255
+      - 137
+      - 14
+      xy_color:
+      - 0.598
+      - 0.383
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Led in wardrobe in bed room
+      supported_features: 40
+      state: 'on'
+  icon: mdi:lightbulb-multiple
+  metadata: {}
+- id: '1757633678520'
+  name: Bedroom white light
+  entities:
+    light.led_giuong_phong_ngu:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 6535
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 255
+      - 251
+      xy_color:
+      - 0.325
+      - 0.333
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Led in bed in bed room
+      supported_features: 40
+      state: 'on'
+    light.led_tu_quan_ao:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 6535
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 255
+      - 251
+      xy_color:
+      - 0.325
+      - 0.333
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Led in wardrobe in bed room
+      supported_features: 40
+      state: 'on'
+  icon: mdi:lightbulb-multiple
+  metadata: {}
+- id: '1757633830084'
+  name: Living room white light
+  entities:
+    light.led_tu_phong_khach:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 6535
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 255
+      - 251
+      xy_color:
+      - 0.325
+      - 0.333
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Led in bookcase in living room
+      supported_features: 40
+      state: 'on'
+    light.led_tu_giay:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 6535
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 255
+      - 251
+      xy_color:
+      - 0.325
+      - 0.333
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Led in shoe cabinet in living room
+      supported_features: 40
+      state: 'on'
+  icon: mdi:lightbulb-multiple
+  metadata: {}
+- id: '1757633847963'
+  name: Living room yellow light
+  entities:
+    light.led_tu_phong_khach:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 2000
+      color_temp: 500
+      hs_color:
+      - 30.601
+      - 94.547
+      rgb_color:
+      - 255
+      - 137
+      - 14
+      xy_color:
+      - 0.598
+      - 0.383
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Led in bookcase in living room
+      supported_features: 40
+      state: 'on'
+    light.led_tu_giay:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 2000
+      color_temp: 500
+      hs_color:
+      - 30.601
+      - 94.547
+      rgb_color:
+      - 255
+      - 137
+      - 14
+      xy_color:
+      - 0.598
+      - 0.383
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Led in shoe cabinet in living room
+      supported_features: 40
+      state: 'on'
+  icon: mdi:lightbulb-multiple
+  metadata: {}

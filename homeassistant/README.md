@@ -41,6 +41,33 @@ Hints for automations:
 (paste the output of step 1 here)
 """
 
+## Tasmota-IRHVAC Remote
+
+- Follow this guide to setup device https://www.youtube.com/watch?v=dhuiiHmfK8k
+- Follow this guide to setup other IR commands https://github.com/hristo-atanasov/Tasmota-IRHVAC
+
+```scripts.yaml
+bedroom_irhvac_remote:
+  sequence:
+  - data_template:
+      payload: '{"Protocol":"{{ protocol }}","Bits": {{ bits }},"Data": {{ data }},"DataLSB": {{ dataLSB }},"Repeat": {{ repeat }}}'
+      topic: 'cmnd/{{ commandTopic }}/irsend'
+    service: mqtt.publish
+  alias: Script bedroom irhvac remote
+  description: ''
+```
+
+```automation action
+action: script.bedroom_irhvac_remote
+data:
+  protocol: NEC
+  bits: 32
+  data: 0xFFA25D
+  dataLSB: 0xFF45BA
+  repeat: 0
+  commandTopic: X_SMART_LINK_C9EF77
+```
+
 ## Broadlink Remote
 
 ### Setup device names in Broadlink app

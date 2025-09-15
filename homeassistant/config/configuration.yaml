@@ -57,3 +57,50 @@ http:
 #     longitude: 106.7714564128493
 #     radius: 100
 #     icon: mdi:account-multiple
+
+climate:
+  - platform: tasmota_irhvac
+    name: "AC Casper in bedroom"
+    command_topic: "cmnd/X_SMART_LINK_C9EF77/irhvac"
+    state_topic: "tele/X_SMART_LINK_C9EF77/RESULT"
+    availability_topic: "tele/X_SMART_LINK_C9EF77/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    temperature_sensor: sensor.x_smart_link_sht3x_temperature # Thay bằng sensor nhiệt độ của bạn nều có, không có thì bỏ đi
+    humidity_sensor: sensor.x_smart_link_sht3x_humidity #Thay bằng sensor độ ẩm của bạn nếu có, không có thì bỏ đi
+    vendor: "ELECTRA_AC" # Sửa theo vendor name nhận trên 'console'
+    mqtt_delay: 0.0
+    min_temp: 16
+    max_temp: 30
+    target_temp: 27
+    initial_operation_mode: "off"
+    away_temp: 27
+    precision: 1
+    supported_modes :
+      - "heat" # Nếu ĐH 2 chiều thì để, không thì bỏ đi
+      - "cool"
+      - "dry"
+      - "fan_only"
+      - "auto"
+      - "off"
+    # Các chề độ gió sửa theo các chế độ gió trên nhận trên tay của điều hòa rồi kiểm tra trên console
+    supported_fan_speeds:
+      - "min"
+      - "medium"
+      - "max"
+      - "auto"
+    supported_swing_list:
+      - "off"
+      - "vertical" #up to down ???
+      - "horizontal" # Left to right ???
+      - "both" #??? auto
+    default_quiet_mode: "On"
+    default_turbo_mode: "Off"
+    default_econo_mode: "Off"
+    hvac_model: "-1"
+    celsius_mode: "On"
+    default_beep_mode: "Off"
+    default_sleep_mode: "-1"
+    default_swingv: "Auto"
+    default_swingh: "Auto"
+

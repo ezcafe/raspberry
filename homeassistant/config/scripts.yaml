@@ -97,3 +97,11 @@ bedroom_rf_remote_turn_on_fan:
       device_id: 4c62df2d59000623daaa9568995d3023
   alias: Script bedroom RF Remote turn on fan
   description: ''
+bedroom_irhvac_remote:
+  sequence:
+  - data_template:
+      payload: '{"Protocol":"{{ protocol }}","Bits": {{ bits }},"Data": {{ data }},"DataLSB": {{ dataLSB }},"Repeat": {{ repeat }}}'
+      topic: 'cmnd/{{ commandTopic }}/irsend'
+    service: mqtt.publish
+  alias: Script bedroom irhvac remote
+  description: ''
