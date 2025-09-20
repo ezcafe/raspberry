@@ -47,7 +47,7 @@ Hints for automations:
 - Follow this guide to setup other IR commands https://github.com/hristo-atanasov/Tasmota-IRHVAC
 
 ```scripts.yaml
-bedroom_irhvac_remote:
+irhvac_remote:
   sequence:
   - data_template:
       payload: '{"Protocol":"{{ protocol }}","Bits": {{ bits }},"Data": {{ data }},"DataLSB": {{ dataLSB }},"Repeat": {{ repeat }}}'
@@ -58,7 +58,7 @@ bedroom_irhvac_remote:
 ```
 
 ```automation action
-action: script.bedroom_irhvac_remote
+action: script.irhvac_remote
 data:
   protocol: NEC
   bits: 32
@@ -67,6 +67,13 @@ data:
   repeat: 0
   commandTopic: X_SMART_LINK_C9EF77
 ```
+
+- Bedroom topic: X_SMART_LINK_C9EF77
+- Working room topic: X_SMART_LINK_0CCB7B
+
+cmnd/X_SMART_LINK_C9EF77/irsend {"Protocol":"NEC","Bits":32,"Data":"0xFFA25D","DataLSB":"0xFF45BA","Repeat":0}
+
+- Follow this guide to setup presence sensor https://www.youtube.com/watch?v=F_2JeaVL49Q
 
 ## Broadlink Remote
 

@@ -1,5 +1,5 @@
 - id: '1752761300410'
-  alias: 'Living room turns on led in altar '
+  alias: Living room turns on led in altar
   description: ''
   triggers:
   - trigger: time
@@ -37,8 +37,8 @@
   description: ''
   triggers:
   - type: occupied
-    device_id: 6c1f5c11509c931d0ab76dede94bded5
-    entity_id: fe487149a42a9c1ae2a3516acb350250
+    device_id: c75cf7008599b141ef8e6c73ed1e0b10
+    entity_id: 94d156cfb840a2b1a8c36f8ec853c0aa
     domain: binary_sensor
     trigger: device
   conditions:
@@ -68,8 +68,8 @@
   description: ''
   triggers:
   - type: not_occupied
-    device_id: 6c1f5c11509c931d0ab76dede94bded5
-    entity_id: fe487149a42a9c1ae2a3516acb350250
+    device_id: c75cf7008599b141ef8e6c73ed1e0b10
+    entity_id: 94d156cfb840a2b1a8c36f8ec853c0aa
     domain: binary_sensor
     trigger: device
   conditions: []
@@ -83,13 +83,13 @@
     entity_id: 7aaa3933c9b1b13d4a0bbe1fc6e6e064
     domain: light
   - type: turn_off
-    device_id: 0ab3b3df35834a879e74abe9bcd7402a
-    entity_id: 130e0364594951ab97ad77223988e46b
-    domain: switch
-  - type: turn_off
     device_id: 0f31cd7a08b5f505c7c19f413bc99a79
     entity_id: e9de90109ba88a47bd0b3e6ad810fcd3
     domain: light
+  - type: turn_off
+    device_id: 0ab3b3df35834a879e74abe9bcd7402a
+    entity_id: 130e0364594951ab97ad77223988e46b
+    domain: switch
   mode: single
 - id: '1752977188711'
   alias: Event - Living room led light on turned off
@@ -130,8 +130,8 @@
   description: ''
   triggers:
   - type: occupied
-    device_id: 6c1f5c11509c931d0ab76dede94bded5
-    entity_id: fe487149a42a9c1ae2a3516acb350250
+    device_id: c75cf7008599b141ef8e6c73ed1e0b10
+    entity_id: 94d156cfb840a2b1a8c36f8ec853c0aa
     domain: binary_sensor
     trigger: device
   conditions:
@@ -145,6 +145,11 @@
     domain: light
     flash: short
     brightness_pct: 100
+  - type: turn_on
+    device_id: 0ab3b3df35834a879e74abe9bcd7402a
+    entity_id: 130e0364594951ab97ad77223988e46b
+    domain: switch
+    enabled: false
   mode: single
 - id: '1753234755135'
   alias: 'Working room turn on computer outlet '
@@ -244,59 +249,15 @@
     target:
       device_id: 4c62df2d59000623daaa9568995d3023
     enabled: false
-  - action: script.bedroom_irhvac_remote
+  - action: script.irhvac_remote
     metadata: {}
     data:
       protocol: NEC
       bits: 32
-      data: 16753245
-      dataLSB: 16729530
+      data: "0xFFA25D"
+      dataLSB: "0xFF45BA"
       repeat: 0
       commandTopic: X_SMART_LINK_C9EF77
-  mode: single
-- id: '1753368714711'
-  alias: Event - Bedroom AC on turned off
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - input_boolean.bedroom_ac_toggle
-    from: 'on'
-    to: 'off'
-  conditions: []
-  actions:
-  - action: remote.send_command
-    metadata: {}
-    data:
-      num_repeats: 1
-      delay_secs: 0.4
-      hold_secs: 0
-      device: AC in bedroom
-      command: AC_Off
-    target:
-      device_id: 4c62df2d59000623daaa9568995d3023
-  mode: single
-- id: '1753368771928'
-  alias: Event - Bedroom AC on turned on
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - input_boolean.bedroom_ac_toggle
-    from: 'off'
-    to: 'on'
-  conditions: []
-  actions:
-  - action: remote.send_command
-    metadata: {}
-    data:
-      num_repeats: 1
-      delay_secs: 0.4
-      hold_secs: 0
-      device: AC in bedroom
-      command: AC_On
-    target:
-      device_id: 4c62df2d59000623daaa9568995d3023
   mode: single
 - id: '1753368822540'
   alias: Event - Bedroom fan on turned off
@@ -309,16 +270,15 @@
     to: 'off'
   conditions: []
   actions:
-  - action: remote.send_command
+  - action: script.irhvac_remote
     metadata: {}
     data:
-      num_repeats: 1
-      delay_secs: 0.4
-      hold_secs: 0
-      device: Fan in bedroom
-      command: Fan_Off
-    target:
-      device_id: 4c62df2d59000623daaa9568995d3023
+      protocol: NEC
+      bits: 32
+      data: "0xFFA25D"
+      dataLSB: "0xFF45BA"
+      repeat: 0
+      commandTopic: X_SMART_LINK_C9EF77
   mode: single
 - id: '1753368857888'
   alias: Event - Bedroom fan on turned on
@@ -331,19 +291,18 @@
     to: 'on'
   conditions: []
   actions:
-  - action: remote.send_command
+  - action: script.irhvac_remote
     metadata: {}
     data:
-      num_repeats: 1
-      delay_secs: 0.4
-      hold_secs: 0
-      device: Fan in bedroom
-      command: Fan_On
-    target:
-      device_id: 4c62df2d59000623daaa9568995d3023
+      protocol: NEC
+      bits: 32
+      data: "0xFFA25D"
+      dataLSB: "0xFF45BA"
+      repeat: 0
+      commandTopic: X_SMART_LINK_C9EF77
   mode: single
 - id: '1753518466210'
-  alias: 'Rest room decrease brightness at 10PM '
+  alias: 'Hallway decreases brightness at 10PM '
   description: ''
   triggers:
   - type: occupied
@@ -371,7 +330,7 @@
     brightness_pct: 10
   mode: single
 - id: '1753518525060'
-  alias: Rest room turn off light
+  alias: Hallway exits
   description: ''
   triggers:
   - type: not_occupied
@@ -381,7 +340,7 @@
     trigger: device
     for:
       hours: 0
-      minutes: 1
+      minutes: 0
       seconds: 0
   conditions: []
   actions:
@@ -391,7 +350,7 @@
     domain: light
   mode: single
 - id: '1753624204670'
-  alias: Rest room turn on light
+  alias: Hallway enters
   description: ''
   triggers:
   - type: occupied
@@ -402,7 +361,7 @@
   conditions:
   - condition: time
     after: '18:00:00'
-    before: '21:59:00'
+    before: '22:00:00'
     weekday:
     - mon
     - tue
@@ -434,10 +393,15 @@
     type: enters
     trigger: device
     zone: zone.home
+  - trigger: state
+    entity_id:
+    - binary_sensor.gate_sensor_opening
+    from: 'off'
+    to: 'on'
   conditions:
   - condition: time
     after: '17:30:00'
-    before: '22:00:00'
+    before: '23:00:00'
     weekday:
     - mon
     - tue
@@ -482,19 +446,22 @@
       domain: device_tracker
       entity_id: 25761030c031f8481fd97ff26ed1af51
       type: is_not_home
+    enabled: true
   actions:
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - scene.living_room_off
+      - scene.bed_room_off
+      - scene.working_room_off
+      - scene.rest_room_off
+      - scene.hallway_off
   - type: turn_off
-    device_id: c8581016174b5ec0e0d487ebad60802c
-    entity_id: a1bb69082df5553b7b210436b2870310
-    domain: light
-  - type: turn_off
-    device_id: c8581016174b5ec0e0d487ebad60802c
-    entity_id: 319ebd5a59a5582098d0cc3866fcb5f2
-    domain: fan
-  - type: turn_off
-    device_id: e4632d5dea800e69d7f529f0e6ab4723
-    entity_id: c940b52931dfe89194ae7b83b68631f1
-    domain: switch
+    device_id: d352b43c0c991916663592ad5d5a5d4c
+    entity_id: be22d89bc61ac09b93c095a1425516be
+    domain: remote
   mode: single
 - id: '1753792193072'
   alias: Doors sends alert at 9PM
@@ -502,6 +469,8 @@
   triggers:
   - trigger: time
     at: '21:00:00'
+  - trigger: time
+    at: '21:45:00'
   conditions:
   - condition: or
     conditions:
@@ -527,14 +496,8 @@
   description: ''
   triggers:
   - type: occupied
-    device_id: 9e583260f08125820ca30ed2ab26b099
-    entity_id: e73b0e11a4aa31e8db5d116a06f12488
-    domain: binary_sensor
-    trigger: device
-    enabled: false
-  - type: occupied
-    device_id: a87488b0f2142e021ede573eb49f3a32
-    entity_id: 874b5eff31b09b99f75f976f4ceebebb
+    device_id: f7cd91c7a0935a70f66595a6624f342a
+    entity_id: 5a008b0742ae33e6c55d96f5520df0b7
     domain: binary_sensor
     trigger: device
   conditions:
@@ -567,17 +530,11 @@
   alias: Bedroom exit
   description: ''
   triggers:
-  - type: not_occupied
-    device_id: 9e583260f08125820ca30ed2ab26b099
-    entity_id: e73b0e11a4aa31e8db5d116a06f12488
-    domain: binary_sensor
-    trigger: device
-    enabled: false
   - trigger: time
     at: '22:15:00'
   - type: not_occupied
-    device_id: a87488b0f2142e021ede573eb49f3a32
-    entity_id: 874b5eff31b09b99f75f976f4ceebebb
+    device_id: f7cd91c7a0935a70f66595a6624f342a
+    entity_id: 5a008b0742ae33e6c55d96f5520df0b7
     domain: binary_sensor
     trigger: device
   conditions:
@@ -672,13 +629,13 @@
     target:
       device_id: 4c62df2d59000623daaa9568995d3023
     enabled: false
-  - action: script.bedroom_irhvac_remote
+  - action: script.irhvac_remote
     metadata: {}
     data:
       protocol: NEC
       bits: 32
-      data: 16753245
-      dataLSB: 16729530
+      data: "0xFFA25D"
+      dataLSB: "0xFF45BA"
       repeat: 0
       commandTopic: X_SMART_LINK_C9EF77
   mode: single
@@ -862,14 +819,8 @@
   description: ''
   triggers:
   - type: occupied
-    device_id: 9e583260f08125820ca30ed2ab26b099
-    entity_id: e73b0e11a4aa31e8db5d116a06f12488
-    domain: binary_sensor
-    trigger: device
-    enabled: false
-  - type: occupied
-    device_id: a87488b0f2142e021ede573eb49f3a32
-    entity_id: 874b5eff31b09b99f75f976f4ceebebb
+    device_id: f7cd91c7a0935a70f66595a6624f342a
+    entity_id: 5a008b0742ae33e6c55d96f5520df0b7
     domain: binary_sensor
     trigger: device
   conditions:
@@ -1018,5 +969,133 @@
   - type: turn_off
     device_id: 3d63ff489da00855639f8ac069919046
     entity_id: e79bcaae51a233ff813d5067577326d0
+    domain: light
+  mode: single
+- id: '1758324180995'
+  alias: Working room turns on fan
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: c75cf7008599b141ef8e6c73ed1e0b10
+    entity_id: 94d156cfb840a2b1a8c36f8ec853c0aa
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 3
+      seconds: 0
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 0ab3b3df35834a879e74abe9bcd7402a
+    entity_id: 130e0364594951ab97ad77223988e46b
+    domain: switch
+    enabled: true
+  mode: single
+- id: '1758331039492'
+  alias: Gate closes before 8:30AM
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.gate_sensor_opening
+    from: 'on'
+    to: 'off'
+  conditions:
+  - condition: time
+    after: 07:30:00
+    before: 08:30:00
+  actions:
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - scene.living_room_off
+      - scene.bed_room_off
+      - scene.working_room_off
+      - scene.rest_room_off
+      - scene.hallway_off
+  - type: turn_off
+    device_id: d352b43c0c991916663592ad5d5a5d4c
+    entity_id: be22d89bc61ac09b93c095a1425516be
+    domain: remote
+  mode: single
+- id: '1758338528901'
+  alias: Rest room right enters
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: 9e583260f08125820ca30ed2ab26b099
+    entity_id: e73b0e11a4aa31e8db5d116a06f12488
+    domain: binary_sensor
+    trigger: device
+  - type: occupied
+    device_id: 6c1f5c11509c931d0ab76dede94bded5
+    entity_id: fe487149a42a9c1ae2a3516acb350250
+    domain: binary_sensor
+    trigger: device
+    enabled: true
+  conditions:
+  - condition: time
+    before: '22:00:00'
+    after: '18:00:00'
+  actions:
+  - type: turn_on
+    device_id: 0282b7983ef4c529ff55f0fa6d0e704b
+    entity_id: 353ec0a3b2eb93a74db970914b815a14
+    domain: light
+    brightness_pct: 80
+  mode: single
+- id: '1758338597411'
+  alias: Rest room right decreases brightness at 10PM
+  description: ''
+  triggers:
+  - type: occupied
+    device_id: 9e583260f08125820ca30ed2ab26b099
+    entity_id: e73b0e11a4aa31e8db5d116a06f12488
+    domain: binary_sensor
+    trigger: device
+  - type: occupied
+    device_id: 6c1f5c11509c931d0ab76dede94bded5
+    entity_id: fe487149a42a9c1ae2a3516acb350250
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: time
+    before: 05:00:00
+    after: '22:00:00'
+  actions:
+  - type: turn_on
+    device_id: 0282b7983ef4c529ff55f0fa6d0e704b
+    entity_id: 353ec0a3b2eb93a74db970914b815a14
+    domain: light
+    brightness_pct: 10
+  mode: single
+- id: '1758338647770'
+  alias: Rest room right exits
+  description: ''
+  triggers:
+  - type: not_occupied
+    device_id: 9e583260f08125820ca30ed2ab26b099
+    entity_id: e73b0e11a4aa31e8db5d116a06f12488
+    domain: binary_sensor
+    trigger: device
+  - type: not_occupied
+    device_id: 6c1f5c11509c931d0ab76dede94bded5
+    entity_id: fe487149a42a9c1ae2a3516acb350250
+    domain: binary_sensor
+    trigger: device
+    enabled: true
+  conditions:
+  - type: is_not_occupied
+    condition: device
+    device_id: 9e583260f08125820ca30ed2ab26b099
+    entity_id: e73b0e11a4aa31e8db5d116a06f12488
+    domain: binary_sensor
+  actions:
+  - type: turn_off
+    device_id: 0282b7983ef4c529ff55f0fa6d0e704b
+    entity_id: 353ec0a3b2eb93a74db970914b815a14
     domain: light
   mode: single

@@ -150,7 +150,7 @@
       rgb_color:
       xy_color:
       off_with_transition: false
-      off_brightness: 135
+      off_brightness: 204
       friendly_name: Led in bookcase in living room
       supported_features: 40
       state: 'off'
@@ -174,8 +174,34 @@
       friendly_name: Led in shoe cabinet in living room
       supported_features: 40
       state: 'off'
+    light.xiaomi_cn_752952795_cfan_s_2_light:
+      min_color_temp_kelvin: 2700
+      max_color_temp_kelvin: 5700
+      min_mireds: 175
+      max_mireds: 370
+      effect_list:
+      - None
+      - Warmth
+      - TV
+      - Bright
+      - Night Light
+      supported_color_modes:
+      - color_temp
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      friendly_name: Fan light  Light
+      supported_features: 4
+      state: 'off'
   icon: mdi:lightbulb-multiple-off
-  metadata: {}
+  metadata:
+    light.xiaomi_cn_752952795_cfan_s_2_light:
+      entity_only: true
 - id: '1757633610315'
   name: Bedroom lights off
   entities:
@@ -395,8 +421,41 @@
       friendly_name: Led in shoe cabinet in living room
       supported_features: 40
       state: 'on'
+    light.xiaomi_cn_752952795_cfan_s_2_light:
+      min_color_temp_kelvin: 2700
+      max_color_temp_kelvin: 5700
+      min_mireds: 175
+      max_mireds: 370
+      effect_list:
+      - None
+      - Warmth
+      - TV
+      - Bright
+      - Night Light
+      supported_color_modes:
+      - color_temp
+      effect: None
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 5700
+      color_temp: 175
+      hs_color:
+      - 28.679
+      - 10.483
+      rgb_color:
+      - 255
+      - 241
+      - 228
+      xy_color:
+      - 0.348
+      - 0.341
+      friendly_name: Fan light  Light
+      supported_features: 4
+      state: 'on'
   icon: mdi:lightbulb-multiple
-  metadata: {}
+  metadata:
+    light.xiaomi_cn_752952795_cfan_s_2_light:
+      entity_only: true
 - id: '1757633847963'
   name: Living room yellow light
   entities:
@@ -453,5 +512,859 @@
       friendly_name: Led in shoe cabinet in living room
       supported_features: 40
       state: 'on'
+    light.xiaomi_cn_752952795_cfan_s_2_light:
+      min_color_temp_kelvin: 2700
+      max_color_temp_kelvin: 5700
+      min_mireds: 175
+      max_mireds: 370
+      effect_list:
+      - None
+      - Warmth
+      - TV
+      - Bright
+      - Night Light
+      supported_color_modes:
+      - color_temp
+      effect: None
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 2700
+      color_temp: 370
+      hs_color:
+      - 28.395
+      - 65.723
+      rgb_color:
+      - 255
+      - 167
+      - 87
+      xy_color:
+      - 0.525
+      - 0.388
+      friendly_name: Fan light  Light
+      supported_features: 4
+      state: 'on'
   icon: mdi:lightbulb-multiple
+  metadata:
+    light.xiaomi_cn_752952795_cfan_s_2_light:
+      entity_only: true
+- id: '1758325539312'
+  name: Hallway lights off
+  entities:
+    light.light_in_rest_room:
+      min_color_temp_kelvin: 2200
+      max_color_temp_kelvin: 6500
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Alarm
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Cozy
+      - Cool white
+      - Daylight
+      - Diwali
+      - Deep dive
+      - Fall
+      - Fireplace
+      - Forest
+      - Focus
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pulse
+      - Pastel colors
+      - Plantgrowth
+      - Romance
+      - Relax
+      - Sunset
+      - Spring
+      - Summer
+      - Steampunk
+      - True colors
+      - TV time
+      - White
+      - Wake-up
+      - Warm white
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      rgbw_color:
+      friendly_name: Light in rest room
+      supported_features: 4
+      state: 'off'
+  icon: mdi:lightbulb-off
   metadata: {}
+- id: '1758325624224'
+  name: Hallway white light
+  entities:
+    light.light_in_rest_room:
+      min_color_temp_kelvin: 2200
+      max_color_temp_kelvin: 6500
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Alarm
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Cozy
+      - Cool white
+      - Daylight
+      - Diwali
+      - Deep dive
+      - Fall
+      - Fireplace
+      - Forest
+      - Focus
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pulse
+      - Pastel colors
+      - Plantgrowth
+      - Romance
+      - Relax
+      - Sunset
+      - Spring
+      - Summer
+      - Steampunk
+      - True colors
+      - TV time
+      - White
+      - Wake-up
+      - Warm white
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      effect:
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6500
+      color_temp: 153
+      hs_color:
+      - 49.231
+      - 1.944
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      rgbw_color:
+      friendly_name: Light in rest room
+      supported_features: 4
+      state: 'on'
+  icon: mdi:lightbulb-outline
+  metadata: {}
+- id: '1758325690647'
+  name: Hallway yellow light
+  entities:
+    light.light_in_rest_room:
+      min_color_temp_kelvin: 2200
+      max_color_temp_kelvin: 6500
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Alarm
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Cozy
+      - Cool white
+      - Daylight
+      - Diwali
+      - Deep dive
+      - Fall
+      - Fireplace
+      - Forest
+      - Focus
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pulse
+      - Pastel colors
+      - Plantgrowth
+      - Romance
+      - Relax
+      - Sunset
+      - Spring
+      - Summer
+      - Steampunk
+      - True colors
+      - TV time
+      - White
+      - Wake-up
+      - Warm white
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      effect:
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 2200
+      color_temp: 454
+      hs_color:
+      - 29.797
+      - 84.644
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      rgbw_color:
+      friendly_name: Light in rest room
+      supported_features: 4
+      state: 'on'
+  icon: mdi:lightbulb
+  metadata: {}
+- id: '1758330404569'
+  name: Living room off
+  entities:
+    light.led_tu_phong_khach:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      off_with_transition: false
+      off_brightness: 204
+      friendly_name: Led in bookcase in living room
+      supported_features: 40
+      state: 'off'
+    light.led_tu_giay:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      off_with_transition: false
+      off_brightness: 204
+      friendly_name: Led in shoe cabinet in living room
+      supported_features: 40
+      state: 'off'
+    fan.xiaomi_cn_752952795_cfan_s_4_fan:
+      preset_modes:
+      - Straight Wind
+      - Natural Wind
+      - Circular Wind
+      - Sleep
+      percentage: 25
+      percentage_step: 1
+      preset_mode: Straight Wind
+      friendly_name: Fan light  Fan
+      supported_features: 57
+      state: 'off'
+    light.xiaomi_cn_752952795_cfan_s_2_light:
+      min_color_temp_kelvin: 2700
+      max_color_temp_kelvin: 5700
+      min_mireds: 175
+      max_mireds: 370
+      effect_list:
+      - None
+      - Warmth
+      - TV
+      - Bright
+      - Night Light
+      supported_color_modes:
+      - color_temp
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      friendly_name: Fan light  Light
+      supported_features: 4
+      state: 'off'
+    switch.tz3000_gvn91tmx_ts011f_2:
+      friendly_name: iPad outlet in living room
+      state: 'on'
+    switch.tz3000_gvn91tmx_ts011f_switch:
+      friendly_name: Projector outlet in living room
+      state: 'off'
+  icon: mdi:home-off
+  metadata:
+    fan.xiaomi_cn_752952795_cfan_s_4_fan:
+      entity_only: true
+    light.xiaomi_cn_752952795_cfan_s_2_light:
+      entity_only: true
+- id: '1758330506726'
+  name: Bed room off
+  entities:
+    light.led_giuong_phong_ngu:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      off_with_transition: false
+      off_brightness: 230
+      friendly_name: Led in bed in bed room
+      supported_features: 40
+      state: 'off'
+    light.led_tu_quan_ao:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      off_with_transition: false
+      off_brightness: 230
+      friendly_name: Led in wardrobe in bed room
+      supported_features: 40
+      state: 'off'
+    automation.bedroom_turn_off_ac_at_5am:
+      id: '1753367231970'
+      last_triggered: '2025-09-19T22:30:00.259661+00:00'
+      mode: single
+      current: 0
+      friendly_name: Bedroom turn off AC
+      state: 'on'
+  icon: mdi:home-off
+  metadata:
+    automation.bedroom_turn_off_ac_at_5am:
+      entity_only: true
+- id: '1758330651493'
+  name: Working room off
+  entities:
+    light.yellow_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - 'off'
+      - candle
+      - fire
+      - prism
+      - sparkle
+      - opal
+      - glisten
+      - underwater
+      - cosmos
+      - sunbeam
+      - enchant
+      - sunrise
+      - sunset
+      supported_color_modes:
+      - color_temp
+      - xy
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      mode: normal
+      dynamics: none
+      friendly_name: Yellow light
+      supported_features: 44
+      state: 'off'
+    light.green_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - 'off'
+      - candle
+      - fire
+      - prism
+      - sparkle
+      - opal
+      - glisten
+      - underwater
+      - cosmos
+      - sunbeam
+      - enchant
+      - sunrise
+      - sunset
+      supported_color_modes:
+      - color_temp
+      - xy
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      mode: normal
+      dynamics: none
+      friendly_name: Green light
+      supported_features: 44
+      state: 'off'
+    light.red_light:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6535
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - 'off'
+      - candle
+      - fire
+      - prism
+      - sparkle
+      - opal
+      - glisten
+      - underwater
+      - cosmos
+      - sunbeam
+      - enchant
+      - sunrise
+      - sunset
+      supported_color_modes:
+      - color_temp
+      - xy
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      mode: normal
+      dynamics: none
+      friendly_name: Red light
+      supported_features: 44
+      state: 'off'
+    switch.tz3000_okaz9tjs_ts011f:
+      icon: mdi:fan
+      friendly_name: Fan outlet in working room
+      state: 'off'
+    switch.tz3000_okaz9tjs_ts011f_2:
+      friendly_name: Computer outlet in working room
+      state: 'off'
+  icon: mdi:home-off
+  metadata: {}
+- id: '1758330715234'
+  name: Rest room off
+  entities:
+    light.light_in_bedroom:
+      min_color_temp_kelvin: 2200
+      max_color_temp_kelvin: 6500
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Alarm
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Cozy
+      - Cool white
+      - Daylight
+      - Diwali
+      - Deep dive
+      - Fall
+      - Fireplace
+      - Forest
+      - Focus
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pulse
+      - Pastel colors
+      - Plantgrowth
+      - Romance
+      - Relax
+      - Sunset
+      - Spring
+      - Summer
+      - Steampunk
+      - True colors
+      - TV time
+      - White
+      - Wake-up
+      - Warm white
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      rgbw_color:
+      friendly_name: Light right in rest room
+      supported_features: 4
+      state: 'off'
+  icon: mdi:home-off
+  metadata: {}
+- id: '1758340362507'
+  name: Rest room lights off
+  entities:
+    light.light_in_bedroom:
+      min_color_temp_kelvin: 2200
+      max_color_temp_kelvin: 6500
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Alarm
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Cozy
+      - Cool white
+      - Daylight
+      - Diwali
+      - Deep dive
+      - Fall
+      - Fireplace
+      - Forest
+      - Focus
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pulse
+      - Pastel colors
+      - Plantgrowth
+      - Romance
+      - Relax
+      - Sunset
+      - Spring
+      - Summer
+      - Steampunk
+      - True colors
+      - TV time
+      - White
+      - Wake-up
+      - Warm white
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      rgbw_color:
+      friendly_name: Light right in rest room
+      supported_features: 4
+      state: 'off'
+  icon: mdi:lightbulb-off
+  metadata: {}
+- id: '1758340437944'
+  name: Rest room yellow light
+  entities:
+    light.light_in_bedroom:
+      min_color_temp_kelvin: 2200
+      max_color_temp_kelvin: 6500
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Alarm
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Cozy
+      - Cool white
+      - Daylight
+      - Diwali
+      - Deep dive
+      - Fall
+      - Fireplace
+      - Forest
+      - Focus
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pulse
+      - Pastel colors
+      - Plantgrowth
+      - Romance
+      - Relax
+      - Sunset
+      - Spring
+      - Summer
+      - Steampunk
+      - True colors
+      - TV time
+      - White
+      - Wake-up
+      - Warm white
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      effect:
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 2200
+      color_temp: 454
+      hs_color:
+      - 29.797
+      - 84.644
+      rgb_color:
+      - 255
+      - 146
+      - 39
+      xy_color:
+      - 0.579
+      - 0.388
+      rgbw_color:
+      friendly_name: Light right in rest room
+      supported_features: 4
+      state: 'on'
+  icon: mdi:lightbulb
+  metadata: {}
+- id: '1758340508457'
+  name: Rest room white light
+  entities:
+    light.light_in_bedroom:
+      min_color_temp_kelvin: 2200
+      max_color_temp_kelvin: 6500
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Alarm
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Cozy
+      - Cool white
+      - Daylight
+      - Diwali
+      - Deep dive
+      - Fall
+      - Fireplace
+      - Forest
+      - Focus
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pulse
+      - Pastel colors
+      - Plantgrowth
+      - Romance
+      - Relax
+      - Sunset
+      - Spring
+      - Summer
+      - Steampunk
+      - True colors
+      - TV time
+      - White
+      - Wake-up
+      - Warm white
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      effect:
+      color_mode: color_temp
+      brightness: 204
+      color_temp_kelvin: 6500
+      color_temp: 153
+      hs_color:
+      - 49.231
+      - 1.944
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      rgbw_color:
+      friendly_name: Light right in rest room
+      supported_features: 4
+      state: 'on'
+  icon: mdi:lightbulb-outline
+  metadata: {}
+- id: '1758340718777'
+  name: Hallway off
+  entities:
+    light.light_in_rest_room:
+      min_color_temp_kelvin: 2200
+      max_color_temp_kelvin: 6500
+      min_mireds: 153
+      max_mireds: 454
+      effect_list:
+      - Alarm
+      - Bedtime
+      - Candlelight
+      - Christmas
+      - Cozy
+      - Cool white
+      - Daylight
+      - Diwali
+      - Deep dive
+      - Fall
+      - Fireplace
+      - Forest
+      - Focus
+      - Golden white
+      - Halloween
+      - Jungle
+      - Mojito
+      - Night light
+      - Ocean
+      - Party
+      - Pulse
+      - Pastel colors
+      - Plantgrowth
+      - Romance
+      - Relax
+      - Sunset
+      - Spring
+      - Summer
+      - Steampunk
+      - True colors
+      - TV time
+      - White
+      - Wake-up
+      - Warm white
+      - Rhythm
+      supported_color_modes:
+      - color_temp
+      - rgbw
+      effect:
+      color_mode:
+      brightness:
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      rgb_color:
+      xy_color:
+      rgbw_color:
+      friendly_name: Light in hallway
+      supported_features: 4
+      state: 'off'
+  icon: mdi:home-off
+  metadata: {}
+- id: '1758341776547'
+  name: Living room plays movie
+  entities:
+    fan.xiaomi_cn_752952795_cfan_s_4_fan:
+      preset_modes:
+      - Straight Wind
+      - Natural Wind
+      - Circular Wind
+      - Sleep
+      percentage: 20
+      percentage_step: 1
+      preset_mode: Straight Wind
+      friendly_name: Fan light  Fan
+      supported_features: 57
+      state: 'on'
+    switch.tz3000_gvn91tmx_ts011f_switch:
+      friendly_name: Projector outlet in living room
+      state: 'on'
+  icon: mdi:movie
+  metadata:
+    fan.xiaomi_cn_752952795_cfan_s_4_fan:
+      entity_only: true
+- id: '1758341810480'
+  name: Living room ends movie
+  entities:
+    fan.xiaomi_cn_752952795_cfan_s_4_fan:
+      preset_modes:
+      - Straight Wind
+      - Natural Wind
+      - Circular Wind
+      - Sleep
+      percentage: 20
+      percentage_step: 1
+      preset_mode: Straight Wind
+      friendly_name: Fan light  Fan
+      supported_features: 57
+      state: 'off'
+    switch.tz3000_gvn91tmx_ts011f_switch:
+      friendly_name: Projector outlet in living room
+      state: 'off'
+  icon: mdi:movie
+  metadata:
+    fan.xiaomi_cn_752952795_cfan_s_4_fan:
+      entity_only: true
