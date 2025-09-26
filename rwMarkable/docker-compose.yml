@@ -1,0 +1,16 @@
+services:
+  rwmarkable:
+    image: ghcr.io/fccview/rwmarkable:latest
+    container_name: rwmarkable
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - TZ=${TZ}
+      - NODE_ENV=production
+    ports:
+      - ${PORT}:3000
+    user: "1000:1000"
+    volumes:
+      - /home/ezcafe/backups/rwmarkable:/app/data:rw
+      - /home/ezcafe/backups/rwmarkable/config:/app/config:ro
+    platform: linux/arm64
