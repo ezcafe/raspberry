@@ -2,7 +2,7 @@
 
 ## Setup
 
-Go to https://auth.example.com/login/setup to add passkey
+Go to https://auth.example.com/setup to add passkey
 
 ### Make backup folder accessible
 
@@ -18,6 +18,9 @@ mkdir -p /home/ezcafe/backups/memos
 chown 1000:1000 /home/ezcafe/backups/memos
 
 ### Make .sh script as executable
+
+chmod +x ../scripts/backup-pre-script.sh
+chmod +x ../scripts/backup-post-script.sh
 
 chmod u=rwx ../scripts/backup-pre-script.sh
 chmod u=rwx ../scripts/backup-post-script.sh

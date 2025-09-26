@@ -57,7 +57,7 @@ OAUTH2_USER_CREATION=1
 ## Start the database
 
 ```
-docker-compose up -d db
+docker compose up -d db
 ```
 
 Check health of database by running `docker ps`. Wait until its status becomes healthy
@@ -71,7 +71,7 @@ docker exec -it miniflux-db psql -U yourDbUser
 ## Start Miniflux
 
 ```
-docker-compose up -d app
+docker compose up -d app
 ```
 
 ## Backup and Restore

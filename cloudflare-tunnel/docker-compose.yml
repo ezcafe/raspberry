@@ -1,8 +1,6 @@
-version: "3"
 services:
   cloudflare-ddns:
-    image: ghcr.io/milgradesec/cloudflared
-    # image: erisamoe/cloudflared
+    image: cloudflare/cloudflared:latest
     restart: unless-stopped
     container_name: cloudflare-tunnel
     command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}

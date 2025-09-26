@@ -14,8 +14,6 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
-    # networks:
-    #   - proxy
     volumes:
       - pocket-id:/app/data
     depends_on:
@@ -69,6 +67,3 @@ volumes:
   pocket-id:
   data:
 
-# networks:
-#   proxy:
-#     external: true
