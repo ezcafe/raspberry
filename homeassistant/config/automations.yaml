@@ -44,7 +44,7 @@
   conditions:
   - condition: time
     after: '18:00:00'
-    before: '21:30:00'
+    before: '21:45:00'
   actions:
   - type: turn_on
     device_id: 5561896f763afd135a56a644b88edfda
@@ -183,6 +183,15 @@
     - thu
     - fri
     - sat
+  - type: opened
+    device_id: b051ba56bbea5bd7c3f2f2e263a13ddf
+    entity_id: 307e34dd6c4819d8a9cc2baaf9a33343
+    domain: binary_sensor
+    trigger: device
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
   conditions:
   - condition: state
     entity_id: input_boolean.travel_mode
@@ -254,8 +263,8 @@
     data:
       protocol: NEC
       bits: 32
-      data: "0xFFA25D"
-      dataLSB: "0xFF45BA"
+      data: '0xFFA25D'
+      dataLSB: '0xFF45BA'
       repeat: 0
       commandTopic: X_SMART_LINK_C9EF77
   mode: single
@@ -275,8 +284,8 @@
     data:
       protocol: NEC
       bits: 32
-      data: "0xFFA25D"
-      dataLSB: "0xFF45BA"
+      data: '0xFFA25D'
+      dataLSB: '0xFF45BA'
       repeat: 0
       commandTopic: X_SMART_LINK_C9EF77
   mode: single
@@ -296,8 +305,8 @@
     data:
       protocol: NEC
       bits: 32
-      data: "0xFFA25D"
-      dataLSB: "0xFF45BA"
+      data: '0xFFA25D'
+      dataLSB: '0xFF45BA'
       repeat: 0
       commandTopic: X_SMART_LINK_C9EF77
   mode: single
@@ -396,7 +405,10 @@
   - trigger: state
     entity_id:
     - binary_sensor.gate_sensor_opening
-    from: 'off'
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.bedroom_door_sensor_opening
     to: 'on'
   conditions:
   - condition: time
@@ -416,6 +428,12 @@
     entity_id: a1bb69082df5553b7b210436b2870310
     domain: light
     brightness_pct: 100
+    enabled: true
+  - action: notify.mobile_app_qs_iphone
+    metadata: {}
+    data:
+      title: 'Hi handsome '
+      message: Chào mừng anh Quang đẹp trai về nhà
   mode: single
 - id: '1753791525721'
   alias: Home exit
@@ -458,10 +476,6 @@
       - scene.working_room_off
       - scene.rest_room_off
       - scene.hallway_off
-  - type: turn_off
-    device_id: d352b43c0c991916663592ad5d5a5d4c
-    entity_id: be22d89bc61ac09b93c095a1425516be
-    domain: remote
   mode: single
 - id: '1753792193072'
   alias: Doors sends alert at 9PM
@@ -490,6 +504,46 @@
     data:
       message: Đóng cửa Q ơi
       title: Kiểm tra an ninh
+  - repeat:
+      count: 10
+      sequence:
+      - type: toggle
+        device_id: 4b1e3bd7eb464217dee698873290371b
+        entity_id: 4dec75628ed6ae67631a5a4f76e228cc
+        domain: light
+      - type: toggle
+        device_id: eb695e7330ed4609edad8735efde5a49
+        entity_id: 3f5a04430b3cc8f17af1bfa95ebe2c63
+        domain: light
+      - type: toggle
+        device_id: 3d63ff489da00855639f8ac069919046
+        entity_id: e79bcaae51a233ff813d5067577326d0
+        domain: light
+      - type: toggle
+        device_id: 5561896f763afd135a56a644b88edfda
+        entity_id: 765da3cb2f65bd02c6b215278917dcd6
+        domain: light
+      - type: toggle
+        device_id: fc4e9f889a19087de5ff225ea885fdae
+        entity_id: 7aaa3933c9b1b13d4a0bbe1fc6e6e064
+        domain: light
+      - type: toggle
+        device_id: 0f31cd7a08b5f505c7c19f413bc99a79
+        entity_id: e9de90109ba88a47bd0b3e6ad810fcd3
+        domain: light
+      - type: toggle
+        device_id: eede4a63d294ebf8283da5ac1433f4c3
+        entity_id: 7c0fcca8be0fc0bb6c87ff0bdd92f774
+        domain: light
+      - type: toggle
+        device_id: 0282b7983ef4c529ff55f0fa6d0e704b
+        entity_id: 353ec0a3b2eb93a74db970914b815a14
+        domain: light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 1
+          milliseconds: 0
   mode: single
 - id: '1753967319732'
   alias: Bedroom enter day time
@@ -634,8 +688,8 @@
     data:
       protocol: NEC
       bits: 32
-      data: "0xFFA25D"
-      dataLSB: "0xFF45BA"
+      data: '0xFFA25D'
+      dataLSB: '0xFF45BA'
       repeat: 0
       commandTopic: X_SMART_LINK_C9EF77
   mode: single
@@ -650,7 +704,7 @@
     trigger: device
   conditions:
   - condition: time
-    after: '22:30:00'
+    after: '22:10:00'
     before: 05:00:00
   actions:
   - type: turn_off
@@ -668,6 +722,10 @@
   - type: turn_off
     device_id: eede4a63d294ebf8283da5ac1433f4c3
     entity_id: 7c0fcca8be0fc0bb6c87ff0bdd92f774
+    domain: light
+  - type: turn_off
+    device_id: 0282b7983ef4c529ff55f0fa6d0e704b
+    entity_id: 353ec0a3b2eb93a74db970914b815a14
     domain: light
   mode: single
 - id: '1755424921467'
@@ -805,6 +863,23 @@
     entity_id: input_boolean.travel_mode
     state: 'off'
   actions:
+  - type: turn_on
+    device_id: eb695e7330ed4609edad8735efde5a49
+    entity_id: 3f5a04430b3cc8f17af1bfa95ebe2c63
+    domain: light
+    brightness_pct: 2
+    flash: short
+  - type: turn_on
+    device_id: 4b1e3bd7eb464217dee698873290371b
+    entity_id: 4dec75628ed6ae67631a5a4f76e228cc
+    domain: light
+    flash: short
+    brightness_pct: 2
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
   - type: turn_off
     device_id: eb695e7330ed4609edad8735efde5a49
     entity_id: 3f5a04430b3cc8f17af1bfa95ebe2c63
@@ -982,7 +1057,7 @@
     trigger: device
     for:
       hours: 0
-      minutes: 3
+      minutes: 2
       seconds: 0
   conditions: []
   actions:
@@ -1086,16 +1161,195 @@
     entity_id: fe487149a42a9c1ae2a3516acb350250
     domain: binary_sensor
     trigger: device
-    enabled: true
   conditions:
-  - type: is_not_occupied
-    condition: device
-    device_id: 9e583260f08125820ca30ed2ab26b099
-    entity_id: e73b0e11a4aa31e8db5d116a06f12488
-    domain: binary_sensor
+  - condition: and
+    conditions:
+    - type: is_not_occupied
+      condition: device
+      device_id: 6c1f5c11509c931d0ab76dede94bded5
+      entity_id: fe487149a42a9c1ae2a3516acb350250
+      domain: binary_sensor
+    - type: is_not_occupied
+      condition: device
+      device_id: 9e583260f08125820ca30ed2ab26b099
+      entity_id: e73b0e11a4aa31e8db5d116a06f12488
+      domain: binary_sensor
   actions:
   - type: turn_off
     device_id: 0282b7983ef4c529ff55f0fa6d0e704b
     entity_id: 353ec0a3b2eb93a74db970914b815a14
     domain: light
+  mode: single
+- id: '1758458761096'
+  alias: Tag - Desk in working room
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: ceb596ad-e071-4a22-be65-6282885a222e
+  conditions: []
+  actions:
+  - type: toggle
+    device_id: 0ab3b3df35834a879e74abe9bcd7402a
+    entity_id: 130e0364594951ab97ad77223988e46b
+    domain: switch
+  - type: toggle
+    device_id: 5561896f763afd135a56a644b88edfda
+    entity_id: 765da3cb2f65bd02c6b215278917dcd6
+    domain: light
+    enabled: false
+  - type: toggle
+    device_id: fc4e9f889a19087de5ff225ea885fdae
+    entity_id: 7aaa3933c9b1b13d4a0bbe1fc6e6e064
+    domain: light
+    enabled: false
+  mode: single
+- id: '1758459013483'
+  alias: 'Tag - Desk in bedroom '
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: 9697495f-f2b4-4724-9c4d-00d2dcf59a72
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: 4b1e3bd7eb464217dee698873290371b
+    entity_id: 4dec75628ed6ae67631a5a4f76e228cc
+    domain: light
+    flash: short
+    brightness_pct: 80
+  - type: turn_on
+    device_id: eb695e7330ed4609edad8735efde5a49
+    entity_id: 3f5a04430b3cc8f17af1bfa95ebe2c63
+    domain: light
+    brightness_pct: 80
+    flash: short
+  mode: single
+- id: '1758459520284'
+  alias: Tag - Bookcase in living room
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: 222fc709-432a-4d41-80db-d83ad2c49a0b
+  conditions: []
+  actions:
+  - type: toggle
+    device_id: c8581016174b5ec0e0d487ebad60802c
+    entity_id: 319ebd5a59a5582098d0cc3866fcb5f2
+    domain: fan
+  - type: toggle
+    device_id: c8581016174b5ec0e0d487ebad60802c
+    entity_id: a1bb69082df5553b7b210436b2870310
+    domain: light
+  - type: toggle
+    device_id: 3d63ff489da00855639f8ac069919046
+    entity_id: e79bcaae51a233ff813d5067577326d0
+    domain: light
+  mode: single
+- id: '1758459630449'
+  alias: Tag - Table in kitchen
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: afb0b793-d571-4683-a1a3-9e7f5f6239e8
+  conditions: []
+  actions:
+  - type: toggle
+    device_id: c8581016174b5ec0e0d487ebad60802c
+    entity_id: a1bb69082df5553b7b210436b2870310
+    domain: light
+  - type: toggle
+    device_id: 3d63ff489da00855639f8ac069919046
+    entity_id: e79bcaae51a233ff813d5067577326d0
+    domain: light
+  mode: single
+- id: '1758459700931'
+  alias: Tag - Gate
+  description: ''
+  triggers:
+  - trigger: tag
+    tag_id: 4e3c690e-06d7-4663-9281-b730e159f473
+  conditions: []
+  actions:
+  - type: turn_on
+    device_id: c8581016174b5ec0e0d487ebad60802c
+    entity_id: a1bb69082df5553b7b210436b2870310
+    domain: light
+  mode: single
+- id: '1758502661404'
+  alias: Home turns off lights at 23:59PM
+  description: ''
+  triggers:
+  - trigger: time
+    at: '23:59:00'
+  conditions: []
+  actions:
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - scene.scene_turns_off_lights_in_living_room
+      - scene.bedroom_off
+      - scene.lights_off
+      - scene.rest_room_lights_off
+      - scene.rest_room_lights_off_duplicate
+  mode: single
+- id: '1758884110381'
+  alias: Doors send alert on day time
+  description: ''
+  triggers:
+  - type: opened
+    device_id: 432e2e3dd88b3aeafc4fa7b0cd4a0715
+    entity_id: 5d7f1da4f82808a5d5df529f8f531478
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: and
+    conditions:
+    - condition: device
+      device_id: b2b3e76271399510d893268e92c38b38
+      domain: device_tracker
+      entity_id: f789bce5ef2ceafd6fd4bcbb1fed0c70
+      type: is_not_home
+    - condition: device
+      device_id: 29d17f7968a3cdc723fdf5b5e7b0e281
+      domain: device_tracker
+      entity_id: 25761030c031f8481fd97ff26ed1af51
+      type: is_not_home
+    enabled: false
+  - condition: time
+    after: 09:00:00
+    before: '18:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  - condition: state
+    entity_id: input_boolean.travel_mode
+    state: 'on'
+  actions:
+  - action: notify.mobile_app_qs_iphone
+    metadata: {}
+    data:
+      message: Đóng cửa Q ơi
+      title: Kiểm tra an ninh
+  mode: single
+- id: '1758885312990'
+  alias: Washer finishes it job
+  description: ''
+  triggers:
+  - type: turned_off
+    device_id: ca8efc9ea819a0036039b4fcd3aa3842
+    entity_id: 0707574ba455a74620227e41a7d87143
+    domain: switch
+    trigger: device
+  conditions: []
+  actions:
+  - action: notify.mobile_app_qs_iphone
+    metadata: {}
+    data:
+      title: Chăm chỉ làm việc nhà
+      message: Bỏ đồ vào máy sấy nào
   mode: single

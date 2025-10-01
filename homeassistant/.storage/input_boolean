@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_boolean",
+  "data": {
+    "items": [
+      {
+        "id": "led_toggle",
+        "name": "Living room led toggle",
+        "icon": "mdi:toggle-switch"
+      },
+      {
+        "id": "bedroom_ac_toggle",
+        "name": "Bedroom AC toggle",
+        "icon": "mdi:air-conditioner"
+      },
+      {
+        "id": "bedroom_fan_toggle",
+        "name": "Bedroom fan toggle",
+        "icon": "mdi:fan"
+      },
+      {
+        "id": "travel_mode",
+        "name": "Travel mode",
+        "icon": "mdi:toggle-switch"
+      }
+    ]
+  }
+}

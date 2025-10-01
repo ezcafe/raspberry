@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "energy",
+  "data": {
+    "energy_sources": [
+      {
+        "type": "grid",
+        "flow_from": [
+          {
+            "stat_energy_from": "sensor.tz3000_gvn91tmx_ts011f_summation_delivered",
+            "stat_cost": null,
+            "entity_energy_price": null,
+            "number_energy_price": null
+          },
+          {
+            "stat_energy_from": "sensor.tz3000_okaz9tjs_ts011f_summation_delivered",
+            "stat_cost": null,
+            "entity_energy_price": null,
+            "number_energy_price": null
+          },
+          {
+            "stat_energy_from": "sensor.tz3000_okaz9tjs_ts011f_summation_delivered_2",
+            "stat_cost": null,
+            "entity_energy_price": null,
+            "number_energy_price": null
+          },
+          {
+            "stat_energy_from": "sensor.tz3000_gvn91tmx_ts011f_summation_delivered_2",
+            "stat_cost": null,
+            "entity_energy_price": null,
+            "number_energy_price": null
+          },
+          {
+            "stat_energy_from": "sensor.tz3000_gvn91tmx_ts011f_summation_delivered_3",
+            "stat_cost": null,
+            "entity_energy_price": null,
+            "number_energy_price": null
+          }
+        ],
+        "flow_to": [],
+        "cost_adjustment_day": 0.0
+      }
+    ],
+    "device_consumption": [
+      {
+        "stat_consumption": "sensor.tz3000_okaz9tjs_ts011f_summation_delivered_2"
+      },
+      {
+        "stat_consumption": "sensor.tz3000_okaz9tjs_ts011f_summation_delivered"
+      },
+      {
+        "stat_consumption": "sensor.tz3000_gvn91tmx_ts011f_summation_delivered"
+      },
+      {
+        "stat_consumption": "sensor.tz3000_gvn91tmx_ts011f_summation_delivered_2"
+      },
+      {
+        "stat_consumption": "sensor.tz3000_gvn91tmx_ts011f_summation_delivered_3"
+      }
+    ]
+  }
+}
