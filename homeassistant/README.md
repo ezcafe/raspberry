@@ -45,6 +45,7 @@ Hints for automations:
 
 - Follow this guide to setup device https://www.youtube.com/watch?v=dhuiiHmfK8k
 - Follow this guide to setup other IR commands https://github.com/hristo-atanasov/Tasmota-IRHVAC
+- If there is issue, go to https://github.com/hristo-atanasov/Tasmota-IRHVAC/tree/master/custom_components/tasmota_irhvac and copy the new component
 
 ```scripts.yaml
 irhvac_remote:
