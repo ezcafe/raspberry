@@ -1,0 +1,39 @@
+services:
+  tradetally:
+    image: potentialmidas/tradetally:latest
+    container_name: tradetally
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${PORT}:80
+      - ${PORT2}:3000
+    volumes:
+      - logs:/app/backend/src/logs
+      - data:/app/backend/src/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: tradetally-db
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-trader} -d ${DB_NAME:-tradetally}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  data:
+  logs:
+  db:
