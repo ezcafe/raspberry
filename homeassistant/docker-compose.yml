@@ -16,6 +16,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
       - homeassistant-media:/media
+    depends_on:
+      - mosquitto
     privileged: true
     devices:
       # https://www.home-assistant.io/integrations/zha/#cant-connect-to-usb-device-and-using-docker
@@ -33,6 +35,8 @@ services:
       - ./mosquitto/config:/mosquitto/config:rw
       - ./mosquitto/data:/mosquitto/data:rw
       - ./mosquitto/log:/mosquitto/log:rw
+    stdin_open: true
+    tty: true
 
 volumes:
   homeassistant-media:
