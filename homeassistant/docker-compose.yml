@@ -9,29 +9,30 @@ services:
       - TZ=${TZ}
     # ports:
     #   - ${PORT}:8123
-    # healthcheck:
-    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
-    #   interval: 10s
-    #   timeout: 5s
-    #   retries: 5
-    # networks:
-    #   - proxy
     # required to connect homekit, HA and homekit devices must be on the same network (wifi router)
     network_mode: host
     volumes:
-      # - db_volume:/opt/example/data
       - ./config:/config
-      - ~/music:/media
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
+      - homeassistant-media:/media
     privileged: true
     devices:
       # https://www.home-assistant.io/integrations/zha/#cant-connect-to-usb-device-and-using-docker
       - /dev/ttyUSB0:/dev/ttyUSB0
 
-# networks:
-#   proxy:
-#     external: true
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    ports:
+      - 1883:1883
+    volumes:
+      - ./mosquitto/config:/mosquitto/config:rw
+      - ./mosquitto/data:/mosquitto/data:rw
+      - ./mosquitto/log:/mosquitto/log:rw
 
-# volumes:
-#   db_volume:
+volumes:
+  homeassistant-media:
