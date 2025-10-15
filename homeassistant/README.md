@@ -4,6 +4,22 @@
 sudo ufw allow 8123
 sudo ufw allow 21064/tcp comment homekit
 
+## Add MQTT user
+
+docker exec -it mosquitto mosquitto_passwd -c ./mosquitto/config/mqttuser homeassistant
+
+Check user
+sudo cat ./mosquitto/config/mqttuser
+
+If have unlink issue with config file, run this command
+sudo chown -R $USER:$USER .
+
+### Configure MQTT
+
+Broker: your MQTT ip
+Port: 1883
+User and pass of MQTT
+
 ## Authentik
 
 https://goauthentik.io/integrations/services/home-assistant/
@@ -46,6 +62,12 @@ Hints for automations:
 - Follow this guide to setup device https://www.youtube.com/watch?v=dhuiiHmfK8k
 - Follow this guide to setup other IR commands https://github.com/hristo-atanasov/Tasmota-IRHVAC
 - If there is issue, go to https://github.com/hristo-atanasov/Tasmota-IRHVAC/tree/master/custom_components/tasmota_irhvac and copy the new component
+
+Config MQTT
+
+Host: your MQTT ip
+Port: 1883
+User and pass of MQTT
 
 ```scripts.yaml
 irhvac_remote:

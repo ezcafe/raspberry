@@ -4,8 +4,8 @@ services:
     container_name: tailscale
     restart: unless-stopped
     env_file: .env
-    # environment:
-    #   - TZ=${TZ}
+    environment:
+      - TZ=${TZ}
     ports:
       - ${PORT}:5006
     devices:
@@ -18,20 +18,14 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:19932/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 10s
       timeout: 5s
       retries: 5
     volumes:
       - config:/config # Config folder used to store Tailscale files - you may need to change the path
       - state:/var/lib/tailscale # Tailscale requirement - you may need to change the path
-    # networks:
-    #   - proxy
 
 volumes:
   config:
   state:
-
-# networks:
-#   proxy:
-#     external: true
