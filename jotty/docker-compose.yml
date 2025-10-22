@@ -16,7 +16,4 @@ services:
       - /home/ezcafe/backups/config:/app/config:ro
       # Improves performance by persisting cache between container restarts.
       - /home/ezcafe/backups/cache:/app/.next/cache:rw
-
-    environment:
-      - NODE_ENV=production
     platform: linux/arm64
