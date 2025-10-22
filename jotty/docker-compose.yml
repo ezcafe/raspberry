@@ -1,0 +1,22 @@
+services:
+  jotty:
+    image: ghcr.io/fccview/jotty:latest
+    container_name: jotty
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - TZ=${TZ}
+    user: "1000:1000"
+    ports:
+      - "${PORT}:3000"
+    volumes:
+      # This stores your checklists, notes, users, and settings.
+      - /home/ezcafe/backups/data:/app/data:rw
+      # This contains custom themes and configuration files.
+      - /home/ezcafe/backups/config:/app/config:ro
+      # Improves performance by persisting cache between container restarts.
+      - /home/ezcafe/backups/cache:/app/.next/cache:rw
+
+    environment:
+      - NODE_ENV=production
+    platform: linux/arm64
