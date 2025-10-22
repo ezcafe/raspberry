@@ -11,9 +11,9 @@ services:
       - "${PORT}:3000"
     volumes:
       # This stores your checklists, notes, users, and settings.
-      - /home/ezcafe/backups/data:/app/data:rw
+      - /home/ezcafe/backups/jotty/data:/app/data:rw
       # This contains custom themes and configuration files.
-      - /home/ezcafe/backups/config:/app/config:ro
+      - /home/ezcafe/backups/jotty/config:/app/config:ro
       # Improves performance by persisting cache between container restarts.
-      - /home/ezcafe/backups/cache:/app/.next/cache:rw
+      - /home/ezcafe/backups/jotty/cache:/app/.next/cache:rw
     platform: linux/arm64
