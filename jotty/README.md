@@ -8,7 +8,7 @@ Go to your auth provider
 Create OIDC Client with these information
 
 - name: jotty
-- Callback URLs: https://note.example.com/oauth2/oidc/callback
+- Callback URLs: https://note.example.com/api/oidc/callback
 
 ### Update .env file
 
@@ -26,5 +26,6 @@ OIDC_CLIENT_SECRET=copy from OIDC provider
 mkdir -p /home/ezcafe/backups/jotty/cache
 mkdir -p /home/ezcafe/backups/jotty/config
 mkdir -p /home/ezcafe/backups/jotty/data
-chown -R 1000:1000 /home/ezcafe/backups/jotty/
-chmod -R 755 /home/ezcafe/backups/jotty/
+sudo chown -R 1000:1000 /home/ezcafe/backups/jotty/data/
+sudo chown -R 1000:1000 /home/ezcafe/backups/jotty/cache/
+sudo chown -R 1000:1000 /home/ezcafe/backups/jotty/config/
