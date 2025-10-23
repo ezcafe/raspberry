@@ -1,0 +1,48 @@
+services:
+  web:
+    image: ghcr.io/kanbn/kan:latest
+    container_name: kan
+    restart: unless-stopped
+    env_file: .env
+    # environment:
+    #   - TZ=${TZ}
+    ports:
+      - ${PORT}:3000
+    depends_on:
+      - postgres
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    # volumes:
+      # - data:/opt/example/data
+    # networks:
+    #   - proxy
+  postgres:
+    image: postgres:15
+    container_name: kan-db
+    restart: unless-stopped
+    env_file: .env
+    # environment:
+    #   - TZ=${TZ}
+    ports:
+      - 5432:5432
+    depends_on:
+      - postgres
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    volumes:
+      - data:/var/lib/postgresql/data
+    # networks:
+    #   - proxy
+
+volumes:
+  data:
+
+# networks:
+#   proxy:
+#     external: true
