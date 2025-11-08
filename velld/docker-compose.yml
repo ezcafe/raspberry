@@ -1,0 +1,25 @@
+services:
+  api:
+    image: ghcr.io/dendianugerah/velld/api:latest
+    container_name: velld-api
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 8080:8080
+    volumes:
+      - api_data:/app/data
+      - backup_data:/app/backups
+
+  web:
+    image: ghcr.io/dendianugerah/velld/web:latest
+    container_name: velld-web
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${PORT}:3000
+    depends_on:
+      - api
+
+volumes:
+  api_data:
+  backup_data:

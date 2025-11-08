@@ -50,7 +50,7 @@ http:
     # search for "... INF ICMP proxy will use 172.19.0.2 as source for IPv4",
     # replace .0.2 with .0.0
     - 127.0.0.1
-    - 172.20.0.2 # Go to HASS address, if we get 400 error, check HASS log to get this ip
+    - 192.168.1.252 # IP of Server which CloudFlare Tunnel Container is running on
     - ::1
     - 172.30.33.0/24 # check CloudFlare log to get this IP range
     - 198.41.192.0/24
