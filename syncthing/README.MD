@@ -2,8 +2,10 @@
 
 ## Fix permission
 
-chmod -R 777 /path/to/backups/folder/
-chmod -R u+rwx /path/to/backups/folder/
+mkdir ~/syncthing
+mkdir ~/syncthing/backups
+sudo chown -R 1000:1000 ~/syncthing/backups
+sudo chmod -R 750 ~/syncthing/backups
 
 ## Share folder
 
