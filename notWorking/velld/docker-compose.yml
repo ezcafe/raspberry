@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - 8080:8080
+      - ${PORT_API}:8080
     volumes:
       - api_data:/app/data
       - backup_data:/app/backups
