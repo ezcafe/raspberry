@@ -18,31 +18,16 @@ services:
     container_name: miniflux-db
 
   db-backup:
+    image: rostislavdugin/postgresus:latest
     container_name: miniflux-db-backup
-    image: ghcr.io/tiredofit/docker-db-backup
-    links:
-     - db
-    volumes:
-      - /home/ezcafe/backups/miniflux:/backup
-      - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
-      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
-    environment:
-      # - DEBUG_MODE=TRUE
-      - DB01_TYPE=pgsql
-      - DB01_HOST=${DB_HOST}
-      - DB01_NAME=${DB_NAME}
-      - DEFAULT_AUTH=${DB_NAME}
-      - DB01_USER=${DB_USER}
-      - DB01_PASS=${DB_PASS}
-      # - DEFAULT_BACKUP_BEGIN=0000      # backup starts immediately
-      - DEFAULT_BACKUP_INTERVAL=1440       # backup every x minute - 1440 = 1 day
-      - DEFAULT_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
-      - DEFAULT_CHECKSUM=SHA1
-      - DEFAULT_COMPRESSION=GZ
-      - DB01_SPLIT_DB=FALSE
-      - CONTAINER_ENABLE_MONITORING=FALSE
-      - TIMEZONE=${TZ}
     restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${PORT_BACKUP}:4005
+    depends_on:
+      - db
+    volumes:
+      - /home/ezcafe/backups/miniflux:/postgresus-data
 
   app:
     image: miniflux/miniflux:latest

@@ -1,4 +1,3 @@
-version: "3.0"
 services:
   memos:
     image: neosmemo/memos:latest
@@ -27,33 +26,16 @@ services:
       - data:/var/lib/postgresql/data/
 
   db-backup:
+    image: rostislavdugin/postgresus:latest
     container_name: memos-db-backup
-    image: ghcr.io/tiredofit/docker-db-backup
-    links:
-      - memos
-    volumes:
-      - /home/ezcafe/backups/memos:/backup
-      - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh:rwx
-      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh:rwx
-      - memos:/var/opt/memos
-    environment:
-      # - DEBUG_MODE=TRUE
-      - DB01_TYPE=pgsql
-      - DB01_HOST=${POSTGRES_HOST}
-      - DB01_NAME=${POSTGRES_DB}
-      - DEFAULT_AUTH=${POSTGRES_DB}
-      - DB01_USER=${POSTGRES_USER}
-      - DB01_PASS=${POSTGRES_PASSWORD}
-      - DB01_PORT=${POSTGRES_PORT}
-      - DB01_SPLIT_DB=FALSE
-      # - DEFAULT_BACKUP_BEGIN=0000    # backup starts immediately
-      - DEFAULT_BACKUP_INTERVAL=1440       # backup every x minute - 1440 = 1 day
-      - DEFAULT_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
-      - DEFAULT_CHECKSUM=SHA1
-      - DEFAULT_COMPRESSION=GZ
-      - CONTAINER_ENABLE_MONITORING=FALSE
-      - TIMEZONE=${TZ}
     restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${PORT_BACKUP}:4005
+    depends_on:
+      - db
+    volumes:
+      - /home/ezcafe/backups/memos:/postgresus-data
 
 volumes:
    memos:
