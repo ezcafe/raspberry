@@ -1,0 +1,26 @@
+services:
+  tasktrove:
+    image: ghcr.io/dohsimpson/tasktrove:latest
+    container_name: tasktrove
+    restart: unless-stopped
+    env_file: .env
+    # environment:
+    #   - TZ=${TZ}
+    ports:
+      - ${PORT}:3000
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+    volumes:
+      - /home/ezcafe/backups/tasktrove:/app/data
+    # networks:
+    #   - proxy
+
+# volumes:
+#   data:
+
+# networks:
+#   proxy:
+#     external: true
