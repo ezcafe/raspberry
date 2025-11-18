@@ -23,7 +23,7 @@ services:
     links:
      - db
     volumes:
-      - ~/syncthing/backups/miniflux:/backup
+      - /home/ezcafe/syncthing/backups/miniflux:/backup
       - ~/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
       - ~/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
     environment:
@@ -42,6 +42,8 @@ services:
       - DB01_SPLIT_DB=FALSE
       - CONTAINER_ENABLE_MONITORING=FALSE
       - TIMEZONE=${TZ}
+      - USER_DBBACKUP=1000
+      - GROUP_DBBACKUP=1000
     restart: unless-stopped
 
   app:

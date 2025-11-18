@@ -31,7 +31,7 @@ services:
     links:
       - memos
     volumes:
-      - ~/syncthing/backups/memos:/backup
+      - /home/ezcafe/syncthing/backups/memos:/backup
       - ~/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh:rwx
       - ~/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh:rwx
       - memos:/var/opt/memos
@@ -52,6 +52,8 @@ services:
       - DEFAULT_COMPRESSION=GZ
       - CONTAINER_ENABLE_MONITORING=FALSE
       - TIMEZONE=${TZ}
+      - USER_DBBACKUP=1000
+      - GROUP_DBBACKUP=1000
     restart: unless-stopped
 
 volumes:
