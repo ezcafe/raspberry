@@ -4,23 +4,5 @@ services:
     container_name: mazanoke
     restart: unless-stopped
     env_file: .env
-    # environment:
-    #   - TZ=${TZ}
     ports:
       - ${PORT}:80
-    # healthcheck:
-    #   test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
-    #   interval: 10s
-    #   timeout: 5s
-    #   retries: 5
-    # volumes:
-      # - data:/opt/example/data
-    # networks:
-    #   - proxy
-
-# volumes:
-#   data:
-
-# networks:
-#   proxy:
-#     external: true
