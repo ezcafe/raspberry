@@ -16,7 +16,7 @@ services:
       - JWT_SECRET=${JWT_SECRET}
       - LOG_LEVEL=info
       - LOG_JSON=false
-      - OIDC_ENABLED=true
+      - OIDC_ENABLED=${OIDC_ENABLED}
       - OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
       - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
       - OIDC_ISSUER_URL=${OIDC_ISSUER_URL}
