@@ -56,8 +56,8 @@ services:
     links:
      - db
     volumes:
-      - /home/ezcafe/backups/wallabag:/backup
-      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+      - ${HOME}/backups/wallabag:/backup
+      - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
     environment:
       # - DEBUG_MODE=TRUE
       - DB01_TYPE=mariadb

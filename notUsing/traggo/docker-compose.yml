@@ -17,8 +17,8 @@ services:
     links:
       - traggo
     volumes:
-      - /home/ezcafe/backups/traggo:/backup
-      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+      - ${HOME}/backups/traggo:/backup
+      - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
       - traggo_data:/opt/traggo/data
     environment:
       # - DEBUG_MODE=TRUE

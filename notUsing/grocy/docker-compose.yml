@@ -34,8 +34,8 @@ services:
     links:
       - backend
     volumes:
-      - /home/ezcafe/backups/grocy:/backup
-      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+      - ${HOME}/backups/grocy:/backup
+      - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
       - app-db:/var/www/data
     environment:
       # - DEBUG_MODE=TRUE

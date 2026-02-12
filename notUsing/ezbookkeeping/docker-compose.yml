@@ -27,9 +27,9 @@ services:
     links:
       - ezbookkeeping
     volumes:
-      - /home/ezcafe/backups/ezbookkeeping:/backup
-      - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
-      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
+      - ${HOME}/backups/ezbookkeeping:/backup
+      - ${HOME}/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
+      - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
       - data:/ezbookkeeping/data
     environment:
       # - DEBUG_MODE=TRUE

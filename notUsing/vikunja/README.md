@@ -43,11 +43,11 @@ backgrounds.providers.unsplash.applicationid=copy from application
 
 ### Make backup folder accessible
 
-mkdir -p /home/ezcafe/backups/vikunja
-chown -R 1000:1000 /home/ezcafe/backups/vikunja
-chmod -R u+rwx /home/ezcafe/backups/vikunja/
-chmod -R 777 /home/ezcafe/backups/
-chmod -R 777 /home/ezcafe/backups/vikunja/
+mkdir -p ${HOME}/backups/vikunja
+chown -R 1000:1000 ${HOME}/backups/vikunja
+chmod -R u+rwx ${HOME}/backups/vikunja/
+chmod -R 777 ${HOME}/backups/
+chmod -R 777 ${HOME}/backups/vikunja/
 
 ### Make .sh script as executable
 

@@ -44,9 +44,9 @@ services:
     links:
      - db
     volumes:
-      - /home/ezcafe/backups/vikunja:/backup:rwx
-      - /home/ezcafe/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
-      - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
+      - ${HOME}/backups/vikunja:/backup:rwx
+      - ${HOME}/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
+      - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
     environment:
       # - DEBUG_MODE=TRUE
       - DB01_TYPE=pgsql

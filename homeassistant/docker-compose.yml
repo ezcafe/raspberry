@@ -15,7 +15,7 @@ services:
       - ./config:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
-      # - /home/ezcafe/media:/media
+      # - ${HOME}/media:/media
     depends_on:
       - mosquitto
     privileged: true
@@ -45,7 +45,7 @@ services:
   #   # Network mode must be set to host for MA to work correctly
   #   network_mode: host
   #   volumes:
-  #     - /home/ezcafe/media:/data/
+  #     - ${HOME}/media:/data/
   #   # privileged caps (and security-opt) needed to mount smb folders within the container
   #   cap_add:
   #     - SYS_ADMIN

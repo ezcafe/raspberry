@@ -2,10 +2,10 @@
 
 ## Create backup folder
 
-mkdir /home/ezcafe/backups/
-mkdir /home/ezcafe/backups/immich/
-mkdir /home/ezcafe/backups/immich/data
-mkdir /home/ezcafe/backups/immich/upload
+mkdir ${HOME}/backups/
+mkdir ${HOME}/backups/immich/
+mkdir ${HOME}/backups/immich/data
+mkdir ${HOME}/backups/immich/upload
 
 ## Authentik
 

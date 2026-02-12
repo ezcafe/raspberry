@@ -14,7 +14,7 @@ services:
     #   timeout: 5s
     #   retries: 5
     volumes:
-      - /home/ezcafe/backups/tasktrove:/app/data
+      - ${HOME}/backups/tasktrove:/app/data
     # networks:
     #   - proxy
 

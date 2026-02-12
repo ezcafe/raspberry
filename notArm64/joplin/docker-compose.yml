@@ -29,8 +29,8 @@ services:
   #   links:
   #    - db
   #   volumes:
-  #     - /home/ezcafe/backups/joplin-server:/backup
-  #     - /home/ezcafe/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
+  #     - ${HOME}/backups/joplin-server:/backup
+  #     - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
   #   environment:
   #     # - DEBUG_MODE=TRUE
   #     - DB01_TYPE=pgsql
