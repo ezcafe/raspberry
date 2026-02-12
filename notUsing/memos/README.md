@@ -79,8 +79,8 @@ Go to Settings -> SSO -> Create
 
 ### Make backup folder accessible
 
-mkdir -p ~/backups/memos
-chown -R 1000:1000 ~/backups/memos
+mkdir -p ~/backups/database/memos
+chown -R 1000:1000 ~/backups/database/memos
 
 ### Make .sh script as executable
 
