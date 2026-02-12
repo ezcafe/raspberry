@@ -13,8 +13,8 @@ chown -R 1000:1000 ~/syncthing/backups/pocket-id
 
 ### Make backup folder accessible
 
-mkdir -p ~/syncthing/backups/memos
-chown 1000:1000 ~/syncthing/backups/memos
+mkdir -p ~/backups/pocket-id
+chown 1000:1000 ~/backups/pocket-id
 
 ### Make .sh script as executable
 

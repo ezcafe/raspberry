@@ -79,8 +79,8 @@ Go to Settings -> SSO -> Create
 
 ### Make backup folder accessible
 
-mkdir -p ~/syncthing/backups/memos
-chown -R 1000:1000 ~/syncthing/backups/memos
+mkdir -p ~/backups/memos
+chown -R 1000:1000 ~/backups/memos
 
 ### Make .sh script as executable
 

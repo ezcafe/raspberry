@@ -38,7 +38,7 @@ services:
     links:
       - pocket-id
     volumes:
-      - /home/ezcafe/syncthing/backups/pocket-id:/backup
+      - ${HOME}/backups/pocket-id:/backup
       - ~/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
       - ~/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
       - pocket-id:/app/data
