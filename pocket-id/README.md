@@ -4,17 +4,12 @@
 
 Go to https://auth.example.com/setup to add passkey
 
-### Make backup folder accessible
-
-mkdir -p ~/syncthing/backups/pocket-id
-chown -R 1000:1000 ~/syncthing/backups/pocket-id
-
 ## Backup and Restore
 
 ### Make backup folder accessible
 
 mkdir -p ~/backups/pocket-id
-chown 1000:1000 ~/backups/pocket-id
+chown -R 1000:1000 ~/backups/pocket-id
 
 ### Make .sh script as executable
 
