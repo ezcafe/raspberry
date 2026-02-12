@@ -78,8 +78,8 @@ docker compose up -d app
 
 ### Make backup folder accessible
 
-mkdir -p ~/syncthing/backups/miniflux
-chown -R 1000:1000 ~/syncthing/backups/miniflux
+mkdir -p ~/backups/miniflux
+chown -R 1000:1000 ~/backups/miniflux
 
 ### Make .sh script as executable
 

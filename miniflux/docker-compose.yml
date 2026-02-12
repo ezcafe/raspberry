@@ -26,9 +26,9 @@ services:
     links:
       - db
     volumes:
-      - /home/ezcafe/syncthing/backups/miniflux:/backup
-      - ~/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
-      - ~/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
+      - ${HOME}/backups/miniflux:/backup
+      - ${HOME}/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
+      - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
     environment:
       # - DEBUG_MODE=TRUE
       - DB01_TYPE=pgsql
