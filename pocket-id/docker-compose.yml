@@ -9,7 +9,7 @@ services:
     ports:
       - ${PORT}:1411
     healthcheck:
-      test: "curl -f http://localhost:${PORT}/healthz"
+      test: curl -f http://localhost:${PORT}/healthz
       interval: 1m30s
       timeout: 5s
       retries: 5
@@ -18,7 +18,6 @@ services:
       - pocket-id:/app/data
     depends_on:
       - db
-
   db:
     image: postgres:17.6
     container_name: pocket-id-db
@@ -26,13 +25,13 @@ services:
     env_file: .env
     healthcheck:
       test:
-        ['CMD-SHELL', 'pg_isready -d "$${POSTGRES_DB}" -U $${POSTGRES_USER}']
+        - CMD-SHELL
+        - pg_isready -d "$${POSTGRES_DB}" -U $${POSTGRES_USER}
       interval: 10s
       timeout: 5s
       retries: 5
     volumes:
       - data:/var/lib/postgresql/data/
-
   db-backup:
     container_name: pocket-id-db-backup
     image: ghcr.io/tiredofit/docker-db-backup
@@ -54,8 +53,8 @@ services:
       - DB01_PORT=${POSTGRES_PORT}
       - DB01_SPLIT_DB=FALSE
       # - DEFAULT_BACKUP_BEGIN=0000    # backup starts immediately
-      - DEFAULT_BACKUP_INTERVAL=1440       # backup every x minute - 1440 = 1 day
-      - DEFAULT_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
+      - DEFAULT_BACKUP_INTERVAL=1440 # backup every x minute - 1440 = 1 day
+      - DEFAULT_CLEANUP_TIME=11520 # clean backups they are older than x minute - 11520 = 8 days
       - DEFAULT_CHECKSUM=SHA1
       - DEFAULT_COMPRESSION=GZ
       - DB01_SPLIT_DB=FALSE
@@ -64,8 +63,7 @@ services:
       - USER_DBBACKUP=1000
       - GROUP_DBBACKUP=1000
     restart: unless-stopped
-
 volumes:
-  pocket-id:
-  data:
-
+  pocket-id: null
+  data: null
+networks: {}

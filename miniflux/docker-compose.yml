@@ -11,17 +11,20 @@ services:
     volumes:
       - db_volume:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+      test:
+        - CMD
+        - pg_isready
+        - -U
+        - ${DB_USER}
       interval: 10s
       timeout: 5s
       retries: 5
     container_name: miniflux-db
-
   db-backup:
     container_name: miniflux-db-backup
     image: ghcr.io/tiredofit/docker-db-backup
     links:
-     - db
+      - db
     volumes:
       - /home/ezcafe/syncthing/backups/miniflux:/backup
       - ~/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
@@ -35,8 +38,8 @@ services:
       - DB01_USER=${DB_USER}
       - DB01_PASS=${DB_PASS}
       # - DEFAULT_BACKUP_BEGIN=0000      # backup starts immediately
-      - DEFAULT_BACKUP_INTERVAL=1440       # backup every x minute - 1440 = 1 day
-      - DEFAULT_CLEANUP_TIME=11520   # clean backups they are older than x minute - 11520 = 8 days
+      - DEFAULT_BACKUP_INTERVAL=1440 # backup every x minute - 1440 = 1 day
+      - DEFAULT_CLEANUP_TIME=11520 # clean backups they are older than x minute - 11520 = 8 days
       - DEFAULT_CHECKSUM=SHA1
       - DEFAULT_COMPRESSION=GZ
       - DB01_SPLIT_DB=FALSE
@@ -45,7 +48,6 @@ services:
       - USER_DBBACKUP=1000
       - GROUP_DBBACKUP=1000
     restart: unless-stopped
-
   app:
     image: miniflux/miniflux:latest
     restart: unless-stopped
@@ -57,7 +59,8 @@ services:
       db:
         condition: service_healthy
     environment:
-      - DATABASE_URL=user=${DB_USER} password=${DB_PASS} dbname=${DB_NAME} host=${DB_HOST} sslmode=disable
+      - DATABASE_URL=user=${DB_USER} password=${DB_PASS} dbname=${DB_NAME}
+        host=${DB_HOST} sslmode=disable
       - RUN_MIGRATIONS=1
       # - CREATE_ADMIN=1
       # - ADMIN_USERNAME=${ADMIN_USERNAME}
@@ -72,8 +75,12 @@ services:
       - OAUTH2_USER_CREATION=${OAUTH2_USER_CREATION}
       - TZ=${TZ}
     healthcheck:
-     test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
+      test:
+        - CMD
+        - /usr/bin/miniflux
+        - -healthcheck
+        - auto
     container_name: miniflux
-
 volumes:
-  db_volume:
+  db_volume: null
+networks: {}

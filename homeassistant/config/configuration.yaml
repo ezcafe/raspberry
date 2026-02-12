@@ -1,6 +1,9 @@
 homeassistant:
   name: Home
   time_zone: Asia/Ho_Chi_Minh
+  #media_dirs:
+    #media: /media
+    #recording: /mnt/recordings
 
 # Loads default set of integrations. Do not remove.
 default_config:
@@ -34,6 +37,7 @@ zha:
     #   channels: [11]
     #   pan_id: 0x1A62
     #   extended_pan_id: "DD:DD:DD:DD:DD:DD:DD:DD"
+    source_routing: true
     ota:
       ikea_provider: true                        # Auto update Trådfri devices
       ledvance_provider: true                    # Auto update LEDVANCE/OSRAM devices
@@ -42,6 +46,17 @@ zha:
       inovelli_provider: true                    # Auto update INOVELLI devices
       thirdreality_provider: true                # Auto update 3REALITY devices
       # otau_directory: /path/to/your/ota/folder  # Utilize .ota files to update everything else
+      extra_providers:
+        - type: z2m
+        - type: salus
+        - type: inovelli
+        - type: ledvance
+        - type: sonoff
+        - type: ikea
+        - type: thirdreality
+        
+#media_dirs:
+ # media: /config/media
 
 http:
   use_x_forwarded_for: true
@@ -50,14 +65,14 @@ http:
     # search for "... INF ICMP proxy will use 172.19.0.2 as source for IPv4",
     # replace .0.2 with .0.0
     - 127.0.0.1
-    - 192.168.1.252 # IP of Server which CloudFlare Tunnel Container is running on
+    - 192.168.1.252
     - ::1
-    - 172.30.33.0/24 # check CloudFlare log to get this IP range
+    - 172.30.33.0/24
     - 198.41.192.0/24
     - 198.41.192.0/24
     - 198.41.200.0/24
     - 198.41.200.0/24
-
+    
 # zone:
 #   - name: Home
 #     latitude: 10.831335589891193
@@ -66,21 +81,21 @@ http:
 #     icon: mdi:account-multiple
 
 climate:
-  - platform: tasmota_irhvac
+  - platform: tasmota_irhvac 
     name: "AC Casper in bedroom"
-    command_topic: "cmnd/X_SMART_LINK_C9EF77/irhvac"
-    state_topic: "tele/X_SMART_LINK_C9EF77/RESULT"
-    availability_topic: "tele/X_SMART_LINK_C9EF77/LWT"
-    payload_available: "Online"
+    command_topic: "cmnd/X_SMART_LINK_C9EF77/irhvac" 
+    state_topic: "tele/X_SMART_LINK_C9EF77/RESULT" 
+    availability_topic: "tele/X_SMART_LINK_C9EF77/LWT" 
+    payload_available: "Online" 
     payload_not_available: "Offline"
-    temperature_sensor: sensor.x_smart_link_sht3x_temperature # Thay bằng sensor nhiệt độ của bạn nều có, không có thì bỏ đi
-    humidity_sensor: sensor.x_smart_link_sht3x_humidity #Thay bằng sensor độ ẩm của bạn nếu có, không có thì bỏ đi
-    vendor: "ELECTRA_AC" # Sửa theo vendor name nhận trên 'console'
+    temperature_sensor: sensor.x_smart_link_sht3x_temperature # Thay bằng sensor nhiệt độ của bạn nều có, không có thì bỏ đi 
+    humidity_sensor: sensor.x_smart_link_sht3x_humidity #Thay bằng sensor độ ẩm của bạn nếu có, không có thì bỏ đi 
+    vendor: "ELECTRA_AC" # Sửa theo vendor name nhận trên 'console' 
     mqtt_delay: 0.0
     min_temp: 16
     max_temp: 30
     target_temp: 27
-    initial_operation_mode: "off"
+    initial_operation_mode: "off" 
     away_temp: 27
     precision: 1
     supported_modes :
@@ -101,13 +116,13 @@ climate:
       - "vertical" #up to down ???
       - "horizontal" # Left to right ???
       - "both" #??? auto
-    default_quiet_mode: "On"
-    default_turbo_mode: "Off"
-    default_econo_mode: "Off"
-    hvac_model: "-1"
-    celsius_mode: "On"
-    default_beep_mode: "Off"
-    default_sleep_mode: "-1"
-    default_swingv: "Auto"
+    default_quiet_mode: "On" 
+    default_turbo_mode: "Off" 
+    default_econo_mode: "Off" 
+    hvac_model: "-1" 
+    celsius_mode: "On" 
+    default_beep_mode: "Off" 
+    default_sleep_mode: "-1" 
+    default_swingv: "Auto" 
     default_swingh: "Auto"
 
