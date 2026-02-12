@@ -22,10 +22,4 @@ OIDC_CLIENT_SECRET=copy from OIDC provider
 
 ### Make backup folder accessible
 
-
-mkdir -p /home/ezcafe/backups/jotty/cache
-mkdir -p /home/ezcafe/backups/jotty/config
-mkdir -p /home/ezcafe/backups/jotty/data
-sudo chown -R 1000:1000 /home/ezcafe/backups/jotty/data/
-sudo chown -R 1000:1000 /home/ezcafe/backups/jotty/cache/
-sudo chown -R 1000:1000 /home/ezcafe/backups/jotty/config/
+mkdir -p config data/users data/checklists data/notes data/sharing data/encryption cache && sudo chown -R 1000:1000 data/ && sudo chown -R 1000:1000 config/ && sudo chown -R 1000:1000 cache/
