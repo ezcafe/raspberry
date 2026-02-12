@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:17.6
+    image: postgres:18.1
     restart: unless-stopped
     environment:
       - POSTGRES_HOST=${DB_HOST}
@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=${DB_PASS}
       - TZ=${TZ}
     volumes:
-      - db_volume:/var/lib/postgresql/data
+      - db_volume:/var/lib/postgresql
     healthcheck:
       test:
         - CMD
