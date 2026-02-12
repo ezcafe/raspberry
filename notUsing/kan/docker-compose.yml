@@ -95,7 +95,7 @@ services:
     restart: unless-stopped
 
   postgres:
-    image: postgres:17.6
+    image: postgres
     container_name: kan-db
     environment:
       - POSTGRES_DB=${POSTGRES_DB}

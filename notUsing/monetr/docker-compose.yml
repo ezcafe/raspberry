@@ -38,7 +38,7 @@ services:
       - data:/etc/monetr
 
   postgres:
-    image: postgres:17
+    image: postgres
     container_name: monetr-db
     restart: unless-stopped
     environment:

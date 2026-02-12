@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:17-alpine
+    image: postgres
     container_name: kaneo-db
     restart: unless-stopped
     env_file:

@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:18
+    image: postgres
     container_name: priceghost-db
     restart: unless-stopped
     environment:

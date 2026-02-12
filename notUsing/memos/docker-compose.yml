@@ -12,7 +12,7 @@ services:
       - db
 
   db:
-    image: postgres:17.6
+    image: postgres
     container_name: memos-db
     restart: unless-stopped
     env_file: .env

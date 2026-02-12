@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:17
+    image: postgres
     # env_file: .env
     environment:
       - POSTGRES_HOST=${DB_HOST}

@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:18.1
+    image: postgres
     restart: unless-stopped
     environment:
       - POSTGRES_HOST=${DB_HOST}
