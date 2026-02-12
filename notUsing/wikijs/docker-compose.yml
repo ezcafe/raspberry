@@ -38,7 +38,7 @@ services:
   #   links:
   #    - wiki_db
   #   volumes:
-  #     - ${HOME}/backups/wikijs:/backup
+  #     - ${HOME}/backups/database/wikijs:/backup
   #     - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
   #   environment:
   #     # - DEBUG_MODE=TRUE

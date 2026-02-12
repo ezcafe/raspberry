@@ -17,7 +17,7 @@ services:
     links:
       - traggo
     volumes:
-      - ${HOME}/backups/traggo:/backup
+      - ${HOME}/backups/database/traggo:/backup
       - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
       - traggo_data:/opt/traggo/data
     environment:

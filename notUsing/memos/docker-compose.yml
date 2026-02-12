@@ -31,7 +31,7 @@ services:
     links:
       - memos
     volumes:
-      - ${HOME}/backups/memos:/backup
+      - ${HOME}/backups/database/memos:/backup
       - ~/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh:rwx
       - ~/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh:rwx
       - memos:/var/opt/memos

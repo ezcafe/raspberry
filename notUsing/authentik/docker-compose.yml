@@ -90,7 +90,7 @@ services:
     links:
      - postgresql
     volumes:
-      - ${HOME}/backups/authentik:/backup
+      - ${HOME}/backups/database/authentik:/backup
       - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
     environment:
       # - DEBUG_MODE=TRUE

@@ -9,7 +9,7 @@ services:
       # - /var/run/docker.sock:/var/run/docker.sock
       # - /var/lib/docker/volumes:/docker_volumes:rw # docker volume ls => docker inspect volume name => volume location
       - duplicati_data:/config #Duplicati Config Files, for consisency across re-deployments
-      - ${HOME}/backups:/backup_backups
+      - ${HOME}/backups/database:/backup_backups
       - ${HOME}/raspberry:/backup_raspberry
     ports:
       - ${DUPLICATI_PORT}:8200

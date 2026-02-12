@@ -56,7 +56,7 @@ services:
     links:
      - db
     volumes:
-      - ${HOME}/backups/wallabag:/backup
+      - ${HOME}/backups/database/wallabag:/backup
       - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
     environment:
       # - DEBUG_MODE=TRUE

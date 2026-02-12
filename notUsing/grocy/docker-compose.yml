@@ -34,7 +34,7 @@ services:
     links:
       - backend
     volumes:
-      - ${HOME}/backups/grocy:/backup
+      - ${HOME}/backups/database/grocy:/backup
       - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
       - app-db:/var/www/data
     environment:

@@ -44,7 +44,7 @@ services:
     links:
      - db
     volumes:
-      - ${HOME}/backups/vikunja:/backup:rwx
+      - ${HOME}/backups/database/vikunja:/backup:rwx
       - ${HOME}/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
       - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
     environment:

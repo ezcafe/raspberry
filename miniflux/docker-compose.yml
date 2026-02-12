@@ -26,7 +26,7 @@ services:
     links:
       - db
     volumes:
-      - ${HOME}/backups/miniflux:/backup
+      - ${HOME}/backups/database/miniflux:/backup
       - ${HOME}/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
       - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/scripts/post/script.sh
     environment:

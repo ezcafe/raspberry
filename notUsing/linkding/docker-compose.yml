@@ -16,7 +16,7 @@ services:
     links:
     - linkding
     volumes:
-      - ${HOME}/backups/linkding:/backup
+      - ${HOME}/backups/database/linkding:/backup
       - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
       - linkding_data:/etc/linkding/data
     environment:

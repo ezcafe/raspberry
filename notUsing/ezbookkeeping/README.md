@@ -4,8 +4,8 @@
 
 ### Make backup folder accessible
 
-mkdir -p ${HOME}/backups/ezbookkeeping
-chown 1000:1000 ${HOME}/backups/ezbookkeeping
+mkdir -p ${HOME}/backups/database/ezbookkeeping
+chown 1000:1000 ${HOME}/backups/database/ezbookkeeping
 
 ### Make .sh script as executable
 

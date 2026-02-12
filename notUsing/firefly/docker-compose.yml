@@ -37,7 +37,7 @@ services:
     links:
      - db
     volumes:
-      - ${HOME}/backups/firefly:/backup
+      - ${HOME}/backups/database/firefly:/backup
       - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
     environment:
       # - DEBUG_MODE=TRUE

@@ -14,7 +14,7 @@ services:
     #   timeout: 5s
     #   retries: 5
     volumes:
-      - ${HOME}/backups/tasktrove:/app/data
+      - ${HOME}/backups/database/tasktrove:/app/data
     # networks:
     #   - proxy
 

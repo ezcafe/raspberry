@@ -2,10 +2,10 @@
 
 ## Create backup folder
 
-mkdir ${HOME}/backups/
-mkdir ${HOME}/backups/immich/
-mkdir ${HOME}/backups/immich/data
-mkdir ${HOME}/backups/immich/upload
+mkdir ${HOME}/backups/database/
+mkdir ${HOME}/backups/database/immich/
+mkdir ${HOME}/backups/database/immich/data
+mkdir ${HOME}/backups/database/immich/upload
 
 ## Authentik
 

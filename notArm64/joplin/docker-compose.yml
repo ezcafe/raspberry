@@ -29,7 +29,7 @@ services:
   #   links:
   #    - db
   #   volumes:
-  #     - ${HOME}/backups/joplin-server:/backup
+  #     - ${HOME}/backups/database/joplin-server:/backup
   #     - ${HOME}/raspberry/scripts/backup-post-script.sh:/assets/custom-scripts/post-script.sh
   #   environment:
   #     # - DEBUG_MODE=TRUE
