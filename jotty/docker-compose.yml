@@ -22,7 +22,7 @@ services:
       - ${PORT}:3000
     volumes:
       # This stores your checklists, notes, users, and settings.
-      # mkdir -p ~/backups/jotty && cd ~/backups/jotty && mkdir -p config data/users data/checklists data/notes data/sharing data/encryption cache
+      # mkdir -p ~/backups/database/jotty && cd ~/backups/database/jotty && mkdir -p config data/users data/checklists data/notes data/sharing data/encryption cache
       # sudo chown -R 1000:1000 data/ && sudo chown -R 1000:1000 config/ && sudo chown -R 1000:1000 cache/
       - ${HOME}/backups/database/jotty/data:/app/data:rw
       # This contains custom themes and configuration files.
