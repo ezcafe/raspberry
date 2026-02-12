@@ -22,12 +22,12 @@ services:
       - ${PORT}:3000
     volumes:
       # This stores your checklists, notes, users, and settings.
-      # mkdir -p ~/backups/jottyapp && cd ~/backups/jottyapp && mkdir -p config data/users data/checklists data/notes data/sharing data/encryption cache
+      # mkdir -p ~/backups/jotty && cd ~/backups/jotty && mkdir -p config data/users data/checklists data/notes data/sharing data/encryption cache
       # sudo chown -R 1000:1000 data/ && sudo chown -R 1000:1000 config/ && sudo chown -R 1000:1000 cache/
-      - ${HOME}/backups/jottyapp/data:/app/data:rw
+      - ${HOME}/backups/jotty/data:/app/data:rw
       # This contains custom themes and configuration files.
-      - ${HOME}/backups/jottyapp/config:/app/config:rw
+      - ${HOME}/backups/jotty/config:/app/config:rw
       # Improves performance by persisting cache between container restarts.
-      - ${HOME}/backups/jottyapp/cache:/app/.next/cache:rw
+      - ${HOME}/backups/jotty/cache:/app/.next/cache:rw
     platform: linux/arm64
 networks: {}
