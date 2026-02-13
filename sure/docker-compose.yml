@@ -79,6 +79,9 @@ services:
     image: ghcr.io/tiredofit/docker-db-backup
     links:
       - db
+    depends_on:
+      db:
+        condition: service_healthy
     volumes:
       - ${HOME}/backups/database/sure:/backup
       - ${HOME}/raspberry/scripts/backup-pre-script.sh:/assets/scripts/pre/script.sh
