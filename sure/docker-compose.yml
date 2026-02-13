@@ -17,6 +17,18 @@ x-rails-env: &rails_env
   OPENAI_ACCESS_TOKEN: ${OPENAI_ACCESS_TOKEN}
 
 services:
+  redis:
+    image: redis
+    container_name: sure-redis
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - redis-data:/var/lib/postgresql
+
   db:
     image: postgres
     container_name: sure-db
@@ -43,6 +55,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_healthy
 
   web:
     image: ghcr.io/we-promise/sure:stable
@@ -55,9 +69,12 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     volumes:
       - storage:/rails/storage
 
 volumes:
+  redis-data:
   storage:
   data:
