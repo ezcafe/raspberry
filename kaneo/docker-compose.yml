@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres
+    container_name: kaneo-db
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kaneo -d kaneo"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - data:/var/lib/postgresql
+
+  api:
+    image: ghcr.io/usekaneo/api
+    container_name: kaneo-api
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 1337:1337
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  web:
+    image: ghcr.io/usekaneo/web
+    container_name: kaneo-web
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${PORT}:5173
+    depends_on:
+      - api
+
+volumes:
+  data:
