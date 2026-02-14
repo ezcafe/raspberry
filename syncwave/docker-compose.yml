@@ -1,0 +1,13 @@
+services:
+  syncwave:
+    image: syncwave/syncwave
+    container_name: syncwave
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - ${PORT}:8080
+    volumes:
+      - data:/data
+
+volumes:
+  data:
