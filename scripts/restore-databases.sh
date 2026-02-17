@@ -1,40 +1,33 @@
 #!/usr/bin/env bash
 #
-# Backup databases (Postgres and SQLite) from docker-compose stacks in named folders.
-# For each folder: finds the folder by name, reads .env, detects DB from docker-compose,
-# and writes backup to destination/foldername/foldername_YYYYMMDD-HHMMSS.sql
+# Restore databases (Postgres and SQLite) from backup files into docker-compose stacks.
+# For each folder/backup pair: finds the folder by name, reads .env and docker-compose,
+# detects DB type, and restores the given backup file into that database.
 #
-# Usage: backup-databases.sh FOLDER_NAMES DESTINATION_PATH
-#   FOLDER_NAMES  - Comma-separated folder names (e.g. miniflux,pocket-id)
-#   DESTINATION_PATH - Base path for backups (e.g. ~/backups)
+# Usage: restore-databases.sh FOLDER_NAMES BACKUP_FILES
+#   FOLDER_NAMES   - Comma-separated folder names (e.g. sure,miniflux)
+#   BACKUP_FILES   - Comma-separated paths to backup .sql files (same order as FOLDER_NAMES)
 #
-# Example: backup-databases.sh miniflux,pocket-id ~/backups
-#   Creates ~/backups/miniflux/miniflux_20260215-143022.sql and
-#   ~/backups/pocket-id/pocket-id_20260215-143022.sql
+# Example: restore-databases.sh "sure,miniflux" "/home/ezcafe/backups/sure/sure_20260218.sql,/home/ezcafe/backups/miniflux/miniflux_20260218.sql"
 #
-# Requires: docker, bash, sqlite3 (for local sqlite; for Docker SQLite we use exec).
-# Optional: zstd for compression (not used by default to keep portability).
+# Requires: docker, bash. Backup files must be plain SQL (as produced by backup-databases.sh).
 
 set -euo pipefail
 
 # --- config ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# Search for folders under this directory's parent (workspace root when run from scripts/)
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-DATETIME="$(date +%Y%m%d-%H%M%S)"
 
 # --- helpers ---
-log() { echo "[backup] $*" >&2; }
-warn() { echo "[backup] WARNING: $*" >&2; }
-err()  { echo "[backup] ERROR: $*" >&2; }
+log() { echo "[restore] $*" >&2; }
+warn() { echo "[restore] WARNING: $*" >&2; }
+err()  { echo "[restore] ERROR: $*" >&2; }
 
-# Find a directory under ROOT_DIR whose name is exactly $1 (first match).
 find_folder_by_name() {
   local name="$1"
   find "$ROOT_DIR" -maxdepth 3 -type d -name "$name" 2>/dev/null | head -n1
 }
 
-# Load .env into current shell (export KEY=value). No quotes in value supported.
 load_env() {
   local dir="$1"
   local env_file="$dir/.env"
@@ -47,8 +40,6 @@ load_env() {
   set +a
 }
 
-# Get the value of a variable from a compose env line after substitution.
-# Line format: "      - POSTGRES_DB=${POSTGRES_DB}" or "      - POSTGRES_DB=value"
 get_env_value() {
   local line="$1"
   local key="$2"
@@ -66,32 +57,25 @@ get_env_value() {
   fi
 }
 
-# Parse docker-compose in $1 (dir) and set globals for postgres: CONTAINER, DB_NAME, DB_USER.
-# Returns 0 if postgres found, 1 otherwise.
 parse_postgres() {
   local dir="$1"
   local compose="$dir/docker-compose.yml"
   if [[ ! -f "$compose" ]]; then
     return 1
   fi
-  local in_service="" service_name="" image="" container_name=""
+  local in_service="" image="" container_name=""
   local postgres_db="" postgres_user=""
-  local db_name_key="" db_user_key=""
 
   while IFS= read -r line || [[ -n "$line" ]]; do
     if [[ "$line" =~ ^[[:space:]]*([a-zA-Z0-9_.-]+):[[:space:]]*$ ]]; then
-      if [[ -n "$in_service" ]]; then
-        # End of previous service block; check if it was postgres
-        if [[ "$image" == *"postgres"* ]]; then
-          CONTAINER="$container_name"
-          # Prefer POSTGRES_* then DB_*
-          [[ -n "$postgres_db" ]] && DB_NAME="$postgres_db"
-          [[ -n "$postgres_user" ]] && DB_USER="$postgres_user"
-          return 0
-        fi
+      if [[ -n "$in_service" ]] && [[ "$image" == *"postgres"* ]]; then
+        CONTAINER="$container_name"
+        [[ -n "$postgres_db" ]] && DB_NAME="$postgres_db"
+        [[ -n "$postgres_user" ]] && DB_USER="$postgres_user"
+        [[ -z "$CONTAINER" ]] && CONTAINER="${in_service}"
+        return 0
       fi
       in_service="${BASH_REMATCH[1]}"
-      service_name="$in_service"
       image=""
       container_name=""
       postgres_db=""
@@ -123,14 +107,13 @@ parse_postgres() {
   return 1
 }
 
-# Parse docker-compose for SQLite (service with DB01_TYPE=sqlite3). Sets CONTAINER and DB_PATH.
 parse_sqlite() {
   local dir="$1"
   local compose="$dir/docker-compose.yml"
   if [[ ! -f "$compose" ]]; then
     return 1
   fi
-  local in_service="" image="" container_name=""
+  local in_service="" container_name=""
   local db01_type="" db01_host=""
 
   while IFS= read -r line || [[ -n "$line" ]]; do
@@ -165,48 +148,67 @@ parse_sqlite() {
   return 1
 }
 
-backup_postgres() {
-  local container="$1" dbname="$2" user="$3" out_file="$4"
-  log "POSTGRES: Backing up $container ($dbname) to $out_file"
-  if docker exec "$container" pg_dump "$dbname" -U "$user" > "$out_file"; then
-    log "Wrote $(wc -l < "$out_file") lines to $out_file"
-  else
-    err "pg_dump failed for $container"
+restore_postgres() {
+  local container="$1" dbname="$2" user="$3" backup_file="$4"
+  log "POSTGRES: Restoring $backup_file into $container ($dbname)"
+  if [[ ! -f "$backup_file" ]]; then
+    err "Backup file not found: $backup_file"
     return 1
   fi
+  if ! docker ps --format '{{.Names}}' | grep -qx "$container" 2>/dev/null; then
+    err "Container not running: $container"
+    return 1
+  fi
+  docker exec -i "$container" psql -U "$user" -d "$dbname" < "$backup_file"
+  log "Restored $container ($dbname)."
 }
 
-backup_sqlite() {
-  local container="$1" db_path="$2" out_file="$3"
-  log "SQLITE: Backing up $container ($db_path) to $out_file"
-  if docker exec "$container" sqlite3 "$db_path" .dump > "$out_file"; then
-    log "Wrote $(wc -l < "$out_file") lines to $out_file"
-  else
-    err "sqlite3 dump failed for $container"
+restore_sqlite() {
+  local container="$1" db_path="$2" backup_file="$3"
+  log "SQLITE: Restoring $backup_file into $container ($db_path)"
+  if [[ ! -f "$backup_file" ]]; then
+    err "Backup file not found: $backup_file"
     return 1
   fi
+  if ! docker ps --format '{{.Names}}' | grep -qx "$container" 2>/dev/null; then
+    err "Container not running: $container"
+    return 1
+  fi
+  # SQLite: remove existing DB then feed dump so we get a clean replace
+  docker exec "$container" rm -f "$db_path" 2>/dev/null || true
+  docker exec -i "$container" sqlite3 "$db_path" < "$backup_file"
+  log "Restored $container ($db_path)."
 }
 
 # --- main ---
 main() {
   local folder_names="${1:-}"
-  local destination="${2:-}"
+  local backup_files="${2:-}"
 
-  if [[ -z "$folder_names" ]] || [[ -z "$destination" ]]; then
-    err "Usage: $0 FOLDER_NAMES DESTINATION_PATH"
-    err "  Example: $0 miniflux,pocket-id ~/backups"
+  if [[ -z "$folder_names" ]] || [[ -z "$backup_files" ]]; then
+    err "Usage: $0 FOLDER_NAMES BACKUP_FILES"
+    err "  FOLDER_NAMES  - Comma-separated folder names (e.g. sure,miniflux)"
+    err "  BACKUP_FILES  - Comma-separated paths to backup .sql files (same order)"
+    err "  Example: $0 \"sure,miniflux\" \"/path/to/sure.sql,/path/to/miniflux.sql\""
     exit 1
   fi
 
-  destination="${destination/#\~/$HOME}"
-  if [[ ! -d "$destination" ]]; then
-    mkdir -p "$destination"
-    log "Created destination $destination"
+  IFS=',' read -ra NAMES <<< "$folder_names"
+  IFS=',' read -ra FILES <<< "$backup_files"
+
+  if [[ ${#NAMES[@]} -ne ${#FILES[@]} ]]; then
+    err "FOLDER_NAMES and BACKUP_FILES must have the same number of comma-separated entries (got ${#NAMES[@]} vs ${#FILES[@]})"
+    exit 1
   fi
 
-  IFS=',' read -ra NAMES <<< "$folder_names"
-  for name in "${NAMES[@]}"; do
+  for i in "${!NAMES[@]}"; do
+    local name="${NAMES[i]}"
     name=$(echo "$name" | tr -d '[:space:]')
+    local backup_file="${FILES[i]}"
+    backup_file=$(echo "$backup_file" | tr -d '[:space:]')
+    # Expand leading ~
+    backup_file="${backup_file/#\~/$HOME}"
+
     [[ -z "$name" ]] && continue
 
     local dir
@@ -223,51 +225,36 @@ main() {
     fi
 
     load_env "$dir"
-    local out_dir="$destination/$name"
-    mkdir -p "$out_dir"
-    local out_file="$out_dir/${name}_${DATETIME}.sql"
-    local did_backup=false
+    local did_restore=false
 
-    # Try Postgres first
     CONTAINER="" DB_NAME="" DB_USER=""
     if parse_postgres "$dir"; then
-      # Fallback to .env when compose uses env_file instead of environment section
       [[ -z "$DB_NAME" ]] && DB_NAME="${POSTGRES_DB:-}"
       [[ -z "$DB_USER" ]] && DB_USER="${POSTGRES_USER:-}"
       if [[ -z "$CONTAINER" ]]; then
+        local cid
         cid=$(cd "$dir" && docker compose ps -q db 2>/dev/null) || true
         if [[ -n "$cid" ]]; then
           CONTAINER=$(docker inspect -f '{{.Name}}' "$cid" 2>/dev/null | tr -d '/')
         fi
       fi
       [[ -z "$CONTAINER" ]] && CONTAINER="${name}-db"
-      if docker ps --format '{{.Names}}' | grep -qx "$CONTAINER" 2>/dev/null; then
       if [[ -n "$DB_NAME" ]] && [[ -n "$DB_USER" ]]; then
-        backup_postgres "$CONTAINER" "$DB_NAME" "$DB_USER" "$out_file"
-        did_backup=true
+        restore_postgres "$CONTAINER" "$DB_NAME" "$DB_USER" "$backup_file" && did_restore=true
       else
-        warn "Postgres found in $name but DB_NAME or DB_USER missing in .env/compose (skipping)"
+        warn "Postgres found in $name but DB_NAME or DB_USER missing (skipping)"
       fi
-    else
-      warn "Postgres container '$CONTAINER' not running in $name (skipping)"
     fi
-  fi
 
-    # Try SQLite if no postgres
-    if [[ "$did_backup" != true ]]; then
+    if [[ "$did_restore" != true ]]; then
       CONTAINER="" DB_PATH=""
       if parse_sqlite "$dir"; then
-        if docker ps --format '{{.Names}}' | grep -qx "$CONTAINER" 2>/dev/null; then
-          backup_sqlite "$CONTAINER" "$DB_PATH" "$out_file"
-          did_backup=true
-        else
-          warn "SQLite container '$CONTAINER' not running in $name (skipping)"
-        fi
+        restore_sqlite "$CONTAINER" "$DB_PATH" "$backup_file" && did_restore=true
       fi
     fi
 
-    if [[ "$did_backup" != true ]]; then
-      warn "No database found (or container not running) in $name"
+    if [[ "$did_restore" != true ]]; then
+      warn "No database found (or restore failed) for $name"
     fi
   done
 
