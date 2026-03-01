@@ -41,17 +41,16 @@ load_env() {
 }
 
 get_env_value() {
-  local line="$1"
-  local key="$2"
+  local line="$1" key="$2"
   local pattern="^[[:space:]]*-[[:space:]]*${key}=.*"
-  if [[ ! "$line" =~ $pattern ]]; then
-    return
-  fi
+  [[ ! "$line" =~ $pattern ]] && return
   local raw
   raw=$(echo "$line" | sed -E "s/^[[:space:]]*-[[:space:]]*${key}=//" | tr -d '\r')
   if [[ "$raw" =~ ^\$\{([^}]+)\}$ ]]; then
     local var_name="${BASH_REMATCH[1]}"
+    set +u
     echo "${!var_name:-}"
+    set -u
   else
     echo "$raw"
   fi
@@ -63,52 +62,56 @@ parse_postgres() {
   if [[ ! -f "$compose" ]]; then
     return 1
   fi
-  local in_service="" image="" container_name=""
-  local postgres_db="" postgres_user=""
 
-  while IFS= read -r line || [[ -n "$line" ]]; do
-    if [[ "$line" =~ ^[[:space:]]*([a-zA-Z0-9_.-]+):[[:space:]]*$ ]]; then
-      if [[ -n "$in_service" ]] && [[ "$image" == *"postgres"* ]]; then
-        CONTAINER="$container_name"
-        [[ -n "$postgres_db" ]] && DB_NAME="$postgres_db"
-        [[ -n "$postgres_user" ]] && DB_USER="$postgres_user"
-        [[ -z "$CONTAINER" ]] && CONTAINER="${in_service}"
-        return 0
-      fi
-      in_service="${BASH_REMATCH[1]}"
-      image=""
-      container_name=""
-      postgres_db=""
-      postgres_user=""
-    elif [[ -n "$in_service" ]]; then
-      if [[ "$line" =~ ^[[:space:]]*image:[[:space:]]*(.+)$ ]]; then
-        image="${BASH_REMATCH[1]}"
-      elif [[ "$line" =~ ^[[:space:]]*container_name:[[:space:]]*(.+)$ ]]; then
-        container_name="${BASH_REMATCH[1]}"
-      elif [[ "$line" =~ ^[[:space:]]*-[[:space:]]*POSTGRES_DB= ]]; then
-        postgres_db=$(get_env_value "$line" "POSTGRES_DB")
-      elif [[ "$line" =~ ^[[:space:]]*-[[:space:]]*POSTGRES_USER= ]]; then
-        postgres_user=$(get_env_value "$line" "POSTGRES_USER")
-      elif [[ "$line" =~ ^[[:space:]]*-[[:space:]]*DB_NAME= ]]; then
-        postgres_db=$(get_env_value "$line" "DB_NAME")
-      elif [[ "$line" =~ ^[[:space:]]*-[[:space:]]*DB_USER= ]]; then
-        postgres_user=$(get_env_value "$line" "DB_USER")
-      elif [[ "$line" =~ ^[[:space:]]*-[[:space:]]*DB_DATABASE_NAME= ]]; then
-        postgres_db=$(get_env_value "$line" "DB_DATABASE_NAME")
-      elif [[ "$line" =~ ^[[:space:]]*-[[:space:]]*DB_DATABASE= ]]; then
-        postgres_db=$(get_env_value "$line" "DB_DATABASE")
-      elif [[ "$line" =~ ^[[:space:]]*-[[:space:]]*DB_USERNAME= ]]; then
-        postgres_user=$(get_env_value "$line" "DB_USERNAME")
-      fi
-    fi
-  done < "$compose"
+  local resolved
+  resolved=$(cd "$dir" && docker compose config 2>/dev/null) || return 1
 
-  if [[ -n "$in_service" ]] && [[ "$image" == *"postgres"* ]]; then
-    CONTAINER="$container_name"
-    [[ -n "$postgres_db" ]] && DB_NAME="$postgres_db"
-    [[ -n "$postgres_user" ]] && DB_USER="$postgres_user"
-    [[ -z "$CONTAINER" ]] && CONTAINER="${in_service}"
-    return 0
+  local db_block
+  db_block=$(echo "$resolved" | awk '
+    /^  [a-zA-Z0-9_.-]+:$/ {
+      in_svc = 1
+      container = ""
+      postgres_db = ""
+      postgres_user = ""
+      next
+    }
+    in_svc && /^    container_name:/ {
+      sub(/^[^:]+:[[:space:]]*/, "")
+      sub(/[[:space:]]*$/, "")
+      gsub(/"/, "")
+      container = $0
+      next
+    }
+    in_svc && /^      POSTGRES_DB:/ {
+      sub(/^[^:]+:[[:space:]]*/, "")
+      sub(/[[:space:]]*$/, "")
+      gsub(/"/, "")
+      postgres_db = $0
+      next
+    }
+    in_svc && /^      POSTGRES_USER:/ {
+      sub(/^[^:]+:[[:space:]]*/, "")
+      sub(/[[:space:]]*$/, "")
+      gsub(/"/, "")
+      postgres_user = $0
+      next
+    }
+    in_svc && /image:.*postgres/ {
+      if (postgres_db && postgres_user) {
+        print "CONTAINER=" container
+        print "DB_NAME=" postgres_db
+        print "DB_USER=" postgres_user
+        exit 0
+      }
+    }
+  ')
+
+  if [[ -n "$db_block" ]]; then
+    eval "$db_block"
+    CONTAINER="${CONTAINER:-}"
+    DB_NAME="${DB_NAME:-}"
+    DB_USER="${DB_USER:-}"
+    [[ -n "${DB_NAME:-}" ]] && [[ -n "${DB_USER:-}" ]] && return 0
   fi
   return 1
 }
@@ -236,21 +239,19 @@ main() {
     load_env "$dir"
     local did_restore=false
 
-    # Keep DB_NAME/DB_USER from load_env so get_env_value can expand ${DB_NAME} etc.
     CONTAINER=""
     if parse_postgres "$dir"; then
-      # Fallback to .env when compose uses env_file or different var names
-      [[ -z "$DB_NAME" ]] && DB_NAME="${POSTGRES_DB:-${DB_DATABASE_NAME:-${DB_DATABASE:-}}}"
-      [[ -z "$DB_USER" ]] && DB_USER="${POSTGRES_USER:-${DB_USERNAME:-}}"
-      if [[ -z "$CONTAINER" ]]; then
+      [[ -z "${DB_NAME:-}" ]] && DB_NAME="${POSTGRES_DB:-${DB_DATABASE_NAME:-${DB_DATABASE:-}}}"
+      [[ -z "${DB_USER:-}" ]] && DB_USER="${POSTGRES_USER:-${DB_USERNAME:-}}"
+      if [[ -z "${CONTAINER:-}" ]]; then
         local cid
         cid=$(cd "$dir" && docker compose ps -q db 2>/dev/null) || true
         if [[ -n "$cid" ]]; then
           CONTAINER=$(docker inspect -f '{{.Name}}' "$cid" 2>/dev/null | tr -d '/')
         fi
       fi
-      [[ -z "$CONTAINER" ]] && CONTAINER="${name}-db"
-      if [[ -n "$DB_NAME" ]] && [[ -n "$DB_USER" ]]; then
+      [[ -z "${CONTAINER:-}" ]] && CONTAINER="${name}-db"
+      if [[ -n "${DB_NAME:-}" ]] && [[ -n "${DB_USER:-}" ]]; then
         restore_postgres "$CONTAINER" "$DB_NAME" "$DB_USER" "$backup_file" && did_restore=true
       else
         warn "Postgres found in $name but DB_NAME or DB_USER missing (skipping)"

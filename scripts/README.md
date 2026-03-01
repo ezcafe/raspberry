@@ -29,7 +29,7 @@ Creates:
 ### Behavior
 
 - **Folder lookup**: Folders are searched by name under the repository root (parent of `scripts/`), up to 3 levels deep. The first matching directory is used.
-- **Postgres**: Detects services with `image: postgres` in `docker-compose.yml`, uses `container_name` (or resolves via `docker compose ps -q db`), and reads DB name/user from the compose `environment` section or `.env`.
+- **Postgres**: Uses `docker compose config` to get fully resolved values (handles YAML anchors, `.env`, `env_file`), extracts `POSTGRES_DB`/`POSTGRES_USER` and `container_name` from the postgres service.
 - **Supported env variables** (compose or .env): `DB_NAME`, `DB_USER`, `POSTGRES_DB`, `POSTGRES_USER`, `DB_USERNAME`, `DB_DATABASE`, `DB_DATABASE_NAME`.
 - **SQLite**: Detects services with `DB01_TYPE=sqlite3` and `DB01_HOST` (path inside container) and runs `sqlite3 ... .dump` via `docker exec`.
 - If a folder has no database (or the DB container is not running), a warning is printed and the script continues with the next folder.
