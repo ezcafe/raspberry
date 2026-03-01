@@ -128,9 +128,9 @@ parse_sqlite() {
   while IFS= read -r line || [[ -n "$line" ]]; do
     if [[ "$line" =~ ^[[:space:]]*([a-zA-Z0-9_.-]+):[[:space:]]*$ ]]; then
       if [[ -n "$in_service" ]] && [[ "$db01_type" == "sqlite3" ]] && [[ -n "$db01_host" ]]; then
-        CONTAINER="$container_name"
-        DB_PATH="$db01_host"
-        [[ -z "$CONTAINER" ]] && CONTAINER="${in_service}"
+        CONTAINER="${container_name:-}"
+        DB_PATH="${db01_host:-}"
+        [[ -z "${CONTAINER:-}" ]] && CONTAINER="${in_service:-}"
         return 0
       fi
       in_service="${BASH_REMATCH[1]}"
@@ -149,9 +149,9 @@ parse_sqlite() {
   done < "$compose"
 
   if [[ -n "$in_service" ]] && [[ "$db01_type" == "sqlite3" ]] && [[ -n "$db01_host" ]]; then
-    CONTAINER="$container_name"
-    DB_PATH="$db01_host"
-    [[ -z "$CONTAINER" ]] && CONTAINER="${in_service}"
+    CONTAINER="${container_name:-}"
+    DB_PATH="${db01_host:-}"
+    [[ -z "${CONTAINER:-}" ]] && CONTAINER="${in_service:-}"
     return 0
   fi
   return 1
@@ -235,7 +235,7 @@ main() {
 
     # Clear DB vars so we don't inherit from previous folder
     unset DB_NAME DB_USER DB_HOST DB_PASS POSTGRES_DB POSTGRES_USER POSTGRES_PASSWORD \
-          DB_USERNAME DB_DATABASE DB_DATABASE_NAME
+          DB_USERNAME DB_DATABASE DB_DATABASE_NAME CONTAINER DB_PATH
     load_env "$dir"
     local did_restore=false
 
