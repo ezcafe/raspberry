@@ -224,6 +224,8 @@ main() {
       continue
     fi
 
+    # Clear DB vars so we don't inherit from previous folder
+    unset DB_NAME DB_USER DB_HOST DB_PASS POSTGRES_DB POSTGRES_USER POSTGRES_PASSWORD
     load_env "$dir"
     local did_restore=false
 
