@@ -29,9 +29,11 @@ Creates:
 ### Behavior
 
 - **Folder lookup**: Folders are searched by name under the repository root (parent of `scripts/`), up to 3 levels deep. The first matching directory is used.
-- **Postgres**: Detects services with `image: postgres` in `docker-compose.yml`, uses `container_name` (or resolves via `docker compose ps -q db`), and reads `POSTGRES_DB`/`POSTGRES_USER` (or `DB_NAME`/`DB_USER`) from the compose `environment` section or from `.env`.
+- **Postgres**: Detects services with `image: postgres` in `docker-compose.yml`, uses `container_name` (or resolves via `docker compose ps -q db`), and reads DB name/user from the compose `environment` section or `.env`.
+- **Supported env variables** (compose or .env): `DB_NAME`, `DB_USER`, `POSTGRES_DB`, `POSTGRES_USER`, `DB_USERNAME`, `DB_DATABASE`, `DB_DATABASE_NAME`.
 - **SQLite**: Detects services with `DB01_TYPE=sqlite3` and `DB01_HOST` (path inside container) and runs `sqlite3 ... .dump` via `docker exec`.
 - If a folder has no database (or the DB container is not running), a warning is printed and the script continues with the next folder.
+- If a folder's compose uses env variable names not in the supported list, a warning lists the supported patterns so you can add the appropriate vars to `.env` or adjust the compose.
 
 ### Requirements
 
@@ -83,7 +85,7 @@ Restores **Postgres** and **SQLite** databases from backup files produced by `ba
 ### Behavior
 
 - **Pairing**: The first folder name is restored from the first backup file, the second from the second, etc. The number of comma-separated entries must match.
-- **Postgres**: Restores by piping the backup SQL into `psql -U user -d dbname` inside the Postgres container. If the database already has data, you may need to drop/recreate it first (e.g. stop the app, drop DB, then restore).
+- **Postgres**: Restores by piping the backup SQL into `psql -U user -d dbname` inside the Postgres container. Uses the same env variable patterns as the backup script (see above). If the database already has data, you may need to drop/recreate it first (e.g. stop the app, drop DB, then restore).
 - **SQLite**: Removes the existing DB file in the container, then feeds the backup SQL into `sqlite3` for a clean replace.
 - Containers must be running. Backup files must exist and be plain SQL (as produced by `backup-databases.sh`).
 

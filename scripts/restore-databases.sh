@@ -93,6 +93,12 @@ parse_postgres() {
         postgres_db=$(get_env_value "$line" "DB_NAME")
       elif [[ "$line" =~ ^[[:space:]]*-[[:space:]]*DB_USER= ]]; then
         postgres_user=$(get_env_value "$line" "DB_USER")
+      elif [[ "$line" =~ ^[[:space:]]*-[[:space:]]*DB_DATABASE_NAME= ]]; then
+        postgres_db=$(get_env_value "$line" "DB_DATABASE_NAME")
+      elif [[ "$line" =~ ^[[:space:]]*-[[:space:]]*DB_DATABASE= ]]; then
+        postgres_db=$(get_env_value "$line" "DB_DATABASE")
+      elif [[ "$line" =~ ^[[:space:]]*-[[:space:]]*DB_USERNAME= ]]; then
+        postgres_user=$(get_env_value "$line" "DB_USERNAME")
       fi
     fi
   done < "$compose"
@@ -225,14 +231,17 @@ main() {
     fi
 
     # Clear DB vars so we don't inherit from previous folder
-    unset DB_NAME DB_USER DB_HOST DB_PASS POSTGRES_DB POSTGRES_USER POSTGRES_PASSWORD
+    unset DB_NAME DB_USER DB_HOST DB_PASS POSTGRES_DB POSTGRES_USER POSTGRES_PASSWORD \
+          DB_USERNAME DB_DATABASE DB_DATABASE_NAME
     load_env "$dir"
     local did_restore=false
 
-    CONTAINER="" DB_NAME="" DB_USER=""
+    # Keep DB_NAME/DB_USER from load_env so get_env_value can expand ${DB_NAME} etc.
+    CONTAINER=""
     if parse_postgres "$dir"; then
-      [[ -z "$DB_NAME" ]] && DB_NAME="${POSTGRES_DB:-}"
-      [[ -z "$DB_USER" ]] && DB_USER="${POSTGRES_USER:-}"
+      # Fallback to .env when compose uses env_file or different var names
+      [[ -z "$DB_NAME" ]] && DB_NAME="${POSTGRES_DB:-${DB_DATABASE_NAME:-${DB_DATABASE:-}}}"
+      [[ -z "$DB_USER" ]] && DB_USER="${POSTGRES_USER:-${DB_USERNAME:-}}"
       if [[ -z "$CONTAINER" ]]; then
         local cid
         cid=$(cd "$dir" && docker compose ps -q db 2>/dev/null) || true
@@ -245,6 +254,7 @@ main() {
         restore_postgres "$CONTAINER" "$DB_NAME" "$DB_USER" "$backup_file" && did_restore=true
       else
         warn "Postgres found in $name but DB_NAME or DB_USER missing (skipping)"
+        warn "  Supported env patterns: DB_NAME, DB_USER, POSTGRES_DB, POSTGRES_USER, DB_USERNAME, DB_DATABASE, DB_DATABASE_NAME"
       fi
     fi
 
