@@ -252,7 +252,7 @@ main() {
       fi
       [[ -z "${CONTAINER:-}" ]] && CONTAINER="${name}-db"
       if [[ -n "${DB_NAME:-}" ]] && [[ -n "${DB_USER:-}" ]]; then
-        restore_postgres "$CONTAINER" "$DB_NAME" "$DB_USER" "$backup_file" && did_restore=true
+        restore_postgres "${CONTAINER:-}" "${DB_NAME:-}" "${DB_USER:-}" "$backup_file" && did_restore=true
       else
         warn "Postgres found in $name but DB_NAME or DB_USER missing (skipping)"
         warn "  Supported env patterns: DB_NAME, DB_USER, POSTGRES_DB, POSTGRES_USER, DB_USERNAME, DB_DATABASE, DB_DATABASE_NAME"
@@ -262,7 +262,7 @@ main() {
     if [[ "$did_restore" != true ]]; then
       CONTAINER="" DB_PATH=""
       if parse_sqlite "$dir"; then
-        restore_sqlite "$CONTAINER" "$DB_PATH" "$backup_file" && did_restore=true
+        restore_sqlite "${CONTAINER:-}" "${DB_PATH:-}" "$backup_file" && did_restore=true
       fi
     fi
 

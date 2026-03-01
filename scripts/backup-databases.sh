@@ -123,7 +123,7 @@ parse_postgres() {
     CONTAINER="${CONTAINER:-}"
     DB_NAME="${DB_NAME:-}"
     DB_USER="${DB_USER:-}"
-    [[ -n "$DB_NAME" ]] && [[ -n "$DB_USER" ]] && return 0
+    [[ -n "${DB_NAME:-}" ]] && [[ -n "${DB_USER:-}" ]] && return 0
   fi
   return 1
 }
@@ -251,7 +251,7 @@ main() {
       [[ -z "${CONTAINER:-}" ]] && CONTAINER="${name}-db"
       if docker ps --format '{{.Names}}' | grep -qx "${CONTAINER:-}" 2>/dev/null; then
         if [[ -n "${DB_NAME:-}" ]] && [[ -n "${DB_USER:-}" ]]; then
-          backup_postgres "$CONTAINER" "$DB_NAME" "$DB_USER" "$out_file"
+          backup_postgres "${CONTAINER:-}" "${DB_NAME:-}" "${DB_USER:-}" "$out_file"
           did_backup=true
         else
           warn "Postgres found in $name but DB_NAME or DB_USER missing in .env/compose (skipping)"
@@ -266,11 +266,11 @@ main() {
     if [[ "$did_backup" != true ]]; then
       CONTAINER="" DB_PATH=""
       if parse_sqlite "$dir"; then
-        if docker ps --format '{{.Names}}' | grep -qx "$CONTAINER" 2>/dev/null; then
-          backup_sqlite "$CONTAINER" "$DB_PATH" "$out_file"
+        if docker ps --format '{{.Names}}' | grep -qx "${CONTAINER:-}" 2>/dev/null; then
+          backup_sqlite "${CONTAINER:-}" "${DB_PATH:-}" "$out_file"
           did_backup=true
         else
-          warn "SQLite container '$CONTAINER' not running in $name (skipping)"
+          warn "SQLite container '${CONTAINER:-}' not running in $name (skipping)"
         fi
       fi
     fi
