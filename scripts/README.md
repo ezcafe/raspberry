@@ -34,6 +34,7 @@ Creates:
 - **SQLite**: Detects services with `DB01_TYPE=sqlite3` and `DB01_HOST` (path inside container) and runs `sqlite3 ... .dump` via `docker exec`.
 - If a folder has no database (or the DB container is not running), a warning is printed and the script continues with the next folder.
 - If a folder's compose uses env variable names not in the supported list, a warning lists the supported patterns so you can add the appropriate vars to `.env` or adjust the compose.
+- **Auto-cleanup**: After all backups complete, the script removes `.sql` files older than 14 days from each destination subfolder. Configure `RETENTION_DAYS` in the script to change this.
 
 ### Requirements
 

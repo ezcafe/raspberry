@@ -22,6 +22,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Search for folders under this directory's parent (workspace root when run from scripts/)
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 DATETIME="$(date +%Y%m%d-%H%M%S)"
+RETENTION_DAYS=14
 
 # --- helpers ---
 log() { echo "[backup] $*" >&2; }
@@ -192,6 +193,28 @@ backup_sqlite() {
   fi
 }
 
+# Remove backup files older than RETENTION_DAYS in each subfolder.
+cleanup_old_backups() {
+  local dest="$1"
+  shift
+  local names=("$@")
+  local mtime_arg="$((RETENTION_DAYS - 1))"
+  for n in "${names[@]}"; do
+    n=$(echo "$n" | tr -d '[:space:]')
+    [[ -z "$n" ]] && continue
+    local dir="$dest/$n"
+    [[ ! -d "$dir" ]] && continue
+    local count=0
+    while IFS= read -r -d '' f; do
+      rm -f "$f"
+      ((count++)) || true
+    done < <(find "$dir" -maxdepth 1 -type f -name "*.sql" -mtime "+${mtime_arg}" -print0 2>/dev/null)
+    if [[ "$count" -gt 0 ]]; then
+      log "Cleanup: removed $count backup(s) older than ${RETENTION_DAYS} days from $dir"
+    fi
+  done
+}
+
 # --- main ---
 main() {
   local folder_names="${1:-}"
@@ -281,6 +304,7 @@ main() {
     fi
   done
 
+  cleanup_old_backups "$destination" "${NAMES[@]}"
   log "Done."
 }
 
