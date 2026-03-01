@@ -202,6 +202,7 @@ main() {
     exit 1
   fi
 
+  log "Started at $(date '+%Y-%m-%d %H:%M:%S')"
   IFS=',' read -ra NAMES <<< "$folder_names"
   IFS=',' read -ra FILES <<< "$backup_files"
 

@@ -203,6 +203,7 @@ main() {
     exit 1
   fi
 
+  log "Started at $(date '+%Y-%m-%d %H:%M:%S')"
   destination="${destination/#\~/$HOME}"
   if [[ ! -d "$destination" ]]; then
     mkdir -p "$destination"
