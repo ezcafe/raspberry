@@ -34,10 +34,14 @@ services:
       - 1883:1883
     volumes:
       - ./mosquitto/config:/mosquitto/config:rw
-      - ./mosquitto/data:/mosquitto/data:rw
-      - ./mosquitto/log:/mosquitto/log:rw
+      - mosquitto_data:/mosquitto/data:rw
+      - mosquitto_log:/mosquitto/log:rw
     stdin_open: true
     tty: true
+
+volumes:
+  mosquitto_data:
+  mosquitto_log:
 
   # music-assistant-server:
   #   image: ghcr.io/music-assistant/server:latest # <<< Desired release version here (or use beta to get the latest beta version)
