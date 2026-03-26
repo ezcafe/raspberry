@@ -18,7 +18,7 @@ sudo chown -R $USER:$USER .
 
 Broker: your MQTT ip
 Port: 1883
-User and pass of MQTT
+User: homeassistant and pass of MQTT
 
 ## Authentik
 
