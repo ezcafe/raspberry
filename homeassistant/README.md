@@ -6,12 +6,20 @@ sudo ufw allow 21064/tcp comment homekit
 
 ## Add MQTT user
 
-touch ./mosquitto/config/mqttuser
+nano ./mosquitto/config/mosquitto.conf
+-> allow_anonymous true
+-> # password_file...
 
 docker exec -it mosquitto mosquitto_passwd -c ./mosquitto/config/mqttuser homeassistant
 
+nano ./mosquitto/config/mosquitto.conf
+-> allow_anonymous false
+-> password_file...
+
 Check user
 sudo cat ./mosquitto/config/mqttuser
+
+docker compose restart mosquitto
 
 If have unlink issue with config file, run this command
 sudo chown -R $USER:$USER .
