@@ -30,6 +30,7 @@ services:
     restart: unless-stopped
     environment:
       - TZ=${TZ}
+      - MOSQUITTO_UNSAFE_ALLOW_SYMLINKS=1
     ports:
       - 1883:1883
     volumes:
