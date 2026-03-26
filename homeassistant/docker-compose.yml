@@ -7,8 +7,9 @@ services:
       # - PUID=1000
       # - PGID=1000
       - TZ=${TZ}
-    ports:
-      - 8123:8123
+    # Published ports are discarded when using host network mode
+    # ports:
+    #   - ${PORT}:8123
     # required to connect homekit, HA and homekit devices must be on the same network (wifi router)
     network_mode: host
     volumes:
