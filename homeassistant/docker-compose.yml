@@ -8,7 +8,7 @@ services:
       # - PGID=1000
       - TZ=${TZ}
     ports:
-      - ${PORT}:8123
+      - 8123:8123
     # required to connect homekit, HA and homekit devices must be on the same network (wifi router)
     network_mode: host
     volumes:
