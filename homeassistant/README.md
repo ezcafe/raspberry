@@ -6,6 +6,8 @@ sudo ufw allow 21064/tcp comment homekit
 
 ## Add MQTT user
 
+touch ./mosquitto/config/mqttuser
+
 docker exec -it mosquitto mosquitto_passwd -c ./mosquitto/config/mqttuser homeassistant
 
 Check user
