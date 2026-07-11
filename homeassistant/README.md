@@ -10,7 +10,9 @@ nano ./mosquitto/config/mosquitto.conf
 -> allow_anonymous true
 -> # password_file...
 
-docker exec -it mosquitto mosquitto_passwd -c ./mosquitto/config/mqttuser.txt homeassistant
+docker compose up -d
+
+docker exec -it mosquitto mosquitto_passwd -c ./mosquitto/config/mqttuser homeassistant
 
 nano ./mosquitto/config/mosquitto.conf
 -> allow_anonymous false
